@@ -1,14 +1,9 @@
 import { useState, useEffect, useMemo } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
-import {
-  ArrowLeft,
-  ChevronLeft,
-  ChevronRight,
-  Loader2,
-  AlertCircle,
-} from 'lucide-react'
+import { ArrowLeft, ChevronLeft, ChevronRight, AlertCircle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
+import { Skeleton } from '@/components/ui/skeleton'
 import {
   getBibleBook,
   getBibleBooks,
@@ -87,9 +82,24 @@ export default function BibleChapter() {
 
   if (!book && loading) {
     return (
-      <div className="flex flex-col items-center justify-center py-20 text-muted-foreground animate-in fade-in">
-        <Loader2 className="w-8 h-8 animate-spin text-primary mb-4" />
-        <p>Carregando versículos...</p>
+      <div className="space-y-6 animate-fade-in pb-12 px-2 pt-2">
+        <div className="flex items-center gap-4">
+          <Skeleton className="h-10 w-10 rounded-md" />
+          <Skeleton className="h-6 w-32 mx-auto" />
+          <div className="w-10" />
+        </div>
+        <div className="space-y-4 py-4">
+          {Array.from({ length: 15 }).map((_, i) => (
+            <div
+              key={i}
+              className="space-y-2"
+              style={{ opacity: 1 - i * 0.05 }}
+            >
+              <Skeleton className="h-4 w-full" />
+              <Skeleton className="h-4 w-[90%]" />
+            </div>
+          ))}
+        </div>
       </div>
     )
   }
@@ -132,8 +142,17 @@ export default function BibleChapter() {
 
       <div className="space-y-5 px-1 min-h-[50vh] pt-2 pb-6">
         {loading ? (
-          <div className="flex flex-col items-center justify-center py-20 text-muted-foreground">
-            <Loader2 className="w-8 h-8 animate-spin text-primary mb-4" />
+          <div className="space-y-4 py-4">
+            {Array.from({ length: 15 }).map((_, i) => (
+              <div
+                key={i}
+                className="space-y-2"
+                style={{ opacity: 1 - i * 0.05 }}
+              >
+                <Skeleton className="h-4 w-full" />
+                <Skeleton className="h-4 w-[90%]" />
+              </div>
+            ))}
           </div>
         ) : verses.length > 0 ? (
           verses.map((v) => (
@@ -153,8 +172,7 @@ export default function BibleChapter() {
               Versículos não encontrados
             </p>
             <p className="text-sm opacity-80 max-w-[250px] mx-auto">
-              Nenhum versículo disponível para este capítulo no momento. A base
-              de dados pode estar sincronizando.
+              Nenhum versículo disponível para este capítulo no momento.
             </p>
           </div>
         )}

@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
-import { ArrowLeft, Loader2, AlertCircle } from 'lucide-react'
+import { ArrowLeft, AlertCircle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { getBibleBook, BibleBook as BibleBookType } from '@/services/bible'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
+import { Skeleton } from '@/components/ui/skeleton'
 
 export default function BibleBook() {
   const { bookId } = useParams()
@@ -27,9 +28,19 @@ export default function BibleBook() {
 
   if (loading) {
     return (
-      <div className="flex flex-col items-center justify-center py-20 text-muted-foreground">
-        <Loader2 className="w-8 h-8 animate-spin text-primary mb-4" />
-        <p>Carregando capítulos...</p>
+      <div className="space-y-6 animate-fade-in py-4">
+        <div className="flex items-center gap-3 px-1">
+          <Skeleton className="w-10 h-10 rounded-md" />
+          <div>
+            <Skeleton className="h-8 w-48 mb-2" />
+            <Skeleton className="h-4 w-32" />
+          </div>
+        </div>
+        <div className="grid grid-cols-5 gap-3 pt-4">
+          {Array.from({ length: 20 }).map((_, i) => (
+            <Skeleton key={i} className="h-14 w-full rounded-xl" />
+          ))}
+        </div>
       </div>
     )
   }

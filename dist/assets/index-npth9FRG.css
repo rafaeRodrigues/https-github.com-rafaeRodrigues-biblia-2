@@ -886,6 +886,9 @@ section[aria-label='Notifications alt+T'] {
 .h-\[35vh\]{
   height: 35vh;
 }
+.h-\[74px\]{
+  height: 74px;
+}
 .h-\[var\(--radix-navigation-menu-viewport-height\)\]{
   height: var(--radix-navigation-menu-viewport-height);
 }
@@ -994,8 +997,14 @@ section[aria-label='Notifications alt+T'] {
 .w-3\/4{
   width: 75%;
 }
+.w-32{
+  width: 8rem;
+}
 .w-4{
   width: 1rem;
+}
+.w-48{
+  width: 12rem;
 }
 .w-5{
   width: 1.25rem;
@@ -1035,6 +1044,9 @@ section[aria-label='Notifications alt+T'] {
 }
 .w-\[1px\]{
   width: 1px;
+}
+.w-\[90\%\]{
+  width: 90%;
 }
 .w-\[calc\(100\%-2rem\)\]{
   width: calc(100% - 2rem);
@@ -1224,14 +1236,6 @@ section[aria-label='Notifications alt+T'] {
 }
 .animate-pulse{
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-@keyframes spin{
-  to{
-    transform: rotate(360deg);
-  }
-}
-.animate-spin{
-  animation: spin 1s linear infinite;
 }
 .cursor-default{
   cursor: default;
@@ -1777,10 +1781,6 @@ section[aria-label='Notifications alt+T'] {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
 }
-.py-20{
-  padding-top: 5rem;
-  padding-bottom: 5rem;
-}
 .py-3{
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
@@ -2298,9 +2298,6 @@ section[aria-label='Notifications alt+T'] {
   --tw-enter-rotate: initial;
   --tw-enter-translate-x: initial;
   --tw-enter-translate-y: initial;
-}
-.fade-in{
-  --tw-enter-opacity: 0;
 }
 .fade-in-0{
   --tw-enter-opacity: 0;

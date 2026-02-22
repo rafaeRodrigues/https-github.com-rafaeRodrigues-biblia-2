@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react'
 import { Card, CardContent } from '@/components/ui/card'
-import { Book, Search, Loader2, AlertCircle } from 'lucide-react'
+import { Book, Search, AlertCircle } from 'lucide-react'
 import { getBibleBooks, BibleBook } from '@/services/bible'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Link } from 'react-router-dom'
 import { Input } from '@/components/ui/input'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
+import { Skeleton } from '@/components/ui/skeleton'
 
 export default function Bible() {
   const [books, setBooks] = useState<BibleBook[]>([])
@@ -24,8 +25,10 @@ export default function Bible() {
       .finally(() => setLoading(false))
   }, [])
 
-  const filteredBooks = books.filter((b) =>
-    b.name.toLowerCase().includes(search.toLowerCase()),
+  const filteredBooks = books.filter(
+    (b) =>
+      b.name.toLowerCase().includes(search.toLowerCase()) ||
+      b.abbreviation.toLowerCase().includes(search.toLowerCase()),
   )
 
   const otBooks = filteredBooks.filter((b) => b.testament === 'OT')
@@ -49,9 +52,14 @@ export default function Bible() {
       </div>
 
       {loading ? (
-        <div className="flex flex-col items-center justify-center py-20 text-muted-foreground">
-          <Loader2 className="w-8 h-8 animate-spin text-primary mb-4" />
-          <p>Carregando livros...</p>
+        <div className="space-y-3 mt-6">
+          <div className="flex gap-2 mb-4">
+            <Skeleton className="h-12 w-full rounded-xl" />
+            <Skeleton className="h-12 w-full rounded-xl" />
+          </div>
+          {Array.from({ length: 6 }).map((_, i) => (
+            <Skeleton key={i} className="h-[74px] w-full rounded-xl" />
+          ))}
         </div>
       ) : error ? (
         <Alert variant="destructive" className="mt-4">

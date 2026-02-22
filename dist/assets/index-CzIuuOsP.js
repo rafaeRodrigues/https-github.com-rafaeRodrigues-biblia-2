@@ -19257,10 +19257,6 @@ var List = createLucideIcon("list", [
 		key: "m83p4d"
 	}]
 ]);
-var LoaderCircle = createLucideIcon("loader-circle", [["path", {
-	d: "M21 12a9 9 0 1 1-6.219-8.56",
-	key: "13zald"
-}]]);
 var LogOut = createLucideIcon("log-out", [
 	["path", {
 		d: "m16 17 5-5-5-5",
@@ -37340,7 +37336,7 @@ function Bible() {
 			setError(null);
 		}).catch((err) => setError(err.message || "Erro ao carregar os livros")).finally(() => setLoading(false));
 	}, []);
-	const filteredBooks = books.filter((b$1) => b$1.name.toLowerCase().includes(search.toLowerCase()));
+	const filteredBooks = books.filter((b$1) => b$1.name.toLowerCase().includes(search.toLowerCase()) || b$1.abbreviation.toLowerCase().includes(search.toLowerCase()));
 	const otBooks = filteredBooks.filter((b$1) => b$1.testament === "OT");
 	const ntBooks = filteredBooks.filter((b$1) => b$1.testament === "NT");
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
@@ -37363,8 +37359,11 @@ function Bible() {
 				})]
 			}),
 			loading ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-				className: "flex flex-col items-center justify-center py-20 text-muted-foreground",
-				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(LoaderCircle, { className: "w-8 h-8 animate-spin text-primary mb-4" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: "Carregando livros..." })]
+				className: "space-y-3 mt-6",
+				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+					className: "flex gap-2 mb-4",
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Skeleton, { className: "h-12 w-full rounded-xl" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Skeleton, { className: "h-12 w-full rounded-xl" })]
+				}), Array.from({ length: 6 }).map((_$1, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Skeleton, { className: "h-[74px] w-full rounded-xl" }, i))]
 			}) : error ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Alert, {
 				variant: "destructive",
 				className: "mt-4",
@@ -37464,8 +37463,14 @@ function BibleBook() {
 		}
 	}, [bookId]);
 	if (loading) return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-		className: "flex flex-col items-center justify-center py-20 text-muted-foreground",
-		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(LoaderCircle, { className: "w-8 h-8 animate-spin text-primary mb-4" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: "Carregando capítulos..." })]
+		className: "space-y-6 animate-fade-in py-4",
+		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+			className: "flex items-center gap-3 px-1",
+			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Skeleton, { className: "w-10 h-10 rounded-md" }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Skeleton, { className: "h-8 w-48 mb-2" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Skeleton, { className: "h-4 w-32" })] })]
+		}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+			className: "grid grid-cols-5 gap-3 pt-4",
+			children: Array.from({ length: 20 }).map((_$1, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Skeleton, { className: "h-14 w-full rounded-xl" }, i))
+		})]
 	});
 	if (error || !book) return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 		className: "p-4 py-8",
@@ -37581,8 +37586,22 @@ function BibleChapter() {
 		chapterNum
 	]);
 	if (!book && loading) return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-		className: "flex flex-col items-center justify-center py-20 text-muted-foreground animate-in fade-in",
-		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(LoaderCircle, { className: "w-8 h-8 animate-spin text-primary mb-4" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: "Carregando versículos..." })]
+		className: "space-y-6 animate-fade-in pb-12 px-2 pt-2",
+		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+			className: "flex items-center gap-4",
+			children: [
+				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Skeleton, { className: "h-10 w-10 rounded-md" }),
+				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Skeleton, { className: "h-6 w-32 mx-auto" }),
+				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "w-10" })
+			]
+		}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+			className: "space-y-4 py-4",
+			children: Array.from({ length: 15 }).map((_$1, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+				className: "space-y-2",
+				style: { opacity: 1 - i * .05 },
+				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Skeleton, { className: "h-4 w-full" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Skeleton, { className: "h-4 w-[90%]" })]
+			}, i))
+		})]
 	});
 	if (error || !book) return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 		className: "p-4 py-8",
@@ -37627,8 +37646,12 @@ function BibleChapter() {
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 				className: "space-y-5 px-1 min-h-[50vh] pt-2 pb-6",
 				children: loading ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-					className: "flex flex-col items-center justify-center py-20 text-muted-foreground",
-					children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(LoaderCircle, { className: "w-8 h-8 animate-spin text-primary mb-4" })
+					className: "space-y-4 py-4",
+					children: Array.from({ length: 15 }).map((_$1, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "space-y-2",
+						style: { opacity: 1 - i * .05 },
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Skeleton, { className: "h-4 w-full" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Skeleton, { className: "h-4 w-[90%]" })]
+					}, i))
 				}) : verses.length > 0 ? verses.map((v) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
 					className: "text-[17px] leading-[1.7] text-foreground/90 font-serif",
 					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("sup", {
@@ -37642,7 +37665,7 @@ function BibleChapter() {
 						children: "Versículos não encontrados"
 					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 						className: "text-sm opacity-80 max-w-[250px] mx-auto",
-						children: "Nenhum versículo disponível para este capítulo no momento. A base de dados pode estar sincronizando."
+						children: "Nenhum versículo disponível para este capítulo no momento."
 					})]
 				})
 			}),
@@ -39122,4 +39145,4 @@ var App = () => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AuthProvider, { chil
 var App_default = App;
 (0, import_client.createRoot)(document.getElementById("root")).render(/* @__PURE__ */ (0, import_jsx_runtime.jsx)(App_default, {}));
 
-//# sourceMappingURL=index-D3fpTent.js.map
+//# sourceMappingURL=index-CzIuuOsP.js.map
