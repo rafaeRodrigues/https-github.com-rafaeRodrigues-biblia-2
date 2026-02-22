@@ -19140,6 +19140,28 @@ var House = createLucideIcon("house", [["path", {
 	d: "M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z",
 	key: "r6nss1"
 }]]);
+var Instagram = createLucideIcon("instagram", [
+	["rect", {
+		width: "20",
+		height: "20",
+		x: "2",
+		y: "2",
+		rx: "5",
+		ry: "5",
+		key: "2e1cvw"
+	}],
+	["path", {
+		d: "M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z",
+		key: "9exkf1"
+	}],
+	["line", {
+		x1: "17.5",
+		x2: "17.51",
+		y1: "6.5",
+		y2: "6.5",
+		key: "r4j83e"
+	}]
+]);
 var LayoutGrid = createLucideIcon("layout-grid", [
 	["rect", {
 		width: "7",
@@ -33851,10 +33873,14 @@ const getBanners = async () => {
 var _1000486751_02f03_default = "/assets/1000486751-02f03-Bp33fxOo.png";
 var _1000486747_2516a_default = "/assets/1000486747-2516a-DOBGZ8ZF.png";
 var _1000486749_2ccfd_default = "/assets/1000486749-2ccfd-C2PAPERB.png";
+var _1000487831_3a47c_default = "/assets/1000487831-3a47c-Bp1C53uE.png";
+var _1000486745_d81f8_default = "/assets/1000486745-d81f8-CajhWREP.png";
 var imageMap = {
 	"/src/assets/1000486751-02f03.png": _1000486751_02f03_default,
 	"/src/assets/1000486747-2516a.png": _1000486747_2516a_default,
-	"/src/assets/1000486749-2ccfd.png": _1000486749_2ccfd_default
+	"/src/assets/1000486749-2ccfd.png": _1000486749_2ccfd_default,
+	"/src/assets/1000487831-3a47c.png": _1000487831_3a47c_default,
+	"/src/assets/1000486745-d81f8.png": _1000486745_d81f8_default
 };
 var fallbackBanners = [
 	{
@@ -33877,6 +33903,20 @@ var fallbackBanners = [
 		alt: "O Teu amor é melhor do que a vida",
 		tag: "Salmos 63:4",
 		title: "O Teu amor é melhor do que a vida"
+	},
+	{
+		id: 4,
+		src: _1000487831_3a47c_default,
+		alt: "Mensagem de Fé",
+		tag: "Inspiração",
+		title: "Mensagem de Fé"
+	},
+	{
+		id: 5,
+		src: _1000486745_d81f8_default,
+		alt: "Palavra Pastoral",
+		tag: "Liderança",
+		title: "Palavra Pastoral"
 	}
 ];
 function BannerCarousel() {
@@ -38174,12 +38214,27 @@ var NavItem = ({ to, icon: Icon$2, label, current }) => {
 	const isActive = current === to;
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Link, {
 		to,
-		className: "flex flex-col items-center justify-center w-16 h-14 gap-1 relative group",
+		className: "flex flex-col items-center justify-center flex-1 h-14 gap-1 relative group",
 		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 			className: cn("p-1.5 rounded-full transition-colors duration-300", isActive ? "bg-muted" : "bg-transparent"),
 			children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Icon$2, { className: cn("w-5 h-5 transition-colors duration-300", isActive ? "text-foreground" : "text-muted-foreground") })
 		}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
 			className: cn("text-[10px] font-semibold transition-colors duration-300", isActive ? "text-foreground" : "text-muted-foreground"),
+			children: label
+		})]
+	});
+};
+var ExternalNavItem = ({ href, icon: Icon$2, label }) => {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("a", {
+		href,
+		target: "_blank",
+		rel: "noopener noreferrer",
+		className: "flex flex-col items-center justify-center flex-1 h-14 gap-1 relative group",
+		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+			className: "p-1.5 rounded-full transition-colors duration-300 bg-transparent group-hover:bg-muted",
+			children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Icon$2, { className: "w-5 h-5 transition-colors duration-300 text-muted-foreground group-hover:text-foreground" })
+		}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+			className: "text-[10px] font-semibold transition-colors duration-300 text-muted-foreground group-hover:text-foreground",
 			children: label
 		})]
 	});
@@ -38220,7 +38275,7 @@ function Layout() {
 					children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Outlet, {})
 				}),
 				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("nav", {
-					className: "absolute bottom-6 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] bg-background/95 backdrop-blur-md rounded-full shadow-[0_8px_30px_rgba(0,0,0,0.12)] border flex items-center justify-between px-2 py-1 z-50 transition-colors duration-300",
+					className: "absolute bottom-6 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] bg-background/95 backdrop-blur-md rounded-full shadow-[0_8px_30px_rgba(0,0,0,0.12)] border flex items-center justify-between px-1 py-1 z-50 transition-colors duration-300",
 					children: [
 						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(NavItem, {
 							icon: House,
@@ -38245,6 +38300,11 @@ function Layout() {
 							label: "Gestão",
 							to: "/management",
 							current: location.pathname
+						}),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(ExternalNavItem, {
+							icon: Instagram,
+							label: "Instagram",
+							href: "https://www.instagram.com/_ibpalavra?igsh=cXZxaDNwajlhdWk4"
 						})
 					]
 				})
@@ -38685,4 +38745,4 @@ var App = () => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AuthProvider, { chil
 var App_default = App;
 (0, import_client.createRoot)(document.getElementById("root")).render(/* @__PURE__ */ (0, import_jsx_runtime.jsx)(App_default, {}));
 
-//# sourceMappingURL=index-CepSIQFS.js.map
+//# sourceMappingURL=index-Bs27jLkp.js.map

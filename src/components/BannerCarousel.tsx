@@ -13,11 +13,15 @@ import { getBanners } from '@/services/banners'
 import banner1 from '@/assets/1000486751-02f03.png'
 import banner2 from '@/assets/1000486747-2516a.png'
 import banner3 from '@/assets/1000486749-2ccfd.png'
+import banner4 from '@/assets/1000487831-3a47c.png'
+import banner5 from '@/assets/1000486745-d81f8.png'
 
 const imageMap: Record<string, string> = {
   '/src/assets/1000486751-02f03.png': banner1,
   '/src/assets/1000486747-2516a.png': banner2,
   '/src/assets/1000486749-2ccfd.png': banner3,
+  '/src/assets/1000487831-3a47c.png': banner4,
+  '/src/assets/1000486745-d81f8.png': banner5,
 }
 
 const fallbackBanners = [
@@ -41,6 +45,20 @@ const fallbackBanners = [
     alt: 'O Teu amor é melhor do que a vida',
     tag: 'Salmos 63:4',
     title: 'O Teu amor é melhor do que a vida',
+  },
+  {
+    id: 4,
+    src: banner4,
+    alt: 'Mensagem de Fé',
+    tag: 'Inspiração',
+    title: 'Mensagem de Fé',
+  },
+  {
+    id: 5,
+    src: banner5,
+    alt: 'Palavra Pastoral',
+    tag: 'Liderança',
+    title: 'Palavra Pastoral',
   },
 ]
 

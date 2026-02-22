@@ -1,5 +1,12 @@
 import { Outlet, Link, useLocation } from 'react-router-dom'
-import { Home, MapPin, LayoutGrid, Bell, UserCircle } from 'lucide-react'
+import {
+  Home,
+  MapPin,
+  LayoutGrid,
+  Bell,
+  UserCircle,
+  Instagram,
+} from 'lucide-react'
 import { cn } from '@/lib/utils'
 import logoUrl from '@/assets/1000486575-fd3e2.png'
 import { ThemeToggle } from '@/components/theme-toggle'
@@ -28,7 +35,7 @@ const NavItem = ({ to, icon: Icon, label, current }: any) => {
   return (
     <Link
       to={to}
-      className="flex flex-col items-center justify-center w-16 h-14 gap-1 relative group"
+      className="flex flex-col items-center justify-center flex-1 h-14 gap-1 relative group"
     >
       <div
         className={cn(
@@ -52,6 +59,24 @@ const NavItem = ({ to, icon: Icon, label, current }: any) => {
         {label}
       </span>
     </Link>
+  )
+}
+
+const ExternalNavItem = ({ href, icon: Icon, label }: any) => {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="flex flex-col items-center justify-center flex-1 h-14 gap-1 relative group"
+    >
+      <div className="p-1.5 rounded-full transition-colors duration-300 bg-transparent group-hover:bg-muted">
+        <Icon className="w-5 h-5 transition-colors duration-300 text-muted-foreground group-hover:text-foreground" />
+      </div>
+      <span className="text-[10px] font-semibold transition-colors duration-300 text-muted-foreground group-hover:text-foreground">
+        {label}
+      </span>
+    </a>
   )
 }
 
@@ -87,7 +112,7 @@ export default function Layout() {
         </main>
 
         {/* Bottom Nav */}
-        <nav className="absolute bottom-6 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] bg-background/95 backdrop-blur-md rounded-full shadow-[0_8px_30px_rgba(0,0,0,0.12)] border flex items-center justify-between px-2 py-1 z-50 transition-colors duration-300">
+        <nav className="absolute bottom-6 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] bg-background/95 backdrop-blur-md rounded-full shadow-[0_8px_30px_rgba(0,0,0,0.12)] border flex items-center justify-between px-1 py-1 z-50 transition-colors duration-300">
           <NavItem
             icon={Home}
             label="Home"
@@ -111,6 +136,11 @@ export default function Layout() {
             label="Gestão"
             to="/management"
             current={location.pathname}
+          />
+          <ExternalNavItem
+            icon={Instagram}
+            label="Instagram"
+            href="https://www.instagram.com/_ibpalavra?igsh=cXZxaDNwajlhdWk4"
           />
         </nav>
       </div>
