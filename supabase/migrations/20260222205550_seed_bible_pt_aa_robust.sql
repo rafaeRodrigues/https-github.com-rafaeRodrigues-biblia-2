@@ -16,13 +16,17 @@ DECLARE
     v_sort_order int := 1;
     v_chapter_idx int;
     v_verse_idx int;
+    clean_content text;
 BEGIN
     -- Fetch the complete JSON data for Almeida Atualizada (PT-AA)
     response := extensions.http_get('https://raw.githubusercontent.com/thiagobodruk/bible/master/json/pt_aa.json');
     
     IF response.status = 200 THEN
-        -- Safely trim BOM (Byte Order Mark) and whitespaces before casting to JSONB
-        bible_data := trim(both e'\r\n\t ' || chr(65279) from response.content)::jsonb;
+        -- Safely extract only the JSON array portion, bypassing any BOM (Byte Order Mark) or leading garbage
+        clean_content := substring(response.content, strpos(response.content, '['));
+        
+        -- Cast the clean content to JSONB
+        bible_data := clean_content::jsonb;
         
         -- Iterate over all books
         FOR book_record IN SELECT * FROM jsonb_array_elements(bible_data)
