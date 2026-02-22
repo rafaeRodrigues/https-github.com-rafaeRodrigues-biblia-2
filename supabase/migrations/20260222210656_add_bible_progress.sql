@@ -31,24 +31,28 @@ CREATE POLICY "Users can manage their own reading progress"
   USING (auth.uid() = user_id)
   WITH CHECK (auth.uid() = user_id);
 
--- Seed progress for test user
+-- Seed progress for test user if exists
 DO $$
 DECLARE
   gn_id UUID;
-  verse_id UUID;
+  v_id UUID;
+  test_user_id UUID := '00000000-0000-0000-0000-000000000001';
 BEGIN
-  SELECT id INTO gn_id FROM public.bible_books WHERE name = 'Gênesis' LIMIT 1;
-  SELECT id INTO verse_id FROM public.bible_verses WHERE book_id = gn_id AND chapter = 1 AND verse = 1 LIMIT 1;
+  IF EXISTS (SELECT 1 FROM auth.users WHERE id = test_user_id) THEN
+    SELECT id INTO gn_id FROM public.bible_books WHERE name = 'Gênesis' LIMIT 1;
+    SELECT id INTO v_id FROM public.bible_verses WHERE book_id = gn_id AND chapter = 1 AND verse = 1 LIMIT 1;
 
-  IF gn_id IS NOT NULL THEN
-    INSERT INTO public.user_reading_progress (user_id, book_id, chapter)
-    VALUES ('00000000-0000-0000-0000-000000000001', gn_id, 1)
-    ON CONFLICT (user_id) DO NOTHING;
-  END IF;
+    IF gn_id IS NOT NULL THEN
+      INSERT INTO public.user_reading_progress (user_id, book_id, chapter)
+      VALUES (test_user_id, gn_id, 1)
+      ON CONFLICT (user_id) DO NOTHING;
+    END IF;
 
-  IF verse_id IS NOT NULL THEN
-    INSERT INTO public.user_highlights (user_id, verse_id, color)
-    VALUES ('00000000-0000-0000-0000-000000000001', verse_id, 'yellow')
-    ON CONFLICT (user_id, verse_id) DO NOTHING;
+    IF v_id IS NOT NULL THEN
+      INSERT INTO public.user_highlights (user_id, verse_id, color)
+      VALUES (test_user_id, v_id, 'yellow')
+      ON CONFLICT (user_id, verse_id) DO NOTHING;
+    END IF;
   END IF;
 END $$;
+
