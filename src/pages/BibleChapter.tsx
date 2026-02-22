@@ -1,7 +1,14 @@
 import { useState, useEffect, useMemo } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
-import { ArrowLeft, ChevronLeft, ChevronRight } from 'lucide-react'
+import {
+  ArrowLeft,
+  ChevronLeft,
+  ChevronRight,
+  Loader2,
+  AlertCircle,
+} from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import {
   getBibleBook,
   getBibleBooks,
@@ -21,6 +28,7 @@ export default function BibleChapter() {
   const [allBooks, setAllBooks] = useState<BibleBookType[]>([])
   const [verses, setVerses] = useState<BibleVerse[]>([])
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
     getBibleBooks().then(setAllBooks).catch(console.error)
@@ -33,10 +41,13 @@ export default function BibleChapter() {
         .then(([bookData, versesData]) => {
           setBook(bookData)
           setVerses(versesData)
+          setError(null)
           window.scrollTo(0, 0)
         })
-        .catch(() => {
-          toast({ variant: 'destructive', title: 'Erro ao carregar capítulo' })
+        .catch((err) => {
+          const errMsg = err.message || 'Erro ao carregar capítulo'
+          setError(errMsg)
+          toast({ variant: 'destructive', title: 'Erro', description: errMsg })
         })
         .finally(() => {
           setLoading(false)
@@ -51,7 +62,6 @@ export default function BibleChapter() {
     let prev = null
     let next = null
 
-    // Prev logic
     if (chapterNum > 1) {
       prev = `/bible/${book.id}/${chapterNum - 1}`
     } else {
@@ -62,7 +72,6 @@ export default function BibleChapter() {
       }
     }
 
-    // Next logic
     if (chapterNum < book.chapters_count) {
       next = `/bible/${book.id}/${chapterNum + 1}`
     } else {
@@ -78,15 +87,28 @@ export default function BibleChapter() {
 
   if (!book && loading) {
     return (
-      <div className="flex justify-center py-20 text-muted-foreground animate-pulse">
-        Carregando...
+      <div className="flex flex-col items-center justify-center py-20 text-muted-foreground animate-in fade-in">
+        <Loader2 className="w-8 h-8 animate-spin text-primary mb-4" />
+        <p>Carregando versículos...</p>
       </div>
     )
   }
-  if (!book) {
+
+  if (error || !book) {
     return (
-      <div className="p-8 text-center text-muted-foreground">
-        Livro não encontrado
+      <div className="p-4 py-8">
+        <Button
+          variant="ghost"
+          onClick={() => navigate('/bible')}
+          className="mb-4"
+        >
+          <ArrowLeft className="w-4 h-4 mr-2" /> Voltar
+        </Button>
+        <Alert variant="destructive">
+          <AlertCircle className="h-4 w-4" />
+          <AlertTitle>Erro</AlertTitle>
+          <AlertDescription>{error || 'Livro não encontrado'}</AlertDescription>
+        </Alert>
       </div>
     )
   }
@@ -110,8 +132,8 @@ export default function BibleChapter() {
 
       <div className="space-y-5 px-1 min-h-[50vh] pt-2 pb-6">
         {loading ? (
-          <div className="text-center text-muted-foreground py-10 animate-pulse">
-            Carregando versículos...
+          <div className="flex flex-col items-center justify-center py-20 text-muted-foreground">
+            <Loader2 className="w-8 h-8 animate-spin text-primary mb-4" />
           </div>
         ) : verses.length > 0 ? (
           verses.map((v) => (
@@ -131,7 +153,8 @@ export default function BibleChapter() {
               Versículos não encontrados
             </p>
             <p className="text-sm opacity-80 max-w-[250px] mx-auto">
-              Nenhum versículo disponível para este capítulo no momento. A base de dados pode estar sincronizando.
+              Nenhum versículo disponível para este capítulo no momento. A base
+              de dados pode estar sincronizando.
             </p>
           </div>
         )}

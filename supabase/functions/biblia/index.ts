@@ -1,38 +1,94 @@
-// Edge Function created from https://github.com/rafaeRodrigues/biblia-2.git
-// Fixed regex escaping
+import 'jsr:@supabase/functions-js/edge-runtime.d.ts'
+import { createClient } from 'npm:@supabase/supabase-js@2'
+
+export const corsHeaders = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+  'Access-Control-Allow-Headers':
+    'authorization, x-client-info, x-supabase-client-platform, apikey, content-type',
+}
+
 Deno.serve(async (req: Request) => {
-  try {
-    const url = new URL(req.url);
-    const path = url.pathname.replace(new RegExp('^/biblia/?'), '');
-
-    // Simple router
-    if (req.method === 'GET' && (path === '' || path === '/')) {
-      return new Response(JSON.stringify({ message: 'Biblia Edge Function alive', routes: ['/verse?book=...&chapter=...&verse=...','/search?q=...'] }), { headers: { 'Content-Type': 'application/json' } });
-    }
-
-    if (req.method === 'GET' && path.startsWith('/verse')) {
-      const params = url.searchParams;
-      const book = params.get('book') || '';
-      const chapter = params.get('chapter') || '';
-      const verse = params.get('verse') || '';
-      const sample = {
-        'john': { '3': { '16': 'Porque Deus amou o mundo de tal maneira que deu o seu Filho unigênito...' } }
-      };
-      const text = (sample[book.toLowerCase()] && sample[book.toLowerCase()][chapter] && sample[book.toLowerCase()][chapter][verse]) || null;
-      if (!text) return new Response(JSON.stringify({ error: 'Verse not found in sample. Connect real data source.' }), { status: 404, headers: { 'Content-Type': 'application/json' } });
-      return new Response(JSON.stringify({ book, chapter, verse, text }), { headers: { 'Content-Type': 'application/json' } });
-    }
-
-    if (req.method === 'GET' && path.startsWith('/search')) {
-      const q = url.searchParams.get('q') || '';
-      const results = [];
-      if ('john'.includes(q.toLowerCase())) results.push({ book: 'John', chapter: 3, verse: 16, text: 'Porque Deus amou...' });
-      return new Response(JSON.stringify({ q, results }), { headers: { 'Content-Type': 'application/json' } });
-    }
-
-    return new Response(JSON.stringify({ error: 'Route not found' }), { status: 404, headers: { 'Content-Type': 'application/json' } });
-  } catch (err) {
-    console.error(err);
-    return new Response(JSON.stringify({ error: 'Internal server error' }), { status: 500, headers: { 'Content-Type': 'application/json' } });
+  if (req.method === 'OPTIONS') {
+    return new Response('ok', { headers: corsHeaders })
   }
-});
+
+  try {
+    const authHeader = req.headers.get('Authorization')
+    if (!authHeader) {
+      throw new Error('Authorization header is missing')
+    }
+
+    const supabaseClient = createClient(
+      Deno.env.get('SUPABASE_URL') ?? '',
+      Deno.env.get('SUPABASE_ANON_KEY') ?? '',
+      { global: { headers: { Authorization: authHeader } } },
+    )
+
+    let body = {}
+    if (req.method === 'POST') {
+      body = await req.json()
+    } else {
+      const url = new URL(req.url)
+      body = {
+        action: url.searchParams.get('action'),
+        bookId: url.searchParams.get('bookId'),
+        chapter: url.searchParams.get('chapter'),
+      }
+    }
+
+    const { action, bookId, chapter } = body as any
+
+    if (action === 'getBooks') {
+      const { data, error } = await supabaseClient
+        .from('bible_books')
+        .select('*')
+        .order('sort_order')
+
+      if (error) throw error
+      return new Response(JSON.stringify(data), {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      })
+    }
+
+    if (action === 'getBook') {
+      if (!bookId) throw new Error('bookId is required')
+      const { data, error } = await supabaseClient
+        .from('bible_books')
+        .select('*')
+        .eq('id', bookId)
+        .single()
+
+      if (error) throw error
+      return new Response(JSON.stringify(data), {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      })
+    }
+
+    if (action === 'getVerses') {
+      if (!bookId || !chapter)
+        throw new Error('bookId and chapter are required')
+      const { data, error } = await supabaseClient
+        .from('bible_verses')
+        .select('*')
+        .eq('book_id', bookId)
+        .eq('chapter', chapter)
+        .order('verse')
+
+      if (error) throw error
+      return new Response(JSON.stringify(data), {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      })
+    }
+
+    return new Response(JSON.stringify({ error: 'Invalid action' }), {
+      status: 400,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+    })
+  } catch (error: any) {
+    return new Response(JSON.stringify({ error: error.message }), {
+      status: 400,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+    })
+  }
+})

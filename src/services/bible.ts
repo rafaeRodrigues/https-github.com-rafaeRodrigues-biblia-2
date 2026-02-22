@@ -18,34 +18,31 @@ export type BibleVerse = {
 }
 
 export const getBibleBooks = async () => {
-  const { data, error } = await supabase
-    .from('bible_books')
-    .select('*')
-    .order('sort_order')
+  const { data, error } = await supabase.functions.invoke('biblia', {
+    body: { action: 'getBooks' },
+  })
 
   if (error) throw error
+  if (data?.error) throw new Error(data.error)
   return data as BibleBook[]
 }
 
 export const getBibleBook = async (id: string) => {
-  const { data, error } = await supabase
-    .from('bible_books')
-    .select('*')
-    .eq('id', id)
-    .single()
+  const { data, error } = await supabase.functions.invoke('biblia', {
+    body: { action: 'getBook', bookId: id },
+  })
 
   if (error) throw error
+  if (data?.error) throw new Error(data.error)
   return data as BibleBook
 }
 
 export const getChapterVerses = async (bookId: string, chapter: number) => {
-  const { data, error } = await supabase
-    .from('bible_verses')
-    .select('*')
-    .eq('book_id', bookId)
-    .eq('chapter', chapter)
-    .order('verse')
+  const { data, error } = await supabase.functions.invoke('biblia', {
+    body: { action: 'getVerses', bookId, chapter },
+  })
 
   if (error) throw error
+  if (data?.error) throw new Error(data.error)
   return data as BibleVerse[]
 }

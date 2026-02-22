@@ -19049,6 +19049,28 @@ var ChevronUp = createLucideIcon("chevron-up", [["path", {
 	d: "m18 15-6-6-6 6",
 	key: "153udz"
 }]]);
+var CircleAlert = createLucideIcon("circle-alert", [
+	["circle", {
+		cx: "12",
+		cy: "12",
+		r: "10",
+		key: "1mglay"
+	}],
+	["line", {
+		x1: "12",
+		x2: "12",
+		y1: "8",
+		y2: "12",
+		key: "1pkeuh"
+	}],
+	["line", {
+		x1: "12",
+		x2: "12.01",
+		y1: "16",
+		y2: "16",
+		key: "4dfq90"
+	}]
+]);
 var CircleCheck = createLucideIcon("circle-check", [["circle", {
 	cx: "12",
 	cy: "12",
@@ -19235,6 +19257,10 @@ var List = createLucideIcon("list", [
 		key: "m83p4d"
 	}]
 ]);
+var LoaderCircle = createLucideIcon("loader-circle", [["path", {
+	d: "M21 12a9 9 0 1 1-6.219-8.56",
+	key: "13zald"
+}]]);
 var LogOut = createLucideIcon("log-out", [
 	["path", {
 		d: "m16 17 5-5-5-5",
@@ -37252,25 +37278,67 @@ function Management() {
 	});
 }
 const getBibleBooks = async () => {
-	const { data, error } = await supabase.from("bible_books").select("*").order("sort_order");
+	const { data, error } = await supabase.functions.invoke("biblia", { body: { action: "getBooks" } });
 	if (error) throw error;
+	if (data?.error) throw new Error(data.error);
 	return data;
 };
 const getBibleBook = async (id) => {
-	const { data, error } = await supabase.from("bible_books").select("*").eq("id", id).single();
+	const { data, error } = await supabase.functions.invoke("biblia", { body: {
+		action: "getBook",
+		bookId: id
+	} });
 	if (error) throw error;
+	if (data?.error) throw new Error(data.error);
 	return data;
 };
 const getChapterVerses = async (bookId, chapter) => {
-	const { data, error } = await supabase.from("bible_verses").select("*").eq("book_id", bookId).eq("chapter", chapter).order("verse");
+	const { data, error } = await supabase.functions.invoke("biblia", { body: {
+		action: "getVerses",
+		bookId,
+		chapter
+	} });
 	if (error) throw error;
+	if (data?.error) throw new Error(data.error);
 	return data;
 };
+var alertVariants = cva("relative w-full rounded-lg border p-4 [&>svg~*]:pl-7 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-foreground", {
+	variants: { variant: {
+		default: "bg-background text-foreground",
+		destructive: "border-destructive/50 text-destructive dark:border-destructive [&>svg]:text-destructive"
+	} },
+	defaultVariants: { variant: "default" }
+});
+var Alert = import_react.forwardRef(({ className, variant, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+	ref,
+	role: "alert",
+	className: cn(alertVariants({ variant }), className),
+	...props
+}));
+Alert.displayName = "Alert";
+var AlertTitle = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h5", {
+	ref,
+	className: cn("mb-1 font-medium leading-none tracking-tight", className),
+	...props
+}));
+AlertTitle.displayName = "AlertTitle";
+var AlertDescription = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+	ref,
+	className: cn("text-sm [&_p]:leading-relaxed", className),
+	...props
+}));
+AlertDescription.displayName = "AlertDescription";
 function Bible() {
 	const [books, setBooks] = (0, import_react.useState)([]);
 	const [search, setSearch] = (0, import_react.useState)("");
+	const [loading, setLoading] = (0, import_react.useState)(true);
+	const [error, setError] = (0, import_react.useState)(null);
 	(0, import_react.useEffect)(() => {
-		getBibleBooks().then((data) => setBooks(data || [])).catch(console.error);
+		setLoading(true);
+		getBibleBooks().then((data) => {
+			setBooks(data || []);
+			setError(null);
+		}).catch((err) => setError(err.message || "Erro ao carregar os livros")).finally(() => setLoading(false));
 	}, []);
 	const filteredBooks = books.filter((b$1) => b$1.name.toLowerCase().includes(search.toLowerCase()));
 	const otBooks = filteredBooks.filter((b$1) => b$1.testament === "OT");
@@ -37294,7 +37362,18 @@ function Bible() {
 					onChange: (e) => setSearch(e.target.value)
 				})]
 			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Tabs, {
+			loading ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+				className: "flex flex-col items-center justify-center py-20 text-muted-foreground",
+				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(LoaderCircle, { className: "w-8 h-8 animate-spin text-primary mb-4" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: "Carregando livros..." })]
+			}) : error ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Alert, {
+				variant: "destructive",
+				className: "mt-4",
+				children: [
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CircleAlert, { className: "h-4 w-4" }),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)(AlertTitle, { children: "Erro" }),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)(AlertDescription, { children: error })
+				]
+			}) : /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Tabs, {
 				defaultValue: "OT",
 				className: "w-full",
 				children: [
@@ -37373,12 +37452,36 @@ function BibleBook() {
 	const { bookId } = useParams();
 	const navigate = useNavigate();
 	const [book, setBook] = (0, import_react.useState)(null);
+	const [loading, setLoading] = (0, import_react.useState)(true);
+	const [error, setError] = (0, import_react.useState)(null);
 	(0, import_react.useEffect)(() => {
-		if (bookId) getBibleBook(bookId).then(setBook).catch(console.error);
+		if (bookId) {
+			setLoading(true);
+			getBibleBook(bookId).then((data) => {
+				setBook(data);
+				setError(null);
+			}).catch((err) => setError(err.message || "Erro ao carregar o livro")).finally(() => setLoading(false));
+		}
 	}, [bookId]);
-	if (!book) return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-		className: "flex justify-center py-20 text-muted-foreground animate-pulse",
-		children: "Carregando..."
+	if (loading) return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+		className: "flex flex-col items-center justify-center py-20 text-muted-foreground",
+		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(LoaderCircle, { className: "w-8 h-8 animate-spin text-primary mb-4" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: "Carregando capítulos..." })]
+	});
+	if (error || !book) return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+		className: "p-4 py-8",
+		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Button, {
+			variant: "ghost",
+			onClick: () => navigate("/bible"),
+			className: "mb-4",
+			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(ArrowLeft, { className: "w-4 h-4 mr-2" }), " Voltar"]
+		}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Alert, {
+			variant: "destructive",
+			children: [
+				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CircleAlert, { className: "h-4 w-4" }),
+				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(AlertTitle, { children: "Erro" }),
+				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(AlertDescription, { children: error || "Livro não encontrado" })
+			]
+		})]
 	});
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 		className: "space-y-6 animate-fade-in py-4",
@@ -37419,6 +37522,7 @@ function BibleChapter() {
 	const [allBooks, setAllBooks] = (0, import_react.useState)([]);
 	const [verses, setVerses] = (0, import_react.useState)([]);
 	const [loading, setLoading] = (0, import_react.useState)(true);
+	const [error, setError] = (0, import_react.useState)(null);
 	(0, import_react.useEffect)(() => {
 		getBibleBooks().then(setAllBooks).catch(console.error);
 	}, []);
@@ -37428,11 +37532,15 @@ function BibleChapter() {
 			Promise.all([getBibleBook(bookId), getChapterVerses(bookId, chapterNum)]).then(([bookData, versesData]) => {
 				setBook(bookData);
 				setVerses(versesData);
+				setError(null);
 				window.scrollTo(0, 0);
-			}).catch(() => {
+			}).catch((err) => {
+				const errMsg = err.message || "Erro ao carregar capítulo";
+				setError(errMsg);
 				toast$2({
 					variant: "destructive",
-					title: "Erro ao carregar capítulo"
+					title: "Erro",
+					description: errMsg
 				});
 			}).finally(() => {
 				setLoading(false);
@@ -37472,13 +37580,25 @@ function BibleChapter() {
 		allBooks,
 		chapterNum
 	]);
-	if (!book && loading) return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-		className: "flex justify-center py-20 text-muted-foreground animate-pulse",
-		children: "Carregando..."
+	if (!book && loading) return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+		className: "flex flex-col items-center justify-center py-20 text-muted-foreground animate-in fade-in",
+		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(LoaderCircle, { className: "w-8 h-8 animate-spin text-primary mb-4" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: "Carregando versículos..." })]
 	});
-	if (!book) return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-		className: "p-8 text-center text-muted-foreground",
-		children: "Livro não encontrado"
+	if (error || !book) return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+		className: "p-4 py-8",
+		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Button, {
+			variant: "ghost",
+			onClick: () => navigate("/bible"),
+			className: "mb-4",
+			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(ArrowLeft, { className: "w-4 h-4 mr-2" }), " Voltar"]
+		}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Alert, {
+			variant: "destructive",
+			children: [
+				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CircleAlert, { className: "h-4 w-4" }),
+				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(AlertTitle, { children: "Erro" }),
+				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(AlertDescription, { children: error || "Livro não encontrado" })
+			]
+		})]
 	});
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 		className: "space-y-6 animate-fade-in pb-12",
@@ -37507,8 +37627,8 @@ function BibleChapter() {
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 				className: "space-y-5 px-1 min-h-[50vh] pt-2 pb-6",
 				children: loading ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-					className: "text-center text-muted-foreground py-10 animate-pulse",
-					children: "Carregando versículos..."
+					className: "flex flex-col items-center justify-center py-20 text-muted-foreground",
+					children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(LoaderCircle, { className: "w-8 h-8 animate-spin text-primary mb-4" })
 				}) : verses.length > 0 ? verses.map((v) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
 					className: "text-[17px] leading-[1.7] text-foreground/90 font-serif",
 					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("sup", {
@@ -39002,4 +39122,4 @@ var App = () => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AuthProvider, { chil
 var App_default = App;
 (0, import_client.createRoot)(document.getElementById("root")).render(/* @__PURE__ */ (0, import_jsx_runtime.jsx)(App_default, {}));
 
-//# sourceMappingURL=index-Bf6f8O7z.js.map
+//# sourceMappingURL=index-D3fpTent.js.map

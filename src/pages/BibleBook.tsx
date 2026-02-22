@@ -1,24 +1,54 @@
 import { useState, useEffect } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
-import { ArrowLeft } from 'lucide-react'
+import { ArrowLeft, Loader2, AlertCircle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { getBibleBook, BibleBook as BibleBookType } from '@/services/bible'
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 
 export default function BibleBook() {
   const { bookId } = useParams()
   const navigate = useNavigate()
   const [book, setBook] = useState<BibleBookType | null>(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
     if (bookId) {
-      getBibleBook(bookId).then(setBook).catch(console.error)
+      setLoading(true)
+      getBibleBook(bookId)
+        .then((data) => {
+          setBook(data)
+          setError(null)
+        })
+        .catch((err) => setError(err.message || 'Erro ao carregar o livro'))
+        .finally(() => setLoading(false))
     }
   }, [bookId])
 
-  if (!book) {
+  if (loading) {
     return (
-      <div className="flex justify-center py-20 text-muted-foreground animate-pulse">
-        Carregando...
+      <div className="flex flex-col items-center justify-center py-20 text-muted-foreground">
+        <Loader2 className="w-8 h-8 animate-spin text-primary mb-4" />
+        <p>Carregando capítulos...</p>
+      </div>
+    )
+  }
+
+  if (error || !book) {
+    return (
+      <div className="p-4 py-8">
+        <Button
+          variant="ghost"
+          onClick={() => navigate('/bible')}
+          className="mb-4"
+        >
+          <ArrowLeft className="w-4 h-4 mr-2" /> Voltar
+        </Button>
+        <Alert variant="destructive">
+          <AlertCircle className="h-4 w-4" />
+          <AlertTitle>Erro</AlertTitle>
+          <AlertDescription>{error || 'Livro não encontrado'}</AlertDescription>
+        </Alert>
       </div>
     )
   }
