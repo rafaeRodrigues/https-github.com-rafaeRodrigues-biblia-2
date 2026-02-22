@@ -31945,6 +31945,42 @@ const AuthProvider = ({ children }) => {
 		children
 	});
 };
+var Card = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+	ref,
+	className: cn("rounded-lg border bg-card text-card-foreground shadow-sm transition-colors duration-300", className),
+	...props
+}));
+Card.displayName = "Card";
+var CardHeader = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+	ref,
+	className: cn("flex flex-col space-y-1.5 p-6", className),
+	...props
+}));
+CardHeader.displayName = "CardHeader";
+var CardTitle = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+	ref,
+	className: cn("text-2xl font-semibold leading-none tracking-tight", className),
+	...props
+}));
+CardTitle.displayName = "CardTitle";
+var CardDescription = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+	ref,
+	className: cn("text-sm text-muted-foreground", className),
+	...props
+}));
+CardDescription.displayName = "CardDescription";
+var CardContent = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+	ref,
+	className: cn("p-6 pt-0", className),
+	...props
+}));
+CardContent.displayName = "CardContent";
+var CardFooter = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+	ref,
+	className: cn("flex items-center p-6 pt-0", className),
+	...props
+}));
+CardFooter.displayName = "CardFooter";
 var defaultOptions$1 = {
 	active: true,
 	breakpoints: {},
@@ -32099,42 +32135,6 @@ function Autoplay(userOptions = {}) {
 	};
 }
 Autoplay.globalOptions = void 0;
-var Card = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-	ref,
-	className: cn("rounded-lg border bg-card text-card-foreground shadow-sm transition-colors duration-300", className),
-	...props
-}));
-Card.displayName = "Card";
-var CardHeader = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-	ref,
-	className: cn("flex flex-col space-y-1.5 p-6", className),
-	...props
-}));
-CardHeader.displayName = "CardHeader";
-var CardTitle = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-	ref,
-	className: cn("text-2xl font-semibold leading-none tracking-tight", className),
-	...props
-}));
-CardTitle.displayName = "CardTitle";
-var CardDescription = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-	ref,
-	className: cn("text-sm text-muted-foreground", className),
-	...props
-}));
-CardDescription.displayName = "CardDescription";
-var CardContent = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-	ref,
-	className: cn("p-6 pt-0", className),
-	...props
-}));
-CardContent.displayName = "CardContent";
-var CardFooter = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-	ref,
-	className: cn("flex items-center p-6 pt-0", className),
-	...props
-}));
-CardFooter.displayName = "CardFooter";
 function isObject$1(subject) {
 	return Object.prototype.toString.call(subject) === "[object Object]";
 }
@@ -33837,6 +33837,12 @@ var CarouselNext = import_react.forwardRef(({ className, variant = "outline", si
 	});
 });
 CarouselNext.displayName = "CarouselNext";
+function Skeleton({ className, ...props }) {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+		className: cn("animate-pulse rounded-md bg-muted", className),
+		...props
+	});
+}
 const getBanners = async () => {
 	const { data, error } = await supabase.from("banners").select("*").eq("active", true).order("sort_order");
 	if (error) throw error;
@@ -33872,6 +33878,109 @@ var carouselImages = [
 		title: "A Palavra de Deus"
 	}
 ];
+function BannerCarousel() {
+	const [api, setApi] = (0, import_react.useState)();
+	const [current, setCurrent] = (0, import_react.useState)(0);
+	const [banners, setBanners] = (0, import_react.useState)([]);
+	const [isLoading, setIsLoading] = (0, import_react.useState)(true);
+	const plugin = (0, import_react.useRef)(Autoplay({
+		delay: 5e3,
+		stopOnInteraction: true
+	}));
+	(0, import_react.useEffect)(() => {
+		let mounted = true;
+		setIsLoading(true);
+		getBanners().then((data) => {
+			if (!mounted) return;
+			if (data && data.length > 0) setBanners(data.map((b$1) => ({
+				id: b$1.id,
+				src: b$1.image_url,
+				alt: b$1.title || "Banner",
+				tag: b$1.tag,
+				title: b$1.title
+			})));
+			else setBanners(carouselImages);
+		}).catch(() => {
+			if (!mounted) return;
+			setBanners(carouselImages);
+		}).finally(() => {
+			if (mounted) setIsLoading(false);
+		});
+		return () => {
+			mounted = false;
+		};
+	}, []);
+	(0, import_react.useEffect)(() => {
+		if (!api) return;
+		setCurrent(api.selectedScrollSnap());
+		api.on("select", () => {
+			setCurrent(api.selectedScrollSnap());
+		});
+	}, [api]);
+	if (isLoading) return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Skeleton, { className: "w-full rounded-3xl aspect-[16/10] sm:aspect-video lg:aspect-[21/9]" });
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+		className: "w-full relative group animate-slide-up",
+		children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Carousel, {
+			setApi,
+			plugins: [plugin.current],
+			className: "w-full",
+			opts: { loop: true },
+			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+				className: "overflow-hidden rounded-3xl aspect-[16/10] sm:aspect-video lg:aspect-[21/9] shadow-md relative border border-border bg-black transition-all duration-300",
+				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CarouselContent, {
+					className: "h-full ml-0",
+					children: banners.map((img) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CarouselItem, {
+						className: "h-full pl-0 relative bg-black",
+						children: [
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+								className: "absolute inset-0 overflow-hidden pointer-events-none",
+								children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
+									src: img.src,
+									className: "w-full h-full object-cover opacity-40 blur-xl scale-110",
+									alt: "",
+									"aria-hidden": "true"
+								})
+							}),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
+								src: img.src,
+								className: "w-full h-full object-contain relative z-10",
+								alt: img.alt
+							}),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "absolute inset-0 z-20 bg-gradient-to-t from-black/90 via-black/20 to-transparent flex flex-col justify-end p-6",
+								children: [img.tag && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+									className: "text-white/90 text-xs font-bold uppercase tracking-wider mb-1 drop-shadow-sm",
+									children: img.tag
+								}), img.title && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", {
+									className: "text-white text-2xl font-bold leading-tight drop-shadow-md",
+									children: img.title
+								})]
+							})
+						]
+					}, img.id))
+				}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+					className: "absolute top-1/2 -translate-y-1/2 left-3 right-3 justify-between pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden md:flex z-30",
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+						onClick: () => api?.scrollPrev(),
+						className: "w-9 h-9 rounded-full bg-background/90 backdrop-blur-sm border border-border text-foreground flex items-center justify-center pointer-events-auto hover:bg-background hover:scale-105 transition-all shadow-sm",
+						children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ArrowLeft, { className: "w-4 h-4" })
+					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+						onClick: () => api?.scrollNext(),
+						className: "w-9 h-9 rounded-full bg-background/90 backdrop-blur-sm border border-border text-foreground flex items-center justify-center pointer-events-auto hover:bg-background hover:scale-105 transition-all shadow-sm",
+						children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ArrowRight, { className: "w-4 h-4" })
+					})]
+				})]
+			}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+				className: "flex justify-center gap-2 mt-4",
+				children: banners.map((_$1, index$1) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+					onClick: () => api?.scrollTo(index$1),
+					className: `h-2 rounded-full transition-all duration-300 ${current === index$1 ? "w-6 bg-primary" : "w-2 bg-primary/20 hover:bg-primary/50"}`,
+					"aria-label": `Go to slide ${index$1 + 1}`
+				}, index$1))
+			})]
+		})
+	});
+}
 var DiaryBtn = ({ icon: Icon$2, label, to }) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Link, {
 	to,
 	className: "flex flex-col items-center gap-2 group",
@@ -33884,97 +33993,10 @@ var DiaryBtn = ({ icon: Icon$2, label, to }) => /* @__PURE__ */ (0, import_jsx_r
 	})]
 });
 function Index() {
-	const [api, setApi] = (0, import_react.useState)();
-	const [current, setCurrent] = (0, import_react.useState)(0);
-	const [banners, setBanners] = (0, import_react.useState)([]);
-	const plugin = (0, import_react.useRef)(Autoplay({
-		delay: 4e3,
-		stopOnInteraction: true
-	}));
-	(0, import_react.useEffect)(() => {
-		getBanners().then((data) => {
-			if (data && data.length > 0) setBanners(data.map((b$1) => ({
-				id: b$1.id,
-				src: b$1.image_url,
-				alt: b$1.title,
-				tag: b$1.tag,
-				title: b$1.title
-			})));
-			else setBanners(carouselImages);
-		}).catch(() => setBanners(carouselImages));
-	}, []);
-	(0, import_react.useEffect)(() => {
-		if (!api) return;
-		setCurrent(api.selectedScrollSnap());
-		api.on("select", () => {
-			setCurrent(api.selectedScrollSnap());
-		});
-	}, [api]);
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 		className: "space-y-8 animate-fade-in-up py-4",
 		children: [
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-				className: "w-full relative group animate-slide-up",
-				children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Carousel, {
-					setApi,
-					plugins: [plugin.current],
-					className: "w-full",
-					opts: { loop: true },
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-						className: "overflow-hidden rounded-3xl aspect-[16/10] sm:aspect-video lg:aspect-[21/9] shadow-md relative border border-border bg-black transition-all duration-300",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CarouselContent, {
-							className: "h-full ml-0",
-							children: banners.map((img) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CarouselItem, {
-								className: "h-full pl-0 relative bg-black",
-								children: [
-									/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-										className: "absolute inset-0 overflow-hidden pointer-events-none",
-										children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
-											src: img.src,
-											className: "w-full h-full object-cover opacity-40 blur-xl scale-110",
-											alt: "",
-											"aria-hidden": "true"
-										})
-									}),
-									/* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
-										src: img.src,
-										className: "w-full h-full object-contain relative z-10",
-										alt: img.alt
-									}),
-									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-										className: "absolute inset-0 z-20 bg-gradient-to-t from-black/90 via-black/20 to-transparent flex flex-col justify-end p-6",
-										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-											className: "text-white/90 text-xs font-bold uppercase tracking-wider mb-1 drop-shadow-sm",
-											children: img.tag
-										}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", {
-											className: "text-white text-2xl font-bold leading-tight drop-shadow-md",
-											children: img.title
-										})]
-									})
-								]
-							}, img.id))
-						}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "absolute top-1/2 -translate-y-1/2 left-3 right-3 justify-between pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden md:flex z-30",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
-								onClick: () => api?.scrollPrev(),
-								className: "w-9 h-9 rounded-full bg-background/90 backdrop-blur-sm border border-border text-foreground flex items-center justify-center pointer-events-auto hover:bg-background hover:scale-105 transition-all shadow-sm",
-								children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ArrowLeft, { className: "w-4 h-4" })
-							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
-								onClick: () => api?.scrollNext(),
-								className: "w-9 h-9 rounded-full bg-background/90 backdrop-blur-sm border border-border text-foreground flex items-center justify-center pointer-events-auto hover:bg-background hover:scale-105 transition-all shadow-sm",
-								children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ArrowRight, { className: "w-4 h-4" })
-							})]
-						})]
-					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-						className: "flex justify-center gap-2 mt-4",
-						children: banners.map((_$1, index$1) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
-							onClick: () => api?.scrollTo(index$1),
-							className: `h-2 rounded-full transition-all duration-300 ${current === index$1 ? "w-6 bg-primary" : "w-2 bg-primary/20 hover:bg-primary/50"}`,
-							"aria-label": `Go to slide ${index$1 + 1}`
-						}, index$1))
-					})]
-				})
-			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(BannerCarousel, {}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 				className: "space-y-3",
 				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
@@ -38662,4 +38684,4 @@ var App = () => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AuthProvider, { chil
 var App_default = App;
 (0, import_client.createRoot)(document.getElementById("root")).render(/* @__PURE__ */ (0, import_jsx_runtime.jsx)(App_default, {}));
 
-//# sourceMappingURL=index-CLjIsgdF.js.map
+//# sourceMappingURL=index-DHVZaZbB.js.map
