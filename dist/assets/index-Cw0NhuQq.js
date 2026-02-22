@@ -3152,7 +3152,7 @@ var require_react_dom_client_development = /* @__PURE__ */ __commonJSMin(((expor
 			return "input" === nodeName ? !!supportedInputTypes[elem.type] : "textarea" === nodeName ? !0 : !1;
 		}
 		function isEventSupported(eventNameSuffix) {
-			if (!canUseDOM$1) return !1;
+			if (!canUseDOM$2) return !1;
 			eventNameSuffix = "on" + eventNameSuffix;
 			var isSupported = eventNameSuffix in document;
 			isSupported || (isSupported = document.createElement("div"), isSupported.setAttribute(eventNameSuffix, "return;"), isSupported = "function" === typeof isSupported[eventNameSuffix]);
@@ -13462,8 +13462,8 @@ var require_react_dom_client_development = /* @__PURE__ */ __commonJSMin(((expor
 			"aria-brailleroledescription": 0,
 			"aria-colindextext": 0,
 			"aria-rowindextext": 0
-		}, warnedProperties$1 = {}, rARIA$1 = RegExp("^(aria)-[:A-Z_a-z\\u00C0-\\u00D6\\u00D8-\\u00F6\\u00F8-\\u02FF\\u0370-\\u037D\\u037F-\\u1FFF\\u200C-\\u200D\\u2070-\\u218F\\u2C00-\\u2FEF\\u3001-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFFD\\-.0-9\\u00B7\\u0300-\\u036F\\u203F-\\u2040]*$"), rARIACamel$1 = RegExp("^(aria)[A-Z][:A-Z_a-z\\u00C0-\\u00D6\\u00D8-\\u00F6\\u00F8-\\u02FF\\u0370-\\u037D\\u037F-\\u1FFF\\u200C-\\u200D\\u2070-\\u218F\\u2C00-\\u2FEF\\u3001-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFFD\\-.0-9\\u00B7\\u0300-\\u036F\\u203F-\\u2040]*$"), didWarnValueNull = !1, warnedProperties = {}, EVENT_NAME_REGEX = /^on./, INVALID_EVENT_NAME_REGEX = /^on[^A-Z]/, rARIA = RegExp("^(aria)-[:A-Z_a-z\\u00C0-\\u00D6\\u00D8-\\u00F6\\u00F8-\\u02FF\\u0370-\\u037D\\u037F-\\u1FFF\\u200C-\\u200D\\u2070-\\u218F\\u2C00-\\u2FEF\\u3001-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFFD\\-.0-9\\u00B7\\u0300-\\u036F\\u203F-\\u2040]*$"), rARIACamel = RegExp("^(aria)[A-Z][:A-Z_a-z\\u00C0-\\u00D6\\u00D8-\\u00F6\\u00F8-\\u02FF\\u0370-\\u037D\\u037F-\\u1FFF\\u200C-\\u200D\\u2070-\\u218F\\u2C00-\\u2FEF\\u3001-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFFD\\-.0-9\\u00B7\\u0300-\\u036F\\u203F-\\u2040]*$"), isJavaScriptProtocol = /^[\u0000-\u001F ]*j[\r\n\t]*a[\r\n\t]*v[\r\n\t]*a[\r\n\t]*s[\r\n\t]*c[\r\n\t]*r[\r\n\t]*i[\r\n\t]*p[\r\n\t]*t[\r\n\t]*:/i, currentReplayingEvent = null, restoreTarget = null, restoreQueue = null, isInsideEventHandler = !1, canUseDOM$1 = !("undefined" === typeof window || "undefined" === typeof window.document || "undefined" === typeof window.document.createElement), passiveBrowserEventsSupported = !1;
-		if (canUseDOM$1) try {
+		}, warnedProperties$1 = {}, rARIA$1 = RegExp("^(aria)-[:A-Z_a-z\\u00C0-\\u00D6\\u00D8-\\u00F6\\u00F8-\\u02FF\\u0370-\\u037D\\u037F-\\u1FFF\\u200C-\\u200D\\u2070-\\u218F\\u2C00-\\u2FEF\\u3001-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFFD\\-.0-9\\u00B7\\u0300-\\u036F\\u203F-\\u2040]*$"), rARIACamel$1 = RegExp("^(aria)[A-Z][:A-Z_a-z\\u00C0-\\u00D6\\u00D8-\\u00F6\\u00F8-\\u02FF\\u0370-\\u037D\\u037F-\\u1FFF\\u200C-\\u200D\\u2070-\\u218F\\u2C00-\\u2FEF\\u3001-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFFD\\-.0-9\\u00B7\\u0300-\\u036F\\u203F-\\u2040]*$"), didWarnValueNull = !1, warnedProperties = {}, EVENT_NAME_REGEX = /^on./, INVALID_EVENT_NAME_REGEX = /^on[^A-Z]/, rARIA = RegExp("^(aria)-[:A-Z_a-z\\u00C0-\\u00D6\\u00D8-\\u00F6\\u00F8-\\u02FF\\u0370-\\u037D\\u037F-\\u1FFF\\u200C-\\u200D\\u2070-\\u218F\\u2C00-\\u2FEF\\u3001-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFFD\\-.0-9\\u00B7\\u0300-\\u036F\\u203F-\\u2040]*$"), rARIACamel = RegExp("^(aria)[A-Z][:A-Z_a-z\\u00C0-\\u00D6\\u00D8-\\u00F6\\u00F8-\\u02FF\\u0370-\\u037D\\u037F-\\u1FFF\\u200C-\\u200D\\u2070-\\u218F\\u2C00-\\u2FEF\\u3001-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFFD\\-.0-9\\u00B7\\u0300-\\u036F\\u203F-\\u2040]*$"), isJavaScriptProtocol = /^[\u0000-\u001F ]*j[\r\n\t]*a[\r\n\t]*v[\r\n\t]*a[\r\n\t]*s[\r\n\t]*c[\r\n\t]*r[\r\n\t]*i[\r\n\t]*p[\r\n\t]*t[\r\n\t]*:/i, currentReplayingEvent = null, restoreTarget = null, restoreQueue = null, isInsideEventHandler = !1, canUseDOM$2 = !("undefined" === typeof window || "undefined" === typeof window.document || "undefined" === typeof window.document.createElement), passiveBrowserEventsSupported = !1;
+		if (canUseDOM$2) try {
 			var options$jscomp$0 = {};
 			Object.defineProperty(options$jscomp$0, "passive", { get: function() {
 				passiveBrowserEventsSupported = !0;
@@ -13638,9 +13638,9 @@ var require_react_dom_client_development = /* @__PURE__ */ __commonJSMin(((expor
 			13,
 			27,
 			32
-		], START_KEYCODE = 229, canUseCompositionEvent = canUseDOM$1 && "CompositionEvent" in window, documentMode = null;
-		canUseDOM$1 && "documentMode" in document && (documentMode = document.documentMode);
-		var canUseTextInputEvent = canUseDOM$1 && "TextEvent" in window && !documentMode, useFallbackCompositionData = canUseDOM$1 && (!canUseCompositionEvent || documentMode && 8 < documentMode && 11 >= documentMode), SPACEBAR_CODE = 32, SPACEBAR_CHAR = String.fromCharCode(SPACEBAR_CODE), hasSpaceKeypress = !1, isComposing = !1, supportedInputTypes = {
+		], START_KEYCODE = 229, canUseCompositionEvent = canUseDOM$2 && "CompositionEvent" in window, documentMode = null;
+		canUseDOM$2 && "documentMode" in document && (documentMode = document.documentMode);
+		var canUseTextInputEvent = canUseDOM$2 && "TextEvent" in window && !documentMode, useFallbackCompositionData = canUseDOM$2 && (!canUseCompositionEvent || documentMode && 8 < documentMode && 11 >= documentMode), SPACEBAR_CODE = 32, SPACEBAR_CHAR = String.fromCharCode(SPACEBAR_CODE), hasSpaceKeypress = !1, isComposing = !1, supportedInputTypes = {
 			color: !0,
 			date: !0,
 			datetime: !0,
@@ -13657,8 +13657,8 @@ var require_react_dom_client_development = /* @__PURE__ */ __commonJSMin(((expor
 			url: !0,
 			week: !0
 		}, activeElement$1 = null, activeElementInst$1 = null, isInputEventSupported = !1;
-		canUseDOM$1 && (isInputEventSupported = isEventSupported("input") && (!document.documentMode || 9 < document.documentMode));
-		var objectIs = "function" === typeof Object.is ? Object.is : is, skipSelectionChangeEvent = canUseDOM$1 && "documentMode" in document && 11 >= document.documentMode, activeElement = null, activeElementInst = null, lastSelection = null, mouseDown = !1, vendorPrefixes = {
+		canUseDOM$2 && (isInputEventSupported = isEventSupported("input") && (!document.documentMode || 9 < document.documentMode));
+		var objectIs = "function" === typeof Object.is ? Object.is : is, skipSelectionChangeEvent = canUseDOM$2 && "documentMode" in document && 11 >= document.documentMode, activeElement = null, activeElementInst = null, lastSelection = null, mouseDown = !1, vendorPrefixes = {
 			animationend: makePrefixMap("Animation", "AnimationEnd"),
 			animationiteration: makePrefixMap("Animation", "AnimationIteration"),
 			animationstart: makePrefixMap("Animation", "AnimationStart"),
@@ -13667,7 +13667,7 @@ var require_react_dom_client_development = /* @__PURE__ */ __commonJSMin(((expor
 			transitioncancel: makePrefixMap("Transition", "TransitionCancel"),
 			transitionend: makePrefixMap("Transition", "TransitionEnd")
 		}, prefixedEventNames = {}, style = {};
-		canUseDOM$1 && (style = document.createElement("div").style, "AnimationEvent" in window || (delete vendorPrefixes.animationend.animation, delete vendorPrefixes.animationiteration.animation, delete vendorPrefixes.animationstart.animation), "TransitionEvent" in window || delete vendorPrefixes.transitionend.transition);
+		canUseDOM$2 && (style = document.createElement("div").style, "AnimationEvent" in window || (delete vendorPrefixes.animationend.animation, delete vendorPrefixes.animationiteration.animation, delete vendorPrefixes.animationstart.animation), "TransitionEvent" in window || delete vendorPrefixes.transitionend.transition);
 		var ANIMATION_END = getVendorPrefixedEventName("animationend"), ANIMATION_ITERATION = getVendorPrefixedEventName("animationiteration"), ANIMATION_START = getVendorPrefixedEventName("animationstart"), TRANSITION_RUN = getVendorPrefixedEventName("transitionrun"), TRANSITION_START = getVendorPrefixedEventName("transitionstart"), TRANSITION_CANCEL = getVendorPrefixedEventName("transitioncancel"), TRANSITION_END = getVendorPrefixedEventName("transitionend"), topLevelEventsToReactNames = /* @__PURE__ */ new Map(), simpleEventPluginEvents = "abort auxClick beforeToggle cancel canPlay canPlayThrough click close contextMenu copy cut drag dragEnd dragEnter dragExit dragLeave dragOver dragStart drop durationChange emptied encrypted ended error gotPointerCapture input invalid keyDown keyPress keyUp load loadedData loadedMetadata loadStart lostPointerCapture mouseDown mouseMove mouseOut mouseOver mouseUp paste pause play playing pointerCancel pointerDown pointerMove pointerOut pointerOver pointerUp progress rateChange reset resize seeked seeking stalled submit suspend timeUpdate touchCancel touchEnd touchStart volumeChange scroll toggle touchMove waiting wheel".split(" ");
 		simpleEventPluginEvents.push("scrollEnd");
 		var lastResetTime = 0;
@@ -15311,7 +15311,7 @@ var require_react_dom_client_development = /* @__PURE__ */ __commonJSMin(((expor
 			internals.setRefreshHandler = setRefreshHandler;
 			internals.getCurrentFiber = getCurrentFiberForDevTools;
 			return injectInternals(internals);
-		})() && canUseDOM$1 && window.top === window.self && (-1 < navigator.userAgent.indexOf("Chrome") && -1 === navigator.userAgent.indexOf("Edge") || -1 < navigator.userAgent.indexOf("Firefox"))) {
+		})() && canUseDOM$2 && window.top === window.self && (-1 < navigator.userAgent.indexOf("Chrome") && -1 === navigator.userAgent.indexOf("Edge") || -1 < navigator.userAgent.indexOf("Firefox"))) {
 			var protocol = window.location.protocol;
 			/^(https?|file):$/.test(protocol) && console.info("%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools" + ("file:" === protocol ? "\nYou might need to use a local HTTP server (instead of file://): https://react.dev/link/react-devtools-faq" : ""), "font-weight:bold");
 		}
@@ -18901,6 +18901,13 @@ var ArrowLeft = createLucideIcon("arrow-left", [["path", {
 	d: "M19 12H5",
 	key: "x3x0zl"
 }]]);
+var ArrowRight = createLucideIcon("arrow-right", [["path", {
+	d: "M5 12h14",
+	key: "1ays0h"
+}], ["path", {
+	d: "m12 5 7 7-7 7",
+	key: "xquz4c"
+}]]);
 var Bell = createLucideIcon("bell", [["path", {
 	d: "M10.268 21a2 2 0 0 0 3.464 0",
 	key: "vwvbt9"
@@ -19588,12 +19595,12 @@ var lengthUnitRegex = /\d+(%|px|r?em|[sdl]?v([hwib]|min|max)|pt|pc|in|cm|mm|cap|
 var colorFunctionRegex = /^(rgba?|hsla?|hwb|(ok)?(lab|lch)|color-mix)\(.+\)$/;
 var shadowRegex = /^(inset_)?-?((\d+)?\.?(\d+)[a-z]+|0)_-?((\d+)?\.?(\d+)[a-z]+|0)/;
 var imageRegex = /^(url|image|image-set|cross-fade|element|(repeating-)?(linear|radial|conic)-gradient)\(.+\)$/;
-var isLength = (value) => isNumber$1(value) || stringLengths.has(value) || fractionRegex.test(value);
+var isLength = (value) => isNumber$2(value) || stringLengths.has(value) || fractionRegex.test(value);
 var isArbitraryLength = (value) => getIsArbitraryValue(value, "length", isLengthOnly);
-var isNumber$1 = (value) => Boolean(value) && !Number.isNaN(Number(value));
-var isArbitraryNumber = (value) => getIsArbitraryValue(value, "number", isNumber$1);
+var isNumber$2 = (value) => Boolean(value) && !Number.isNaN(Number(value));
+var isArbitraryNumber = (value) => getIsArbitraryValue(value, "number", isNumber$2);
 var isInteger = (value) => Boolean(value) && Number.isInteger(Number(value));
-var isPercent = (value) => value.endsWith("%") && isNumber$1(value.slice(0, -1));
+var isPercent = (value) => value.endsWith("%") && isNumber$2(value.slice(0, -1));
 var isArbitraryValue = (value) => arbitraryValueRegex.test(value);
 var isTshirtSize = (value) => tshirtUnitRegex.test(value);
 var sizeLabels = /* @__PURE__ */ new Set([
@@ -19670,7 +19677,7 @@ var getDefaultConfig = () => {
 	];
 	const getNumberWithAutoAndArbitrary = () => [
 		"auto",
-		isNumber$1,
+		isNumber$2,
 		isArbitraryValue
 	];
 	const getPositions = () => [
@@ -19733,7 +19740,7 @@ var getDefaultConfig = () => {
 		"right",
 		"column"
 	];
-	const getNumberAndArbitrary = () => [isNumber$1, isArbitraryValue];
+	const getNumberAndArbitrary = () => [isNumber$2, isArbitraryValue];
 	return {
 		cacheSize: 500,
 		separator: ":",
@@ -20122,7 +20129,7 @@ var getDefaultConfig = () => {
 			] }],
 			"line-clamp": [{ "line-clamp": [
 				"none",
-				isNumber$1,
+				isNumber$2,
 				isArbitraryNumber
 			] }],
 			leading: [{ leading: [
@@ -24073,6 +24080,160 @@ function ThemeProvider({ children, ...props }) {
 		children
 	});
 }
+var defaultOptions$1 = {
+	active: true,
+	breakpoints: {},
+	delay: 4e3,
+	jump: false,
+	playOnInit: true,
+	stopOnFocusIn: true,
+	stopOnInteraction: true,
+	stopOnMouseEnter: false,
+	stopOnLastSnap: false,
+	rootNode: null
+};
+function normalizeDelay(emblaApi, delay) {
+	const scrollSnaps = emblaApi.scrollSnapList();
+	if (typeof delay === "number") return scrollSnaps.map(() => delay);
+	return delay(scrollSnaps, emblaApi);
+}
+function getAutoplayRootNode(emblaApi, rootNode) {
+	const emblaRootNode = emblaApi.rootNode();
+	return rootNode && rootNode(emblaRootNode) || emblaRootNode;
+}
+function Autoplay(userOptions = {}) {
+	let options$1;
+	let emblaApi;
+	let destroyed;
+	let delay;
+	let timerStartTime = null;
+	let timerId = 0;
+	let autoplayActive = false;
+	let mouseIsOver = false;
+	let playOnDocumentVisible = false;
+	let jump = false;
+	function init(emblaApiInstance, optionsHandler) {
+		emblaApi = emblaApiInstance;
+		const { mergeOptions, optionsAtMedia } = optionsHandler;
+		options$1 = optionsAtMedia(mergeOptions(mergeOptions(defaultOptions$1, Autoplay.globalOptions), userOptions));
+		if (emblaApi.scrollSnapList().length <= 1) return;
+		jump = options$1.jump;
+		destroyed = false;
+		delay = normalizeDelay(emblaApi, options$1.delay);
+		const { eventStore, ownerDocument } = emblaApi.internalEngine();
+		const isDraggable = !!emblaApi.internalEngine().options.watchDrag;
+		const root = getAutoplayRootNode(emblaApi, options$1.rootNode);
+		eventStore.add(ownerDocument, "visibilitychange", visibilityChange);
+		if (isDraggable) emblaApi.on("pointerDown", pointerDown);
+		if (isDraggable && !options$1.stopOnInteraction) emblaApi.on("pointerUp", pointerUp);
+		if (options$1.stopOnMouseEnter) eventStore.add(root, "mouseenter", mouseEnter);
+		if (options$1.stopOnMouseEnter && !options$1.stopOnInteraction) eventStore.add(root, "mouseleave", mouseLeave);
+		if (options$1.stopOnFocusIn) emblaApi.on("slideFocusStart", stopAutoplay);
+		if (options$1.stopOnFocusIn && !options$1.stopOnInteraction) eventStore.add(emblaApi.containerNode(), "focusout", startAutoplay);
+		if (options$1.playOnInit) startAutoplay();
+	}
+	function destroy() {
+		emblaApi.off("pointerDown", pointerDown).off("pointerUp", pointerUp).off("slideFocusStart", stopAutoplay);
+		stopAutoplay();
+		destroyed = true;
+		autoplayActive = false;
+	}
+	function setTimer() {
+		const { ownerWindow } = emblaApi.internalEngine();
+		ownerWindow.clearTimeout(timerId);
+		timerId = ownerWindow.setTimeout(next, delay[emblaApi.selectedScrollSnap()]);
+		timerStartTime = (/* @__PURE__ */ new Date()).getTime();
+		emblaApi.emit("autoplay:timerset");
+	}
+	function clearTimer() {
+		const { ownerWindow } = emblaApi.internalEngine();
+		ownerWindow.clearTimeout(timerId);
+		timerId = 0;
+		timerStartTime = null;
+		emblaApi.emit("autoplay:timerstopped");
+	}
+	function startAutoplay() {
+		if (destroyed) return;
+		if (documentIsHidden()) {
+			playOnDocumentVisible = true;
+			return;
+		}
+		if (!autoplayActive) emblaApi.emit("autoplay:play");
+		setTimer();
+		autoplayActive = true;
+	}
+	function stopAutoplay() {
+		if (destroyed) return;
+		if (autoplayActive) emblaApi.emit("autoplay:stop");
+		clearTimer();
+		autoplayActive = false;
+	}
+	function visibilityChange() {
+		if (documentIsHidden()) {
+			playOnDocumentVisible = autoplayActive;
+			return stopAutoplay();
+		}
+		if (playOnDocumentVisible) startAutoplay();
+	}
+	function documentIsHidden() {
+		const { ownerDocument } = emblaApi.internalEngine();
+		return ownerDocument.visibilityState === "hidden";
+	}
+	function pointerDown() {
+		if (!mouseIsOver) stopAutoplay();
+	}
+	function pointerUp() {
+		if (!mouseIsOver) startAutoplay();
+	}
+	function mouseEnter() {
+		mouseIsOver = true;
+		stopAutoplay();
+	}
+	function mouseLeave() {
+		mouseIsOver = false;
+		startAutoplay();
+	}
+	function play(jumpOverride) {
+		if (typeof jumpOverride !== "undefined") jump = jumpOverride;
+		startAutoplay();
+	}
+	function stop() {
+		if (autoplayActive) stopAutoplay();
+	}
+	function reset() {
+		if (autoplayActive) startAutoplay();
+	}
+	function isPlaying() {
+		return autoplayActive;
+	}
+	function next() {
+		const { index: index$1 } = emblaApi.internalEngine();
+		const nextIndex = index$1.clone().add(1).get();
+		const lastIndex = emblaApi.scrollSnapList().length - 1;
+		const kill = options$1.stopOnLastSnap && nextIndex === lastIndex;
+		if (emblaApi.canScrollNext()) emblaApi.scrollNext(jump);
+		else emblaApi.scrollTo(0, jump);
+		emblaApi.emit("autoplay:select");
+		if (kill) return stopAutoplay();
+		startAutoplay();
+	}
+	function timeUntilNext() {
+		if (!timerStartTime) return null;
+		return delay[emblaApi.selectedScrollSnap()] - ((/* @__PURE__ */ new Date()).getTime() - timerStartTime);
+	}
+	return {
+		name: "autoplay",
+		options: userOptions,
+		init,
+		destroy,
+		play,
+		stop,
+		reset,
+		isPlaying,
+		timeUntilNext
+	};
+}
+Autoplay.globalOptions = void 0;
 var Card = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 	ref,
 	className: cn("rounded-lg border bg-card text-card-foreground shadow-sm transition-colors duration-300", className),
@@ -24109,153 +24270,1455 @@ var CardFooter = import_react.forwardRef(({ className, ...props }, ref) => /* @_
 	...props
 }));
 CardFooter.displayName = "CardFooter";
-var DiaryBtn = ({ icon: Icon$2, label, to }) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Link, {
-	to,
-	className: "flex flex-col items-center gap-2 group",
-	children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-		className: "w-14 h-14 bg-muted/60 rounded-2xl flex items-center justify-center group-hover:bg-primary/10 group-hover:text-primary transition-colors duration-300",
-		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Icon$2, { className: "w-6 h-6 text-foreground/70 group-hover:text-primary transition-colors duration-300" })
-	}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-		className: "text-[11px] font-semibold text-center leading-tight text-muted-foreground group-hover:text-foreground transition-colors duration-300",
-		children: label
-	})]
-});
-function Index() {
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-		className: "space-y-8 animate-fade-in-up py-4",
-		children: [
-			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-				className: "w-full aspect-[4/3] rounded-3xl overflow-hidden relative shadow-sm",
-				children: [
-					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
-						src: "https://img.usecurling.com/p/800/600?q=church%20worship&color=blue",
-						className: "w-full h-full object-cover",
-						alt: "Culto ao vivo"
-					}),
-					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-						className: "absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-4",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-							className: "text-white/80 text-xs font-semibold uppercase tracking-wider mb-1",
-							children: "Ao vivo"
-						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", {
-							className: "text-white text-xl font-bold leading-tight",
-							children: "Culto de Celebração"
-						})]
-					}),
-					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-						className: "absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5",
-						children: [
-							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "w-1.5 h-1.5 rounded-full bg-white opacity-100" }),
-							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "w-1.5 h-1.5 rounded-full bg-white opacity-40" }),
-							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "w-1.5 h-1.5 rounded-full bg-white opacity-40" })
-						]
-					})
-				]
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-				className: "space-y-3",
-				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-					className: "flex justify-between items-center px-1",
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", {
-						className: "text-[17px] font-bold tracking-tight text-foreground",
-						children: "Programação"
-					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Link, {
-						to: "/campus",
-						className: "text-sm font-semibold text-primary",
-						children: "Ver mais"
-					})]
-				}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-					className: "flex gap-3 overflow-x-auto pb-2 snap-x snap-mandatory -mx-4 px-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]",
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Card, {
-						className: "min-w-[260px] shrink-0 snap-center shadow-none border-muted/60 bg-muted/20",
-						children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardContent, {
-							className: "p-4",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
-								className: "font-semibold text-[15px] mb-2",
-								children: "Culto de Celebração"
-							}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-								className: "flex items-center text-sm text-muted-foreground gap-2 font-medium",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Calendar, { className: "w-4 h-4" }), "28/08/2024 às 19:30"]
-							})]
-						})
-					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Card, {
-						className: "min-w-[260px] shrink-0 snap-center shadow-none border-muted/60 bg-muted/20",
-						children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardContent, {
-							className: "p-4",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
-								className: "font-semibold text-[15px] mb-2",
-								children: "Escola Bíblica"
-							}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-								className: "flex items-center text-sm text-muted-foreground gap-2 font-medium",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Calendar, { className: "w-4 h-4" }), "01/09/2024 às 09:00"]
-							})]
-						})
-					})]
-				})]
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-				className: "space-y-4",
-				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", {
-					className: "text-[17px] font-bold tracking-tight text-foreground px-1",
-					children: "Diário"
-				}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-					className: "flex justify-between items-start px-2",
-					children: [
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(DiaryBtn, {
-							icon: Book,
-							label: "Bíblia",
-							to: "/bible"
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(DiaryBtn, {
-							icon: BookOpen,
-							label: "Estudos",
-							to: "/plans"
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(DiaryBtn, {
-							icon: PenTool,
-							label: "Anotações",
-							to: "/plans"
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(DiaryBtn, {
-							icon: LayoutGrid,
-							label: "Plano de Leitura",
-							to: "/plans"
-						})
-					]
-				})]
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-				className: "space-y-3",
-				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-					className: "flex justify-between items-center px-1",
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", {
-						className: "text-[17px] font-bold tracking-tight text-foreground",
-						children: "Células"
-					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Link, {
-						to: "/campus",
-						className: "text-sm font-semibold text-primary",
-						children: "Ver mais"
-					})]
-				}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Card, {
-					className: "shadow-none border-muted/60 bg-primary/5",
-					children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardContent, {
-						className: "p-4 flex items-center gap-4",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-							className: "w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0 transition-colors duration-300",
-							children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Users, { className: "w-6 h-6 text-primary" })
-						}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
-							className: "font-semibold text-[15px]",
-							children: "Encontre uma Célula"
-						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-							className: "text-sm text-muted-foreground",
-							children: "Conecte-se com pessoas perto de você."
-						})] })]
-					})
-				})]
-			})
-		]
+function isObject$1(subject) {
+	return Object.prototype.toString.call(subject) === "[object Object]";
+}
+function isRecord(subject) {
+	return isObject$1(subject) || Array.isArray(subject);
+}
+function canUseDOM() {
+	return !!(typeof window !== "undefined" && window.document && window.document.createElement);
+}
+function areOptionsEqual(optionsA, optionsB) {
+	const optionsAKeys = Object.keys(optionsA);
+	const optionsBKeys = Object.keys(optionsB);
+	if (optionsAKeys.length !== optionsBKeys.length) return false;
+	if (JSON.stringify(Object.keys(optionsA.breakpoints || {})) !== JSON.stringify(Object.keys(optionsB.breakpoints || {}))) return false;
+	return optionsAKeys.every((key) => {
+		const valueA = optionsA[key];
+		const valueB = optionsB[key];
+		if (typeof valueA === "function") return `${valueA}` === `${valueB}`;
+		if (!isRecord(valueA) || !isRecord(valueB)) return valueA === valueB;
+		return areOptionsEqual(valueA, valueB);
 	});
 }
+function sortAndMapPluginToOptions(plugins) {
+	return plugins.concat().sort((a, b$1) => a.name > b$1.name ? 1 : -1).map((plugin) => plugin.options);
+}
+function arePluginsEqual(pluginsA, pluginsB) {
+	if (pluginsA.length !== pluginsB.length) return false;
+	const optionsA = sortAndMapPluginToOptions(pluginsA);
+	const optionsB = sortAndMapPluginToOptions(pluginsB);
+	return optionsA.every((optionA, index$1) => {
+		const optionB = optionsB[index$1];
+		return areOptionsEqual(optionA, optionB);
+	});
+}
+function isNumber$1(subject) {
+	return typeof subject === "number";
+}
+function isString(subject) {
+	return typeof subject === "string";
+}
+function isBoolean(subject) {
+	return typeof subject === "boolean";
+}
+function isObject(subject) {
+	return Object.prototype.toString.call(subject) === "[object Object]";
+}
+function mathAbs(n) {
+	return Math.abs(n);
+}
+function mathSign(n) {
+	return Math.sign(n);
+}
+function deltaAbs(valueB, valueA) {
+	return mathAbs(valueB - valueA);
+}
+function factorAbs(valueB, valueA) {
+	if (valueB === 0 || valueA === 0) return 0;
+	if (mathAbs(valueB) <= mathAbs(valueA)) return 0;
+	return mathAbs(deltaAbs(mathAbs(valueB), mathAbs(valueA)) / valueB);
+}
+function roundToTwoDecimals(num) {
+	return Math.round(num * 100) / 100;
+}
+function arrayKeys(array) {
+	return objectKeys(array).map(Number);
+}
+function arrayLast(array) {
+	return array[arrayLastIndex(array)];
+}
+function arrayLastIndex(array) {
+	return Math.max(0, array.length - 1);
+}
+function arrayIsLastIndex(array, index$1) {
+	return index$1 === arrayLastIndex(array);
+}
+function arrayFromNumber(n, startAt = 0) {
+	return Array.from(Array(n), (_$1, i) => startAt + i);
+}
+function objectKeys(object) {
+	return Object.keys(object);
+}
+function objectsMergeDeep(objectA, objectB) {
+	return [objectA, objectB].reduce((mergedObjects, currentObject) => {
+		objectKeys(currentObject).forEach((key) => {
+			const valueA = mergedObjects[key];
+			const valueB = currentObject[key];
+			mergedObjects[key] = isObject(valueA) && isObject(valueB) ? objectsMergeDeep(valueA, valueB) : valueB;
+		});
+		return mergedObjects;
+	}, {});
+}
+function isMouseEvent(evt, ownerWindow) {
+	return typeof ownerWindow.MouseEvent !== "undefined" && evt instanceof ownerWindow.MouseEvent;
+}
+function Alignment(align, viewSize) {
+	const predefined = {
+		start,
+		center,
+		end
+	};
+	function start() {
+		return 0;
+	}
+	function center(n) {
+		return end(n) / 2;
+	}
+	function end(n) {
+		return viewSize - n;
+	}
+	function measure(n, index$1) {
+		if (isString(align)) return predefined[align](n);
+		return align(viewSize, n, index$1);
+	}
+	return { measure };
+}
+function EventStore() {
+	let listeners$1 = [];
+	function add(node, type, handler, options$1 = { passive: true }) {
+		let removeListener;
+		if ("addEventListener" in node) {
+			node.addEventListener(type, handler, options$1);
+			removeListener = () => node.removeEventListener(type, handler, options$1);
+		} else {
+			const legacyMediaQueryList = node;
+			legacyMediaQueryList.addListener(handler);
+			removeListener = () => legacyMediaQueryList.removeListener(handler);
+		}
+		listeners$1.push(removeListener);
+		return self;
+	}
+	function clear() {
+		listeners$1 = listeners$1.filter((remove) => remove());
+	}
+	const self = {
+		add,
+		clear
+	};
+	return self;
+}
+function Animations(ownerDocument, ownerWindow, update, render) {
+	const documentVisibleHandler = EventStore();
+	const fixedTimeStep = 1e3 / 60;
+	let lastTimeStamp = null;
+	let accumulatedTime = 0;
+	let animationId = 0;
+	function init() {
+		documentVisibleHandler.add(ownerDocument, "visibilitychange", () => {
+			if (ownerDocument.hidden) reset();
+		});
+	}
+	function destroy() {
+		stop();
+		documentVisibleHandler.clear();
+	}
+	function animate(timeStamp) {
+		if (!animationId) return;
+		if (!lastTimeStamp) {
+			lastTimeStamp = timeStamp;
+			update();
+			update();
+		}
+		const timeElapsed = timeStamp - lastTimeStamp;
+		lastTimeStamp = timeStamp;
+		accumulatedTime += timeElapsed;
+		while (accumulatedTime >= fixedTimeStep) {
+			update();
+			accumulatedTime -= fixedTimeStep;
+		}
+		render(accumulatedTime / fixedTimeStep);
+		if (animationId) animationId = ownerWindow.requestAnimationFrame(animate);
+	}
+	function start() {
+		if (animationId) return;
+		animationId = ownerWindow.requestAnimationFrame(animate);
+	}
+	function stop() {
+		ownerWindow.cancelAnimationFrame(animationId);
+		lastTimeStamp = null;
+		accumulatedTime = 0;
+		animationId = 0;
+	}
+	function reset() {
+		lastTimeStamp = null;
+		accumulatedTime = 0;
+	}
+	return {
+		init,
+		destroy,
+		start,
+		stop,
+		update,
+		render
+	};
+}
+function Axis(axis, contentDirection) {
+	const isRightToLeft = contentDirection === "rtl";
+	const isVertical = axis === "y";
+	const scroll = isVertical ? "y" : "x";
+	const cross = isVertical ? "x" : "y";
+	const sign = !isVertical && isRightToLeft ? -1 : 1;
+	const startEdge = getStartEdge();
+	const endEdge = getEndEdge();
+	function measureSize(nodeRect) {
+		const { height, width } = nodeRect;
+		return isVertical ? height : width;
+	}
+	function getStartEdge() {
+		if (isVertical) return "top";
+		return isRightToLeft ? "right" : "left";
+	}
+	function getEndEdge() {
+		if (isVertical) return "bottom";
+		return isRightToLeft ? "left" : "right";
+	}
+	function direction(n) {
+		return n * sign;
+	}
+	return {
+		scroll,
+		cross,
+		startEdge,
+		endEdge,
+		measureSize,
+		direction
+	};
+}
+function Limit(min$1 = 0, max$1 = 0) {
+	const length = mathAbs(min$1 - max$1);
+	function reachedMin(n) {
+		return n < min$1;
+	}
+	function reachedMax(n) {
+		return n > max$1;
+	}
+	function reachedAny(n) {
+		return reachedMin(n) || reachedMax(n);
+	}
+	function constrain(n) {
+		if (!reachedAny(n)) return n;
+		return reachedMin(n) ? min$1 : max$1;
+	}
+	function removeOffset(n) {
+		if (!length) return n;
+		return n - length * Math.ceil((n - max$1) / length);
+	}
+	return {
+		length,
+		max: max$1,
+		min: min$1,
+		constrain,
+		reachedAny,
+		reachedMax,
+		reachedMin,
+		removeOffset
+	};
+}
+function Counter(max$1, start, loop) {
+	const { constrain } = Limit(0, max$1);
+	const loopEnd = max$1 + 1;
+	let counter = withinLimit(start);
+	function withinLimit(n) {
+		return !loop ? constrain(n) : mathAbs((loopEnd + n) % loopEnd);
+	}
+	function get() {
+		return counter;
+	}
+	function set(n) {
+		counter = withinLimit(n);
+		return self;
+	}
+	function add(n) {
+		return clone().set(get() + n);
+	}
+	function clone() {
+		return Counter(max$1, get(), loop);
+	}
+	const self = {
+		get,
+		set,
+		add,
+		clone
+	};
+	return self;
+}
+function DragHandler(axis, rootNode, ownerDocument, ownerWindow, target, dragTracker, location, animation, scrollTo, scrollBody, scrollTarget, index$1, eventHandler, percentOfView, dragFree, dragThreshold, skipSnaps, baseFriction, watchDrag) {
+	const { cross: crossAxis, direction } = axis;
+	const focusNodes = [
+		"INPUT",
+		"SELECT",
+		"TEXTAREA"
+	];
+	const nonPassiveEvent = { passive: false };
+	const initEvents = EventStore();
+	const dragEvents = EventStore();
+	const goToNextThreshold = Limit(50, 225).constrain(percentOfView.measure(20));
+	const snapForceBoost = {
+		mouse: 300,
+		touch: 400
+	};
+	const freeForceBoost = {
+		mouse: 500,
+		touch: 600
+	};
+	const baseSpeed = dragFree ? 43 : 25;
+	let isMoving = false;
+	let startScroll = 0;
+	let startCross = 0;
+	let pointerIsDown = false;
+	let preventScroll = false;
+	let preventClick = false;
+	let isMouse = false;
+	function init(emblaApi) {
+		if (!watchDrag) return;
+		function downIfAllowed(evt) {
+			if (isBoolean(watchDrag) || watchDrag(emblaApi, evt)) down(evt);
+		}
+		const node = rootNode;
+		initEvents.add(node, "dragstart", (evt) => evt.preventDefault(), nonPassiveEvent).add(node, "touchmove", () => void 0, nonPassiveEvent).add(node, "touchend", () => void 0).add(node, "touchstart", downIfAllowed).add(node, "mousedown", downIfAllowed).add(node, "touchcancel", up).add(node, "contextmenu", up).add(node, "click", click, true);
+	}
+	function destroy() {
+		initEvents.clear();
+		dragEvents.clear();
+	}
+	function addDragEvents() {
+		const node = isMouse ? ownerDocument : rootNode;
+		dragEvents.add(node, "touchmove", move, nonPassiveEvent).add(node, "touchend", up).add(node, "mousemove", move, nonPassiveEvent).add(node, "mouseup", up);
+	}
+	function isFocusNode(node) {
+		const nodeName = node.nodeName || "";
+		return focusNodes.includes(nodeName);
+	}
+	function forceBoost() {
+		return (dragFree ? freeForceBoost : snapForceBoost)[isMouse ? "mouse" : "touch"];
+	}
+	function allowedForce(force, targetChanged) {
+		const next = index$1.add(mathSign(force) * -1);
+		const baseForce = scrollTarget.byDistance(force, !dragFree).distance;
+		if (dragFree || mathAbs(force) < goToNextThreshold) return baseForce;
+		if (skipSnaps && targetChanged) return baseForce * .5;
+		return scrollTarget.byIndex(next.get(), 0).distance;
+	}
+	function down(evt) {
+		const isMouseEvt = isMouseEvent(evt, ownerWindow);
+		isMouse = isMouseEvt;
+		preventClick = dragFree && isMouseEvt && !evt.buttons && isMoving;
+		isMoving = deltaAbs(target.get(), location.get()) >= 2;
+		if (isMouseEvt && evt.button !== 0) return;
+		if (isFocusNode(evt.target)) return;
+		pointerIsDown = true;
+		dragTracker.pointerDown(evt);
+		scrollBody.useFriction(0).useDuration(0);
+		target.set(location);
+		addDragEvents();
+		startScroll = dragTracker.readPoint(evt);
+		startCross = dragTracker.readPoint(evt, crossAxis);
+		eventHandler.emit("pointerDown");
+	}
+	function move(evt) {
+		if (!isMouseEvent(evt, ownerWindow) && evt.touches.length >= 2) return up(evt);
+		const lastScroll = dragTracker.readPoint(evt);
+		const lastCross = dragTracker.readPoint(evt, crossAxis);
+		const diffScroll = deltaAbs(lastScroll, startScroll);
+		const diffCross = deltaAbs(lastCross, startCross);
+		if (!preventScroll && !isMouse) {
+			if (!evt.cancelable) return up(evt);
+			preventScroll = diffScroll > diffCross;
+			if (!preventScroll) return up(evt);
+		}
+		const diff = dragTracker.pointerMove(evt);
+		if (diffScroll > dragThreshold) preventClick = true;
+		scrollBody.useFriction(.3).useDuration(.75);
+		animation.start();
+		target.add(direction(diff));
+		evt.preventDefault();
+	}
+	function up(evt) {
+		const targetChanged = scrollTarget.byDistance(0, false).index !== index$1.get();
+		const rawForce = dragTracker.pointerUp(evt) * forceBoost();
+		const force = allowedForce(direction(rawForce), targetChanged);
+		const forceFactor = factorAbs(rawForce, force);
+		const speed = baseSpeed - 10 * forceFactor;
+		const friction = baseFriction + forceFactor / 50;
+		preventScroll = false;
+		pointerIsDown = false;
+		dragEvents.clear();
+		scrollBody.useDuration(speed).useFriction(friction);
+		scrollTo.distance(force, !dragFree);
+		isMouse = false;
+		eventHandler.emit("pointerUp");
+	}
+	function click(evt) {
+		if (preventClick) {
+			evt.stopPropagation();
+			evt.preventDefault();
+			preventClick = false;
+		}
+	}
+	function pointerDown() {
+		return pointerIsDown;
+	}
+	return {
+		init,
+		destroy,
+		pointerDown
+	};
+}
+function DragTracker(axis, ownerWindow) {
+	const logInterval = 170;
+	let startEvent;
+	let lastEvent;
+	function readTime(evt) {
+		return evt.timeStamp;
+	}
+	function readPoint(evt, evtAxis) {
+		const coord = `client${(evtAxis || axis.scroll) === "x" ? "X" : "Y"}`;
+		return (isMouseEvent(evt, ownerWindow) ? evt : evt.touches[0])[coord];
+	}
+	function pointerDown(evt) {
+		startEvent = evt;
+		lastEvent = evt;
+		return readPoint(evt);
+	}
+	function pointerMove(evt) {
+		const diff = readPoint(evt) - readPoint(lastEvent);
+		const expired = readTime(evt) - readTime(startEvent) > logInterval;
+		lastEvent = evt;
+		if (expired) startEvent = evt;
+		return diff;
+	}
+	function pointerUp(evt) {
+		if (!startEvent || !lastEvent) return 0;
+		const diffDrag = readPoint(lastEvent) - readPoint(startEvent);
+		const diffTime = readTime(evt) - readTime(startEvent);
+		const expired = readTime(evt) - readTime(lastEvent) > logInterval;
+		const force = diffDrag / diffTime;
+		return diffTime && !expired && mathAbs(force) > .1 ? force : 0;
+	}
+	return {
+		pointerDown,
+		pointerMove,
+		pointerUp,
+		readPoint
+	};
+}
+function NodeRects() {
+	function measure(node) {
+		const { offsetTop, offsetLeft, offsetWidth, offsetHeight } = node;
+		return {
+			top: offsetTop,
+			right: offsetLeft + offsetWidth,
+			bottom: offsetTop + offsetHeight,
+			left: offsetLeft,
+			width: offsetWidth,
+			height: offsetHeight
+		};
+	}
+	return { measure };
+}
+function PercentOfView(viewSize) {
+	function measure(n) {
+		return viewSize * (n / 100);
+	}
+	return { measure };
+}
+function ResizeHandler(container, eventHandler, ownerWindow, slides, axis, watchResize, nodeRects) {
+	const observeNodes = [container].concat(slides);
+	let resizeObserver;
+	let containerSize;
+	let slideSizes = [];
+	let destroyed = false;
+	function readSize(node) {
+		return axis.measureSize(nodeRects.measure(node));
+	}
+	function init(emblaApi) {
+		if (!watchResize) return;
+		containerSize = readSize(container);
+		slideSizes = slides.map(readSize);
+		function defaultCallback(entries) {
+			for (const entry of entries) {
+				if (destroyed) return;
+				const isContainer = entry.target === container;
+				const slideIndex = slides.indexOf(entry.target);
+				const lastSize = isContainer ? containerSize : slideSizes[slideIndex];
+				if (mathAbs(readSize(isContainer ? container : slides[slideIndex]) - lastSize) >= .5) {
+					emblaApi.reInit();
+					eventHandler.emit("resize");
+					break;
+				}
+			}
+		}
+		resizeObserver = new ResizeObserver((entries) => {
+			if (isBoolean(watchResize) || watchResize(emblaApi, entries)) defaultCallback(entries);
+		});
+		ownerWindow.requestAnimationFrame(() => {
+			observeNodes.forEach((node) => resizeObserver.observe(node));
+		});
+	}
+	function destroy() {
+		destroyed = true;
+		if (resizeObserver) resizeObserver.disconnect();
+	}
+	return {
+		init,
+		destroy
+	};
+}
+function ScrollBody(location, offsetLocation, previousLocation, target, baseDuration, baseFriction) {
+	let scrollVelocity = 0;
+	let scrollDirection = 0;
+	let scrollDuration = baseDuration;
+	let scrollFriction = baseFriction;
+	let rawLocation = location.get();
+	let rawLocationPrevious = 0;
+	function seek() {
+		const displacement = target.get() - location.get();
+		const isInstant = !scrollDuration;
+		let scrollDistance = 0;
+		if (isInstant) {
+			scrollVelocity = 0;
+			previousLocation.set(target);
+			location.set(target);
+			scrollDistance = displacement;
+		} else {
+			previousLocation.set(location);
+			scrollVelocity += displacement / scrollDuration;
+			scrollVelocity *= scrollFriction;
+			rawLocation += scrollVelocity;
+			location.add(scrollVelocity);
+			scrollDistance = rawLocation - rawLocationPrevious;
+		}
+		scrollDirection = mathSign(scrollDistance);
+		rawLocationPrevious = rawLocation;
+		return self;
+	}
+	function settled() {
+		return mathAbs(target.get() - offsetLocation.get()) < .001;
+	}
+	function duration() {
+		return scrollDuration;
+	}
+	function direction() {
+		return scrollDirection;
+	}
+	function velocity() {
+		return scrollVelocity;
+	}
+	function useBaseDuration() {
+		return useDuration(baseDuration);
+	}
+	function useBaseFriction() {
+		return useFriction(baseFriction);
+	}
+	function useDuration(n) {
+		scrollDuration = n;
+		return self;
+	}
+	function useFriction(n) {
+		scrollFriction = n;
+		return self;
+	}
+	const self = {
+		direction,
+		duration,
+		velocity,
+		seek,
+		settled,
+		useBaseFriction,
+		useBaseDuration,
+		useFriction,
+		useDuration
+	};
+	return self;
+}
+function ScrollBounds(limit, location, target, scrollBody, percentOfView) {
+	const pullBackThreshold = percentOfView.measure(10);
+	const edgeOffsetTolerance = percentOfView.measure(50);
+	const frictionLimit = Limit(.1, .99);
+	let disabled = false;
+	function shouldConstrain() {
+		if (disabled) return false;
+		if (!limit.reachedAny(target.get())) return false;
+		if (!limit.reachedAny(location.get())) return false;
+		return true;
+	}
+	function constrain(pointerDown) {
+		if (!shouldConstrain()) return;
+		const diffToEdge = mathAbs(limit[limit.reachedMin(location.get()) ? "min" : "max"] - location.get());
+		const diffToTarget = target.get() - location.get();
+		const friction = frictionLimit.constrain(diffToEdge / edgeOffsetTolerance);
+		target.subtract(diffToTarget * friction);
+		if (!pointerDown && mathAbs(diffToTarget) < pullBackThreshold) {
+			target.set(limit.constrain(target.get()));
+			scrollBody.useDuration(25).useBaseFriction();
+		}
+	}
+	function toggleActive(active) {
+		disabled = !active;
+	}
+	return {
+		shouldConstrain,
+		constrain,
+		toggleActive
+	};
+}
+function ScrollContain(viewSize, contentSize, snapsAligned, containScroll, pixelTolerance) {
+	const scrollBounds = Limit(-contentSize + viewSize, 0);
+	const snapsBounded = measureBounded();
+	const scrollContainLimit = findScrollContainLimit();
+	const snapsContained = measureContained();
+	function usePixelTolerance(bound, snap) {
+		return deltaAbs(bound, snap) <= 1;
+	}
+	function findScrollContainLimit() {
+		const startSnap = snapsBounded[0];
+		const endSnap = arrayLast(snapsBounded);
+		return Limit(snapsBounded.lastIndexOf(startSnap), snapsBounded.indexOf(endSnap) + 1);
+	}
+	function measureBounded() {
+		return snapsAligned.map((snapAligned, index$1) => {
+			const { min: min$1, max: max$1 } = scrollBounds;
+			const snap = scrollBounds.constrain(snapAligned);
+			const isFirst = !index$1;
+			const isLast = arrayIsLastIndex(snapsAligned, index$1);
+			if (isFirst) return max$1;
+			if (isLast) return min$1;
+			if (usePixelTolerance(min$1, snap)) return min$1;
+			if (usePixelTolerance(max$1, snap)) return max$1;
+			return snap;
+		}).map((scrollBound) => parseFloat(scrollBound.toFixed(3)));
+	}
+	function measureContained() {
+		if (contentSize <= viewSize + pixelTolerance) return [scrollBounds.max];
+		if (containScroll === "keepSnaps") return snapsBounded;
+		const { min: min$1, max: max$1 } = scrollContainLimit;
+		return snapsBounded.slice(min$1, max$1);
+	}
+	return {
+		snapsContained,
+		scrollContainLimit
+	};
+}
+function ScrollLimit(contentSize, scrollSnaps, loop) {
+	const max$1 = scrollSnaps[0];
+	return { limit: Limit(loop ? max$1 - contentSize : arrayLast(scrollSnaps), max$1) };
+}
+function ScrollLooper(contentSize, limit, location, vectors) {
+	const jointSafety = .1;
+	const { reachedMin, reachedMax } = Limit(limit.min + jointSafety, limit.max + jointSafety);
+	function shouldLoop(direction) {
+		if (direction === 1) return reachedMax(location.get());
+		if (direction === -1) return reachedMin(location.get());
+		return false;
+	}
+	function loop(direction) {
+		if (!shouldLoop(direction)) return;
+		const loopDistance = contentSize * (direction * -1);
+		vectors.forEach((v) => v.add(loopDistance));
+	}
+	return { loop };
+}
+function ScrollProgress(limit) {
+	const { max: max$1, length } = limit;
+	function get(n) {
+		const currentLocation = n - max$1;
+		return length ? currentLocation / -length : 0;
+	}
+	return { get };
+}
+function ScrollSnaps(axis, alignment, containerRect, slideRects, slidesToScroll) {
+	const { startEdge, endEdge } = axis;
+	const { groupSlides } = slidesToScroll;
+	const alignments = measureSizes().map(alignment.measure);
+	const snaps = measureUnaligned();
+	const snapsAligned = measureAligned();
+	function measureSizes() {
+		return groupSlides(slideRects).map((rects) => arrayLast(rects)[endEdge] - rects[0][startEdge]).map(mathAbs);
+	}
+	function measureUnaligned() {
+		return slideRects.map((rect) => containerRect[startEdge] - rect[startEdge]).map((snap) => -mathAbs(snap));
+	}
+	function measureAligned() {
+		return groupSlides(snaps).map((g) => g[0]).map((snap, index$1) => snap + alignments[index$1]);
+	}
+	return {
+		snaps,
+		snapsAligned
+	};
+}
+function SlideRegistry(containSnaps, containScroll, scrollSnaps, scrollContainLimit, slidesToScroll, slideIndexes) {
+	const { groupSlides } = slidesToScroll;
+	const { min: min$1, max: max$1 } = scrollContainLimit;
+	const slideRegistry = createSlideRegistry();
+	function createSlideRegistry() {
+		const groupedSlideIndexes = groupSlides(slideIndexes);
+		const doNotContain = !containSnaps || containScroll === "keepSnaps";
+		if (scrollSnaps.length === 1) return [slideIndexes];
+		if (doNotContain) return groupedSlideIndexes;
+		return groupedSlideIndexes.slice(min$1, max$1).map((group, index$1, groups) => {
+			const isFirst = !index$1;
+			const isLast = arrayIsLastIndex(groups, index$1);
+			if (isFirst) return arrayFromNumber(arrayLast(groups[0]) + 1);
+			if (isLast) return arrayFromNumber(arrayLastIndex(slideIndexes) - arrayLast(groups)[0] + 1, arrayLast(groups)[0]);
+			return group;
+		});
+	}
+	return { slideRegistry };
+}
+function ScrollTarget(loop, scrollSnaps, contentSize, limit, targetVector) {
+	const { reachedAny, removeOffset, constrain } = limit;
+	function minDistance(distances) {
+		return distances.concat().sort((a, b$1) => mathAbs(a) - mathAbs(b$1))[0];
+	}
+	function findTargetSnap(target) {
+		const distance = loop ? removeOffset(target) : constrain(target);
+		const { index: index$1 } = scrollSnaps.map((snap, index$2) => ({
+			diff: shortcut(snap - distance, 0),
+			index: index$2
+		})).sort((d1, d2) => mathAbs(d1.diff) - mathAbs(d2.diff))[0];
+		return {
+			index: index$1,
+			distance
+		};
+	}
+	function shortcut(target, direction) {
+		const targets = [
+			target,
+			target + contentSize,
+			target - contentSize
+		];
+		if (!loop) return target;
+		if (!direction) return minDistance(targets);
+		const matchingTargets = targets.filter((t) => mathSign(t) === direction);
+		if (matchingTargets.length) return minDistance(matchingTargets);
+		return arrayLast(targets) - contentSize;
+	}
+	function byIndex(index$1, direction) {
+		return {
+			index: index$1,
+			distance: shortcut(scrollSnaps[index$1] - targetVector.get(), direction)
+		};
+	}
+	function byDistance(distance, snap) {
+		const target = targetVector.get() + distance;
+		const { index: index$1, distance: targetSnapDistance } = findTargetSnap(target);
+		const reachedBound = !loop && reachedAny(target);
+		if (!snap || reachedBound) return {
+			index: index$1,
+			distance
+		};
+		return {
+			index: index$1,
+			distance: distance + shortcut(scrollSnaps[index$1] - targetSnapDistance, 0)
+		};
+	}
+	return {
+		byDistance,
+		byIndex,
+		shortcut
+	};
+}
+function ScrollTo(animation, indexCurrent, indexPrevious, scrollBody, scrollTarget, targetVector, eventHandler) {
+	function scrollTo(target) {
+		const distanceDiff = target.distance;
+		const indexDiff = target.index !== indexCurrent.get();
+		targetVector.add(distanceDiff);
+		if (distanceDiff) if (scrollBody.duration()) animation.start();
+		else {
+			animation.update();
+			animation.render(1);
+			animation.update();
+		}
+		if (indexDiff) {
+			indexPrevious.set(indexCurrent.get());
+			indexCurrent.set(target.index);
+			eventHandler.emit("select");
+		}
+	}
+	function distance(n, snap) {
+		scrollTo(scrollTarget.byDistance(n, snap));
+	}
+	function index$1(n, direction) {
+		const targetIndex = indexCurrent.clone().set(n);
+		scrollTo(scrollTarget.byIndex(targetIndex.get(), direction));
+	}
+	return {
+		distance,
+		index: index$1
+	};
+}
+function SlideFocus(root, slides, slideRegistry, scrollTo, scrollBody, eventStore, eventHandler, watchFocus) {
+	const focusListenerOptions = {
+		passive: true,
+		capture: true
+	};
+	let lastTabPressTime = 0;
+	function init(emblaApi) {
+		if (!watchFocus) return;
+		function defaultCallback(index$1) {
+			if ((/* @__PURE__ */ new Date()).getTime() - lastTabPressTime > 10) return;
+			eventHandler.emit("slideFocusStart");
+			root.scrollLeft = 0;
+			const group = slideRegistry.findIndex((group$1) => group$1.includes(index$1));
+			if (!isNumber$1(group)) return;
+			scrollBody.useDuration(0);
+			scrollTo.index(group, 0);
+			eventHandler.emit("slideFocus");
+		}
+		eventStore.add(document, "keydown", registerTabPress, false);
+		slides.forEach((slide, slideIndex) => {
+			eventStore.add(slide, "focus", (evt) => {
+				if (isBoolean(watchFocus) || watchFocus(emblaApi, evt)) defaultCallback(slideIndex);
+			}, focusListenerOptions);
+		});
+	}
+	function registerTabPress(event) {
+		if (event.code === "Tab") lastTabPressTime = (/* @__PURE__ */ new Date()).getTime();
+	}
+	return { init };
+}
+function Vector1D(initialValue) {
+	let value = initialValue;
+	function get() {
+		return value;
+	}
+	function set(n) {
+		value = normalizeInput(n);
+	}
+	function add(n) {
+		value += normalizeInput(n);
+	}
+	function subtract(n) {
+		value -= normalizeInput(n);
+	}
+	function normalizeInput(n) {
+		return isNumber$1(n) ? n : n.get();
+	}
+	return {
+		get,
+		set,
+		add,
+		subtract
+	};
+}
+function Translate(axis, container) {
+	const translate = axis.scroll === "x" ? x$1 : y;
+	const containerStyle = container.style;
+	let previousTarget = null;
+	let disabled = false;
+	function x$1(n) {
+		return `translate3d(${n}px,0px,0px)`;
+	}
+	function y(n) {
+		return `translate3d(0px,${n}px,0px)`;
+	}
+	function to(target) {
+		if (disabled) return;
+		const newTarget = roundToTwoDecimals(axis.direction(target));
+		if (newTarget === previousTarget) return;
+		containerStyle.transform = translate(newTarget);
+		previousTarget = newTarget;
+	}
+	function toggleActive(active) {
+		disabled = !active;
+	}
+	function clear() {
+		if (disabled) return;
+		containerStyle.transform = "";
+		if (!container.getAttribute("style")) container.removeAttribute("style");
+	}
+	return {
+		clear,
+		to,
+		toggleActive
+	};
+}
+function SlideLooper(axis, viewSize, contentSize, slideSizes, slideSizesWithGaps, snaps, scrollSnaps, location, slides) {
+	const roundingSafety = .5;
+	const ascItems = arrayKeys(slideSizesWithGaps);
+	const descItems = arrayKeys(slideSizesWithGaps).reverse();
+	const loopPoints = startPoints().concat(endPoints());
+	function removeSlideSizes(indexes, from) {
+		return indexes.reduce((a, i) => {
+			return a - slideSizesWithGaps[i];
+		}, from);
+	}
+	function slidesInGap(indexes, gap) {
+		return indexes.reduce((a, i) => {
+			return removeSlideSizes(a, gap) > 0 ? a.concat([i]) : a;
+		}, []);
+	}
+	function findSlideBounds(offset$3) {
+		return snaps.map((snap, index$1) => ({
+			start: snap - slideSizes[index$1] + roundingSafety + offset$3,
+			end: snap + viewSize - roundingSafety + offset$3
+		}));
+	}
+	function findLoopPoints(indexes, offset$3, isEndEdge) {
+		const slideBounds = findSlideBounds(offset$3);
+		return indexes.map((index$1) => {
+			const initial = isEndEdge ? 0 : -contentSize;
+			const altered = isEndEdge ? contentSize : 0;
+			const boundEdge = isEndEdge ? "end" : "start";
+			const loopPoint = slideBounds[index$1][boundEdge];
+			return {
+				index: index$1,
+				loopPoint,
+				slideLocation: Vector1D(-1),
+				translate: Translate(axis, slides[index$1]),
+				target: () => location.get() > loopPoint ? initial : altered
+			};
+		});
+	}
+	function startPoints() {
+		const gap = scrollSnaps[0];
+		return findLoopPoints(slidesInGap(descItems, gap), contentSize, false);
+	}
+	function endPoints() {
+		return findLoopPoints(slidesInGap(ascItems, viewSize - scrollSnaps[0] - 1), -contentSize, true);
+	}
+	function canLoop() {
+		return loopPoints.every(({ index: index$1 }) => {
+			return removeSlideSizes(ascItems.filter((i) => i !== index$1), viewSize) <= .1;
+		});
+	}
+	function loop() {
+		loopPoints.forEach((loopPoint) => {
+			const { target, translate, slideLocation } = loopPoint;
+			const shiftLocation = target();
+			if (shiftLocation === slideLocation.get()) return;
+			translate.to(shiftLocation);
+			slideLocation.set(shiftLocation);
+		});
+	}
+	function clear() {
+		loopPoints.forEach((loopPoint) => loopPoint.translate.clear());
+	}
+	return {
+		canLoop,
+		clear,
+		loop,
+		loopPoints
+	};
+}
+function SlidesHandler(container, eventHandler, watchSlides) {
+	let mutationObserver;
+	let destroyed = false;
+	function init(emblaApi) {
+		if (!watchSlides) return;
+		function defaultCallback(mutations) {
+			for (const mutation of mutations) if (mutation.type === "childList") {
+				emblaApi.reInit();
+				eventHandler.emit("slidesChanged");
+				break;
+			}
+		}
+		mutationObserver = new MutationObserver((mutations) => {
+			if (destroyed) return;
+			if (isBoolean(watchSlides) || watchSlides(emblaApi, mutations)) defaultCallback(mutations);
+		});
+		mutationObserver.observe(container, { childList: true });
+	}
+	function destroy() {
+		if (mutationObserver) mutationObserver.disconnect();
+		destroyed = true;
+	}
+	return {
+		init,
+		destroy
+	};
+}
+function SlidesInView(container, slides, eventHandler, threshold) {
+	const intersectionEntryMap = {};
+	let inViewCache = null;
+	let notInViewCache = null;
+	let intersectionObserver;
+	let destroyed = false;
+	function init() {
+		intersectionObserver = new IntersectionObserver((entries) => {
+			if (destroyed) return;
+			entries.forEach((entry) => {
+				const index$1 = slides.indexOf(entry.target);
+				intersectionEntryMap[index$1] = entry;
+			});
+			inViewCache = null;
+			notInViewCache = null;
+			eventHandler.emit("slidesInView");
+		}, {
+			root: container.parentElement,
+			threshold
+		});
+		slides.forEach((slide) => intersectionObserver.observe(slide));
+	}
+	function destroy() {
+		if (intersectionObserver) intersectionObserver.disconnect();
+		destroyed = true;
+	}
+	function createInViewList(inView) {
+		return objectKeys(intersectionEntryMap).reduce((list, slideIndex) => {
+			const index$1 = parseInt(slideIndex);
+			const { isIntersecting } = intersectionEntryMap[index$1];
+			if (inView && isIntersecting || !inView && !isIntersecting) list.push(index$1);
+			return list;
+		}, []);
+	}
+	function get(inView = true) {
+		if (inView && inViewCache) return inViewCache;
+		if (!inView && notInViewCache) return notInViewCache;
+		const slideIndexes = createInViewList(inView);
+		if (inView) inViewCache = slideIndexes;
+		if (!inView) notInViewCache = slideIndexes;
+		return slideIndexes;
+	}
+	return {
+		init,
+		destroy,
+		get
+	};
+}
+function SlideSizes(axis, containerRect, slideRects, slides, readEdgeGap, ownerWindow) {
+	const { measureSize, startEdge, endEdge } = axis;
+	const withEdgeGap = slideRects[0] && readEdgeGap;
+	const startGap = measureStartGap();
+	const endGap = measureEndGap();
+	const slideSizes = slideRects.map(measureSize);
+	const slideSizesWithGaps = measureWithGaps();
+	function measureStartGap() {
+		if (!withEdgeGap) return 0;
+		const slideRect = slideRects[0];
+		return mathAbs(containerRect[startEdge] - slideRect[startEdge]);
+	}
+	function measureEndGap() {
+		if (!withEdgeGap) return 0;
+		const style = ownerWindow.getComputedStyle(arrayLast(slides));
+		return parseFloat(style.getPropertyValue(`margin-${endEdge}`));
+	}
+	function measureWithGaps() {
+		return slideRects.map((rect, index$1, rects) => {
+			const isFirst = !index$1;
+			const isLast = arrayIsLastIndex(rects, index$1);
+			if (isFirst) return slideSizes[index$1] + startGap;
+			if (isLast) return slideSizes[index$1] + endGap;
+			return rects[index$1 + 1][startEdge] - rect[startEdge];
+		}).map(mathAbs);
+	}
+	return {
+		slideSizes,
+		slideSizesWithGaps,
+		startGap,
+		endGap
+	};
+}
+function SlidesToScroll(axis, viewSize, slidesToScroll, loop, containerRect, slideRects, startGap, endGap, pixelTolerance) {
+	const { startEdge, endEdge, direction } = axis;
+	const groupByNumber = isNumber$1(slidesToScroll);
+	function byNumber(array, groupSize) {
+		return arrayKeys(array).filter((i) => i % groupSize === 0).map((i) => array.slice(i, i + groupSize));
+	}
+	function bySize(array) {
+		if (!array.length) return [];
+		return arrayKeys(array).reduce((groups, rectB, index$1) => {
+			const rectA = arrayLast(groups) || 0;
+			const isFirst = rectA === 0;
+			const isLast = rectB === arrayLastIndex(array);
+			const edgeA = containerRect[startEdge] - slideRects[rectA][startEdge];
+			const edgeB = containerRect[startEdge] - slideRects[rectB][endEdge];
+			const gapA = !loop && isFirst ? direction(startGap) : 0;
+			const chunkSize = mathAbs(edgeB - (!loop && isLast ? direction(endGap) : 0) - (edgeA + gapA));
+			if (index$1 && chunkSize > viewSize + pixelTolerance) groups.push(rectB);
+			if (isLast) groups.push(array.length);
+			return groups;
+		}, []).map((currentSize, index$1, groups) => {
+			const previousSize = Math.max(groups[index$1 - 1] || 0);
+			return array.slice(previousSize, currentSize);
+		});
+	}
+	function groupSlides(array) {
+		return groupByNumber ? byNumber(array, slidesToScroll) : bySize(array);
+	}
+	return { groupSlides };
+}
+function Engine(root, container, slides, ownerDocument, ownerWindow, options$1, eventHandler) {
+	const { align, axis: scrollAxis, direction, startIndex, loop, duration, dragFree, dragThreshold, inViewThreshold, slidesToScroll: groupSlides, skipSnaps, containScroll, watchResize, watchSlides, watchDrag, watchFocus } = options$1;
+	const pixelTolerance = 2;
+	const nodeRects = NodeRects();
+	const containerRect = nodeRects.measure(container);
+	const slideRects = slides.map(nodeRects.measure);
+	const axis = Axis(scrollAxis, direction);
+	const viewSize = axis.measureSize(containerRect);
+	const percentOfView = PercentOfView(viewSize);
+	const alignment = Alignment(align, viewSize);
+	const containSnaps = !loop && !!containScroll;
+	const { slideSizes, slideSizesWithGaps, startGap, endGap } = SlideSizes(axis, containerRect, slideRects, slides, loop || !!containScroll, ownerWindow);
+	const slidesToScroll = SlidesToScroll(axis, viewSize, groupSlides, loop, containerRect, slideRects, startGap, endGap, pixelTolerance);
+	const { snaps, snapsAligned } = ScrollSnaps(axis, alignment, containerRect, slideRects, slidesToScroll);
+	const contentSize = -arrayLast(snaps) + arrayLast(slideSizesWithGaps);
+	const { snapsContained, scrollContainLimit } = ScrollContain(viewSize, contentSize, snapsAligned, containScroll, pixelTolerance);
+	const scrollSnaps = containSnaps ? snapsContained : snapsAligned;
+	const { limit } = ScrollLimit(contentSize, scrollSnaps, loop);
+	const index$1 = Counter(arrayLastIndex(scrollSnaps), startIndex, loop);
+	const indexPrevious = index$1.clone();
+	const slideIndexes = arrayKeys(slides);
+	const update = ({ dragHandler, scrollBody: scrollBody$1, scrollBounds, options: { loop: loop$1 } }) => {
+		if (!loop$1) scrollBounds.constrain(dragHandler.pointerDown());
+		scrollBody$1.seek();
+	};
+	const render = ({ scrollBody: scrollBody$1, translate, location: location$1, offsetLocation: offsetLocation$1, previousLocation: previousLocation$1, scrollLooper, slideLooper, dragHandler, animation: animation$1, eventHandler: eventHandler$1, scrollBounds, options: { loop: loop$1 } }, alpha) => {
+		const shouldSettle = scrollBody$1.settled();
+		const withinBounds = !scrollBounds.shouldConstrain();
+		const hasSettled = loop$1 ? shouldSettle : shouldSettle && withinBounds;
+		const hasSettledAndIdle = hasSettled && !dragHandler.pointerDown();
+		if (hasSettledAndIdle) animation$1.stop();
+		const interpolatedLocation = location$1.get() * alpha + previousLocation$1.get() * (1 - alpha);
+		offsetLocation$1.set(interpolatedLocation);
+		if (loop$1) {
+			scrollLooper.loop(scrollBody$1.direction());
+			slideLooper.loop();
+		}
+		translate.to(offsetLocation$1.get());
+		if (hasSettledAndIdle) eventHandler$1.emit("settle");
+		if (!hasSettled) eventHandler$1.emit("scroll");
+	};
+	const animation = Animations(ownerDocument, ownerWindow, () => update(engine), (alpha) => render(engine, alpha));
+	const friction = .68;
+	const startLocation = scrollSnaps[index$1.get()];
+	const location = Vector1D(startLocation);
+	const previousLocation = Vector1D(startLocation);
+	const offsetLocation = Vector1D(startLocation);
+	const target = Vector1D(startLocation);
+	const scrollBody = ScrollBody(location, offsetLocation, previousLocation, target, duration, friction);
+	const scrollTarget = ScrollTarget(loop, scrollSnaps, contentSize, limit, target);
+	const scrollTo = ScrollTo(animation, index$1, indexPrevious, scrollBody, scrollTarget, target, eventHandler);
+	const scrollProgress = ScrollProgress(limit);
+	const eventStore = EventStore();
+	const slidesInView = SlidesInView(container, slides, eventHandler, inViewThreshold);
+	const { slideRegistry } = SlideRegistry(containSnaps, containScroll, scrollSnaps, scrollContainLimit, slidesToScroll, slideIndexes);
+	const slideFocus = SlideFocus(root, slides, slideRegistry, scrollTo, scrollBody, eventStore, eventHandler, watchFocus);
+	const engine = {
+		ownerDocument,
+		ownerWindow,
+		eventHandler,
+		containerRect,
+		slideRects,
+		animation,
+		axis,
+		dragHandler: DragHandler(axis, root, ownerDocument, ownerWindow, target, DragTracker(axis, ownerWindow), location, animation, scrollTo, scrollBody, scrollTarget, index$1, eventHandler, percentOfView, dragFree, dragThreshold, skipSnaps, friction, watchDrag),
+		eventStore,
+		percentOfView,
+		index: index$1,
+		indexPrevious,
+		limit,
+		location,
+		offsetLocation,
+		previousLocation,
+		options: options$1,
+		resizeHandler: ResizeHandler(container, eventHandler, ownerWindow, slides, axis, watchResize, nodeRects),
+		scrollBody,
+		scrollBounds: ScrollBounds(limit, offsetLocation, target, scrollBody, percentOfView),
+		scrollLooper: ScrollLooper(contentSize, limit, offsetLocation, [
+			location,
+			offsetLocation,
+			previousLocation,
+			target
+		]),
+		scrollProgress,
+		scrollSnapList: scrollSnaps.map(scrollProgress.get),
+		scrollSnaps,
+		scrollTarget,
+		scrollTo,
+		slideLooper: SlideLooper(axis, viewSize, contentSize, slideSizes, slideSizesWithGaps, snaps, scrollSnaps, offsetLocation, slides),
+		slideFocus,
+		slidesHandler: SlidesHandler(container, eventHandler, watchSlides),
+		slidesInView,
+		slideIndexes,
+		slideRegistry,
+		slidesToScroll,
+		target,
+		translate: Translate(axis, container)
+	};
+	return engine;
+}
+function EventHandler() {
+	let listeners$1 = {};
+	let api;
+	function init(emblaApi) {
+		api = emblaApi;
+	}
+	function getListeners(evt) {
+		return listeners$1[evt] || [];
+	}
+	function emit(evt) {
+		getListeners(evt).forEach((e) => e(api, evt));
+		return self;
+	}
+	function on(evt, cb) {
+		listeners$1[evt] = getListeners(evt).concat([cb]);
+		return self;
+	}
+	function off(evt, cb) {
+		listeners$1[evt] = getListeners(evt).filter((e) => e !== cb);
+		return self;
+	}
+	function clear() {
+		listeners$1 = {};
+	}
+	const self = {
+		init,
+		emit,
+		off,
+		on,
+		clear
+	};
+	return self;
+}
+var defaultOptions = {
+	align: "center",
+	axis: "x",
+	container: null,
+	slides: null,
+	containScroll: "trimSnaps",
+	direction: "ltr",
+	slidesToScroll: 1,
+	inViewThreshold: 0,
+	breakpoints: {},
+	dragFree: false,
+	dragThreshold: 10,
+	loop: false,
+	skipSnaps: false,
+	duration: 25,
+	startIndex: 0,
+	active: true,
+	watchDrag: true,
+	watchResize: true,
+	watchSlides: true,
+	watchFocus: true
+};
+function OptionsHandler(ownerWindow) {
+	function mergeOptions(optionsA, optionsB) {
+		return objectsMergeDeep(optionsA, optionsB || {});
+	}
+	function optionsAtMedia(options$1) {
+		const optionsAtMedia$1 = options$1.breakpoints || {};
+		return mergeOptions(options$1, objectKeys(optionsAtMedia$1).filter((media) => ownerWindow.matchMedia(media).matches).map((media) => optionsAtMedia$1[media]).reduce((a, mediaOption) => mergeOptions(a, mediaOption), {}));
+	}
+	function optionsMediaQueries(optionsList) {
+		return optionsList.map((options$1) => objectKeys(options$1.breakpoints || {})).reduce((acc, mediaQueries) => acc.concat(mediaQueries), []).map(ownerWindow.matchMedia);
+	}
+	return {
+		mergeOptions,
+		optionsAtMedia,
+		optionsMediaQueries
+	};
+}
+function PluginsHandler(optionsHandler) {
+	let activePlugins = [];
+	function init(emblaApi, plugins) {
+		activePlugins = plugins.filter(({ options: options$1 }) => optionsHandler.optionsAtMedia(options$1).active !== false);
+		activePlugins.forEach((plugin) => plugin.init(emblaApi, optionsHandler));
+		return plugins.reduce((map, plugin) => Object.assign(map, { [plugin.name]: plugin }), {});
+	}
+	function destroy() {
+		activePlugins = activePlugins.filter((plugin) => plugin.destroy());
+	}
+	return {
+		init,
+		destroy
+	};
+}
+function EmblaCarousel(root, userOptions, userPlugins) {
+	const ownerDocument = root.ownerDocument;
+	const ownerWindow = ownerDocument.defaultView;
+	const optionsHandler = OptionsHandler(ownerWindow);
+	const pluginsHandler = PluginsHandler(optionsHandler);
+	const mediaHandlers = EventStore();
+	const eventHandler = EventHandler();
+	const { mergeOptions, optionsAtMedia, optionsMediaQueries } = optionsHandler;
+	const { on, off, emit } = eventHandler;
+	const reInit = reActivate;
+	let destroyed = false;
+	let engine;
+	let optionsBase = mergeOptions(defaultOptions, EmblaCarousel.globalOptions);
+	let options$1 = mergeOptions(optionsBase);
+	let pluginList = [];
+	let pluginApis;
+	let container;
+	let slides;
+	function storeElements() {
+		const { container: userContainer, slides: userSlides } = options$1;
+		container = (isString(userContainer) ? root.querySelector(userContainer) : userContainer) || root.children[0];
+		const customSlides = isString(userSlides) ? container.querySelectorAll(userSlides) : userSlides;
+		slides = [].slice.call(customSlides || container.children);
+	}
+	function createEngine(options$2) {
+		const engine$1 = Engine(root, container, slides, ownerDocument, ownerWindow, options$2, eventHandler);
+		if (options$2.loop && !engine$1.slideLooper.canLoop()) return createEngine(Object.assign({}, options$2, { loop: false }));
+		return engine$1;
+	}
+	function activate(withOptions, withPlugins) {
+		if (destroyed) return;
+		optionsBase = mergeOptions(optionsBase, withOptions);
+		options$1 = optionsAtMedia(optionsBase);
+		pluginList = withPlugins || pluginList;
+		storeElements();
+		engine = createEngine(options$1);
+		optionsMediaQueries([optionsBase, ...pluginList.map(({ options: options$2 }) => options$2)]).forEach((query) => mediaHandlers.add(query, "change", reActivate));
+		if (!options$1.active) return;
+		engine.translate.to(engine.location.get());
+		engine.animation.init();
+		engine.slidesInView.init();
+		engine.slideFocus.init(self);
+		engine.eventHandler.init(self);
+		engine.resizeHandler.init(self);
+		engine.slidesHandler.init(self);
+		if (engine.options.loop) engine.slideLooper.loop();
+		if (container.offsetParent && slides.length) engine.dragHandler.init(self);
+		pluginApis = pluginsHandler.init(self, pluginList);
+	}
+	function reActivate(withOptions, withPlugins) {
+		const startIndex = selectedScrollSnap();
+		deActivate();
+		activate(mergeOptions({ startIndex }, withOptions), withPlugins);
+		eventHandler.emit("reInit");
+	}
+	function deActivate() {
+		engine.dragHandler.destroy();
+		engine.eventStore.clear();
+		engine.translate.clear();
+		engine.slideLooper.clear();
+		engine.resizeHandler.destroy();
+		engine.slidesHandler.destroy();
+		engine.slidesInView.destroy();
+		engine.animation.destroy();
+		pluginsHandler.destroy();
+		mediaHandlers.clear();
+	}
+	function destroy() {
+		if (destroyed) return;
+		destroyed = true;
+		mediaHandlers.clear();
+		deActivate();
+		eventHandler.emit("destroy");
+		eventHandler.clear();
+	}
+	function scrollTo(index$1, jump, direction) {
+		if (!options$1.active || destroyed) return;
+		engine.scrollBody.useBaseFriction().useDuration(jump === true ? 0 : options$1.duration);
+		engine.scrollTo.index(index$1, direction || 0);
+	}
+	function scrollNext(jump) {
+		scrollTo(engine.index.add(1).get(), jump, -1);
+	}
+	function scrollPrev(jump) {
+		scrollTo(engine.index.add(-1).get(), jump, 1);
+	}
+	function canScrollNext() {
+		return engine.index.add(1).get() !== selectedScrollSnap();
+	}
+	function canScrollPrev() {
+		return engine.index.add(-1).get() !== selectedScrollSnap();
+	}
+	function scrollSnapList() {
+		return engine.scrollSnapList;
+	}
+	function scrollProgress() {
+		return engine.scrollProgress.get(engine.offsetLocation.get());
+	}
+	function selectedScrollSnap() {
+		return engine.index.get();
+	}
+	function previousScrollSnap() {
+		return engine.indexPrevious.get();
+	}
+	function slidesInView() {
+		return engine.slidesInView.get();
+	}
+	function slidesNotInView() {
+		return engine.slidesInView.get(false);
+	}
+	function plugins() {
+		return pluginApis;
+	}
+	function internalEngine() {
+		return engine;
+	}
+	function rootNode() {
+		return root;
+	}
+	function containerNode() {
+		return container;
+	}
+	function slideNodes() {
+		return slides;
+	}
+	const self = {
+		canScrollNext,
+		canScrollPrev,
+		containerNode,
+		internalEngine,
+		destroy,
+		off,
+		on,
+		emit,
+		plugins,
+		previousScrollSnap,
+		reInit,
+		rootNode,
+		scrollNext,
+		scrollPrev,
+		scrollProgress,
+		scrollSnapList,
+		scrollTo,
+		selectedScrollSnap,
+		slideNodes,
+		slidesInView,
+		slidesNotInView
+	};
+	activate(userOptions, userPlugins);
+	setTimeout(() => eventHandler.emit("init"), 0);
+	return self;
+}
+EmblaCarousel.globalOptions = void 0;
+function useEmblaCarousel(options$1 = {}, plugins = []) {
+	const storedOptions = (0, import_react.useRef)(options$1);
+	const storedPlugins = (0, import_react.useRef)(plugins);
+	const [emblaApi, setEmblaApi] = (0, import_react.useState)();
+	const [viewport, setViewport] = (0, import_react.useState)();
+	const reInit = (0, import_react.useCallback)(() => {
+		if (emblaApi) emblaApi.reInit(storedOptions.current, storedPlugins.current);
+	}, [emblaApi]);
+	(0, import_react.useEffect)(() => {
+		if (areOptionsEqual(storedOptions.current, options$1)) return;
+		storedOptions.current = options$1;
+		reInit();
+	}, [options$1, reInit]);
+	(0, import_react.useEffect)(() => {
+		if (arePluginsEqual(storedPlugins.current, plugins)) return;
+		storedPlugins.current = plugins;
+		reInit();
+	}, [plugins, reInit]);
+	(0, import_react.useEffect)(() => {
+		if (canUseDOM() && viewport) {
+			EmblaCarousel.globalOptions = useEmblaCarousel.globalOptions;
+			const newEmblaApi = EmblaCarousel(viewport, storedOptions.current, storedPlugins.current);
+			setEmblaApi(newEmblaApi);
+			return () => newEmblaApi.destroy();
+		} else setEmblaApi(void 0);
+	}, [viewport, setEmblaApi]);
+	return [setViewport, emblaApi];
+}
+useEmblaCarousel.globalOptions = void 0;
 var REACT_LAZY_TYPE = Symbol.for("react.lazy");
 var use = import_react[" use ".trim().toString()];
 function isPromiseLike(value) {
@@ -24382,6 +25845,340 @@ var Button = import_react.forwardRef(({ className, variant, size: size$3, asChil
 	});
 });
 Button.displayName = "Button";
+var CarouselContext = import_react.createContext(null);
+function useCarousel() {
+	const context = import_react.useContext(CarouselContext);
+	if (!context) throw new Error("useCarousel must be used within a <Carousel />");
+	return context;
+}
+var Carousel = import_react.forwardRef(({ orientation = "horizontal", opts, setApi, plugins, className, children, ...props }, ref) => {
+	const [carouselRef, api] = useEmblaCarousel({
+		...opts,
+		axis: orientation === "horizontal" ? "x" : "y"
+	}, plugins);
+	const [canScrollPrev, setCanScrollPrev] = import_react.useState(false);
+	const [canScrollNext, setCanScrollNext] = import_react.useState(false);
+	const onSelect = import_react.useCallback((api$1) => {
+		if (!api$1) return;
+		setCanScrollPrev(api$1.canScrollPrev());
+		setCanScrollNext(api$1.canScrollNext());
+	}, []);
+	const scrollPrev = import_react.useCallback(() => {
+		api?.scrollPrev();
+	}, [api]);
+	const scrollNext = import_react.useCallback(() => {
+		api?.scrollNext();
+	}, [api]);
+	const handleKeyDown = import_react.useCallback((event) => {
+		if (event.key === "ArrowLeft") {
+			event.preventDefault();
+			scrollPrev();
+		} else if (event.key === "ArrowRight") {
+			event.preventDefault();
+			scrollNext();
+		}
+	}, [scrollPrev, scrollNext]);
+	import_react.useEffect(() => {
+		if (!api || !setApi) return;
+		setApi(api);
+	}, [api, setApi]);
+	import_react.useEffect(() => {
+		if (!api) return;
+		onSelect(api);
+		api.on("reInit", onSelect);
+		api.on("select", onSelect);
+		return () => {
+			api?.off("select", onSelect);
+		};
+	}, [api, onSelect]);
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CarouselContext.Provider, {
+		value: {
+			carouselRef,
+			api,
+			opts,
+			orientation: orientation || (opts?.axis === "y" ? "vertical" : "horizontal"),
+			scrollPrev,
+			scrollNext,
+			canScrollPrev,
+			canScrollNext
+		},
+		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+			ref,
+			onKeyDownCapture: handleKeyDown,
+			className: cn("relative", className),
+			role: "region",
+			"aria-roledescription": "carousel",
+			...props,
+			children
+		})
+	});
+});
+Carousel.displayName = "Carousel";
+var CarouselContent = import_react.forwardRef(({ className, ...props }, ref) => {
+	const { carouselRef, orientation } = useCarousel();
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+		ref: carouselRef,
+		className: "overflow-hidden",
+		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+			ref,
+			className: cn("flex", orientation === "horizontal" ? "-ml-4" : "-mt-4 flex-col", className),
+			...props
+		})
+	});
+});
+CarouselContent.displayName = "CarouselContent";
+var CarouselItem = import_react.forwardRef(({ className, ...props }, ref) => {
+	const { orientation } = useCarousel();
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+		ref,
+		role: "group",
+		"aria-roledescription": "slide",
+		className: cn("min-w-0 shrink-0 grow-0 basis-full", orientation === "horizontal" ? "pl-4" : "pt-4", className),
+		...props
+	});
+});
+CarouselItem.displayName = "CarouselItem";
+var CarouselPrevious = import_react.forwardRef(({ className, variant = "outline", size: size$3 = "icon", ...props }, ref) => {
+	const { orientation, scrollPrev, canScrollPrev } = useCarousel();
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Button, {
+		ref,
+		variant,
+		size: size$3,
+		className: cn("absolute  h-8 w-8 rounded-full", orientation === "horizontal" ? "-left-12 top-1/2 -translate-y-1/2" : "-top-12 left-1/2 -translate-x-1/2 rotate-90", className),
+		disabled: !canScrollPrev,
+		onClick: scrollPrev,
+		...props,
+		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(ArrowLeft, { className: "h-4 w-4" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+			className: "sr-only",
+			children: "Previous slide"
+		})]
+	});
+});
+CarouselPrevious.displayName = "CarouselPrevious";
+var CarouselNext = import_react.forwardRef(({ className, variant = "outline", size: size$3 = "icon", ...props }, ref) => {
+	const { orientation, scrollNext, canScrollNext } = useCarousel();
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Button, {
+		ref,
+		variant,
+		size: size$3,
+		className: cn("absolute h-8 w-8 rounded-full", orientation === "horizontal" ? "-right-12 top-1/2 -translate-y-1/2" : "-bottom-12 left-1/2 -translate-x-1/2 rotate-90", className),
+		disabled: !canScrollNext,
+		onClick: scrollNext,
+		...props,
+		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(ArrowRight, { className: "h-4 w-4" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+			className: "sr-only",
+			children: "Next slide"
+		})]
+	});
+});
+CarouselNext.displayName = "CarouselNext";
+var carouselImages = [
+	{
+		id: 1,
+		src: "/assets/1000486751-58683-Bp33fxOo.png",
+		alt: "Culto de Celebração",
+		tag: "Ao vivo",
+		title: "Culto de Celebração"
+	},
+	{
+		id: 2,
+		src: "/assets/1000486749-8ba2c-C2PAPERB.png",
+		alt: "Momento de Oração",
+		tag: "Devocional",
+		title: "O Teu Amor é Melhor"
+	},
+	{
+		id: 3,
+		src: "/assets/1000486747-f6948-DOBGZ8ZF.png",
+		alt: "Louvor e Adoração",
+		tag: "Música",
+		title: "Louvor e Adoração"
+	}
+];
+var DiaryBtn = ({ icon: Icon$2, label, to }) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Link, {
+	to,
+	className: "flex flex-col items-center gap-2 group",
+	children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+		className: "w-14 h-14 bg-muted/60 rounded-2xl flex items-center justify-center group-hover:bg-primary/10 group-hover:text-primary transition-colors duration-300",
+		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Icon$2, { className: "w-6 h-6 text-foreground/70 group-hover:text-primary transition-colors duration-300" })
+	}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+		className: "text-[11px] font-semibold text-center leading-tight text-muted-foreground group-hover:text-foreground transition-colors duration-300",
+		children: label
+	})]
+});
+function Index() {
+	const [api, setApi] = (0, import_react.useState)();
+	const [current, setCurrent] = (0, import_react.useState)(0);
+	const plugin = (0, import_react.useRef)(Autoplay({
+		delay: 4e3,
+		stopOnInteraction: true
+	}));
+	(0, import_react.useEffect)(() => {
+		if (!api) return;
+		setCurrent(api.selectedScrollSnap());
+		api.on("select", () => {
+			setCurrent(api.selectedScrollSnap());
+		});
+	}, [api]);
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+		className: "space-y-8 animate-fade-in-up py-4",
+		children: [
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+				className: "w-full relative group animate-slide-up",
+				children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Carousel, {
+					setApi,
+					plugins: [plugin.current],
+					className: "w-full",
+					opts: { loop: true },
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "overflow-hidden rounded-3xl aspect-[4/5] sm:aspect-[4/3] shadow-md relative border border-border bg-card",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CarouselContent, {
+							className: "h-full ml-0",
+							children: carouselImages.map((img) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CarouselItem, {
+								className: "h-full pl-0 relative",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
+									src: img.src,
+									className: "w-full h-full object-cover",
+									alt: img.alt
+								}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+									className: "absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6",
+									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+										className: "text-white/80 text-xs font-semibold uppercase tracking-wider mb-1",
+										children: img.tag
+									}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", {
+										className: "text-white text-2xl font-bold leading-tight drop-shadow-md",
+										children: img.title
+									})]
+								})]
+							}, img.id))
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "absolute top-1/2 -translate-y-1/2 left-3 right-3 justify-between pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden md:flex",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+								onClick: () => api?.scrollPrev(),
+								className: "w-9 h-9 rounded-full bg-background/90 backdrop-blur-sm border border-border text-foreground flex items-center justify-center pointer-events-auto hover:bg-background hover:scale-105 transition-all shadow-sm",
+								"aria-label": "Previous slide",
+								children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ArrowLeft, { className: "w-4 h-4" })
+							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+								onClick: () => api?.scrollNext(),
+								className: "w-9 h-9 rounded-full bg-background/90 backdrop-blur-sm border border-border text-foreground flex items-center justify-center pointer-events-auto hover:bg-background hover:scale-105 transition-all shadow-sm",
+								"aria-label": "Next slide",
+								children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ArrowRight, { className: "w-4 h-4" })
+							})]
+						})]
+					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+						className: "flex justify-center gap-2 mt-4",
+						children: carouselImages.map((_$1, index$1) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+							onClick: () => api?.scrollTo(index$1),
+							className: `h-2 rounded-full transition-all duration-300 ${current === index$1 ? "w-6 bg-primary" : "w-2 bg-primary/20 hover:bg-primary/50"}`,
+							"aria-label": `Go to slide ${index$1 + 1}`
+						}, index$1))
+					})]
+				})
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+				className: "space-y-3",
+				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+					className: "flex justify-between items-center px-1",
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", {
+						className: "text-[17px] font-bold tracking-tight text-foreground",
+						children: "Programação"
+					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Link, {
+						to: "/campus",
+						className: "text-sm font-semibold text-primary",
+						children: "Ver mais"
+					})]
+				}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+					className: "flex gap-3 overflow-x-auto pb-2 snap-x snap-mandatory -mx-4 px-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]",
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Card, {
+						className: "min-w-[260px] shrink-0 snap-center shadow-none border-muted/60 bg-muted/20",
+						children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardContent, {
+							className: "p-4",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
+								className: "font-semibold text-[15px] mb-2",
+								children: "Culto de Celebração"
+							}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "flex items-center text-sm text-muted-foreground gap-2 font-medium",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Calendar, { className: "w-4 h-4" }), "28/08/2024 às 19:30"]
+							})]
+						})
+					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Card, {
+						className: "min-w-[260px] shrink-0 snap-center shadow-none border-muted/60 bg-muted/20",
+						children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardContent, {
+							className: "p-4",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
+								className: "font-semibold text-[15px] mb-2",
+								children: "Escola Bíblica"
+							}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "flex items-center text-sm text-muted-foreground gap-2 font-medium",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Calendar, { className: "w-4 h-4" }), "01/09/2024 às 09:00"]
+							})]
+						})
+					})]
+				})]
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+				className: "space-y-4",
+				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", {
+					className: "text-[17px] font-bold tracking-tight text-foreground px-1",
+					children: "Diário"
+				}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+					className: "flex justify-between items-start px-2",
+					children: [
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(DiaryBtn, {
+							icon: Book,
+							label: "Bíblia",
+							to: "/bible"
+						}),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(DiaryBtn, {
+							icon: BookOpen,
+							label: "Estudos",
+							to: "/plans"
+						}),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(DiaryBtn, {
+							icon: PenTool,
+							label: "Anotações",
+							to: "/plans"
+						}),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(DiaryBtn, {
+							icon: LayoutGrid,
+							label: "Leitura",
+							to: "/plans"
+						})
+					]
+				})]
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+				className: "space-y-3 pb-8",
+				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+					className: "flex justify-between items-center px-1",
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", {
+						className: "text-[17px] font-bold tracking-tight text-foreground",
+						children: "Células"
+					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Link, {
+						to: "/campus",
+						className: "text-sm font-semibold text-primary",
+						children: "Ver mais"
+					})]
+				}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Card, {
+					className: "shadow-none border-muted/60 bg-primary/5",
+					children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardContent, {
+						className: "p-4 flex items-center gap-4",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+							className: "w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0 transition-colors duration-300",
+							children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Users, { className: "w-6 h-6 text-primary" })
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
+							className: "font-semibold text-[15px]",
+							children: "Encontre uma Célula"
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+							className: "text-sm text-muted-foreground",
+							children: "Conecte-se com pessoas perto de você."
+						})] })]
+					})
+				})]
+			})
+		]
+	});
+}
 var Textarea = import_react.forwardRef(({ className, ...props }, ref) => {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("textarea", {
 		className: cn("flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm", className),
@@ -28390,4 +30187,4 @@ var App = () => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ThemeProvider, {
 var App_default = App;
 (0, import_client.createRoot)(document.getElementById("root")).render(/* @__PURE__ */ (0, import_jsx_runtime.jsx)(App_default, {}));
 
-//# sourceMappingURL=index-DWYrDdTc.js.map
+//# sourceMappingURL=index-Cw0NhuQq.js.map

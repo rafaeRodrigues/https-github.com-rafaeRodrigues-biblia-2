@@ -1,3 +1,4 @@
+import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import {
   Calendar,
@@ -6,8 +7,45 @@ import {
   BookOpen,
   LayoutGrid,
   Users,
+  ArrowLeft,
+  ArrowRight,
 } from 'lucide-react'
+import Autoplay from 'embla-carousel-autoplay'
 import { Card, CardContent } from '@/components/ui/card'
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  type CarouselApi,
+} from '@/components/ui/carousel'
+
+import img1 from '@/assets/1000486751-58683.png'
+import img2 from '@/assets/1000486749-8ba2c.png'
+import img3 from '@/assets/1000486747-f6948.png'
+
+const carouselImages = [
+  {
+    id: 1,
+    src: img1,
+    alt: 'Culto de Celebração',
+    tag: 'Ao vivo',
+    title: 'Culto de Celebração',
+  },
+  {
+    id: 2,
+    src: img2,
+    alt: 'Momento de Oração',
+    tag: 'Devocional',
+    title: 'O Teu Amor é Melhor',
+  },
+  {
+    id: 3,
+    src: img3,
+    alt: 'Louvor e Adoração',
+    tag: 'Música',
+    title: 'Louvor e Adoração',
+  },
+]
 
 const DiaryBtn = ({ icon: Icon, label, to }: any) => (
   <Link to={to} className="flex flex-col items-center gap-2 group">
@@ -21,31 +59,85 @@ const DiaryBtn = ({ icon: Icon, label, to }: any) => (
 )
 
 export default function Index() {
+  const [api, setApi] = useState<CarouselApi>()
+  const [current, setCurrent] = useState(0)
+  const plugin = useRef(Autoplay({ delay: 4000, stopOnInteraction: true }))
+
+  useEffect(() => {
+    if (!api) return
+
+    setCurrent(api.selectedScrollSnap())
+
+    api.on('select', () => {
+      setCurrent(api.selectedScrollSnap())
+    })
+  }, [api])
+
   return (
     <div className="space-y-8 animate-fade-in-up py-4">
-      {/* Hero / Featured */}
-      <div className="w-full aspect-[4/3] rounded-3xl overflow-hidden relative shadow-sm">
-        <img
-          src="https://img.usecurling.com/p/800/600?q=church%20worship&color=blue"
-          className="w-full h-full object-cover"
-          alt="Culto ao vivo"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-4">
-          <span className="text-white/80 text-xs font-semibold uppercase tracking-wider mb-1">
-            Ao vivo
-          </span>
-          <h2 className="text-white text-xl font-bold leading-tight">
-            Culto de Celebração
-          </h2>
-        </div>
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5">
-          <div className="w-1.5 h-1.5 rounded-full bg-white opacity-100" />
-          <div className="w-1.5 h-1.5 rounded-full bg-white opacity-40" />
-          <div className="w-1.5 h-1.5 rounded-full bg-white opacity-40" />
-        </div>
+      <div className="w-full relative group animate-slide-up">
+        <Carousel
+          setApi={setApi}
+          plugins={[plugin.current]}
+          className="w-full"
+          opts={{ loop: true }}
+        >
+          <div className="overflow-hidden rounded-3xl aspect-[4/5] sm:aspect-[4/3] shadow-md relative border border-border bg-card">
+            <CarouselContent className="h-full ml-0">
+              {carouselImages.map((img) => (
+                <CarouselItem key={img.id} className="h-full pl-0 relative">
+                  <img
+                    src={img.src}
+                    className="w-full h-full object-cover"
+                    alt={img.alt}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6">
+                    <span className="text-white/80 text-xs font-semibold uppercase tracking-wider mb-1">
+                      {img.tag}
+                    </span>
+                    <h2 className="text-white text-2xl font-bold leading-tight drop-shadow-md">
+                      {img.title}
+                    </h2>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+
+            <div className="absolute top-1/2 -translate-y-1/2 left-3 right-3 justify-between pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden md:flex">
+              <button
+                onClick={() => api?.scrollPrev()}
+                className="w-9 h-9 rounded-full bg-background/90 backdrop-blur-sm border border-border text-foreground flex items-center justify-center pointer-events-auto hover:bg-background hover:scale-105 transition-all shadow-sm"
+                aria-label="Previous slide"
+              >
+                <ArrowLeft className="w-4 h-4" />
+              </button>
+              <button
+                onClick={() => api?.scrollNext()}
+                className="w-9 h-9 rounded-full bg-background/90 backdrop-blur-sm border border-border text-foreground flex items-center justify-center pointer-events-auto hover:bg-background hover:scale-105 transition-all shadow-sm"
+                aria-label="Next slide"
+              >
+                <ArrowRight className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
+
+          <div className="flex justify-center gap-2 mt-4">
+            {carouselImages.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => api?.scrollTo(index)}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  current === index
+                    ? 'w-6 bg-primary'
+                    : 'w-2 bg-primary/20 hover:bg-primary/50'
+                }`}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
+        </Carousel>
       </div>
 
-      {/* Programação */}
       <div className="space-y-3">
         <div className="flex justify-between items-center px-1">
           <h2 className="text-[17px] font-bold tracking-tight text-foreground">
@@ -79,7 +171,6 @@ export default function Index() {
         </div>
       </div>
 
-      {/* Diário */}
       <div className="space-y-4">
         <h2 className="text-[17px] font-bold tracking-tight text-foreground px-1">
           Diário
@@ -88,12 +179,11 @@ export default function Index() {
           <DiaryBtn icon={Book} label="Bíblia" to="/bible" />
           <DiaryBtn icon={BookOpen} label="Estudos" to="/plans" />
           <DiaryBtn icon={PenTool} label="Anotações" to="/plans" />
-          <DiaryBtn icon={LayoutGrid} label="Plano de Leitura" to="/plans" />
+          <DiaryBtn icon={LayoutGrid} label="Leitura" to="/plans" />
         </div>
       </div>
 
-      {/* Células */}
-      <div className="space-y-3">
+      <div className="space-y-3 pb-8">
         <div className="flex justify-between items-center px-1">
           <h2 className="text-[17px] font-bold tracking-tight text-foreground">
             Células
