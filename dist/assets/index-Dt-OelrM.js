@@ -25993,6 +25993,13 @@ var carouselImages = [
 		alt: "Louvor e Adoração",
 		tag: "Música",
 		title: "Louvor e Adoração"
+	},
+	{
+		id: 4,
+		src: "/assets/1000486745-785c5-Du_vUaTM.png",
+		alt: "A Palavra de Deus",
+		tag: "Mensagem",
+		title: "A Palavra de Deus"
 	}
 ];
 var DiaryBtn = ({ icon: Icon$2, label, to }) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Link, {
@@ -26031,28 +26038,40 @@ function Index() {
 					className: "w-full",
 					opts: { loop: true },
 					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-						className: "overflow-hidden rounded-3xl aspect-[16/10] sm:aspect-video lg:aspect-[21/9] shadow-md relative border border-border bg-card transition-all duration-300",
+						className: "overflow-hidden rounded-3xl aspect-[16/10] sm:aspect-video lg:aspect-[21/9] shadow-md relative border border-border bg-black transition-all duration-300",
 						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CarouselContent, {
 							className: "h-full ml-0",
 							children: carouselImages.map((img) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CarouselItem, {
-								className: "h-full pl-0 relative",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
-									src: img.src,
-									className: "w-full h-full object-cover",
-									alt: img.alt
-								}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-									className: "absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6",
-									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-										className: "text-white/80 text-xs font-semibold uppercase tracking-wider mb-1",
-										children: img.tag
-									}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", {
-										className: "text-white text-2xl font-bold leading-tight drop-shadow-md",
-										children: img.title
-									})]
-								})]
+								className: "h-full pl-0 relative bg-black",
+								children: [
+									/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+										className: "absolute inset-0 overflow-hidden pointer-events-none",
+										children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
+											src: img.src,
+											className: "w-full h-full object-cover opacity-40 blur-xl scale-110",
+											alt: "",
+											"aria-hidden": "true"
+										})
+									}),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
+										src: img.src,
+										className: "w-full h-full object-contain relative z-10",
+										alt: img.alt
+									}),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+										className: "absolute inset-0 z-20 bg-gradient-to-t from-black/90 via-black/20 to-transparent flex flex-col justify-end p-6",
+										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+											className: "text-white/90 text-xs font-bold uppercase tracking-wider mb-1 drop-shadow-sm",
+											children: img.tag
+										}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", {
+											className: "text-white text-2xl font-bold leading-tight drop-shadow-md",
+											children: img.title
+										})]
+									})
+								]
 							}, img.id))
 						}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "absolute top-1/2 -translate-y-1/2 left-3 right-3 justify-between pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden md:flex",
+							className: "absolute top-1/2 -translate-y-1/2 left-3 right-3 justify-between pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden md:flex z-30",
 							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
 								onClick: () => api?.scrollPrev(),
 								className: "w-9 h-9 rounded-full bg-background/90 backdrop-blur-sm border border-border text-foreground flex items-center justify-center pointer-events-auto hover:bg-background hover:scale-105 transition-all shadow-sm",
@@ -30187,4 +30206,4 @@ var App = () => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ThemeProvider, {
 var App_default = App;
 (0, import_client.createRoot)(document.getElementById("root")).render(/* @__PURE__ */ (0, import_jsx_runtime.jsx)(App_default, {}));
 
-//# sourceMappingURL=index-P1siad8H.js.map
+//# sourceMappingURL=index-Dt-OelrM.js.map

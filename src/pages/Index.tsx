@@ -22,6 +22,7 @@ import {
 import img1 from '@/assets/1000486751-58683.png'
 import img2 from '@/assets/1000486749-8ba2c.png'
 import img3 from '@/assets/1000486747-f6948.png'
+import img4 from '@/assets/1000486745-785c5.png'
 
 const carouselImages = [
   {
@@ -44,6 +45,13 @@ const carouselImages = [
     alt: 'Louvor e Adoração',
     tag: 'Música',
     title: 'Louvor e Adoração',
+  },
+  {
+    id: 4,
+    src: img4,
+    alt: 'A Palavra de Deus',
+    tag: 'Mensagem',
+    title: 'A Palavra de Deus',
   },
 ]
 
@@ -82,17 +90,28 @@ export default function Index() {
           className="w-full"
           opts={{ loop: true }}
         >
-          <div className="overflow-hidden rounded-3xl aspect-[16/10] sm:aspect-video lg:aspect-[21/9] shadow-md relative border border-border bg-card transition-all duration-300">
+          <div className="overflow-hidden rounded-3xl aspect-[16/10] sm:aspect-video lg:aspect-[21/9] shadow-md relative border border-border bg-black transition-all duration-300">
             <CarouselContent className="h-full ml-0">
               {carouselImages.map((img) => (
-                <CarouselItem key={img.id} className="h-full pl-0 relative">
+                <CarouselItem
+                  key={img.id}
+                  className="h-full pl-0 relative bg-black"
+                >
+                  <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                    <img
+                      src={img.src}
+                      className="w-full h-full object-cover opacity-40 blur-xl scale-110"
+                      alt=""
+                      aria-hidden="true"
+                    />
+                  </div>
                   <img
                     src={img.src}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-contain relative z-10"
                     alt={img.alt}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6">
-                    <span className="text-white/80 text-xs font-semibold uppercase tracking-wider mb-1">
+                  <div className="absolute inset-0 z-20 bg-gradient-to-t from-black/90 via-black/20 to-transparent flex flex-col justify-end p-6">
+                    <span className="text-white/90 text-xs font-bold uppercase tracking-wider mb-1 drop-shadow-sm">
                       {img.tag}
                     </span>
                     <h2 className="text-white text-2xl font-bold leading-tight drop-shadow-md">
@@ -103,7 +122,7 @@ export default function Index() {
               ))}
             </CarouselContent>
 
-            <div className="absolute top-1/2 -translate-y-1/2 left-3 right-3 justify-between pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden md:flex">
+            <div className="absolute top-1/2 -translate-y-1/2 left-3 right-3 justify-between pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden md:flex z-30">
               <button
                 onClick={() => api?.scrollPrev()}
                 className="w-9 h-9 rounded-full bg-background/90 backdrop-blur-sm border border-border text-foreground flex items-center justify-center pointer-events-auto hover:bg-background hover:scale-105 transition-all shadow-sm"
