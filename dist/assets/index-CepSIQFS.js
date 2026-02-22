@@ -33848,34 +33848,35 @@ const getBanners = async () => {
 	if (error) throw error;
 	return data;
 };
-var carouselImages = [
+var _1000486751_02f03_default = "/assets/1000486751-02f03-Bp33fxOo.png";
+var _1000486747_2516a_default = "/assets/1000486747-2516a-DOBGZ8ZF.png";
+var _1000486749_2ccfd_default = "/assets/1000486749-2ccfd-C2PAPERB.png";
+var imageMap = {
+	"/src/assets/1000486751-02f03.png": _1000486751_02f03_default,
+	"/src/assets/1000486747-2516a.png": _1000486747_2516a_default,
+	"/src/assets/1000486749-2ccfd.png": _1000486749_2ccfd_default
+};
+var fallbackBanners = [
 	{
 		id: 1,
-		src: "/assets/1000486751-58683-Bp33fxOo.png",
-		alt: "Culto de Celebração",
-		tag: "Ao vivo",
-		title: "Culto de Celebração"
-	},
-	{
-		id: 2,
-		src: "/assets/1000486749-8ba2c-C2PAPERB.png",
-		alt: "Momento de Oração",
-		tag: "Devocional",
-		title: "O Teu Amor é Melhor"
-	},
-	{
-		id: 3,
-		src: "/assets/1000486747-f6948-DOBGZ8ZF.png",
+		src: _1000486751_02f03_default,
 		alt: "Louvor e Adoração",
-		tag: "Música",
+		tag: "Destaque",
 		title: "Louvor e Adoração"
 	},
 	{
-		id: 4,
-		src: "/assets/1000486745-785c5-Du_vUaTM.png",
-		alt: "A Palavra de Deus",
-		tag: "Mensagem",
-		title: "A Palavra de Deus"
+		id: 2,
+		src: _1000486747_2516a_default,
+		alt: "Conferência IFT",
+		tag: "Evento",
+		title: "Conferência IFT"
+	},
+	{
+		id: 3,
+		src: _1000486749_2ccfd_default,
+		alt: "O Teu amor é melhor do que a vida",
+		tag: "Salmos 63:4",
+		title: "O Teu amor é melhor do que a vida"
 	}
 ];
 function BannerCarousel() {
@@ -33894,15 +33895,15 @@ function BannerCarousel() {
 			if (!mounted) return;
 			if (data && data.length > 0) setBanners(data.map((b$1) => ({
 				id: b$1.id,
-				src: b$1.image_url,
+				src: imageMap[b$1.image_url] || b$1.image_url,
 				alt: b$1.title || "Banner",
 				tag: b$1.tag,
 				title: b$1.title
 			})));
-			else setBanners(carouselImages);
+			else setBanners(fallbackBanners);
 		}).catch(() => {
 			if (!mounted) return;
-			setBanners(carouselImages);
+			setBanners(fallbackBanners);
 		}).finally(() => {
 			if (mounted) setIsLoading(false);
 		});
@@ -38684,4 +38685,4 @@ var App = () => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AuthProvider, { chil
 var App_default = App;
 (0, import_client.createRoot)(document.getElementById("root")).render(/* @__PURE__ */ (0, import_jsx_runtime.jsx)(App_default, {}));
 
-//# sourceMappingURL=index-DHVZaZbB.js.map
+//# sourceMappingURL=index-CepSIQFS.js.map

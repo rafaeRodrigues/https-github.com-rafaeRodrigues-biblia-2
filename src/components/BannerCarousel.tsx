@@ -10,39 +10,37 @@ import {
 import { Skeleton } from '@/components/ui/skeleton'
 import { getBanners } from '@/services/banners'
 
-import img1 from '@/assets/1000486751-58683.png'
-import img2 from '@/assets/1000486749-8ba2c.png'
-import img3 from '@/assets/1000486747-f6948.png'
-import img4 from '@/assets/1000486745-785c5.png'
+import banner1 from '@/assets/1000486751-02f03.png'
+import banner2 from '@/assets/1000486747-2516a.png'
+import banner3 from '@/assets/1000486749-2ccfd.png'
 
-const carouselImages = [
+const imageMap: Record<string, string> = {
+  '/src/assets/1000486751-02f03.png': banner1,
+  '/src/assets/1000486747-2516a.png': banner2,
+  '/src/assets/1000486749-2ccfd.png': banner3,
+}
+
+const fallbackBanners = [
   {
     id: 1,
-    src: img1,
-    alt: 'Culto de Celebração',
-    tag: 'Ao vivo',
-    title: 'Culto de Celebração',
-  },
-  {
-    id: 2,
-    src: img2,
-    alt: 'Momento de Oração',
-    tag: 'Devocional',
-    title: 'O Teu Amor é Melhor',
-  },
-  {
-    id: 3,
-    src: img3,
+    src: banner1,
     alt: 'Louvor e Adoração',
-    tag: 'Música',
+    tag: 'Destaque',
     title: 'Louvor e Adoração',
   },
   {
-    id: 4,
-    src: img4,
-    alt: 'A Palavra de Deus',
-    tag: 'Mensagem',
-    title: 'A Palavra de Deus',
+    id: 2,
+    src: banner2,
+    alt: 'Conferência IFT',
+    tag: 'Evento',
+    title: 'Conferência IFT',
+  },
+  {
+    id: 3,
+    src: banner3,
+    alt: 'O Teu amor é melhor do que a vida',
+    tag: 'Salmos 63:4',
+    title: 'O Teu amor é melhor do que a vida',
   },
 ]
 
@@ -63,19 +61,19 @@ export function BannerCarousel() {
           setBanners(
             data.map((b) => ({
               id: b.id,
-              src: b.image_url,
+              src: imageMap[b.image_url] || b.image_url,
               alt: b.title || 'Banner',
               tag: b.tag,
               title: b.title,
             })),
           )
         } else {
-          setBanners(carouselImages)
+          setBanners(fallbackBanners)
         }
       })
       .catch(() => {
         if (!mounted) return
-        setBanners(carouselImages)
+        setBanners(fallbackBanners)
       })
       .finally(() => {
         if (mounted) setIsLoading(false)
