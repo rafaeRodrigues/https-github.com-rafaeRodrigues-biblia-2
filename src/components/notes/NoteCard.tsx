@@ -24,15 +24,35 @@ export function NoteCard({ note, onEdit, onDelete }: Props) {
   const { toast } = useToast()
 
   const handleShare = async () => {
+    const shareText = `${note.title}\n\n${note.content}`
+    const shareData = { title: note.title, text: shareText }
+
+    const copyToClipboard = async () => {
+      try {
+        await navigator.clipboard.writeText(shareText)
+        toast({ title: 'Copiado para a área de transferência' })
+      } catch (err) {
+        console.error('Clipboard copy failed', err)
+        toast({ variant: 'destructive', title: 'Erro ao copiar' })
+      }
+    }
+
     if (navigator.share) {
       try {
-        await navigator.share({ title: note.title, text: note.content })
-      } catch (err) {
+        if (navigator.canShare && !navigator.canShare(shareData)) {
+          await copyToClipboard()
+          return
+        }
+        await navigator.share(shareData)
+      } catch (err: any) {
         console.error('Share failed', err)
+        // If the user didn't intentionally cancel the action, fallback to clipboard
+        if (err.name !== 'AbortError') {
+          await copyToClipboard()
+        }
       }
     } else {
-      navigator.clipboard.writeText(`${note.title}\n\n${note.content}`)
-      toast({ title: 'Copiado para a área de transferência' })
+      await copyToClipboard()
     }
   }
 

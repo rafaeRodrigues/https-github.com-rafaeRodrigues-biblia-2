@@ -37378,18 +37378,34 @@ const COLOR_MAP = {
 function NoteCard({ note, onEdit, onDelete }) {
 	const { toast: toast$2 } = useToast();
 	const handleShare = async () => {
+		const shareText = `${note.title}\n\n${note.content}`;
+		const shareData = {
+			title: note.title,
+			text: shareText
+		};
+		const copyToClipboard = async () => {
+			try {
+				await navigator.clipboard.writeText(shareText);
+				toast$2({ title: "Copiado para a área de transferência" });
+			} catch (err) {
+				console.error("Clipboard copy failed", err);
+				toast$2({
+					variant: "destructive",
+					title: "Erro ao copiar"
+				});
+			}
+		};
 		if (navigator.share) try {
-			await navigator.share({
-				title: note.title,
-				text: note.content
-			});
+			if (navigator.canShare && !navigator.canShare(shareData)) {
+				await copyToClipboard();
+				return;
+			}
+			await navigator.share(shareData);
 		} catch (err) {
 			console.error("Share failed", err);
+			if (err.name !== "AbortError") await copyToClipboard();
 		}
-		else {
-			navigator.clipboard.writeText(`${note.title}\n\n${note.content}`);
-			toast$2({ title: "Copiado para a área de transferência" });
-		}
+		else await copyToClipboard();
 	};
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Card, {
 		className: "relative overflow-hidden group border-muted/60 shadow-sm transition-all hover:shadow-md",
@@ -38472,4 +38488,4 @@ var App = () => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AuthProvider, { chil
 var App_default = App;
 (0, import_client.createRoot)(document.getElementById("root")).render(/* @__PURE__ */ (0, import_jsx_runtime.jsx)(App_default, {}));
 
-//# sourceMappingURL=index-DYKthAyO.js.map
+//# sourceMappingURL=index-Bow-E7Dc.js.map
