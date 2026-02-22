@@ -18894,6 +18894,13 @@ var createLucideIcon = (iconName, iconNode) => {
 	Component.displayName = toPascalCase(iconName);
 	return Component;
 };
+var ArrowLeft = createLucideIcon("arrow-left", [["path", {
+	d: "m12 19-7-7 7-7",
+	key: "1l729n"
+}], ["path", {
+	d: "M19 12H5",
+	key: "x3x0zl"
+}]]);
 var Bell = createLucideIcon("bell", [["path", {
 	d: "M10.268 21a2 2 0 0 0 3.464 0",
 	key: "vwvbt9"
@@ -19069,10 +19076,6 @@ var CreditCard = createLucideIcon("credit-card", [["rect", {
 	y1: "10",
 	y2: "10",
 	key: "1b3vmo"
-}]]);
-var Cross = createLucideIcon("cross", [["path", {
-	d: "M4 9a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h4a1 1 0 0 1 1 1v4a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-4a1 1 0 0 1 1-1h4a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2h-4a1 1 0 0 1-1-1V4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4a1 1 0 0 1-1 1z",
-	key: "1xbrqy"
 }]]);
 var FileText = createLucideIcon("file-text", [
 	["path", {
@@ -27905,8 +27908,24 @@ function Layout() {
 		})
 	});
 }
+var CrossLoadingIcon$1 = ({ className }) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("svg", {
+	className: cn("animate-pulse-cross", className),
+	viewBox: "0 0 24 24",
+	fill: "currentColor",
+	children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("path", { d: "M11 2h2v7h7v2h-7v11h-2V11H4V9h7V2z" })
+});
+var HeaderPattern$1 = () => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+	className: "absolute inset-0 overflow-hidden opacity-20 pointer-events-none",
+	children: [
+		/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "absolute -top-12 -left-12 w-48 h-48 rounded-full border-[24px] border-white/20" }),
+		/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "absolute top-1/4 -right-12 w-40 h-40 rounded-full bg-white/10" }),
+		/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "absolute bottom-10 left-1/3 w-32 h-32 bg-white/10 rotate-45 rounded-3xl" }),
+		/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "absolute -bottom-8 -right-8 w-24 h-24 rounded-full border-[12px] border-white/20" }),
+		/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "absolute top-10 left-1/2 w-16 h-16 bg-white/5 rotate-12" })
+	]
+});
 function Login() {
-	const [username, setUsername] = (0, import_react.useState)("");
+	const [email, setEmail] = (0, import_react.useState)("");
 	const [password, setPassword] = (0, import_react.useState)("");
 	const [isLoading, setIsLoading] = (0, import_react.useState)(false);
 	const navigate = useNavigate();
@@ -27915,7 +27934,7 @@ function Login() {
 		e.preventDefault();
 		setIsLoading(true);
 		setTimeout(() => {
-			if (username.trim().toLowerCase() === "rafa" && password === "123") {
+			if ((email.trim().toLowerCase() === "rafa" || email === "vijaybhuva90@gmail.com") && password === "123") {
 				localStorage.setItem("auth", "true");
 				navigate("/");
 				toast$2({
@@ -27930,100 +27949,376 @@ function Login() {
 			setIsLoading(false);
 		}, 1500);
 	};
+	const handleGuest = () => {
+		localStorage.setItem("auth", "true");
+		navigate("/");
+		toast$2({
+			title: "Modo Visitante",
+			description: "Você entrou como visitante. Alguns recursos podem estar limitados."
+		});
+	};
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-		className: "min-h-screen w-full flex flex-col items-center justify-center relative overflow-hidden bg-background",
+		className: "min-h-screen w-full flex flex-col bg-background text-foreground relative overflow-hidden font-sans",
 		children: [
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+				className: "absolute top-6 right-6 z-50",
+				children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ThemeToggle, { className: "bg-card/20 backdrop-blur-md shadow-sm border border-white/10 text-white" })
+			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-				className: "absolute inset-0 z-0 overflow-hidden pointer-events-none flex justify-center items-center",
+				className: "relative w-full h-[38vh] min-h-[300px] bg-[#09090b] flex flex-col items-center justify-center shrink-0",
 				children: [
-					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "absolute w-[500px] h-[500px] bg-primary/20 rounded-full mix-blend-multiply dark:mix-blend-color-dodge filter blur-[80px] opacity-70 animate-blob" }),
-					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "absolute w-[400px] h-[400px] bg-purple-500/20 rounded-full mix-blend-multiply dark:mix-blend-color-dodge filter blur-[80px] opacity-70 animate-blob animation-delay-2000 translate-x-32 -translate-y-32" }),
-					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "absolute w-[600px] h-[600px] bg-pink-500/10 rounded-full mix-blend-multiply dark:mix-blend-color-dodge filter blur-[80px] opacity-70 animate-blob animation-delay-4000 -translate-x-32 translate-y-32" })
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)(HeaderPattern$1, {}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+						className: "relative z-10 flex flex-col items-center justify-center w-full px-8 pb-10 animate-fade-in-down",
+						children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
+							src: _1000486575_fd3e2_default,
+							alt: "Logo Igreja",
+							className: "w-56 h-auto max-h-32 object-contain invert"
+						})
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("svg", {
+						className: "absolute bottom-0 w-full h-16 text-background translate-y-[1px] z-20",
+						preserveAspectRatio: "none",
+						viewBox: "0 0 100 100",
+						fill: "currentColor",
+						children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("path", { d: "M0,20 C50,20 50,80 100,80 L100,100 L0,100 Z" })
+					})
 				]
 			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+				className: "flex-1 px-8 pt-4 pb-8 flex flex-col z-10 bg-background overflow-y-auto scrollbar-none",
+				children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+					className: "animate-fade-in-up flex-1 flex flex-col w-full max-w-sm mx-auto",
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", {
+						className: "text-[28px] font-semibold text-center mb-8 tracking-tight text-foreground",
+						children: "Login"
+					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("form", {
+						onSubmit: handleLogin,
+						className: "space-y-6 flex-1 flex flex-col",
+						children: [
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "space-y-4",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+									className: "space-y-2 animate-slide-up",
+									style: {
+										animationDelay: "100ms",
+										animationFillMode: "both"
+									},
+									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, {
+										htmlFor: "email",
+										className: "text-[13px] font-semibold ml-1 text-muted-foreground",
+										children: "Email"
+									}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Input, {
+										id: "email",
+										placeholder: "vijaybhuva90@gmail.com",
+										value: email,
+										onChange: (e) => setEmail(e.target.value),
+										className: "h-14 rounded-2xl bg-card border border-transparent dark:border-white/5 shadow-[0_4px_20px_rgba(0,0,0,0.04)] focus-visible:ring-primary/30 px-5 text-[15px]",
+										required: true
+									})]
+								}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+									className: "space-y-2 animate-slide-up",
+									style: {
+										animationDelay: "200ms",
+										animationFillMode: "both"
+									},
+									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, {
+										htmlFor: "password",
+										className: "text-[13px] font-semibold ml-1 text-muted-foreground",
+										children: "Password"
+									}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Input, {
+										id: "password",
+										type: "password",
+										placeholder: "••••••••",
+										value: password,
+										onChange: (e) => setPassword(e.target.value),
+										className: "h-14 rounded-2xl bg-card border border-transparent dark:border-white/5 shadow-[0_4px_20px_rgba(0,0,0,0.04)] focus-visible:ring-primary/30 px-5 text-[15px]",
+										required: true
+									})]
+								})]
+							}),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "pt-2 space-y-3 animate-slide-up",
+								style: {
+									animationDelay: "300ms",
+									animationFillMode: "both"
+								},
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
+									type: "submit",
+									className: "w-full h-14 rounded-2xl font-bold text-[15px] bg-[#09090b] hover:bg-[#27272a] text-white dark:bg-white dark:hover:bg-gray-200 dark:text-black shadow-lg transition-all active:scale-[0.98]",
+									disabled: isLoading,
+									children: isLoading ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+										className: "flex items-center gap-3",
+										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CrossLoadingIcon$1, { className: "w-5 h-5 text-primary-foreground dark:text-primary" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Validando..." })]
+									}) : "Login"
+								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
+									type: "button",
+									variant: "outline",
+									onClick: handleGuest,
+									className: "w-full h-14 rounded-2xl font-bold text-[15px] border-2 bg-transparent hover:bg-muted/50 transition-all active:scale-[0.98]",
+									children: "Entrar como Visitante"
+								})]
+							}),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+								className: "mt-auto pt-6 pb-2 text-center animate-fade-in",
+								style: {
+									animationDelay: "400ms",
+									animationFillMode: "both"
+								},
+								children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
+									className: "text-[14px] text-muted-foreground font-medium",
+									children: [
+										"Don't have any account?",
+										" ",
+										/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Link, {
+											to: "/signup",
+											className: "text-foreground font-semibold hover:underline",
+											children: "Sign Up"
+										})
+									]
+								})
+							})
+						]
+					})]
+				})
+			})
+		]
+	});
+}
+var CrossLoadingIcon = ({ className }) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("svg", {
+	className: cn("animate-pulse-cross", className),
+	viewBox: "0 0 24 24",
+	fill: "currentColor",
+	children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("path", { d: "M11 2h2v7h7v2h-7v11h-2V11H4V9h7V2z" })
+});
+var HeaderPattern = () => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+	className: "absolute inset-0 overflow-hidden opacity-20 pointer-events-none",
+	children: [
+		/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "absolute -top-12 -left-12 w-48 h-48 rounded-full border-[24px] border-white/20" }),
+		/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "absolute top-1/4 -right-12 w-40 h-40 rounded-full bg-white/10" }),
+		/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "absolute bottom-10 left-1/3 w-32 h-32 bg-white/10 rotate-45 rounded-3xl" }),
+		/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "absolute -bottom-8 -right-8 w-24 h-24 rounded-full border-[12px] border-white/20" }),
+		/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "absolute top-10 left-1/2 w-16 h-16 bg-white/5 rotate-12" })
+	]
+});
+function SignUp() {
+	const [formData, setFormData] = (0, import_react.useState)({
+		firstName: "",
+		lastName: "",
+		email: "",
+		password: "",
+		confirmPassword: ""
+	});
+	const [isLoading, setIsLoading] = (0, import_react.useState)(false);
+	const navigate = useNavigate();
+	const { toast: toast$2 } = useToast();
+	const handleChange = (e) => {
+		setFormData((prev) => ({
+			...prev,
+			[e.target.id]: e.target.value
+		}));
+	};
+	const handleSignUp = (e) => {
+		e.preventDefault();
+		if (formData.password !== formData.confirmPassword) {
+			toast$2({
+				variant: "destructive",
+				title: "Erro de validação",
+				description: "As senhas não coincidem."
+			});
+			return;
+		}
+		setIsLoading(true);
+		setTimeout(() => {
+			localStorage.setItem("auth", "true");
+			navigate("/");
+			toast$2({
+				title: "Conta criada!",
+				description: "Seja bem-vindo à nossa comunidade."
+			});
+			setIsLoading(false);
+		}, 1500);
+	};
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+		className: "min-h-screen w-full flex flex-col bg-background text-foreground relative overflow-hidden font-sans",
+		children: [
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 				className: "absolute top-6 right-6 z-50",
-				children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ThemeToggle, { className: "bg-card/50 backdrop-blur-md shadow-sm border border-border/50" })
+				children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ThemeToggle, { className: "bg-card/20 backdrop-blur-md shadow-sm border border-white/10 text-white" })
 			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-				className: "z-10 w-full max-w-md px-6 animate-fade-in-up",
-				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-					className: "flex flex-col items-center mb-10",
-					children: [
-						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "w-28 h-28 bg-card/80 backdrop-blur-xl rounded-full flex items-center justify-center shadow-2xl mb-6 border border-white/10 dark:border-white/5 p-5 relative overflow-hidden group",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent pointer-events-none opacity-50 group-hover:opacity-100 transition-opacity duration-500" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
-								src: _1000486575_fd3e2_default,
-								alt: "Logo Igreja",
-								className: "w-full h-full object-contain invert mix-blend-multiply dark:invert-0 dark:mix-blend-screen opacity-90 relative z-10"
-							})]
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h1", {
-							className: "text-3xl font-extrabold tracking-tight text-foreground",
-							children: "Acesso"
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-							className: "text-muted-foreground text-sm text-center mt-2 font-medium",
-							children: "Entre para se conectar à nossa comunidade."
-						})
-					]
-				}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("form", {
-					onSubmit: handleLogin,
-					className: "space-y-5 bg-card/60 backdrop-blur-xl p-8 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-white/10 dark:border-white/5 relative overflow-hidden",
-					children: [
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "absolute inset-0 bg-gradient-to-br from-white/40 to-white/0 dark:from-white/5 dark:to-transparent pointer-events-none" }),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "space-y-2.5 relative z-10",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, {
-								htmlFor: "username",
-								className: "text-foreground/80 ml-1 font-semibold",
-								children: "Nome ou E-mail"
-							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Input, {
-								id: "username",
-								placeholder: "rafa",
-								value: username,
-								onChange: (e) => setUsername(e.target.value),
-								className: "bg-background/50 border-white/20 dark:border-white/10 h-14 rounded-2xl px-4 text-base focus-visible:ring-primary/30 transition-all shadow-sm",
-								required: true
-							})]
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "space-y-2.5 relative z-10",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-								className: "flex items-center justify-between ml-1",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, {
-									htmlFor: "password",
-									className: "text-foreground/80 font-semibold",
-									children: "Senha"
-								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("a", {
-									href: "#",
-									className: "text-[13px] text-primary font-bold hover:underline opacity-80 hover:opacity-100 transition-opacity",
-									children: "Recuperar senha"
-								})]
-							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Input, {
-								id: "password",
-								type: "password",
-								placeholder: "***",
-								value: password,
-								onChange: (e) => setPassword(e.target.value),
-								className: "bg-background/50 border-white/20 dark:border-white/10 h-14 rounded-2xl px-4 text-base focus-visible:ring-primary/30 transition-all shadow-sm",
-								required: true
-							})]
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-							className: "pt-2 relative z-10",
-							children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
-								type: "submit",
-								className: "w-full h-14 rounded-2xl font-bold text-base shadow-lg hover:shadow-xl transition-all active:scale-[0.98]",
-								disabled: isLoading,
-								children: isLoading ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-									className: "flex items-center gap-3",
-									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Cross, { className: "w-5 h-5 animate-pulse-cross text-primary-foreground" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Validando..." })]
-								}) : "Entrar"
+				className: "relative w-full h-[28vh] min-h-[220px] bg-[#09090b] flex flex-col shrink-0",
+				children: [
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)(HeaderPattern, {}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "relative z-10 flex items-center px-6 pt-16 animate-fade-in-down",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Link, {
+							to: "/login",
+							className: "w-10 h-10 flex items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors",
+							children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ArrowLeft, { className: "w-5 h-5" })
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h1", {
+							className: "text-[28px] font-semibold text-white ml-5 tracking-tight",
+							children: "Sign Up"
+						})]
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("svg", {
+						className: "absolute bottom-0 w-full h-12 text-background translate-y-[1px] z-20",
+						preserveAspectRatio: "none",
+						viewBox: "0 0 100 100",
+						fill: "currentColor",
+						children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("path", { d: "M0,20 C50,20 50,80 100,80 L100,100 L0,100 Z" })
+					})
+				]
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+				className: "flex-1 px-8 pt-2 pb-8 flex flex-col z-10 bg-background overflow-y-auto scrollbar-none",
+				children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+					className: "animate-fade-in-up flex-1 flex flex-col w-full max-w-sm mx-auto",
+					children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("form", {
+						onSubmit: handleSignUp,
+						className: "space-y-4 flex-1 flex flex-col",
+						children: [
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "space-y-3",
+								children: [
+									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+										className: "space-y-1.5 animate-slide-up",
+										style: {
+											animationDelay: "100ms",
+											animationFillMode: "both"
+										},
+										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, {
+											htmlFor: "firstName",
+											className: "text-[12px] font-semibold ml-1 text-muted-foreground",
+											children: "First name"
+										}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Input, {
+											id: "firstName",
+											placeholder: "Vijay",
+											value: formData.firstName,
+											onChange: handleChange,
+											className: "h-12 rounded-2xl bg-card border border-transparent dark:border-white/5 shadow-[0_4px_20px_rgba(0,0,0,0.04)] focus-visible:ring-primary/30 px-5",
+											required: true
+										})]
+									}),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+										className: "space-y-1.5 animate-slide-up",
+										style: {
+											animationDelay: "150ms",
+											animationFillMode: "both"
+										},
+										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, {
+											htmlFor: "lastName",
+											className: "text-[12px] font-semibold ml-1 text-muted-foreground",
+											children: "Last name"
+										}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Input, {
+											id: "lastName",
+											placeholder: "Bhuva",
+											value: formData.lastName,
+											onChange: handleChange,
+											className: "h-12 rounded-2xl bg-card border border-transparent dark:border-white/5 shadow-[0_4px_20px_rgba(0,0,0,0.04)] focus-visible:ring-primary/30 px-5",
+											required: true
+										})]
+									}),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+										className: "space-y-1.5 animate-slide-up",
+										style: {
+											animationDelay: "200ms",
+											animationFillMode: "both"
+										},
+										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, {
+											htmlFor: "email",
+											className: "text-[12px] font-semibold ml-1 text-muted-foreground",
+											children: "Email"
+										}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Input, {
+											id: "email",
+											type: "email",
+											placeholder: "vijaybhuva90@gmail.com",
+											value: formData.email,
+											onChange: handleChange,
+											className: "h-12 rounded-2xl bg-card border border-transparent dark:border-white/5 shadow-[0_4px_20px_rgba(0,0,0,0.04)] focus-visible:ring-primary/30 px-5",
+											required: true
+										})]
+									}),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+										className: "space-y-1.5 animate-slide-up",
+										style: {
+											animationDelay: "250ms",
+											animationFillMode: "both"
+										},
+										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, {
+											htmlFor: "password",
+											className: "text-[12px] font-semibold ml-1 text-muted-foreground",
+											children: "Password"
+										}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Input, {
+											id: "password",
+											type: "password",
+											placeholder: "••••••••",
+											value: formData.password,
+											onChange: handleChange,
+											className: "h-12 rounded-2xl bg-card border border-transparent dark:border-white/5 shadow-[0_4px_20px_rgba(0,0,0,0.04)] focus-visible:ring-primary/30 px-5",
+											required: true
+										})]
+									}),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+										className: "space-y-1.5 animate-slide-up",
+										style: {
+											animationDelay: "300ms",
+											animationFillMode: "both"
+										},
+										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, {
+											htmlFor: "confirmPassword",
+											className: "text-[12px] font-semibold ml-1 text-muted-foreground",
+											children: "Confirm password"
+										}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Input, {
+											id: "confirmPassword",
+											type: "password",
+											placeholder: "••••••••",
+											value: formData.confirmPassword,
+											onChange: handleChange,
+											className: "h-12 rounded-2xl bg-card border border-transparent dark:border-white/5 shadow-[0_4px_20px_rgba(0,0,0,0.04)] focus-visible:ring-primary/30 px-5",
+											required: true
+										})]
+									})
+								]
+							}),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+								className: "pt-2 mt-2 animate-slide-up",
+								style: {
+									animationDelay: "350ms",
+									animationFillMode: "both"
+								},
+								children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
+									type: "submit",
+									className: "w-full h-14 rounded-2xl font-bold text-[15px] bg-[#09090b] hover:bg-[#27272a] text-white dark:bg-white dark:hover:bg-gray-200 dark:text-black shadow-lg transition-all active:scale-[0.98]",
+									disabled: isLoading,
+									children: isLoading ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+										className: "flex items-center gap-3",
+										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CrossLoadingIcon, { className: "w-5 h-5 text-primary-foreground dark:text-primary" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Registrando..." })]
+									}) : "Sign Up"
+								})
+							}),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+								className: "mt-auto pt-6 pb-2 text-center animate-fade-in",
+								style: {
+									animationDelay: "400ms",
+									animationFillMode: "both"
+								},
+								children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
+									className: "text-[14px] text-muted-foreground font-medium",
+									children: [
+										"Already have any account?",
+										" ",
+										/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Link, {
+											to: "/login",
+											className: "text-foreground font-semibold hover:underline",
+											children: "Sign In"
+										})
+									]
+								})
 							})
-						})
-					]
-				})]
+						]
+					})
+				})
 			})
 		]
 	});
@@ -28050,6 +28345,10 @@ var App = () => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ThemeProvider, {
 				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Route, {
 					path: "/login",
 					element: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Login, {})
+				}),
+				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Route, {
+					path: "/signup",
+					element: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(SignUp, {})
 				}),
 				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Route, {
 					element: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ProtectedRoute, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Layout, {}) }),
@@ -28091,4 +28390,4 @@ var App = () => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ThemeProvider, {
 var App_default = App;
 (0, import_client.createRoot)(document.getElementById("root")).render(/* @__PURE__ */ (0, import_jsx_runtime.jsx)(App_default, {}));
 
-//# sourceMappingURL=index-Dy74jDmL.js.map
+//# sourceMappingURL=index-C8WJ92JN.js.map

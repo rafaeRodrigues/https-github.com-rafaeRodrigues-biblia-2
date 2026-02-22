@@ -1,15 +1,35 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { Cross } from 'lucide-react'
+import { useNavigate, Link } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { useToast } from '@/hooks/use-toast'
 import { ThemeToggle } from '@/components/theme-toggle'
 import logoUrl from '@/assets/1000486575-fd3e2.png'
+import { cn } from '@/lib/utils'
+
+const CrossLoadingIcon = ({ className }: { className?: string }) => (
+  <svg
+    className={cn('animate-pulse-cross', className)}
+    viewBox="0 0 24 24"
+    fill="currentColor"
+  >
+    <path d="M11 2h2v7h7v2h-7v11h-2V11H4V9h7V2z" />
+  </svg>
+)
+
+const HeaderPattern = () => (
+  <div className="absolute inset-0 overflow-hidden opacity-20 pointer-events-none">
+    <div className="absolute -top-12 -left-12 w-48 h-48 rounded-full border-[24px] border-white/20" />
+    <div className="absolute top-1/4 -right-12 w-40 h-40 rounded-full bg-white/10" />
+    <div className="absolute bottom-10 left-1/3 w-32 h-32 bg-white/10 rotate-45 rounded-3xl" />
+    <div className="absolute -bottom-8 -right-8 w-24 h-24 rounded-full border-[12px] border-white/20" />
+    <div className="absolute top-10 left-1/2 w-16 h-16 bg-white/5 rotate-12" />
+  </div>
+)
 
 export default function Login() {
-  const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const navigate = useNavigate()
@@ -20,7 +40,11 @@ export default function Login() {
     setIsLoading(true)
 
     setTimeout(() => {
-      if (username.trim().toLowerCase() === 'rafa' && password === '123') {
+      if (
+        (email.trim().toLowerCase() === 'rafa' ||
+          email === 'vijaybhuva90@gmail.com') &&
+        password === '123'
+      ) {
         localStorage.setItem('auth', 'true')
         navigate('/')
         toast({
@@ -38,103 +62,143 @@ export default function Login() {
     }, 1500)
   }
 
+  const handleGuest = () => {
+    localStorage.setItem('auth', 'true')
+    navigate('/')
+    toast({
+      title: 'Modo Visitante',
+      description:
+        'Você entrou como visitante. Alguns recursos podem estar limitados.',
+    })
+  }
+
   return (
-    <div className="min-h-screen w-full flex flex-col items-center justify-center relative overflow-hidden bg-background">
-      {/* Creative Background */}
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none flex justify-center items-center">
-        <div className="absolute w-[500px] h-[500px] bg-primary/20 rounded-full mix-blend-multiply dark:mix-blend-color-dodge filter blur-[80px] opacity-70 animate-blob"></div>
-        <div className="absolute w-[400px] h-[400px] bg-purple-500/20 rounded-full mix-blend-multiply dark:mix-blend-color-dodge filter blur-[80px] opacity-70 animate-blob animation-delay-2000 translate-x-32 -translate-y-32"></div>
-        <div className="absolute w-[600px] h-[600px] bg-pink-500/10 rounded-full mix-blend-multiply dark:mix-blend-color-dodge filter blur-[80px] opacity-70 animate-blob animation-delay-4000 -translate-x-32 translate-y-32"></div>
-      </div>
-
+    <div className="min-h-screen w-full flex flex-col bg-background text-foreground relative overflow-hidden font-sans">
       <div className="absolute top-6 right-6 z-50">
-        <ThemeToggle className="bg-card/50 backdrop-blur-md shadow-sm border border-border/50" />
+        <ThemeToggle className="bg-card/20 backdrop-blur-md shadow-sm border border-white/10 text-white" />
       </div>
 
-      <div className="z-10 w-full max-w-md px-6 animate-fade-in-up">
-        <div className="flex flex-col items-center mb-10">
-          <div className="w-28 h-28 bg-card/80 backdrop-blur-xl rounded-full flex items-center justify-center shadow-2xl mb-6 border border-white/10 dark:border-white/5 p-5 relative overflow-hidden group">
-            <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent pointer-events-none opacity-50 group-hover:opacity-100 transition-opacity duration-500" />
-            <img
-              src={logoUrl}
-              alt="Logo Igreja"
-              className="w-full h-full object-contain invert mix-blend-multiply dark:invert-0 dark:mix-blend-screen opacity-90 relative z-10"
-            />
-          </div>
-          <h1 className="text-3xl font-extrabold tracking-tight text-foreground">
-            Acesso
-          </h1>
-          <p className="text-muted-foreground text-sm text-center mt-2 font-medium">
-            Entre para se conectar à nossa comunidade.
-          </p>
+      {/* Header */}
+      <div className="relative w-full h-[38vh] min-h-[300px] bg-[#09090b] flex flex-col items-center justify-center shrink-0">
+        <HeaderPattern />
+
+        <div className="relative z-10 flex flex-col items-center justify-center w-full px-8 pb-10 animate-fade-in-down">
+          <img
+            src={logoUrl}
+            alt="Logo Igreja"
+            className="w-56 h-auto max-h-32 object-contain invert"
+          />
         </div>
 
-        <form
-          onSubmit={handleLogin}
-          className="space-y-5 bg-card/60 backdrop-blur-xl p-8 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-white/10 dark:border-white/5 relative overflow-hidden"
+        <svg
+          className="absolute bottom-0 w-full h-16 text-background translate-y-[1px] z-20"
+          preserveAspectRatio="none"
+          viewBox="0 0 100 100"
+          fill="currentColor"
         >
-          <div className="absolute inset-0 bg-gradient-to-br from-white/40 to-white/0 dark:from-white/5 dark:to-transparent pointer-events-none" />
+          <path d="M0,20 C50,20 50,80 100,80 L100,100 L0,100 Z" />
+        </svg>
+      </div>
 
-          <div className="space-y-2.5 relative z-10">
-            <Label
-              htmlFor="username"
-              className="text-foreground/80 ml-1 font-semibold"
-            >
-              Nome ou E-mail
-            </Label>
-            <Input
-              id="username"
-              placeholder="rafa"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              className="bg-background/50 border-white/20 dark:border-white/10 h-14 rounded-2xl px-4 text-base focus-visible:ring-primary/30 transition-all shadow-sm"
-              required
-            />
-          </div>
+      {/* Body */}
+      <div className="flex-1 px-8 pt-4 pb-8 flex flex-col z-10 bg-background overflow-y-auto scrollbar-none">
+        <div className="animate-fade-in-up flex-1 flex flex-col w-full max-w-sm mx-auto">
+          <h2 className="text-[28px] font-semibold text-center mb-8 tracking-tight text-foreground">
+            Login
+          </h2>
 
-          <div className="space-y-2.5 relative z-10">
-            <div className="flex items-center justify-between ml-1">
-              <Label
-                htmlFor="password"
-                className="text-foreground/80 font-semibold"
+          <form
+            onSubmit={handleLogin}
+            className="space-y-6 flex-1 flex flex-col"
+          >
+            <div className="space-y-4">
+              <div
+                className="space-y-2 animate-slide-up"
+                style={{ animationDelay: '100ms', animationFillMode: 'both' }}
               >
-                Senha
-              </Label>
-              <a
-                href="#"
-                className="text-[13px] text-primary font-bold hover:underline opacity-80 hover:opacity-100 transition-opacity"
+                <Label
+                  htmlFor="email"
+                  className="text-[13px] font-semibold ml-1 text-muted-foreground"
+                >
+                  Email
+                </Label>
+                <Input
+                  id="email"
+                  placeholder="vijaybhuva90@gmail.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="h-14 rounded-2xl bg-card border border-transparent dark:border-white/5 shadow-[0_4px_20px_rgba(0,0,0,0.04)] focus-visible:ring-primary/30 px-5 text-[15px]"
+                  required
+                />
+              </div>
+
+              <div
+                className="space-y-2 animate-slide-up"
+                style={{ animationDelay: '200ms', animationFillMode: 'both' }}
               >
-                Recuperar senha
-              </a>
+                <Label
+                  htmlFor="password"
+                  className="text-[13px] font-semibold ml-1 text-muted-foreground"
+                >
+                  Password
+                </Label>
+                <Input
+                  id="password"
+                  type="password"
+                  placeholder="••••••••"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="h-14 rounded-2xl bg-card border border-transparent dark:border-white/5 shadow-[0_4px_20px_rgba(0,0,0,0.04)] focus-visible:ring-primary/30 px-5 text-[15px]"
+                  required
+                />
+              </div>
             </div>
-            <Input
-              id="password"
-              type="password"
-              placeholder="***"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="bg-background/50 border-white/20 dark:border-white/10 h-14 rounded-2xl px-4 text-base focus-visible:ring-primary/30 transition-all shadow-sm"
-              required
-            />
-          </div>
 
-          <div className="pt-2 relative z-10">
-            <Button
-              type="submit"
-              className="w-full h-14 rounded-2xl font-bold text-base shadow-lg hover:shadow-xl transition-all active:scale-[0.98]"
-              disabled={isLoading}
+            <div
+              className="pt-2 space-y-3 animate-slide-up"
+              style={{ animationDelay: '300ms', animationFillMode: 'both' }}
             >
-              {isLoading ? (
-                <div className="flex items-center gap-3">
-                  <Cross className="w-5 h-5 animate-pulse-cross text-primary-foreground" />
-                  <span>Validando...</span>
-                </div>
-              ) : (
-                'Entrar'
-              )}
-            </Button>
-          </div>
-        </form>
+              <Button
+                type="submit"
+                className="w-full h-14 rounded-2xl font-bold text-[15px] bg-[#09090b] hover:bg-[#27272a] text-white dark:bg-white dark:hover:bg-gray-200 dark:text-black shadow-lg transition-all active:scale-[0.98]"
+                disabled={isLoading}
+              >
+                {isLoading ? (
+                  <div className="flex items-center gap-3">
+                    <CrossLoadingIcon className="w-5 h-5 text-primary-foreground dark:text-primary" />
+                    <span>Validando...</span>
+                  </div>
+                ) : (
+                  'Login'
+                )}
+              </Button>
+
+              <Button
+                type="button"
+                variant="outline"
+                onClick={handleGuest}
+                className="w-full h-14 rounded-2xl font-bold text-[15px] border-2 bg-transparent hover:bg-muted/50 transition-all active:scale-[0.98]"
+              >
+                Entrar como Visitante
+              </Button>
+            </div>
+
+            <div
+              className="mt-auto pt-6 pb-2 text-center animate-fade-in"
+              style={{ animationDelay: '400ms', animationFillMode: 'both' }}
+            >
+              <p className="text-[14px] text-muted-foreground font-medium">
+                Don't have any account?{' '}
+                <Link
+                  to="/signup"
+                  className="text-foreground font-semibold hover:underline"
+                >
+                  Sign Up
+                </Link>
+              </p>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   )

@@ -12,6 +12,7 @@ import Plans from './pages/Plans'
 import NotFound from './pages/NotFound'
 import Layout from './components/Layout'
 import Login from './pages/Login'
+import SignUp from './pages/SignUp'
 
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const isAuthenticated = localStorage.getItem('auth') === 'true'
@@ -31,6 +32,7 @@ const App = () => (
         <Sonner />
         <Routes>
           <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
           <Route
             element={
               <ProtectedRoute>
