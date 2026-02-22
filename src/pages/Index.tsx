@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-import { useState, useEffect } from 'react'
 import {
   Calendar,
   Book,
@@ -10,12 +9,6 @@ import {
 } from 'lucide-react'
 import { Card, CardContent } from '@/components/ui/card'
 import { BannerCarousel } from '@/components/BannerCarousel'
-import {
-  getBibleBooks,
-  getChapterVerses,
-  BibleBook,
-  BibleVerse,
-} from '@/services/bible'
 
 const DiaryBtn = ({ icon: Icon, label, to }: any) => (
   <Link to={to} className="flex flex-col items-center gap-2 group">
@@ -29,65 +22,9 @@ const DiaryBtn = ({ icon: Icon, label, to }: any) => (
 )
 
 export default function Index() {
-  const [dailyVerse, setDailyVerse] = useState<{
-    book: BibleBook
-    verse: BibleVerse
-  } | null>(null)
-
-  useEffect(() => {
-    let mounted = true
-    getBibleBooks()
-      .then((books) => {
-        if (!mounted) return
-        const joao = books.find((b) => b.name === 'João')
-        if (joao) {
-          getChapterVerses(joao.id, 1)
-            .then((verses) => {
-              if (!mounted) return
-              if (verses && verses.length > 0) {
-                setDailyVerse({ book: joao, verse: verses[0] })
-              }
-            })
-            .catch(console.error)
-        }
-      })
-      .catch(console.error)
-    return () => {
-      mounted = false
-    }
-  }, [])
-
   return (
     <div className="space-y-8 animate-fade-in-up py-4">
       <BannerCarousel />
-
-      {dailyVerse && (
-        <div className="space-y-3">
-          <h2 className="text-[17px] font-bold tracking-tight text-foreground px-1">
-            Versículo do Dia
-          </h2>
-          <Card className="shadow-none border-muted/60 bg-primary/5">
-            <CardContent className="p-4 relative overflow-hidden">
-              <Book className="absolute right-[-10px] bottom-[-10px] w-24 h-24 text-primary/5 rotate-12" />
-              <p className="text-[15px] font-serif leading-relaxed text-foreground/90 italic mb-3 relative z-10">
-                "{dailyVerse.verse.text}"
-              </p>
-              <div className="flex justify-between items-center relative z-10">
-                <span className="text-sm font-bold text-primary">
-                  {dailyVerse.book.name} {dailyVerse.verse.chapter}:
-                  {dailyVerse.verse.verse}
-                </span>
-                <Link
-                  to={`/bible/${dailyVerse.book.id}/${dailyVerse.verse.chapter}`}
-                  className="text-xs font-semibold bg-background px-3 py-1.5 rounded-full border border-border hover:bg-muted transition-colors"
-                >
-                  Ler capítulo
-                </Link>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      )}
 
       <div className="space-y-3">
         <div className="flex justify-between items-center px-1">

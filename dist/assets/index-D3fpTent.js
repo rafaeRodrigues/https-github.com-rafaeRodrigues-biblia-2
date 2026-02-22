@@ -34068,31 +34068,6 @@ function BannerCarousel() {
 		})
 	});
 }
-const getBibleBooks = async () => {
-	const { data, error } = await supabase.functions.invoke("biblia", { body: { action: "getBooks" } });
-	if (error) throw error;
-	if (data?.error) throw new Error(data.error);
-	return data;
-};
-const getBibleBook = async (id) => {
-	const { data, error } = await supabase.functions.invoke("biblia", { body: {
-		action: "getBook",
-		bookId: id
-	} });
-	if (error) throw error;
-	if (data?.error) throw new Error(data.error);
-	return data;
-};
-const getChapterVerses = async (bookId, chapter) => {
-	const { data, error } = await supabase.functions.invoke("biblia", { body: {
-		action: "getVerses",
-		bookId,
-		chapter
-	} });
-	if (error) throw error;
-	if (data?.error) throw new Error(data.error);
-	return data;
-};
 var DiaryBtn = ({ icon: Icon$2, label, to }) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Link, {
 	to,
 	className: "flex flex-col items-center gap-2 group",
@@ -34105,68 +34080,10 @@ var DiaryBtn = ({ icon: Icon$2, label, to }) => /* @__PURE__ */ (0, import_jsx_r
 	})]
 });
 function Index() {
-	const [dailyVerse, setDailyVerse] = (0, import_react.useState)(null);
-	(0, import_react.useEffect)(() => {
-		let mounted = true;
-		getBibleBooks().then((books) => {
-			if (!mounted) return;
-			const joao = books.find((b$1) => b$1.name === "João");
-			if (joao) getChapterVerses(joao.id, 1).then((verses) => {
-				if (!mounted) return;
-				if (verses && verses.length > 0) setDailyVerse({
-					book: joao,
-					verse: verses[0]
-				});
-			}).catch(console.error);
-		}).catch(console.error);
-		return () => {
-			mounted = false;
-		};
-	}, []);
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 		className: "space-y-8 animate-fade-in-up py-4",
 		children: [
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(BannerCarousel, {}),
-			dailyVerse && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-				className: "space-y-3",
-				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", {
-					className: "text-[17px] font-bold tracking-tight text-foreground px-1",
-					children: "Versículo do Dia"
-				}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Card, {
-					className: "shadow-none border-muted/60 bg-primary/5",
-					children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardContent, {
-						className: "p-4 relative overflow-hidden",
-						children: [
-							/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Book, { className: "absolute right-[-10px] bottom-[-10px] w-24 h-24 text-primary/5 rotate-12" }),
-							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
-								className: "text-[15px] font-serif leading-relaxed text-foreground/90 italic mb-3 relative z-10",
-								children: [
-									"\"",
-									dailyVerse.verse.text,
-									"\""
-								]
-							}),
-							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-								className: "flex justify-between items-center relative z-10",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
-									className: "text-sm font-bold text-primary",
-									children: [
-										dailyVerse.book.name,
-										" ",
-										dailyVerse.verse.chapter,
-										":",
-										dailyVerse.verse.verse
-									]
-								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Link, {
-									to: `/bible/${dailyVerse.book.id}/${dailyVerse.verse.chapter}`,
-									className: "text-xs font-semibold bg-background px-3 py-1.5 rounded-full border border-border hover:bg-muted transition-colors",
-									children: "Ler capítulo"
-								})]
-							})
-						]
-					})
-				})]
-			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 				className: "space-y-3",
 				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
@@ -37360,6 +37277,31 @@ function Management() {
 		})]
 	});
 }
+const getBibleBooks = async () => {
+	const { data, error } = await supabase.functions.invoke("biblia", { body: { action: "getBooks" } });
+	if (error) throw error;
+	if (data?.error) throw new Error(data.error);
+	return data;
+};
+const getBibleBook = async (id) => {
+	const { data, error } = await supabase.functions.invoke("biblia", { body: {
+		action: "getBook",
+		bookId: id
+	} });
+	if (error) throw error;
+	if (data?.error) throw new Error(data.error);
+	return data;
+};
+const getChapterVerses = async (bookId, chapter) => {
+	const { data, error } = await supabase.functions.invoke("biblia", { body: {
+		action: "getVerses",
+		bookId,
+		chapter
+	} });
+	if (error) throw error;
+	if (data?.error) throw new Error(data.error);
+	return data;
+};
 var alertVariants = cva("relative w-full rounded-lg border p-4 [&>svg~*]:pl-7 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-foreground", {
 	variants: { variant: {
 		default: "bg-background text-foreground",
@@ -39180,4 +39122,4 @@ var App = () => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AuthProvider, { chil
 var App_default = App;
 (0, import_client.createRoot)(document.getElementById("root")).render(/* @__PURE__ */ (0, import_jsx_runtime.jsx)(App_default, {}));
 
-//# sourceMappingURL=index-B36r7yqK.js.map
+//# sourceMappingURL=index-D3fpTent.js.map
