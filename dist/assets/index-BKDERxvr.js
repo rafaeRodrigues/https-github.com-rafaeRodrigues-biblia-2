@@ -15985,6 +15985,11 @@ function useOutlet(context) {
 	let outlet = import_react.useContext(RouteContext).outlet;
 	return import_react.useMemo(() => outlet && /* @__PURE__ */ import_react.createElement(OutletContext.Provider, { value: context }, outlet), [outlet, context]);
 }
+function useParams() {
+	let { matches } = import_react.useContext(RouteContext);
+	let routeMatch = matches[matches.length - 1];
+	return routeMatch ? routeMatch.params : {};
+}
 function useResolvedPath(to, { relative } = {}) {
 	let { matches } = import_react.useContext(RouteContext);
 	let { pathname: locationPathname } = useLocation();
@@ -19031,6 +19036,14 @@ var Check = createLucideIcon("check", [["path", {
 var ChevronDown = createLucideIcon("chevron-down", [["path", {
 	d: "m6 9 6 6 6-6",
 	key: "qrunsl"
+}]]);
+var ChevronLeft = createLucideIcon("chevron-left", [["path", {
+	d: "m15 18-6-6 6-6",
+	key: "1wnfg3"
+}]]);
+var ChevronRight = createLucideIcon("chevron-right", [["path", {
+	d: "m9 18 6-6-6-6",
+	key: "mthhwq"
 }]]);
 var ChevronUp = createLucideIcon("chevron-up", [["path", {
 	d: "m18 15-6-6-6 6",
@@ -37238,70 +37251,30 @@ function Management() {
 		})]
 	});
 }
-const getBibleVerses = async () => {
-	const { data, error } = await supabase.from("bible_verses").select(`
-      id, text, chapter, verse,
-      bible_books ( name )
-    `).order("chapter").order("verse");
+const getBibleBooks = async () => {
+	const { data, error } = await supabase.from("bible_books").select("*").order("sort_order");
 	if (error) throw error;
 	return data;
 };
-var MOCK_VERSES = [
-	{
-		book: "Gênesis",
-		chapter: 1,
-		verse: 1,
-		text: "No princípio criou Deus os céus e a terra."
-	},
-	{
-		book: "João",
-		chapter: 3,
-		verse: 16,
-		text: "Porque Deus amou o mundo de tal maneira que deu o seu Filho unigênito, para que todo aquele que nele crê não pereça, mas tenha a vida eterna."
-	},
-	{
-		book: "Filipenses",
-		chapter: 4,
-		verse: 13,
-		text: "Posso todas as coisas em Cristo que me fortalece."
-	},
-	{
-		book: "Salmos",
-		chapter: 23,
-		verse: 1,
-		text: "O Senhor é o meu pastor; de nada me faltará."
-	},
-	{
-		book: "Romanos",
-		chapter: 8,
-		verse: 28,
-		text: "E sabemos que todas as coisas contribuem juntamente para o bem daqueles que amam a Deus."
-	}
-];
+const getBibleBook = async (id) => {
+	const { data, error } = await supabase.from("bible_books").select("*").eq("id", id).single();
+	if (error) throw error;
+	return data;
+};
+const getChapterVerses = async (bookId, chapter) => {
+	const { data, error } = await supabase.from("bible_verses").select("*").eq("book_id", bookId).eq("chapter", chapter).order("verse");
+	if (error) throw error;
+	return data;
+};
 function Bible() {
+	const [books, setBooks] = (0, import_react.useState)([]);
 	const [search, setSearch] = (0, import_react.useState)("");
-	const [verses, setVerses] = (0, import_react.useState)([]);
 	(0, import_react.useEffect)(() => {
-		getBibleVerses().then((data) => {
-			if (data && data.length > 0) setVerses(data);
-			else setVerses(MOCK_VERSES.map((v) => ({
-				id: Math.random().toString(),
-				text: v.text,
-				chapter: v.chapter,
-				verse: v.verse,
-				bible_books: { name: v.book }
-			})));
-		}).catch(() => {
-			setVerses(MOCK_VERSES.map((v) => ({
-				id: Math.random().toString(),
-				text: v.text,
-				chapter: v.chapter,
-				verse: v.verse,
-				bible_books: { name: v.book }
-			})));
-		});
+		getBibleBooks().then((data) => setBooks(data || [])).catch(console.error);
 	}, []);
-	const filtered = search.trim() === "" ? verses : verses.filter((v) => v.text.toLowerCase().includes(search.toLowerCase()) || (v.bible_books?.name || "").toLowerCase().includes(search.toLowerCase()));
+	const filteredBooks = books.filter((b$1) => b$1.name.toLowerCase().includes(search.toLowerCase()));
+	const otBooks = filteredBooks.filter((b$1) => b$1.testament === "OT");
+	const ntBooks = filteredBooks.filter((b$1) => b$1.testament === "NT");
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 		className: "space-y-6 animate-fade-in-up py-4",
 		children: [
@@ -37315,49 +37288,263 @@ function Bible() {
 			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 				className: "relative group",
 				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Search, { className: "absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Input, {
-					className: "pl-10 h-12 text-[15px] rounded-xl bg-muted/20 border-muted/60 shadow-none focus-visible:ring-primary/20",
-					placeholder: "Buscar versículo ou livro...",
+					className: "pl-10 h-12 text-[15px] rounded-xl bg-muted/20 border-muted/60 shadow-none focus-visible:ring-primary/20 transition-colors",
+					placeholder: "Buscar livro...",
 					value: search,
 					onChange: (e) => setSearch(e.target.value)
 				})]
 			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-				className: "space-y-3",
-				children: [filtered.map((v, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Card, {
-					className: "shadow-none border-muted/60 bg-card hover:bg-muted/10 transition-colors",
-					children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardContent, {
-						className: "p-4",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
-							className: "font-bold text-[13px] text-primary mb-1 tracking-tight",
-							children: [
-								v.bible_books?.name,
-								" ",
-								v.chapter,
-								":",
-								v.verse
-							]
-						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-							className: "text-[15px] text-foreground leading-relaxed",
-							children: v.text
+			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Tabs, {
+				defaultValue: "OT",
+				className: "w-full",
+				children: [
+					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(TabsList, {
+						className: "grid w-full grid-cols-2 p-1 bg-muted/40 h-12 rounded-xl",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(TabsTrigger, {
+							value: "OT",
+							className: "rounded-lg font-semibold",
+							children: "Velho Testamento"
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(TabsTrigger, {
+							value: "NT",
+							className: "rounded-lg font-semibold",
+							children: "Novo Testamento"
+						})]
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(TabsContent, {
+						value: "OT",
+						className: "mt-6 space-y-3 pb-8",
+						children: [otBooks.map((book) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Link, {
+							to: `/bible/${book.id}`,
+							className: "block",
+							children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Card, {
+								className: "shadow-none border-muted/60 bg-card hover:bg-muted/30 transition-colors duration-300",
+								children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardContent, {
+									className: "p-4 flex items-center justify-between",
+									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
+										className: "font-bold text-base",
+										children: book.name
+									}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
+										className: "text-[13px] text-muted-foreground mt-0.5 font-medium",
+										children: [book.chapters_count, " capítulos"]
+									})] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+										className: "w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-xs tracking-tight",
+										children: book.abbreviation
+									})]
+								})
+							})
+						}, book.id)), otBooks.length === 0 && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+							className: "text-center text-muted-foreground py-8",
+							children: "Nenhum livro encontrado."
+						})]
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(TabsContent, {
+						value: "NT",
+						className: "mt-6 space-y-3 pb-8",
+						children: [ntBooks.map((book) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Link, {
+							to: `/bible/${book.id}`,
+							className: "block",
+							children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Card, {
+								className: "shadow-none border-muted/60 bg-card hover:bg-muted/30 transition-colors duration-300",
+								children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardContent, {
+									className: "p-4 flex items-center justify-between",
+									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
+										className: "font-bold text-base",
+										children: book.name
+									}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
+										className: "text-[13px] text-muted-foreground mt-0.5 font-medium",
+										children: [book.chapters_count, " capítulos"]
+									})] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+										className: "w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-xs tracking-tight",
+										children: book.abbreviation
+									})]
+								})
+							})
+						}, book.id)), ntBooks.length === 0 && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+							className: "text-center text-muted-foreground py-8",
+							children: "Nenhum livro encontrado."
 						})]
 					})
-				}, v.id || i)), filtered.length === 0 && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-					className: "text-center py-16 px-4",
-					children: [
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-							className: "w-16 h-16 bg-muted/50 rounded-full flex items-center justify-center mx-auto mb-4",
-							children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Search, { className: "w-8 h-8 text-muted-foreground/50" })
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
-							className: "text-lg font-medium mb-1",
-							children: "Nenhum resultado"
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-							className: "text-muted-foreground text-sm",
-							children: "Não encontramos nenhum versículo com essa busca."
-						})
-					]
-				})]
+				]
+			})
+		]
+	});
+}
+function BibleBook() {
+	const { bookId } = useParams();
+	const navigate = useNavigate();
+	const [book, setBook] = (0, import_react.useState)(null);
+	(0, import_react.useEffect)(() => {
+		if (bookId) getBibleBook(bookId).then(setBook).catch(console.error);
+	}, [bookId]);
+	if (!book) return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+		className: "flex justify-center py-20 text-muted-foreground animate-pulse",
+		children: "Carregando..."
+	});
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+		className: "space-y-6 animate-fade-in py-4",
+		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+			className: "flex items-center gap-3 px-1",
+			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
+				variant: "ghost",
+				size: "icon",
+				onClick: () => navigate("/bible"),
+				className: "shrink-0 -ml-2 w-10 h-10",
+				children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ArrowLeft, { className: "w-5 h-5" })
+			}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h1", {
+				className: "text-2xl font-bold tracking-tight",
+				children: book.name
+			}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+				className: "text-sm text-muted-foreground",
+				children: "Selecione um capítulo"
+			})] })]
+		}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+			className: "grid grid-cols-5 gap-3 pt-4",
+			children: Array.from({ length: book.chapters_count }).map((_$1, i) => {
+				const chapter = i + 1;
+				return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Link, {
+					to: `/bible/${book.id}/${chapter}`,
+					className: "flex items-center justify-center h-14 rounded-xl border border-muted/60 bg-muted/20 font-bold text-lg text-foreground/80 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-300 active:scale-95",
+					children: chapter
+				}, chapter);
+			})
+		})]
+	});
+}
+function BibleChapter() {
+	const { bookId, chapter } = useParams();
+	const chapterNum = parseInt(chapter || "1", 10);
+	const navigate = useNavigate();
+	const { toast: toast$2 } = useToast();
+	const [book, setBook] = (0, import_react.useState)(null);
+	const [allBooks, setAllBooks] = (0, import_react.useState)([]);
+	const [verses, setVerses] = (0, import_react.useState)([]);
+	const [loading, setLoading] = (0, import_react.useState)(true);
+	(0, import_react.useEffect)(() => {
+		getBibleBooks().then(setAllBooks).catch(console.error);
+	}, []);
+	(0, import_react.useEffect)(() => {
+		if (bookId && chapterNum) {
+			setLoading(true);
+			Promise.all([getBibleBook(bookId), getChapterVerses(bookId, chapterNum)]).then(([bookData, versesData]) => {
+				setBook(bookData);
+				setVerses(versesData);
+				window.scrollTo(0, 0);
+			}).catch(() => {
+				toast$2({
+					variant: "destructive",
+					title: "Erro ao carregar capítulo"
+				});
+			}).finally(() => {
+				setLoading(false);
+			});
+		}
+	}, [
+		bookId,
+		chapterNum,
+		toast$2
+	]);
+	const { prevLink, nextLink } = (0, import_react.useMemo)(() => {
+		if (!book || allBooks.length === 0) return {
+			prevLink: null,
+			nextLink: null
+		};
+		let prev = null;
+		let next = null;
+		if (chapterNum > 1) prev = `/bible/${book.id}/${chapterNum - 1}`;
+		else {
+			const currentBookIndex = allBooks.findIndex((b$1) => b$1.id === book.id);
+			if (currentBookIndex > 0) {
+				const prevBook = allBooks[currentBookIndex - 1];
+				prev = `/bible/${prevBook.id}/${prevBook.chapters_count}`;
+			}
+		}
+		if (chapterNum < book.chapters_count) next = `/bible/${book.id}/${chapterNum + 1}`;
+		else {
+			const currentBookIndex = allBooks.findIndex((b$1) => b$1.id === book.id);
+			if (currentBookIndex < allBooks.length - 1) next = `/bible/${allBooks[currentBookIndex + 1].id}/1`;
+		}
+		return {
+			prevLink: prev,
+			nextLink: next
+		};
+	}, [
+		book,
+		allBooks,
+		chapterNum
+	]);
+	if (!book && loading) return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+		className: "flex justify-center py-20 text-muted-foreground animate-pulse",
+		children: "Carregando..."
+	});
+	if (!book) return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+		className: "p-8 text-center text-muted-foreground",
+		children: "Livro não encontrado"
+	});
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+		className: "space-y-6 animate-fade-in pb-12",
+		children: [
+			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+				className: "sticky top-0 bg-background/95 backdrop-blur-md z-20 py-3 border-b -mx-4 px-4 flex items-center justify-between shadow-sm",
+				children: [
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
+						variant: "ghost",
+						size: "icon",
+						onClick: () => navigate(`/bible/${book.id}`),
+						className: "shrink-0 -ml-2",
+						children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ArrowLeft, { className: "w-5 h-5" })
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h1", {
+						className: "text-lg font-bold tracking-tight text-center truncate px-2",
+						children: [
+							book.name,
+							" ",
+							chapterNum
+						]
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "w-9" })
+				]
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+				className: "space-y-5 px-1 min-h-[50vh] pt-2 pb-6",
+				children: loading ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+					className: "text-center text-muted-foreground py-10 animate-pulse",
+					children: "Carregando versículos..."
+				}) : verses.length > 0 ? verses.map((v) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
+					className: "text-[17px] leading-[1.7] text-foreground/90 font-serif",
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("sup", {
+						className: "text-[11px] text-primary font-bold mr-1.5 select-none",
+						children: v.verse
+					}), v.text]
+				}, v.id)) : /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+					className: "text-center text-muted-foreground py-12 px-4 bg-muted/20 rounded-2xl",
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+						className: "font-semibold text-foreground/80 mb-2",
+						children: "Versículos não encontrados"
+					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+						className: "text-sm opacity-80 max-w-[250px] mx-auto",
+						children: "A base de dados de demonstração inclui apenas o primeiro capítulo de Gênesis e João."
+					})]
+				})
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+				className: "flex justify-between items-center pt-8 border-t border-muted/60 px-1",
+				children: [prevLink ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
+					asChild: true,
+					variant: "outline",
+					className: "h-12 rounded-xl font-semibold gap-2 border-muted/60",
+					children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Link, {
+						to: prevLink,
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(ChevronLeft, { className: "w-4 h-4" }), " Anterior"]
+					})
+				}) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {}), nextLink ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
+					asChild: true,
+					variant: "default",
+					className: "h-12 rounded-xl font-semibold gap-2",
+					children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Link, {
+						to: nextLink,
+						children: ["Próximo ", /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ChevronRight, { className: "w-4 h-4" })]
+					})
+				}) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {})]
 			})
 		]
 	});
@@ -38287,7 +38474,7 @@ var ChurchIcon = ({ className }) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)
 	]
 });
 var NavItem = ({ to, icon: Icon$2, label, current }) => {
-	const isActive = current === to;
+	const isActive = current === to || to !== "/" && current?.startsWith(to);
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Link, {
 		to,
 		className: "flex flex-col items-center justify-center flex-1 h-14 gap-1 relative group",
@@ -38300,29 +38487,8 @@ var NavItem = ({ to, icon: Icon$2, label, current }) => {
 		})]
 	});
 };
-var ExternalNavItem = ({ href, icon: Icon$2, label }) => {
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("a", {
-		href,
-		target: "_blank",
-		rel: "noopener noreferrer",
-		className: "flex flex-col items-center justify-center flex-1 h-14 gap-1 relative group",
-		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-			className: "p-1.5 rounded-full transition-colors duration-300 bg-transparent group-hover:bg-muted",
-			children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Icon$2, { className: "w-5 h-5 transition-colors duration-300 text-muted-foreground group-hover:text-foreground" })
-		}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-			className: "text-[10px] font-semibold transition-colors duration-300 text-muted-foreground group-hover:text-foreground",
-			children: label
-		})]
-	});
-};
 function Layout() {
 	const location = useLocation();
-	const [mapsUrl, setMapsUrl] = (0, import_react.useState)("https://maps.app.goo.gl/4tQWGHvNJ1a626KW8");
-	(0, import_react.useEffect)(() => {
-		getSocialLinks().then((links) => {
-			if (links?.maps) setMapsUrl(links.maps);
-		});
-	}, []);
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 		className: "flex h-screen bg-background text-foreground overflow-hidden transition-colors duration-300",
 		children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
@@ -38372,15 +38538,16 @@ function Layout() {
 							current: location.pathname
 						}),
 						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(NavItem, {
+							icon: Book,
+							label: "Bíblia",
+							to: "/bible",
+							current: location.pathname
+						}),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(NavItem, {
 							icon: CirclePlay,
 							label: "Mídia",
 							to: "/midia",
 							current: location.pathname
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(ExternalNavItem, {
-							icon: MapPin,
-							label: "Campus",
-							href: mapsUrl
 						}),
 						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(NavItem, {
 							icon: LayoutGrid,
@@ -38807,6 +38974,14 @@ var App = () => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AuthProvider, { chil
 							element: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bible, {})
 						}),
 						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Route, {
+							path: "/bible/:bookId",
+							element: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(BibleBook, {})
+						}),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Route, {
+							path: "/bible/:bookId/:chapter",
+							element: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(BibleChapter, {})
+						}),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Route, {
 							path: "/plans",
 							element: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Plans, {})
 						}),
@@ -38827,4 +39002,4 @@ var App = () => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AuthProvider, { chil
 var App_default = App;
 (0, import_client.createRoot)(document.getElementById("root")).render(/* @__PURE__ */ (0, import_jsx_runtime.jsx)(App_default, {}));
 
-//# sourceMappingURL=index-BISQp19N.js.map
+//# sourceMappingURL=index-BKDERxvr.js.map

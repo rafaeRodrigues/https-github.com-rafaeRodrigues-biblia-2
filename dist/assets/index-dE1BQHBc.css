@@ -553,6 +553,9 @@ section[aria-label='Notifications alt+T'] {
 .relative{
   position: relative;
 }
+.sticky{
+  position: sticky;
+}
 .inset-0{
   inset: 0px;
 }
@@ -704,6 +707,9 @@ section[aria-label='Notifications alt+T'] {
   margin-top: 0.25rem;
   margin-bottom: 0.25rem;
 }
+.-ml-2{
+  margin-left: -0.5rem;
+}
 .-ml-4{
   margin-left: -1rem;
 }
@@ -743,8 +749,14 @@ section[aria-label='Notifications alt+T'] {
 .ml-auto{
   margin-left: auto;
 }
+.mr-1\.5{
+  margin-right: 0.375rem;
+}
 .mr-2{
   margin-right: 0.5rem;
+}
+.mt-0\.5{
+  margin-top: 0.125rem;
 }
 .mt-1{
   margin-top: 0.25rem;
@@ -924,6 +936,9 @@ section[aria-label='Notifications alt+T'] {
 }
 .min-h-\[250px\]{
   min-height: 250px;
+}
+.min-h-\[50vh\]{
+  min-height: 50vh;
 }
 .min-h-\[80px\]{
   min-height: 80px;
@@ -1248,6 +1263,9 @@ section[aria-label='Notifications alt+T'] {
 .grid-cols-3{
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
+.grid-cols-5{
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
 .flex-row{
   flex-direction: row;
 }
@@ -1331,6 +1349,11 @@ section[aria-label='Notifications alt+T'] {
   margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(1rem * var(--tw-space-y-reverse));
 }
+.space-y-5 > :not([hidden]) ~ :not([hidden]){
+  --tw-space-y-reverse: 0;
+  margin-top: calc(1.25rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(1.25rem * var(--tw-space-y-reverse));
+}
 .space-y-6 > :not([hidden]) ~ :not([hidden]){
   --tw-space-y-reverse: 0;
   margin-top: calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));
@@ -1355,6 +1378,11 @@ section[aria-label='Notifications alt+T'] {
 }
 .overflow-x-hidden{
   overflow-x: hidden;
+}
+.truncate{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .whitespace-nowrap{
   white-space: nowrap;
@@ -1678,6 +1706,9 @@ section[aria-label='Notifications alt+T'] {
 .p-6{
   padding: 1.5rem;
 }
+.p-8{
+  padding: 2rem;
+}
 .p-\[1px\]{
   padding: 1px;
 }
@@ -1729,6 +1760,14 @@ section[aria-label='Notifications alt+T'] {
   padding-top: 0.375rem;
   padding-bottom: 0.375rem;
 }
+.py-10{
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+.py-12{
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
 .py-16{
   padding-top: 4rem;
   padding-bottom: 4rem;
@@ -1736,6 +1775,10 @@ section[aria-label='Notifications alt+T'] {
 .py-2{
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
+}
+.py-20{
+  padding-top: 5rem;
+  padding-bottom: 5rem;
 }
 .py-3{
   padding-top: 0.75rem;
@@ -1749,8 +1792,15 @@ section[aria-label='Notifications alt+T'] {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
 }
+.py-8{
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
 .pb-10{
   padding-bottom: 2.5rem;
+}
+.pb-12{
+  padding-bottom: 3rem;
 }
 .pb-2{
   padding-bottom: 0.5rem;
@@ -1763,6 +1813,9 @@ section[aria-label='Notifications alt+T'] {
 }
 .pb-4{
   padding-bottom: 1rem;
+}
+.pb-6{
+  padding-bottom: 1.5rem;
 }
 .pb-8{
   padding-bottom: 2rem;
@@ -1821,6 +1874,9 @@ section[aria-label='Notifications alt+T'] {
 .pt-6{
   padding-top: 1.5rem;
 }
+.pt-8{
+  padding-top: 2rem;
+}
 .text-left{
   text-align: left;
 }
@@ -1835,6 +1891,9 @@ section[aria-label='Notifications alt+T'] {
 }
 .font-sans{
   font-family: Inter var, SF Pro Display, system-ui, sans-serif;
+}
+.font-serif{
+  font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
 }
 .text-2xl{
   font-size: 1.5rem;
@@ -1914,6 +1973,9 @@ section[aria-label='Notifications alt+T'] {
   --tw-numeric-spacing: tabular-nums;
   font-variant-numeric: var(--tw-ordinal) var(--tw-slashed-zero) var(--tw-numeric-figure) var(--tw-numeric-spacing) var(--tw-numeric-fraction);
 }
+.leading-\[1\.7\]{
+  line-height: 1.7;
+}
 .leading-none{
   line-height: 1;
 }
@@ -1966,6 +2028,9 @@ section[aria-label='Notifications alt+T'] {
 .text-foreground\/80{
   color: hsl(var(--foreground) / 0.8);
 }
+.text-foreground\/90{
+  color: hsl(var(--foreground) / 0.9);
+}
 .text-gray-600{
   --tw-text-opacity: 1;
   color: rgb(75 85 99 / var(--tw-text-opacity, 1));
@@ -1976,9 +2041,6 @@ section[aria-label='Notifications alt+T'] {
 }
 .text-muted-foreground{
   color: hsl(var(--muted-foreground));
-}
-.text-muted-foreground\/50{
-  color: hsl(var(--muted-foreground) / 0.5);
 }
 .text-popover-foreground{
   color: hsl(var(--popover-foreground));
@@ -2493,6 +2555,9 @@ section[aria-label='Notifications alt+T'] {
   --tw-scale-y: 1.05;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
+.hover\:border-primary:hover{
+  border-color: hsl(var(--primary));
+}
 .hover\:bg-accent:hover{
   background-color: hsl(var(--accent));
 }
@@ -2511,11 +2576,14 @@ section[aria-label='Notifications alt+T'] {
 .hover\:bg-muted:hover{
   background-color: hsl(var(--muted));
 }
-.hover\:bg-muted\/10:hover{
-  background-color: hsl(var(--muted) / 0.1);
+.hover\:bg-muted\/30:hover{
+  background-color: hsl(var(--muted) / 0.3);
 }
 .hover\:bg-muted\/50:hover{
   background-color: hsl(var(--muted) / 0.5);
+}
+.hover\:bg-primary:hover{
+  background-color: hsl(var(--primary));
 }
 .hover\:bg-primary\/50:hover{
   background-color: hsl(var(--primary) / 0.5);
@@ -2558,6 +2626,9 @@ section[aria-label='Notifications alt+T'] {
 }
 .hover\:text-muted-foreground:hover{
   color: hsl(var(--muted-foreground));
+}
+.hover\:text-primary-foreground:hover{
+  color: hsl(var(--primary-foreground));
 }
 .hover\:text-sidebar-accent-foreground:hover{
   color: hsl(var(--sidebar-accent-foreground));
@@ -2638,6 +2709,11 @@ section[aria-label='Notifications alt+T'] {
 .focus-visible\:ring-offset-background:focus-visible{
   --tw-ring-offset-color: hsl(var(--background));
 }
+.active\:scale-95:active{
+  --tw-scale-x: .95;
+  --tw-scale-y: .95;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
 .active\:scale-\[0\.98\]:active{
   --tw-scale-x: 0.98;
   --tw-scale-y: 0.98;
@@ -2665,9 +2741,6 @@ section[aria-label='Notifications alt+T'] {
   --tw-scale-x: 1.1;
   --tw-scale-y: 1.1;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-.group:hover .group-hover\:bg-muted{
-  background-color: hsl(var(--muted));
 }
 .group:hover .group-hover\:bg-primary\/10{
   background-color: hsl(var(--primary) / 0.1);

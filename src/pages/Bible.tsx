@@ -1,86 +1,27 @@
 import { useState, useEffect } from 'react'
-import { Input } from '@/components/ui/input'
 import { Card, CardContent } from '@/components/ui/card'
-import { Search, Book } from 'lucide-react'
-import { getBibleVerses } from '@/services/bible'
-
-const MOCK_VERSES = [
-  {
-    book: 'Gênesis',
-    chapter: 1,
-    verse: 1,
-    text: 'No princípio criou Deus os céus e a terra.',
-  },
-  {
-    book: 'João',
-    chapter: 3,
-    verse: 16,
-    text: 'Porque Deus amou o mundo de tal maneira que deu o seu Filho unigênito, para que todo aquele que nele crê não pereça, mas tenha a vida eterna.',
-  },
-  {
-    book: 'Filipenses',
-    chapter: 4,
-    verse: 13,
-    text: 'Posso todas as coisas em Cristo que me fortalece.',
-  },
-  {
-    book: 'Salmos',
-    chapter: 23,
-    verse: 1,
-    text: 'O Senhor é o meu pastor; de nada me faltará.',
-  },
-  {
-    book: 'Romanos',
-    chapter: 8,
-    verse: 28,
-    text: 'E sabemos que todas as coisas contribuem juntamente para o bem daqueles que amam a Deus.',
-  },
-]
+import { Book, Search } from 'lucide-react'
+import { getBibleBooks, BibleBook } from '@/services/bible'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { Link } from 'react-router-dom'
+import { Input } from '@/components/ui/input'
 
 export default function Bible() {
+  const [books, setBooks] = useState<BibleBook[]>([])
   const [search, setSearch] = useState('')
-  const [verses, setVerses] = useState<any[]>([])
 
   useEffect(() => {
-    getBibleVerses()
-      .then((data) => {
-        if (data && data.length > 0) {
-          setVerses(data)
-        } else {
-          setVerses(
-            MOCK_VERSES.map((v) => ({
-              id: Math.random().toString(),
-              text: v.text,
-              chapter: v.chapter,
-              verse: v.verse,
-              bible_books: { name: v.book },
-            })),
-          )
-        }
-      })
-      .catch(() => {
-        setVerses(
-          MOCK_VERSES.map((v) => ({
-            id: Math.random().toString(),
-            text: v.text,
-            chapter: v.chapter,
-            verse: v.verse,
-            bible_books: { name: v.book },
-          })),
-        )
-      })
+    getBibleBooks()
+      .then((data) => setBooks(data || []))
+      .catch(console.error)
   }, [])
 
-  const filtered =
-    search.trim() === ''
-      ? verses
-      : verses.filter(
-          (v) =>
-            v.text.toLowerCase().includes(search.toLowerCase()) ||
-            (v.bible_books?.name || '')
-              .toLowerCase()
-              .includes(search.toLowerCase()),
-        )
+  const filteredBooks = books.filter((b) =>
+    b.name.toLowerCase().includes(search.toLowerCase()),
+  )
+
+  const otBooks = filteredBooks.filter((b) => b.testament === 'OT')
+  const ntBooks = filteredBooks.filter((b) => b.testament === 'NT')
 
   return (
     <div className="space-y-6 animate-fade-in-up py-4">
@@ -92,42 +33,73 @@ export default function Bible() {
       <div className="relative group">
         <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
         <Input
-          className="pl-10 h-12 text-[15px] rounded-xl bg-muted/20 border-muted/60 shadow-none focus-visible:ring-primary/20"
-          placeholder="Buscar versículo ou livro..."
+          className="pl-10 h-12 text-[15px] rounded-xl bg-muted/20 border-muted/60 shadow-none focus-visible:ring-primary/20 transition-colors"
+          placeholder="Buscar livro..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
       </div>
 
-      <div className="space-y-3">
-        {filtered.map((v, i) => (
-          <Card
-            key={v.id || i}
-            className="shadow-none border-muted/60 bg-card hover:bg-muted/10 transition-colors"
-          >
-            <CardContent className="p-4">
-              <p className="font-bold text-[13px] text-primary mb-1 tracking-tight">
-                {v.bible_books?.name} {v.chapter}:{v.verse}
-              </p>
-              <p className="text-[15px] text-foreground leading-relaxed">
-                {v.text}
-              </p>
-            </CardContent>
-          </Card>
-        ))}
+      <Tabs defaultValue="OT" className="w-full">
+        <TabsList className="grid w-full grid-cols-2 p-1 bg-muted/40 h-12 rounded-xl">
+          <TabsTrigger value="OT" className="rounded-lg font-semibold">
+            Velho Testamento
+          </TabsTrigger>
+          <TabsTrigger value="NT" className="rounded-lg font-semibold">
+            Novo Testamento
+          </TabsTrigger>
+        </TabsList>
 
-        {filtered.length === 0 && (
-          <div className="text-center py-16 px-4">
-            <div className="w-16 h-16 bg-muted/50 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Search className="w-8 h-8 text-muted-foreground/50" />
-            </div>
-            <h3 className="text-lg font-medium mb-1">Nenhum resultado</h3>
-            <p className="text-muted-foreground text-sm">
-              Não encontramos nenhum versículo com essa busca.
+        <TabsContent value="OT" className="mt-6 space-y-3 pb-8">
+          {otBooks.map((book) => (
+            <Link key={book.id} to={`/bible/${book.id}`} className="block">
+              <Card className="shadow-none border-muted/60 bg-card hover:bg-muted/30 transition-colors duration-300">
+                <CardContent className="p-4 flex items-center justify-between">
+                  <div>
+                    <h3 className="font-bold text-base">{book.name}</h3>
+                    <p className="text-[13px] text-muted-foreground mt-0.5 font-medium">
+                      {book.chapters_count} capítulos
+                    </p>
+                  </div>
+                  <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-xs tracking-tight">
+                    {book.abbreviation}
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
+          ))}
+          {otBooks.length === 0 && (
+            <p className="text-center text-muted-foreground py-8">
+              Nenhum livro encontrado.
             </p>
-          </div>
-        )}
-      </div>
+          )}
+        </TabsContent>
+
+        <TabsContent value="NT" className="mt-6 space-y-3 pb-8">
+          {ntBooks.map((book) => (
+            <Link key={book.id} to={`/bible/${book.id}`} className="block">
+              <Card className="shadow-none border-muted/60 bg-card hover:bg-muted/30 transition-colors duration-300">
+                <CardContent className="p-4 flex items-center justify-between">
+                  <div>
+                    <h3 className="font-bold text-base">{book.name}</h3>
+                    <p className="text-[13px] text-muted-foreground mt-0.5 font-medium">
+                      {book.chapters_count} capítulos
+                    </p>
+                  </div>
+                  <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-xs tracking-tight">
+                    {book.abbreviation}
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
+          ))}
+          {ntBooks.length === 0 && (
+            <p className="text-center text-muted-foreground py-8">
+              Nenhum livro encontrado.
+            </p>
+          )}
+        </TabsContent>
+      </Tabs>
     </div>
   )
 }

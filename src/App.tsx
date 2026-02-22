@@ -9,6 +9,8 @@ import Church from './pages/Church'
 import Media from './pages/Media'
 import Management from './pages/Management'
 import Bible from './pages/Bible'
+import BibleBook from './pages/BibleBook'
+import BibleChapter from './pages/BibleChapter'
 import Plans from './pages/Plans'
 import Notes from './pages/Notes'
 import NotFound from './pages/NotFound'
@@ -53,6 +55,11 @@ const App = () => (
               <Route path="/midia" element={<Media />} />
               <Route path="/management" element={<Management />} />
               <Route path="/bible" element={<Bible />} />
+              <Route path="/bible/:bookId" element={<BibleBook />} />
+              <Route
+                path="/bible/:bookId/:chapter"
+                element={<BibleChapter />}
+              />
               <Route path="/plans" element={<Plans />} />
               <Route path="/notes" element={<Notes />} />
             </Route>

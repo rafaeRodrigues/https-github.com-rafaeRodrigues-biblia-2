@@ -1,17 +1,15 @@
 import { Outlet, Link, useLocation } from 'react-router-dom'
 import {
   Home,
-  MapPin,
   LayoutGrid,
   Bell,
   UserCircle,
   PlayCircle,
+  Book,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import logoUrl from '@/assets/1000486575-8a4e3.png'
 import { ThemeToggle } from '@/components/theme-toggle'
-import { useEffect, useState } from 'react'
-import { getSocialLinks } from '@/services/config'
 
 const ChurchIcon = ({ className }: { className?: string }) => (
   <svg
@@ -33,7 +31,7 @@ const ChurchIcon = ({ className }: { className?: string }) => (
 )
 
 const NavItem = ({ to, icon: Icon, label, current }: any) => {
-  const isActive = current === to
+  const isActive = current === to || (to !== '/' && current?.startsWith(to))
   return (
     <Link
       to={to}
@@ -64,35 +62,8 @@ const NavItem = ({ to, icon: Icon, label, current }: any) => {
   )
 }
 
-const ExternalNavItem = ({ href, icon: Icon, label }: any) => {
-  return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="flex flex-col items-center justify-center flex-1 h-14 gap-1 relative group"
-    >
-      <div className="p-1.5 rounded-full transition-colors duration-300 bg-transparent group-hover:bg-muted">
-        <Icon className="w-5 h-5 transition-colors duration-300 text-muted-foreground group-hover:text-foreground" />
-      </div>
-      <span className="text-[10px] font-semibold transition-colors duration-300 text-muted-foreground group-hover:text-foreground">
-        {label}
-      </span>
-    </a>
-  )
-}
-
 export default function Layout() {
   const location = useLocation()
-  const [mapsUrl, setMapsUrl] = useState(
-    'https://maps.app.goo.gl/4tQWGHvNJ1a626KW8',
-  )
-
-  useEffect(() => {
-    getSocialLinks().then((links) => {
-      if (links?.maps) setMapsUrl(links.maps)
-    })
-  }, [])
 
   return (
     <div className="flex h-screen bg-background text-foreground overflow-hidden transition-colors duration-300">
@@ -137,12 +108,17 @@ export default function Layout() {
             current={location.pathname}
           />
           <NavItem
+            icon={Book}
+            label="Bíblia"
+            to="/bible"
+            current={location.pathname}
+          />
+          <NavItem
             icon={PlayCircle}
             label="Mídia"
             to="/midia"
             current={location.pathname}
           />
-          <ExternalNavItem icon={MapPin} label="Campus" href={mapsUrl} />
           <NavItem
             icon={LayoutGrid}
             label="Gestão"
