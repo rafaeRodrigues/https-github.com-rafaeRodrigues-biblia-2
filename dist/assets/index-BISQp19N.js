@@ -34852,12 +34852,34 @@ var TabsContent = import_react.forwardRef(({ className, ...props }, ref) => /* @
 TabsContent.displayName = Content$1.displayName;
 async function getSocialLinks() {
 	try {
-		const { data, error } = await supabase.from("app_config").select("value").eq("key", "social_links").single();
+		const { data, error } = await supabase.from("app_config").select("key, value").in("key", [
+			"spotify_url",
+			"instagram_url",
+			"social_links"
+		]);
 		if (error) {
-			if (error.code !== "PGRST116") console.error("Error fetching social links", error);
+			console.error("Error fetching social links", error);
 			return null;
 		}
-		return data?.value;
+		const result = {};
+		const socialLinksRow = data?.find((item) => item.key === "social_links");
+		if (socialLinksRow && typeof socialLinksRow.value === "object" && socialLinksRow.value !== null) {
+			const val = socialLinksRow.value;
+			if (val.instagram) result.instagram = val.instagram;
+			if (val.spotify) result.spotify = val.spotify;
+			if (val.maps) result.maps = val.maps;
+		}
+		const instagramRow = data?.find((item) => item.key === "instagram_url");
+		if (instagramRow && typeof instagramRow.value === "object" && instagramRow.value !== null) {
+			const val = instagramRow.value;
+			if (val.url) result.instagram = val.url;
+		}
+		const spotifyRow = data?.find((item) => item.key === "spotify_url");
+		if (spotifyRow && typeof spotifyRow.value === "object" && spotifyRow.value !== null) {
+			const val = spotifyRow.value;
+			if (val.url) result.spotify = val.url;
+		}
+		return result;
 	} catch (e) {
 		console.error("Error fetching config", e);
 		return null;
@@ -34889,13 +34911,14 @@ var AGENDA = [
 function Media() {
 	const [links, setLinks] = (0, import_react.useState)({
 		instagram: "https://www.instagram.com/_ibpalavra?igsh=cXZxaDNwajlhdWk4",
-		spotify: "https://open.spotify.com/search/Igreja%20Batista%20da%20Palavra"
+		spotify: "https://open.spotify.com/show/1L8GDMrH3ZEw3ECrjC0QZQ"
 	});
 	(0, import_react.useEffect)(() => {
 		getSocialLinks().then((data) => {
 			if (data) setLinks((prev) => ({
 				...prev,
-				...data
+				...data.instagram && { instagram: data.instagram },
+				...data.spotify && { spotify: data.spotify }
 			}));
 		});
 	}, []);
@@ -34933,7 +34956,7 @@ function Media() {
 						className: "grid gap-3",
 						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
 							asChild: true,
-							className: "w-full h-14 rounded-xl font-bold bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 hover:opacity-90 text-white shadow-md border-0 text-base",
+							className: "w-full h-14 rounded-xl font-bold bg-zinc-950 hover:bg-zinc-800 text-zinc-50 dark:bg-zinc-50 dark:hover:bg-zinc-200 dark:text-zinc-950 shadow-md border-0 text-base transition-colors",
 							children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("a", {
 								href: links.instagram,
 								target: "_blank",
@@ -34942,7 +34965,7 @@ function Media() {
 							})
 						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
 							asChild: true,
-							className: "w-full h-14 rounded-xl font-bold bg-[#1DB954] hover:bg-[#1ed760] text-white shadow-md border-0 text-base",
+							className: "w-full h-14 rounded-xl font-bold bg-zinc-950 hover:bg-zinc-800 text-zinc-50 dark:bg-zinc-50 dark:hover:bg-zinc-200 dark:text-zinc-950 shadow-md border-0 text-base transition-colors",
 							children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("a", {
 								href: links.spotify,
 								target: "_blank",
@@ -38804,4 +38827,4 @@ var App = () => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AuthProvider, { chil
 var App_default = App;
 (0, import_client.createRoot)(document.getElementById("root")).render(/* @__PURE__ */ (0, import_jsx_runtime.jsx)(App_default, {}));
 
-//# sourceMappingURL=index-JHcTTS3S.js.map
+//# sourceMappingURL=index-BISQp19N.js.map

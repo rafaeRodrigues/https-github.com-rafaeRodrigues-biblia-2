@@ -40,13 +40,17 @@ const AGENDA = [
 export default function Media() {
   const [links, setLinks] = useState({
     instagram: 'https://www.instagram.com/_ibpalavra?igsh=cXZxaDNwajlhdWk4',
-    spotify: 'https://open.spotify.com/search/Igreja%20Batista%20da%20Palavra',
+    spotify: 'https://open.spotify.com/show/1L8GDMrH3ZEw3ECrjC0QZQ',
   })
 
   useEffect(() => {
     getSocialLinks().then((data) => {
       if (data) {
-        setLinks((prev) => ({ ...prev, ...data }))
+        setLinks((prev) => ({
+          ...prev,
+          ...(data.instagram && { instagram: data.instagram }),
+          ...(data.spotify && { spotify: data.spotify }),
+        }))
       }
     })
   }, [])
@@ -82,7 +86,7 @@ export default function Media() {
           <div className="grid gap-3">
             <Button
               asChild
-              className="w-full h-14 rounded-xl font-bold bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 hover:opacity-90 text-white shadow-md border-0 text-base"
+              className="w-full h-14 rounded-xl font-bold bg-zinc-950 hover:bg-zinc-800 text-zinc-50 dark:bg-zinc-50 dark:hover:bg-zinc-200 dark:text-zinc-950 shadow-md border-0 text-base transition-colors"
             >
               <a
                 href={links.instagram}
@@ -96,7 +100,7 @@ export default function Media() {
 
             <Button
               asChild
-              className="w-full h-14 rounded-xl font-bold bg-[#1DB954] hover:bg-[#1ed760] text-white shadow-md border-0 text-base"
+              className="w-full h-14 rounded-xl font-bold bg-zinc-950 hover:bg-zinc-800 text-zinc-50 dark:bg-zinc-50 dark:hover:bg-zinc-200 dark:text-zinc-950 shadow-md border-0 text-base transition-colors"
             >
               <a href={links.spotify} target="_blank" rel="noopener noreferrer">
                 <Music className="w-5 h-5 mr-2" />
