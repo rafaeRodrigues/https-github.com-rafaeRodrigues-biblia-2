@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import {
   Calendar,
@@ -9,6 +10,8 @@ import {
 } from 'lucide-react'
 import { Card, CardContent } from '@/components/ui/card'
 import { BannerCarousel } from '@/components/BannerCarousel'
+import { getReadingProgress } from '@/services/bible-progress'
+import { useAuth } from '@/hooks/use-auth'
 
 const DiaryBtn = ({ icon: Icon, label, to }: any) => (
   <Link to={to} className="flex flex-col items-center gap-2 group">
@@ -22,9 +25,48 @@ const DiaryBtn = ({ icon: Icon, label, to }: any) => (
 )
 
 export default function Index() {
+  const { user, isVisitor } = useAuth()
+  const [readingProgress, setReadingProgress] = useState<any>(null)
+
+  useEffect(() => {
+    if (user && !isVisitor) {
+      getReadingProgress().then(setReadingProgress).catch(console.error)
+    }
+  }, [user, isVisitor])
+
   return (
     <div className="space-y-8 animate-fade-in-up py-4">
       <BannerCarousel />
+
+      {readingProgress && readingProgress.bible_books && (
+        <div className="space-y-3 px-1">
+          <div className="flex justify-between items-center">
+            <h2 className="text-[17px] font-bold tracking-tight text-foreground">
+              Continuar Lendo
+            </h2>
+          </div>
+          <Card className="shadow-none border-muted/60 bg-primary/5 hover:bg-primary/10 transition-colors">
+            <Link
+              to={`/bible/${readingProgress.bible_books.id}/${readingProgress.chapter}`}
+              className="block"
+            >
+              <CardContent className="p-4 flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                  <BookOpen className="w-6 h-6 text-primary" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-[15px]">
+                    {readingProgress.bible_books.name} {readingProgress.chapter}
+                  </h3>
+                  <p className="text-sm text-muted-foreground">
+                    Retomar de onde parou
+                  </p>
+                </div>
+              </CardContent>
+            </Link>
+          </Card>
+        </div>
+      )}
 
       <div className="space-y-3">
         <div className="flex justify-between items-center px-1">
