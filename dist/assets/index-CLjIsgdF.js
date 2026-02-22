@@ -31884,6 +31884,7 @@ const AuthProvider = ({ children }) => {
 	const [user, setUser] = (0, import_react.useState)(null);
 	const [session, setSession] = (0, import_react.useState)(null);
 	const [loading, setLoading] = (0, import_react.useState)(true);
+	const [isVisitor, setIsVisitor] = (0, import_react.useState)(() => localStorage.getItem("isVisitor") === "true");
 	(0, import_react.useEffect)(() => {
 		const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session$1) => {
 			setSession(session$1);
@@ -31903,6 +31904,10 @@ const AuthProvider = ({ children }) => {
 			password,
 			options: { emailRedirectTo: `${window.location.origin}/` }
 		});
+		if (!error) {
+			setIsVisitor(false);
+			localStorage.removeItem("isVisitor");
+		}
 		return { error };
 	};
 	const signIn = async (email, password) => {
@@ -31910,9 +31915,19 @@ const AuthProvider = ({ children }) => {
 			email,
 			password
 		});
+		if (!error) {
+			setIsVisitor(false);
+			localStorage.removeItem("isVisitor");
+		}
 		return { error };
 	};
+	const signInAsVisitor = () => {
+		setIsVisitor(true);
+		localStorage.setItem("isVisitor", "true");
+	};
 	const signOut = async () => {
+		setIsVisitor(false);
+		localStorage.removeItem("isVisitor");
 		const { error } = await supabase.auth.signOut();
 		return { error };
 	};
@@ -31920,8 +31935,10 @@ const AuthProvider = ({ children }) => {
 		value: {
 			user,
 			session,
+			isVisitor,
 			signUp,
 			signIn,
+			signInAsVisitor,
 			signOut,
 			loading
 		},
@@ -33820,6 +33837,11 @@ var CarouselNext = import_react.forwardRef(({ className, variant = "outline", si
 	});
 });
 CarouselNext.displayName = "CarouselNext";
+const getBanners = async () => {
+	const { data, error } = await supabase.from("banners").select("*").eq("active", true).order("sort_order");
+	if (error) throw error;
+	return data;
+};
 var carouselImages = [
 	{
 		id: 1,
@@ -33864,10 +33886,23 @@ var DiaryBtn = ({ icon: Icon$2, label, to }) => /* @__PURE__ */ (0, import_jsx_r
 function Index() {
 	const [api, setApi] = (0, import_react.useState)();
 	const [current, setCurrent] = (0, import_react.useState)(0);
+	const [banners, setBanners] = (0, import_react.useState)([]);
 	const plugin = (0, import_react.useRef)(Autoplay({
 		delay: 4e3,
 		stopOnInteraction: true
 	}));
+	(0, import_react.useEffect)(() => {
+		getBanners().then((data) => {
+			if (data && data.length > 0) setBanners(data.map((b$1) => ({
+				id: b$1.id,
+				src: b$1.image_url,
+				alt: b$1.title,
+				tag: b$1.tag,
+				title: b$1.title
+			})));
+			else setBanners(carouselImages);
+		}).catch(() => setBanners(carouselImages));
+	}, []);
 	(0, import_react.useEffect)(() => {
 		if (!api) return;
 		setCurrent(api.selectedScrollSnap());
@@ -33889,7 +33924,7 @@ function Index() {
 						className: "overflow-hidden rounded-3xl aspect-[16/10] sm:aspect-video lg:aspect-[21/9] shadow-md relative border border-border bg-black transition-all duration-300",
 						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CarouselContent, {
 							className: "h-full ml-0",
-							children: carouselImages.map((img) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CarouselItem, {
+							children: banners.map((img) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CarouselItem, {
 								className: "h-full pl-0 relative bg-black",
 								children: [
 									/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
@@ -33923,18 +33958,16 @@ function Index() {
 							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
 								onClick: () => api?.scrollPrev(),
 								className: "w-9 h-9 rounded-full bg-background/90 backdrop-blur-sm border border-border text-foreground flex items-center justify-center pointer-events-auto hover:bg-background hover:scale-105 transition-all shadow-sm",
-								"aria-label": "Previous slide",
 								children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ArrowLeft, { className: "w-4 h-4" })
 							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
 								onClick: () => api?.scrollNext(),
 								className: "w-9 h-9 rounded-full bg-background/90 backdrop-blur-sm border border-border text-foreground flex items-center justify-center pointer-events-auto hover:bg-background hover:scale-105 transition-all shadow-sm",
-								"aria-label": "Next slide",
 								children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ArrowRight, { className: "w-4 h-4" })
 							})]
 						})]
 					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 						className: "flex justify-center gap-2 mt-4",
-						children: carouselImages.map((_$1, index$1) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+						children: banners.map((_$1, index$1) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
 							onClick: () => api?.scrollTo(index$1),
 							className: `h-2 rounded-full transition-all duration-300 ${current === index$1 ? "w-6 bg-primary" : "w-2 bg-primary/20 hover:bg-primary/50"}`,
 							"aria-label": `Go to slide ${index$1 + 1}`
@@ -37066,6 +37099,14 @@ function Management() {
 		})]
 	});
 }
+const getBibleVerses = async () => {
+	const { data, error } = await supabase.from("bible_verses").select(`
+      id, text, chapter, verse,
+      bible_books ( name )
+    `).order("chapter").order("verse");
+	if (error) throw error;
+	return data;
+};
 var MOCK_VERSES = [
 	{
 		book: "Gênesis",
@@ -37100,7 +37141,28 @@ var MOCK_VERSES = [
 ];
 function Bible() {
 	const [search, setSearch] = (0, import_react.useState)("");
-	const filtered = search.trim() === "" ? MOCK_VERSES : MOCK_VERSES.filter((v) => v.text.toLowerCase().includes(search.toLowerCase()) || v.book.toLowerCase().includes(search.toLowerCase()));
+	const [verses, setVerses] = (0, import_react.useState)([]);
+	(0, import_react.useEffect)(() => {
+		getBibleVerses().then((data) => {
+			if (data && data.length > 0) setVerses(data);
+			else setVerses(MOCK_VERSES.map((v) => ({
+				id: Math.random().toString(),
+				text: v.text,
+				chapter: v.chapter,
+				verse: v.verse,
+				bible_books: { name: v.book }
+			})));
+		}).catch(() => {
+			setVerses(MOCK_VERSES.map((v) => ({
+				id: Math.random().toString(),
+				text: v.text,
+				chapter: v.chapter,
+				verse: v.verse,
+				bible_books: { name: v.book }
+			})));
+		});
+	}, []);
+	const filtered = search.trim() === "" ? verses : verses.filter((v) => v.text.toLowerCase().includes(search.toLowerCase()) || (v.bible_books?.name || "").toLowerCase().includes(search.toLowerCase()));
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 		className: "space-y-6 animate-fade-in-up py-4",
 		children: [
@@ -37129,7 +37191,7 @@ function Bible() {
 						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
 							className: "font-bold text-[13px] text-primary mb-1 tracking-tight",
 							children: [
-								v.book,
+								v.bible_books?.name,
 								" ",
 								v.chapter,
 								":",
@@ -37140,7 +37202,7 @@ function Bible() {
 							children: v.text
 						})]
 					})
-				}, i)), filtered.length === 0 && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+				}, v.id || i)), filtered.length === 0 && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 					className: "text-center py-16 px-4",
 					children: [
 						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
@@ -37879,7 +37941,13 @@ function Notes() {
 	const [dialogOpen, setDialogOpen] = (0, import_react.useState)(false);
 	const [editingNote, setEditingNote] = (0, import_react.useState)(null);
 	const { toast: toast$2 } = useToast();
+	const { user } = useAuth();
+	const navigate = useNavigate();
 	const loadNotes = async () => {
+		if (!user) {
+			setNotes([]);
+			return;
+		}
 		try {
 			setNotes(await getNotes());
 		} catch (error) {
@@ -37891,8 +37959,9 @@ function Notes() {
 	};
 	(0, import_react.useEffect)(() => {
 		loadNotes();
-	}, []);
+	}, [user]);
 	const handleSave = async (noteData) => {
+		if (!user) return;
 		try {
 			if (editingNote) await updateNote(editingNote.id, noteData);
 			else await createNote(noteData);
@@ -37906,7 +37975,7 @@ function Notes() {
 		}
 	};
 	const handleDelete = async (id) => {
-		if (!confirm("Deseja realmente excluir esta anotação?")) return;
+		if (!user || !confirm("Deseja realmente excluir esta anotação?")) return;
 		try {
 			await deleteNote(id);
 			toast$2({ title: "Anotação excluída" });
@@ -37944,13 +38013,42 @@ function Notes() {
 			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Button, {
 				onClick: () => {
+					if (!user) {
+						toast$2({
+							title: "Acesso Restrito",
+							description: "Crie uma conta para criar anotações."
+						});
+						return;
+					}
 					setEditingNote(null);
 					setDialogOpen(true);
 				},
 				className: "w-full h-12 rounded-xl font-bold gap-2 shadow-md",
 				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Plus, { className: "w-5 h-5" }), " Nova Anotação"]
 			}),
-			notes.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+			!user ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+				className: "text-center py-16 px-4",
+				children: [
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+						className: "w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4",
+						children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(BookOpen, { className: "w-8 h-8 text-primary/60" })
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
+						className: "text-lg font-semibold mb-2",
+						children: "Acesso Restrito"
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+						className: "text-muted-foreground text-sm max-w-[250px] mx-auto mb-6",
+						children: "Você está como visitante. Crie uma conta para salvar suas anotações e estudos."
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
+						onClick: () => navigate("/login"),
+						variant: "outline",
+						className: "rounded-xl font-semibold",
+						children: "Fazer Login"
+					})
+				]
+			}) : notes.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 				className: "text-center py-16 px-4",
 				children: [
 					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
@@ -38131,30 +38229,59 @@ function Layout() {
 		})
 	});
 }
+var ChristianCross = ({ className }) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("svg", {
+	xmlns: "http://www.w3.org/2000/svg",
+	viewBox: "0 0 24 24",
+	fill: "none",
+	stroke: "currentColor",
+	strokeWidth: "1.5",
+	strokeLinecap: "round",
+	strokeLinejoin: "round",
+	className,
+	children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("path", { d: "M12 2v20" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("path", { d: "M7 8h10" })]
+});
 function Login() {
 	const [email, setEmail] = (0, import_react.useState)("");
 	const [password, setPassword] = (0, import_react.useState)("");
 	const [isLoading, setIsLoading] = (0, import_react.useState)(false);
+	const [showTransition, setShowTransition] = (0, import_react.useState)(false);
 	const navigate = useNavigate();
 	const { toast: toast$2 } = useToast();
-	const { signIn } = useAuth();
+	const { signIn, signInAsVisitor } = useAuth();
+	const triggerTransition = () => {
+		setShowTransition(true);
+		setTimeout(() => {
+			navigate("/");
+		}, 2500);
+	};
 	const handleLogin = async (e) => {
 		e.preventDefault();
 		setIsLoading(true);
 		const { error } = await signIn(email, password);
-		if (!error) {
+		if (!error) triggerTransition();
+		else {
 			toast$2({
-				title: "Bem-vindo de volta!",
-				description: "Login realizado com sucesso."
+				variant: "destructive",
+				title: "Acesso negado",
+				description: error.message || "Credenciais inválidas."
 			});
-			navigate("/");
-		} else toast$2({
-			variant: "destructive",
-			title: "Acesso negado",
-			description: error.message || "Credenciais inválidas."
-		});
-		setIsLoading(false);
+			setIsLoading(false);
+		}
 	};
+	const handleVisitor = () => {
+		signInAsVisitor();
+		triggerTransition();
+	};
+	if (showTransition) return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+		className: "fixed inset-0 z-[100] flex flex-col items-center justify-center bg-background text-foreground animate-fade-in",
+		children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+			className: "flex flex-col items-center animate-fade-in-up",
+			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(ChristianCross, { className: "w-24 h-24 text-primary animate-pulse-cross mb-8" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h1", {
+				className: "text-3xl md:text-4xl font-bold tracking-tight text-primary",
+				children: "Jesus te ama!"
+			})]
+		})
+	});
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 		className: "min-h-screen w-full flex flex-col bg-background text-foreground relative overflow-hidden font-sans transition-colors duration-300",
 		children: [
@@ -38223,14 +38350,35 @@ function Login() {
 									})]
 								})]
 							}),
-							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 								className: "pt-2 space-y-3",
-								children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
-									type: "submit",
-									className: "w-full h-14 rounded-2xl font-bold text-[15px] shadow-lg transition-all active:scale-[0.98]",
-									disabled: isLoading,
-									children: isLoading ? "Validando..." : "Login"
-								})
+								children: [
+									/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
+										type: "submit",
+										className: "w-full h-14 rounded-2xl font-bold text-[15px] shadow-lg transition-all active:scale-[0.98]",
+										disabled: isLoading,
+										children: isLoading ? "Validando..." : "Login"
+									}),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+										className: "relative flex items-center py-2",
+										children: [
+											/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "flex-grow border-t border-muted" }),
+											/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+												className: "flex-shrink-0 mx-4 text-muted-foreground text-xs font-medium uppercase",
+												children: "ou"
+											}),
+											/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "flex-grow border-t border-muted" })
+										]
+									}),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
+										type: "button",
+										variant: "outline",
+										onClick: handleVisitor,
+										className: "w-full h-14 rounded-2xl font-bold text-[15px] border-muted-foreground/20 hover:bg-muted/50 transition-all active:scale-[0.98]",
+										disabled: isLoading,
+										children: "Entrar como Visitante"
+									})
+								]
 							}),
 							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 								className: "mt-auto pt-6 pb-2 text-center",
@@ -38442,9 +38590,9 @@ function SignUp() {
 	});
 }
 var ProtectedRoute = ({ children }) => {
-	const { user, loading } = useAuth();
+	const { user, isVisitor, loading } = useAuth();
 	if (loading) return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "h-screen w-screen bg-background" });
-	if (!user) return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Navigate, {
+	if (!user && !isVisitor) return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Navigate, {
 		to: "/login",
 		replace: true
 	});
@@ -38514,4 +38662,4 @@ var App = () => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AuthProvider, { chil
 var App_default = App;
 (0, import_client.createRoot)(document.getElementById("root")).render(/* @__PURE__ */ (0, import_jsx_runtime.jsx)(App_default, {}));
 
-//# sourceMappingURL=index-uD5UNobj.js.map
+//# sourceMappingURL=index-CLjIsgdF.js.map

@@ -18,6 +18,7 @@ import {
   CarouselItem,
   type CarouselApi,
 } from '@/components/ui/carousel'
+import { getBanners } from '@/services/banners'
 
 import img1 from '@/assets/1000486751-58683.png'
 import img2 from '@/assets/1000486749-8ba2c.png'
@@ -69,13 +70,32 @@ const DiaryBtn = ({ icon: Icon, label, to }: any) => (
 export default function Index() {
   const [api, setApi] = useState<CarouselApi>()
   const [current, setCurrent] = useState(0)
+  const [banners, setBanners] = useState<any[]>([])
   const plugin = useRef(Autoplay({ delay: 4000, stopOnInteraction: true }))
 
   useEffect(() => {
+    getBanners()
+      .then((data) => {
+        if (data && data.length > 0) {
+          setBanners(
+            data.map((b) => ({
+              id: b.id,
+              src: b.image_url,
+              alt: b.title,
+              tag: b.tag,
+              title: b.title,
+            })),
+          )
+        } else {
+          setBanners(carouselImages)
+        }
+      })
+      .catch(() => setBanners(carouselImages))
+  }, [])
+
+  useEffect(() => {
     if (!api) return
-
     setCurrent(api.selectedScrollSnap())
-
     api.on('select', () => {
       setCurrent(api.selectedScrollSnap())
     })
@@ -92,7 +112,7 @@ export default function Index() {
         >
           <div className="overflow-hidden rounded-3xl aspect-[16/10] sm:aspect-video lg:aspect-[21/9] shadow-md relative border border-border bg-black transition-all duration-300">
             <CarouselContent className="h-full ml-0">
-              {carouselImages.map((img) => (
+              {banners.map((img) => (
                 <CarouselItem
                   key={img.id}
                   className="h-full pl-0 relative bg-black"
@@ -126,14 +146,12 @@ export default function Index() {
               <button
                 onClick={() => api?.scrollPrev()}
                 className="w-9 h-9 rounded-full bg-background/90 backdrop-blur-sm border border-border text-foreground flex items-center justify-center pointer-events-auto hover:bg-background hover:scale-105 transition-all shadow-sm"
-                aria-label="Previous slide"
               >
                 <ArrowLeft className="w-4 h-4" />
               </button>
               <button
                 onClick={() => api?.scrollNext()}
                 className="w-9 h-9 rounded-full bg-background/90 backdrop-blur-sm border border-border text-foreground flex items-center justify-center pointer-events-auto hover:bg-background hover:scale-105 transition-all shadow-sm"
-                aria-label="Next slide"
               >
                 <ArrowRight className="w-4 h-4" />
               </button>
@@ -141,7 +159,7 @@ export default function Index() {
           </div>
 
           <div className="flex justify-center gap-2 mt-4">
-            {carouselImages.map((_, index) => (
+            {banners.map((_, index) => (
               <button
                 key={index}
                 onClick={() => api?.scrollTo(index)}

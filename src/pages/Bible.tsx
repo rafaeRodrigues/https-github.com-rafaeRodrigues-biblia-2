@@ -1,7 +1,8 @@
+import { useState, useEffect } from 'react'
 import { Input } from '@/components/ui/input'
 import { Card, CardContent } from '@/components/ui/card'
 import { Search, Book } from 'lucide-react'
-import { useState } from 'react'
+import { getBibleVerses } from '@/services/bible'
 
 const MOCK_VERSES = [
   {
@@ -38,14 +39,47 @@ const MOCK_VERSES = [
 
 export default function Bible() {
   const [search, setSearch] = useState('')
+  const [verses, setVerses] = useState<any[]>([])
+
+  useEffect(() => {
+    getBibleVerses()
+      .then((data) => {
+        if (data && data.length > 0) {
+          setVerses(data)
+        } else {
+          setVerses(
+            MOCK_VERSES.map((v) => ({
+              id: Math.random().toString(),
+              text: v.text,
+              chapter: v.chapter,
+              verse: v.verse,
+              bible_books: { name: v.book },
+            })),
+          )
+        }
+      })
+      .catch(() => {
+        setVerses(
+          MOCK_VERSES.map((v) => ({
+            id: Math.random().toString(),
+            text: v.text,
+            chapter: v.chapter,
+            verse: v.verse,
+            bible_books: { name: v.book },
+          })),
+        )
+      })
+  }, [])
 
   const filtered =
     search.trim() === ''
-      ? MOCK_VERSES
-      : MOCK_VERSES.filter(
+      ? verses
+      : verses.filter(
           (v) =>
             v.text.toLowerCase().includes(search.toLowerCase()) ||
-            v.book.toLowerCase().includes(search.toLowerCase()),
+            (v.bible_books?.name || '')
+              .toLowerCase()
+              .includes(search.toLowerCase()),
         )
 
   return (
@@ -68,12 +102,12 @@ export default function Bible() {
       <div className="space-y-3">
         {filtered.map((v, i) => (
           <Card
-            key={i}
+            key={v.id || i}
             className="shadow-none border-muted/60 bg-card hover:bg-muted/10 transition-colors"
           >
             <CardContent className="p-4">
               <p className="font-bold text-[13px] text-primary mb-1 tracking-tight">
-                {v.book} {v.chapter}:{v.verse}
+                {v.bible_books?.name} {v.chapter}:{v.verse}
               </p>
               <p className="text-[15px] text-foreground leading-relaxed">
                 {v.text}

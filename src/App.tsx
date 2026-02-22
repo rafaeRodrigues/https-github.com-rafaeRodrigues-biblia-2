@@ -17,13 +17,13 @@ import Login from './pages/Login'
 import SignUp from './pages/SignUp'
 
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
-  const { user, loading } = useAuth()
+  const { user, isVisitor, loading } = useAuth()
 
   if (loading) {
     return <div className="h-screen w-screen bg-background" />
   }
 
-  if (!user) {
+  if (!user && !isVisitor) {
     return <Navigate to="/login" replace />
   }
   return <>{children}</>

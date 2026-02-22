@@ -8,13 +8,37 @@ import { ThemeToggle } from '@/components/theme-toggle'
 import logoUrl from '@/assets/1000486575-fd3e2.png'
 import { useAuth } from '@/hooks/use-auth'
 
+const ChristianCross = ({ className }: { className?: string }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+  >
+    <path d="M12 2v20" />
+    <path d="M7 8h10" />
+  </svg>
+)
+
 export default function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [isLoading, setIsLoading] = useState(false)
+  const [showTransition, setShowTransition] = useState(false)
   const navigate = useNavigate()
   const { toast } = useToast()
-  const { signIn } = useAuth()
+  const { signIn, signInAsVisitor } = useAuth()
+
+  const triggerTransition = () => {
+    setShowTransition(true)
+    setTimeout(() => {
+      navigate('/')
+    }, 2500)
+  }
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -23,19 +47,33 @@ export default function Login() {
     const { error } = await signIn(email, password)
 
     if (!error) {
-      toast({
-        title: 'Bem-vindo de volta!',
-        description: 'Login realizado com sucesso.',
-      })
-      navigate('/')
+      triggerTransition()
     } else {
       toast({
         variant: 'destructive',
         title: 'Acesso negado',
         description: error.message || 'Credenciais inválidas.',
       })
+      setIsLoading(false)
     }
-    setIsLoading(false)
+  }
+
+  const handleVisitor = () => {
+    signInAsVisitor()
+    triggerTransition()
+  }
+
+  if (showTransition) {
+    return (
+      <div className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-background text-foreground animate-fade-in">
+        <div className="flex flex-col items-center animate-fade-in-up">
+          <ChristianCross className="w-24 h-24 text-primary animate-pulse-cross mb-8" />
+          <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-primary">
+            Jesus te ama!
+          </h1>
+        </div>
+      </div>
+    )
   }
 
   return (
@@ -116,6 +154,24 @@ export default function Login() {
                 disabled={isLoading}
               >
                 {isLoading ? 'Validando...' : 'Login'}
+              </Button>
+
+              <div className="relative flex items-center py-2">
+                <div className="flex-grow border-t border-muted" />
+                <span className="flex-shrink-0 mx-4 text-muted-foreground text-xs font-medium uppercase">
+                  ou
+                </span>
+                <div className="flex-grow border-t border-muted" />
+              </div>
+
+              <Button
+                type="button"
+                variant="outline"
+                onClick={handleVisitor}
+                className="w-full h-14 rounded-2xl font-bold text-[15px] border-muted-foreground/20 hover:bg-muted/50 transition-all active:scale-[0.98]"
+                disabled={isLoading}
+              >
+                Entrar como Visitante
               </Button>
             </div>
 

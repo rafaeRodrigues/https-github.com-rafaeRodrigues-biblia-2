@@ -688,6 +688,10 @@ section[aria-label='Notifications alt+T'] {
   margin-left: 0.875rem;
   margin-right: 0.875rem;
 }
+.mx-4{
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
 .mx-auto{
   margin-left: auto;
   margin-right: auto;
@@ -720,6 +724,9 @@ section[aria-label='Notifications alt+T'] {
 }
 .mb-4{
   margin-bottom: 1rem;
+}
+.mb-6{
+  margin-bottom: 1.5rem;
 }
 .mb-8{
   margin-bottom: 2rem;
@@ -1092,8 +1099,14 @@ section[aria-label='Notifications alt+T'] {
 .flex-1{
   flex: 1 1 0%;
 }
+.flex-shrink-0{
+  flex-shrink: 0;
+}
 .shrink-0{
   flex-shrink: 0;
+}
+.flex-grow{
+  flex-grow: 1;
 }
 .grow{
   flex-grow: 1;
@@ -1449,6 +1462,12 @@ section[aria-label='Notifications alt+T'] {
 }
 .border-input{
   border-color: hsl(var(--input));
+}
+.border-muted{
+  border-color: hsl(var(--muted));
+}
+.border-muted-foreground\/20{
+  border-color: hsl(var(--muted-foreground) / 0.2);
 }
 .border-muted\/60{
   border-color: hsl(var(--muted) / 0.6);
@@ -1817,6 +1836,10 @@ section[aria-label='Notifications alt+T'] {
 .text-2xl{
   font-size: 1.5rem;
   line-height: 2rem;
+}
+.text-3xl{
+  font-size: 1.875rem;
+  line-height: 2.25rem;
 }
 .text-4xl{
   font-size: 2.25rem;
@@ -2371,6 +2394,9 @@ section[aria-label='Notifications alt+T'] {
       opacity: 0.6;
     }
   }
+.animate-fade-in {
+    animation: fade-in 0.5s ease-out;
+  }
 .animate-fade-in-up {
     animation: fade-in-up 0.6s ease-out;
   }
@@ -2379,6 +2405,9 @@ section[aria-label='Notifications alt+T'] {
   }
 .animate-slide-up {
     animation: slide-up 0.6s ease-out;
+  }
+.animate-pulse-cross {
+    animation: pulse-cross 1.5s ease-in-out infinite;
   }
 .\[--cell-size\:2rem\]{
   --cell-size: 2rem;
@@ -3312,6 +3341,10 @@ section[aria-label='Notifications alt+T'] {
   }
   .md\:flex-row{
     flex-direction: row;
+  }
+  .md\:text-4xl{
+    font-size: 2.25rem;
+    line-height: 2.5rem;
   }
   .md\:text-sm{
     font-size: 0.875rem;

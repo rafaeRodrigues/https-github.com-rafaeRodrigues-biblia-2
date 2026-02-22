@@ -12,6 +12,8 @@ import { Button } from '@/components/ui/button'
 import { Plus, LayoutGrid, List, BookOpen } from 'lucide-react'
 import { useToast } from '@/hooks/use-toast'
 import { cn } from '@/lib/utils'
+import { useAuth } from '@/hooks/use-auth'
+import { useNavigate } from 'react-router-dom'
 
 export default function Notes() {
   const [notes, setNotes] = useState<Note[]>([])
@@ -19,8 +21,14 @@ export default function Notes() {
   const [dialogOpen, setDialogOpen] = useState(false)
   const [editingNote, setEditingNote] = useState<Note | null>(null)
   const { toast } = useToast()
+  const { user } = useAuth()
+  const navigate = useNavigate()
 
   const loadNotes = async () => {
+    if (!user) {
+      setNotes([])
+      return
+    }
     try {
       const data = await getNotes()
       setNotes(data)
@@ -31,9 +39,10 @@ export default function Notes() {
 
   useEffect(() => {
     loadNotes()
-  }, [])
+  }, [user])
 
   const handleSave = async (noteData: Partial<Note>) => {
+    if (!user) return
     try {
       if (editingNote) {
         await updateNote(editingNote.id, noteData)
@@ -50,7 +59,7 @@ export default function Notes() {
   }
 
   const handleDelete = async (id: string) => {
-    if (!confirm('Deseja realmente excluir esta anotação?')) return
+    if (!user || !confirm('Deseja realmente excluir esta anotação?')) return
     try {
       await deleteNote(id)
       toast({ title: 'Anotação excluída' })
@@ -91,6 +100,13 @@ export default function Notes() {
 
       <Button
         onClick={() => {
+          if (!user) {
+            toast({
+              title: 'Acesso Restrito',
+              description: 'Crie uma conta para criar anotações.',
+            })
+            return
+          }
           setEditingNote(null)
           setDialogOpen(true)
         }}
@@ -99,7 +115,25 @@ export default function Notes() {
         <Plus className="w-5 h-5" /> Nova Anotação
       </Button>
 
-      {notes.length === 0 ? (
+      {!user ? (
+        <div className="text-center py-16 px-4">
+          <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+            <BookOpen className="w-8 h-8 text-primary/60" />
+          </div>
+          <h3 className="text-lg font-semibold mb-2">Acesso Restrito</h3>
+          <p className="text-muted-foreground text-sm max-w-[250px] mx-auto mb-6">
+            Você está como visitante. Crie uma conta para salvar suas anotações
+            e estudos.
+          </p>
+          <Button
+            onClick={() => navigate('/login')}
+            variant="outline"
+            className="rounded-xl font-semibold"
+          >
+            Fazer Login
+          </Button>
+        </div>
+      ) : notes.length === 0 ? (
         <div className="text-center py-16 px-4">
           <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
             <BookOpen className="w-8 h-8 text-primary/60" />

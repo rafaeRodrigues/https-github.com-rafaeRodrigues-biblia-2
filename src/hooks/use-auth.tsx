@@ -11,8 +11,10 @@ import { supabase } from '@/lib/supabase/client'
 interface AuthContextType {
   user: User | null
   session: Session | null
+  isVisitor: boolean
   signUp: (email: string, password: string) => Promise<{ error: any }>
   signIn: (email: string, password: string) => Promise<{ error: any }>
+  signInAsVisitor: () => void
   signOut: () => Promise<{ error: any }>
   loading: boolean
 }
@@ -29,6 +31,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null)
   const [session, setSession] = useState<Session | null>(null)
   const [loading, setLoading] = useState(true)
+  const [isVisitor, setIsVisitor] = useState(
+    () => localStorage.getItem('isVisitor') === 'true',
+  )
 
   useEffect(() => {
     const {
@@ -54,6 +59,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       password,
       options: { emailRedirectTo: `${window.location.origin}/` },
     })
+    if (!error) {
+      setIsVisitor(false)
+      localStorage.removeItem('isVisitor')
+    }
     return { error }
   }
 
@@ -62,17 +71,37 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       email,
       password,
     })
+    if (!error) {
+      setIsVisitor(false)
+      localStorage.removeItem('isVisitor')
+    }
     return { error }
   }
 
+  const signInAsVisitor = () => {
+    setIsVisitor(true)
+    localStorage.setItem('isVisitor', 'true')
+  }
+
   const signOut = async () => {
+    setIsVisitor(false)
+    localStorage.removeItem('isVisitor')
     const { error } = await supabase.auth.signOut()
     return { error }
   }
 
   return (
     <AuthContext.Provider
-      value={{ user, session, signUp, signIn, signOut, loading }}
+      value={{
+        user,
+        session,
+        isVisitor,
+        signUp,
+        signIn,
+        signInAsVisitor,
+        signOut,
+        loading,
+      }}
     >
       {children}
     </AuthContext.Provider>
