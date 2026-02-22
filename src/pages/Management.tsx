@@ -27,9 +27,11 @@ import {
 } from 'lucide-react'
 import { useState } from 'react'
 import { useToast } from '@/hooks/use-toast'
+import { useNavigate } from 'react-router-dom'
 
 export default function Management() {
   const { toast } = useToast()
+  const navigate = useNavigate()
   const [copied, setCopied] = useState(false)
 
   const handleCopyPix = () => {
@@ -42,6 +44,15 @@ export default function Management() {
   const handleSave = (e: React.FormEvent) => {
     e.preventDefault()
     toast({ title: 'Sucesso', description: 'Operação realizada com sucesso.' })
+  }
+
+  const handleLogout = () => {
+    localStorage.removeItem('auth')
+    toast({
+      title: 'Sessão encerrada',
+      description: 'Você saiu da sua conta com sucesso.',
+    })
+    navigate('/login')
   }
 
   return (
@@ -211,6 +222,7 @@ export default function Management() {
           </Card>
 
           <Button
+            onClick={handleLogout}
             variant="ghost"
             className="w-full text-destructive hover:bg-destructive/10 hover:text-destructive h-12"
           >

@@ -1,14 +1,8 @@
 import { Outlet, Link, useLocation } from 'react-router-dom'
-import {
-  Home,
-  MapPin,
-  LayoutGrid,
-  Settings,
-  Bell,
-  UserCircle,
-} from 'lucide-react'
+import { Home, MapPin, LayoutGrid, Bell, UserCircle } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import logoUrl from '@/assets/1000486575-fd3e2.png'
+import { ThemeToggle } from '@/components/theme-toggle'
 
 const ChurchIcon = ({ className }: { className?: string }) => (
   <svg
@@ -76,10 +70,14 @@ export default function Layout() {
               className="h-8 w-auto object-contain object-left invert mix-blend-multiply dark:invert-0 dark:mix-blend-screen opacity-90"
             />
           </div>
-          <div className="flex items-center gap-3 text-muted-foreground shrink-0">
-            <Settings className="w-5 h-5" />
-            <Bell className="w-5 h-5" />
-            <UserCircle className="w-6 h-6" />
+          <div className="flex items-center gap-1 text-muted-foreground shrink-0">
+            <ThemeToggle className="w-9 h-9" />
+            <div className="w-9 h-9 flex items-center justify-center hover:bg-muted rounded-full cursor-pointer transition-colors">
+              <Bell className="w-5 h-5" />
+            </div>
+            <div className="w-9 h-9 flex items-center justify-center hover:bg-muted rounded-full cursor-pointer transition-colors">
+              <UserCircle className="w-6 h-6 text-foreground/80" />
+            </div>
           </div>
         </header>
 

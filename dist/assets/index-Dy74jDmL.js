@@ -16298,6 +16298,30 @@ import_react.memo(DataRoutes);
 function DataRoutes({ routes, future, state, onError }) {
 	return useRoutesImpl(routes, void 0, state, onError, future);
 }
+function Navigate({ to, replace: replace2, state, relative }) {
+	invariant(useInRouterContext(), `<Navigate> may be used only in the context of a <Router> component.`);
+	let { static: isStatic } = import_react.useContext(NavigationContext);
+	warning(!isStatic, `<Navigate> must not be used on the initial render in a <StaticRouter>. This is a no-op, but you should modify your code so the <Navigate> is only ever rendered in response to some user interaction or state change.`);
+	let { matches } = import_react.useContext(RouteContext);
+	let { pathname: locationPathname } = useLocation();
+	let navigate = useNavigate();
+	let path = resolveTo(to, getResolveToMatches(matches), locationPathname, relative === "path");
+	let jsonPath = JSON.stringify(path);
+	import_react.useEffect(() => {
+		navigate(JSON.parse(jsonPath), {
+			replace: replace2,
+			state,
+			relative
+		});
+	}, [
+		navigate,
+		jsonPath,
+		relative,
+		replace2,
+		state
+	]);
+	return null;
+}
 function Outlet(props) {
 	return useOutlet(props.context);
 }
@@ -19046,6 +19070,10 @@ var CreditCard = createLucideIcon("credit-card", [["rect", {
 	y2: "10",
 	key: "1b3vmo"
 }]]);
+var Cross = createLucideIcon("cross", [["path", {
+	d: "M4 9a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h4a1 1 0 0 1 1 1v4a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-4a1 1 0 0 1 1-1h4a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2h-4a1 1 0 0 1-1-1V4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4a1 1 0 0 1-1 1z",
+	key: "1xbrqy"
+}]]);
 var FileText = createLucideIcon("file-text", [
 	["path", {
 		d: "M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z",
@@ -19136,6 +19164,10 @@ var MapPin = createLucideIcon("map-pin", [["path", {
 	r: "3",
 	key: "ilqhr7"
 }]]);
+var Moon = createLucideIcon("moon", [["path", {
+	d: "M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401",
+	key: "kfwtm"
+}]]);
 var PenTool = createLucideIcon("pen-tool", [
 	["path", {
 		d: "M15.707 21.293a1 1 0 0 1-1.414 0l-1.586-1.586a1 1 0 0 1 0-1.414l5.586-5.586a1 1 0 0 1 1.414 0l1.586 1.586a1 1 0 0 1 0 1.414z",
@@ -19179,15 +19211,46 @@ var Send = createLucideIcon("send", [["path", {
 	d: "m21.854 2.147-10.94 10.939",
 	key: "12cjpa"
 }]]);
-var Settings = createLucideIcon("settings", [["path", {
-	d: "M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915",
-	key: "1i5ecw"
-}], ["circle", {
-	cx: "12",
-	cy: "12",
-	r: "3",
-	key: "1v7zrd"
-}]]);
+var Sun = createLucideIcon("sun", [
+	["circle", {
+		cx: "12",
+		cy: "12",
+		r: "4",
+		key: "4exip2"
+	}],
+	["path", {
+		d: "M12 2v2",
+		key: "tus03m"
+	}],
+	["path", {
+		d: "M12 20v2",
+		key: "1lh1kg"
+	}],
+	["path", {
+		d: "m4.93 4.93 1.41 1.41",
+		key: "149t6j"
+	}],
+	["path", {
+		d: "m17.66 17.66 1.41 1.41",
+		key: "ptbguv"
+	}],
+	["path", {
+		d: "M2 12h2",
+		key: "1t8f8n"
+	}],
+	["path", {
+		d: "M20 12h2",
+		key: "1q8mjw"
+	}],
+	["path", {
+		d: "m6.34 17.66-1.41 1.41",
+		key: "1m8zz5"
+	}],
+	["path", {
+		d: "m19.07 4.93-1.41 1.41",
+		key: "1shlcs"
+	}]
+]);
 var User = createLucideIcon("user", [["path", {
 	d: "M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2",
 	key: "975kel"
@@ -20706,14 +20769,74 @@ var M = (e, i, s, u, m, a, l, h) => {
 		let n = localStorage.getItem(i) || s;
 		p(l && n === "system" ? c() : n);
 	} catch (n) {}
-}, x = import_react.createContext(void 0), U = {
+};
+var b = ["light", "dark"], I = "(prefers-color-scheme: dark)", O = typeof window == "undefined", x = import_react.createContext(void 0), U = {
 	setTheme: (e) => {},
 	themes: []
 }, z = () => {
 	var e;
 	return (e = import_react.useContext(x)) != null ? e : U;
-};
-import_react.memo(({ forcedTheme: e, storageKey: i, attribute: s, enableSystem: u, enableColorScheme: m, defaultTheme: a, value: l, themes: h, nonce: d, scriptProps: w }) => {
+}, J = (e) => import_react.useContext(x) ? import_react.createElement(import_react.Fragment, null, e.children) : import_react.createElement(V, { ...e }), N = ["light", "dark"], V = ({ forcedTheme: e, disableTransitionOnChange: i = !1, enableSystem: s = !0, enableColorScheme: u = !0, storageKey: m = "theme", themes: a = N, defaultTheme: l = s ? "system" : "light", attribute: h = "data-theme", value: d, children: w, nonce: p, scriptProps: R }) => {
+	let [c, n] = import_react.useState(() => H(m, l)), [T, y] = import_react.useState(() => c === "system" ? E() : c), k = d ? Object.values(d) : a, S = import_react.useCallback((o) => {
+		let r$1 = o;
+		if (!r$1) return;
+		o === "system" && s && (r$1 = E());
+		let v = d ? d[r$1] : r$1, C = i ? W(p) : null, P = document.documentElement, L = (g) => {
+			g === "class" ? (P.classList.remove(...k), v && P.classList.add(v)) : g.startsWith("data-") && (v ? P.setAttribute(g, v) : P.removeAttribute(g));
+		};
+		if (Array.isArray(h) ? h.forEach(L) : L(h), u) {
+			let g = b.includes(l) ? l : null, D = b.includes(r$1) ? r$1 : g;
+			P.style.colorScheme = D;
+		}
+		C?.();
+	}, [p]), f = import_react.useCallback((o) => {
+		let r$1 = typeof o == "function" ? o(c) : o;
+		n(r$1);
+		try {
+			localStorage.setItem(m, r$1);
+		} catch (v) {}
+	}, [c]), A = import_react.useCallback((o) => {
+		y(E(o)), c === "system" && s && !e && S("system");
+	}, [c, e]);
+	import_react.useEffect(() => {
+		let o = window.matchMedia(I);
+		return o.addListener(A), A(o), () => o.removeListener(A);
+	}, [A]), import_react.useEffect(() => {
+		let o = (r$1) => {
+			r$1.key === m && (r$1.newValue ? n(r$1.newValue) : f(l));
+		};
+		return window.addEventListener("storage", o), () => window.removeEventListener("storage", o);
+	}, [f]), import_react.useEffect(() => {
+		S(e != null ? e : c);
+	}, [e, c]);
+	let Q = import_react.useMemo(() => ({
+		theme: c,
+		setTheme: f,
+		forcedTheme: e,
+		resolvedTheme: c === "system" ? T : c,
+		themes: s ? [...a, "system"] : a,
+		systemTheme: s ? T : void 0
+	}), [
+		c,
+		f,
+		e,
+		T,
+		s,
+		a
+	]);
+	return import_react.createElement(x.Provider, { value: Q }, import_react.createElement(_, {
+		forcedTheme: e,
+		storageKey: m,
+		attribute: h,
+		enableSystem: s,
+		enableColorScheme: u,
+		defaultTheme: l,
+		value: d,
+		themes: a,
+		nonce: p,
+		scriptProps: R
+	}), w);
+}, _ = import_react.memo(({ forcedTheme: e, storageKey: i, attribute: s, enableSystem: u, enableColorScheme: m, defaultTheme: a, value: l, themes: h, nonce: d, scriptProps: w }) => {
 	let p = JSON.stringify([
 		s,
 		i,
@@ -20730,7 +20853,21 @@ import_react.memo(({ forcedTheme: e, storageKey: i, attribute: s, enableSystem: 
 		nonce: typeof window == "undefined" ? d : "",
 		dangerouslySetInnerHTML: { __html: `(${M.toString()})(${p})` }
 	});
-});
+}), H = (e, i) => {
+	if (O) return;
+	let s;
+	try {
+		s = localStorage.getItem(e) || void 0;
+	} catch (u) {}
+	return s || i;
+}, W = (e) => {
+	let i = document.createElement("style");
+	return e && i.setAttribute("nonce", e), i.appendChild(document.createTextNode("*,*::before,*::after{-webkit-transition:none!important;-moz-transition:none!important;-o-transition:none!important;-ms-transition:none!important;transition:none!important}")), document.head.appendChild(i), () => {
+		window.getComputedStyle(document.body), setTimeout(() => {
+			document.head.removeChild(i);
+		}, 1);
+	};
+}, E = (e) => (e || (e = window.matchMedia(I)), e.matches ? "dark" : "light");
 var import_react_dom$3 = /* @__PURE__ */ __toESM(require_react_dom(), 1);
 function __insertCSS(code) {
 	if (!code || typeof document == "undefined") return;
@@ -23927,6 +24064,12 @@ var TooltipContent = import_react.forwardRef(({ className, sideOffset = 4, ...pr
 	...props
 }));
 TooltipContent.displayName = Content2$1.displayName;
+function ThemeProvider({ children, ...props }) {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(J, {
+		...props,
+		children
+	});
+}
 var Card = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 	ref,
 	className: cn("rounded-lg border bg-card text-card-foreground shadow-sm", className),
@@ -27014,6 +27157,7 @@ var SelectSeparator = import_react.forwardRef(({ className, ...props }, ref) => 
 SelectSeparator.displayName = Separator.displayName;
 function Management() {
 	const { toast: toast$2 } = useToast();
+	const navigate = useNavigate();
 	const [copied, setCopied] = (0, import_react.useState)(false);
 	const handleCopyPix = () => {
 		navigator.clipboard.writeText("00.000.000/0001-00");
@@ -27027,6 +27171,14 @@ function Management() {
 			title: "Sucesso",
 			description: "Operação realizada com sucesso."
 		});
+	};
+	const handleLogout = () => {
+		localStorage.removeItem("auth");
+		toast$2({
+			title: "Sessão encerrada",
+			description: "Você saiu da sua conta com sucesso."
+		});
+		navigate("/login");
 	};
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 		className: "space-y-6 animate-fade-in-up py-4",
@@ -27200,6 +27352,7 @@ function Management() {
 							]
 						}) })]
 					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Button, {
+						onClick: handleLogout,
 						variant: "ghost",
 						className: "w-full text-destructive hover:bg-destructive/10 hover:text-destructive h-12",
 						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(LogOut, { className: "w-5 h-5 mr-2" }), "Sair da Conta"]
@@ -27636,6 +27789,23 @@ var NotFound = () => {
 };
 var NotFound_default = NotFound;
 var _1000486575_fd3e2_default = "/assets/1000486575-fd3e2-jj_MBhyP.png";
+function ThemeToggle({ className }) {
+	const { theme, setTheme } = z();
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Button, {
+		variant: "ghost",
+		size: "icon",
+		onClick: () => setTheme(theme === "light" ? "dark" : "light"),
+		className: cn("rounded-full transition-colors", className),
+		children: [
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Sun, { className: "h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" }),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Moon, { className: "absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" }),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+				className: "sr-only",
+				children: "Toggle theme"
+			})
+		]
+	});
+}
 var ChurchIcon = ({ className }) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("svg", {
 	xmlns: "http://www.w3.org/2000/svg",
 	viewBox: "0 0 24 24",
@@ -27684,11 +27854,17 @@ function Layout() {
 							className: "h-8 w-auto object-contain object-left invert mix-blend-multiply dark:invert-0 dark:mix-blend-screen opacity-90"
 						})
 					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-						className: "flex items-center gap-3 text-muted-foreground shrink-0",
+						className: "flex items-center gap-1 text-muted-foreground shrink-0",
 						children: [
-							/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Settings, { className: "w-5 h-5" }),
-							/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bell, { className: "w-5 h-5" }),
-							/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CircleUser, { className: "w-6 h-6" })
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)(ThemeToggle, { className: "w-9 h-9" }),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+								className: "w-9 h-9 flex items-center justify-center hover:bg-muted rounded-full cursor-pointer transition-colors",
+								children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bell, { className: "w-5 h-5" })
+							}),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+								className: "w-9 h-9 flex items-center justify-center hover:bg-muted rounded-full cursor-pointer transition-colors",
+								children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CircleUser, { className: "w-6 h-6 text-foreground/80" })
+							})
 						]
 					})]
 				}),
@@ -27729,49 +27905,190 @@ function Layout() {
 		})
 	});
 }
-var App = () => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(BrowserRouter, {
-	future: {
-		v7_startTransition: false,
-		v7_relativeSplatPath: false
-	},
-	children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(TooltipProvider, { children: [
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Toaster, {}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Toaster$1, {}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Routes, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Route, {
-			element: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Layout, {}),
-			children: [
+function Login() {
+	const [username, setUsername] = (0, import_react.useState)("");
+	const [password, setPassword] = (0, import_react.useState)("");
+	const [isLoading, setIsLoading] = (0, import_react.useState)(false);
+	const navigate = useNavigate();
+	const { toast: toast$2 } = useToast();
+	const handleLogin = (e) => {
+		e.preventDefault();
+		setIsLoading(true);
+		setTimeout(() => {
+			if (username.trim().toLowerCase() === "rafa" && password === "123") {
+				localStorage.setItem("auth", "true");
+				navigate("/");
+				toast$2({
+					title: "Bem-vindo de volta!",
+					description: "Login realizado com sucesso."
+				});
+			} else toast$2({
+				variant: "destructive",
+				title: "Acesso negado",
+				description: "Credenciais inválidas. Tente rafa / 123."
+			});
+			setIsLoading(false);
+		}, 1500);
+	};
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+		className: "min-h-screen w-full flex flex-col items-center justify-center relative overflow-hidden bg-background",
+		children: [
+			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+				className: "absolute inset-0 z-0 overflow-hidden pointer-events-none flex justify-center items-center",
+				children: [
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "absolute w-[500px] h-[500px] bg-primary/20 rounded-full mix-blend-multiply dark:mix-blend-color-dodge filter blur-[80px] opacity-70 animate-blob" }),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "absolute w-[400px] h-[400px] bg-purple-500/20 rounded-full mix-blend-multiply dark:mix-blend-color-dodge filter blur-[80px] opacity-70 animate-blob animation-delay-2000 translate-x-32 -translate-y-32" }),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "absolute w-[600px] h-[600px] bg-pink-500/10 rounded-full mix-blend-multiply dark:mix-blend-color-dodge filter blur-[80px] opacity-70 animate-blob animation-delay-4000 -translate-x-32 translate-y-32" })
+				]
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+				className: "absolute top-6 right-6 z-50",
+				children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ThemeToggle, { className: "bg-card/50 backdrop-blur-md shadow-sm border border-border/50" })
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+				className: "z-10 w-full max-w-md px-6 animate-fade-in-up",
+				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+					className: "flex flex-col items-center mb-10",
+					children: [
+						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "w-28 h-28 bg-card/80 backdrop-blur-xl rounded-full flex items-center justify-center shadow-2xl mb-6 border border-white/10 dark:border-white/5 p-5 relative overflow-hidden group",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent pointer-events-none opacity-50 group-hover:opacity-100 transition-opacity duration-500" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
+								src: _1000486575_fd3e2_default,
+								alt: "Logo Igreja",
+								className: "w-full h-full object-contain invert mix-blend-multiply dark:invert-0 dark:mix-blend-screen opacity-90 relative z-10"
+							})]
+						}),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h1", {
+							className: "text-3xl font-extrabold tracking-tight text-foreground",
+							children: "Acesso"
+						}),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+							className: "text-muted-foreground text-sm text-center mt-2 font-medium",
+							children: "Entre para se conectar à nossa comunidade."
+						})
+					]
+				}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("form", {
+					onSubmit: handleLogin,
+					className: "space-y-5 bg-card/60 backdrop-blur-xl p-8 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-white/10 dark:border-white/5 relative overflow-hidden",
+					children: [
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "absolute inset-0 bg-gradient-to-br from-white/40 to-white/0 dark:from-white/5 dark:to-transparent pointer-events-none" }),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "space-y-2.5 relative z-10",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, {
+								htmlFor: "username",
+								className: "text-foreground/80 ml-1 font-semibold",
+								children: "Nome ou E-mail"
+							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Input, {
+								id: "username",
+								placeholder: "rafa",
+								value: username,
+								onChange: (e) => setUsername(e.target.value),
+								className: "bg-background/50 border-white/20 dark:border-white/10 h-14 rounded-2xl px-4 text-base focus-visible:ring-primary/30 transition-all shadow-sm",
+								required: true
+							})]
+						}),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "space-y-2.5 relative z-10",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "flex items-center justify-between ml-1",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, {
+									htmlFor: "password",
+									className: "text-foreground/80 font-semibold",
+									children: "Senha"
+								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("a", {
+									href: "#",
+									className: "text-[13px] text-primary font-bold hover:underline opacity-80 hover:opacity-100 transition-opacity",
+									children: "Recuperar senha"
+								})]
+							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Input, {
+								id: "password",
+								type: "password",
+								placeholder: "***",
+								value: password,
+								onChange: (e) => setPassword(e.target.value),
+								className: "bg-background/50 border-white/20 dark:border-white/10 h-14 rounded-2xl px-4 text-base focus-visible:ring-primary/30 transition-all shadow-sm",
+								required: true
+							})]
+						}),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+							className: "pt-2 relative z-10",
+							children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
+								type: "submit",
+								className: "w-full h-14 rounded-2xl font-bold text-base shadow-lg hover:shadow-xl transition-all active:scale-[0.98]",
+								disabled: isLoading,
+								children: isLoading ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+									className: "flex items-center gap-3",
+									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Cross, { className: "w-5 h-5 animate-pulse-cross text-primary-foreground" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Validando..." })]
+								}) : "Entrar"
+							})
+						})
+					]
+				})]
+			})
+		]
+	});
+}
+var ProtectedRoute = ({ children }) => {
+	if (!(localStorage.getItem("auth") === "true")) return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Navigate, {
+		to: "/login",
+		replace: true
+	});
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_jsx_runtime.Fragment, { children });
+};
+var App = () => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ThemeProvider, {
+	defaultTheme: "system",
+	storageKey: "vite-ui-theme",
+	children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(BrowserRouter, {
+		future: {
+			v7_startTransition: false,
+			v7_relativeSplatPath: false
+		},
+		children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(TooltipProvider, { children: [
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Toaster, {}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Toaster$1, {}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Routes, { children: [
 				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Route, {
-					path: "/",
-					element: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Index, {})
+					path: "/login",
+					element: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Login, {})
+				}),
+				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Route, {
+					element: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ProtectedRoute, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Layout, {}) }),
+					children: [
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Route, {
+							path: "/",
+							element: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Index, {})
+						}),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Route, {
+							path: "/igreja",
+							element: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Church, {})
+						}),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Route, {
+							path: "/campus",
+							element: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Events, {})
+						}),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Route, {
+							path: "/management",
+							element: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Management, {})
+						}),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Route, {
+							path: "/bible",
+							element: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bible, {})
+						}),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Route, {
+							path: "/plans",
+							element: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Plans, {})
+						})
+					]
 				}),
 				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Route, {
-					path: "/igreja",
-					element: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Church, {})
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Route, {
-					path: "/campus",
-					element: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Events, {})
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Route, {
-					path: "/management",
-					element: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Management, {})
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Route, {
-					path: "/bible",
-					element: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bible, {})
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Route, {
-					path: "/plans",
-					element: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Plans, {})
+					path: "*",
+					element: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(NotFound_default, {})
 				})
-			]
-		}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Route, {
-			path: "*",
-			element: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(NotFound_default, {})
-		})] })
-	] })
+			] })
+		] })
+	})
 });
 var App_default = App;
 (0, import_client.createRoot)(document.getElementById("root")).render(/* @__PURE__ */ (0, import_jsx_runtime.jsx)(App_default, {}));
 
-//# sourceMappingURL=index-DaermQis.js.map
+//# sourceMappingURL=index-Dy74jDmL.js.map
