@@ -5,7 +5,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { useToast } from '@/hooks/use-toast'
 import { ThemeToggle } from '@/components/theme-toggle'
-import logoUrl from '@/assets/1000486575-fd3e2.png'
+import logoUrl from '@/assets/1000486575-8a4e3.png'
 import { useAuth } from '@/hooks/use-auth'
 
 const ChristianCross = ({ className }: { className?: string }) => (

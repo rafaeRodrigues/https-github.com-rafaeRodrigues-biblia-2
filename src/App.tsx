@@ -6,7 +6,7 @@ import { ThemeProvider } from '@/components/theme-provider'
 import { AuthProvider, useAuth } from '@/hooks/use-auth'
 import Index from './pages/Index'
 import Church from './pages/Church'
-import Events from './pages/Events'
+import Media from './pages/Media'
 import Management from './pages/Management'
 import Bible from './pages/Bible'
 import Plans from './pages/Plans'
@@ -50,7 +50,7 @@ const App = () => (
             >
               <Route path="/" element={<Index />} />
               <Route path="/igreja" element={<Church />} />
-              <Route path="/campus" element={<Events />} />
+              <Route path="/midia" element={<Media />} />
               <Route path="/management" element={<Management />} />
               <Route path="/bible" element={<Bible />} />
               <Route path="/plans" element={<Plans />} />

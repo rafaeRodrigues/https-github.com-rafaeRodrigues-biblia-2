@@ -5,11 +5,13 @@ import {
   LayoutGrid,
   Bell,
   UserCircle,
-  Instagram,
+  PlayCircle,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import logoUrl from '@/assets/1000486575-fd3e2.png'
+import logoUrl from '@/assets/1000486575-8a4e3.png'
 import { ThemeToggle } from '@/components/theme-toggle'
+import { useEffect, useState } from 'react'
+import { getSocialLinks } from '@/services/config'
 
 const ChurchIcon = ({ className }: { className?: string }) => (
   <svg
@@ -82,6 +84,15 @@ const ExternalNavItem = ({ href, icon: Icon, label }: any) => {
 
 export default function Layout() {
   const location = useLocation()
+  const [mapsUrl, setMapsUrl] = useState(
+    'https://maps.app.goo.gl/4tQWGHvNJ1a626KW8',
+  )
+
+  useEffect(() => {
+    getSocialLinks().then((links) => {
+      if (links?.maps) setMapsUrl(links.maps)
+    })
+  }, [])
 
   return (
     <div className="flex h-screen bg-background text-foreground overflow-hidden transition-colors duration-300">
@@ -126,21 +137,17 @@ export default function Layout() {
             current={location.pathname}
           />
           <NavItem
-            icon={MapPin}
-            label="Campus"
-            to="/campus"
+            icon={PlayCircle}
+            label="Mídia"
+            to="/midia"
             current={location.pathname}
           />
+          <ExternalNavItem icon={MapPin} label="Campus" href={mapsUrl} />
           <NavItem
             icon={LayoutGrid}
             label="Gestão"
             to="/management"
             current={location.pathname}
-          />
-          <ExternalNavItem
-            icon={Instagram}
-            label="Instagram"
-            href="https://www.instagram.com/_ibpalavra?igsh=cXZxaDNwajlhdWk4"
           />
         </nav>
       </div>

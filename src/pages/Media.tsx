@@ -6,9 +6,12 @@ import {
   Clock,
   PlayCircle,
   CalendarDays,
-  Video,
   Youtube,
+  Instagram,
+  Music,
 } from 'lucide-react'
+import { useState, useEffect } from 'react'
+import { getSocialLinks } from '@/services/config'
 
 const AGENDA = [
   {
@@ -34,18 +37,38 @@ const AGENDA = [
   },
 ]
 
-export default function Events() {
+export default function Media() {
+  const [links, setLinks] = useState({
+    instagram: 'https://www.instagram.com/_ibpalavra?igsh=cXZxaDNwajlhdWk4',
+    spotify: 'https://open.spotify.com/search/Igreja%20Batista%20da%20Palavra',
+  })
+
+  useEffect(() => {
+    getSocialLinks().then((data) => {
+      if (data) {
+        setLinks((prev) => ({ ...prev, ...data }))
+      }
+    })
+  }, [])
+
   return (
     <div className="space-y-6 animate-fade-in-up py-4">
       <div className="flex flex-col gap-1 px-1">
-        <h1 className="text-2xl font-bold tracking-tight">Campus</h1>
+        <h1 className="text-2xl font-bold tracking-tight">Mídia</h1>
         <p className="text-muted-foreground text-sm">
-          Agenda, eventos e mídia da igreja.
+          Acompanhe nossos conteúdos, agenda e redes sociais.
         </p>
       </div>
 
-      <Tabs defaultValue="agenda" className="w-full">
+      <Tabs defaultValue="redes" className="w-full">
         <TabsList className="grid w-full grid-cols-2 p-1 bg-muted/40 h-12 rounded-xl">
+          <TabsTrigger
+            value="redes"
+            className="rounded-lg font-semibold flex items-center gap-2"
+          >
+            <PlayCircle className="w-4 h-4" />
+            Redes
+          </TabsTrigger>
           <TabsTrigger
             value="agenda"
             className="rounded-lg font-semibold flex items-center gap-2"
@@ -53,53 +76,36 @@ export default function Events() {
             <CalendarDays className="w-4 h-4" />
             Agenda
           </TabsTrigger>
-          <TabsTrigger
-            value="media"
-            className="rounded-lg font-semibold flex items-center gap-2"
-          >
-            <Video className="w-4 h-4" />
-            Mídia
-          </TabsTrigger>
         </TabsList>
 
-        <TabsContent value="agenda" className="space-y-3 mt-6">
-          {AGENDA.map((event) => (
-            <Card
-              key={event.id}
-              className="shadow-none border-muted/60 overflow-hidden"
+        <TabsContent value="redes" className="space-y-6 mt-6">
+          <div className="grid gap-3">
+            <Button
+              asChild
+              className="w-full h-14 rounded-xl font-bold bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 hover:opacity-90 text-white shadow-md border-0 text-base"
             >
-              <div className="flex items-stretch">
-                <div className="w-20 bg-primary/5 border-r border-primary/10 flex flex-col items-center justify-center shrink-0 py-3 transition-colors duration-300">
-                  <span className="font-bold text-xl leading-none text-primary">
-                    {event.date.split(' ')[0]}
-                  </span>
-                  <span className="text-xs uppercase font-semibold text-primary/70 mt-1">
-                    {event.date.split(' ')[1]}
-                  </span>
-                </div>
-                <CardContent className="p-4 flex-1">
-                  <h3 className="font-semibold text-base mb-2">
-                    {event.title}
-                  </h3>
-                  <div className="space-y-1.5">
-                    <div className="flex items-center text-[13px] text-muted-foreground gap-2">
-                      <Clock className="w-3.5 h-3.5" />
-                      {event.time}
-                    </div>
-                    <div className="flex items-center text-[13px] text-muted-foreground gap-2">
-                      <MapPin className="w-3.5 h-3.5" />
-                      {event.location}
-                    </div>
-                  </div>
-                </CardContent>
-              </div>
-            </Card>
-          ))}
-        </TabsContent>
+              <a
+                href={links.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Instagram className="w-5 h-5 mr-2" />
+                Instagram
+              </a>
+            </Button>
 
-        <TabsContent value="media" className="space-y-6 mt-6">
-          {/* Live Stream */}
-          <div className="space-y-4">
+            <Button
+              asChild
+              className="w-full h-14 rounded-xl font-bold bg-[#1DB954] hover:bg-[#1ed760] text-white shadow-md border-0 text-base"
+            >
+              <a href={links.spotify} target="_blank" rel="noopener noreferrer">
+                <Music className="w-5 h-5 mr-2" />
+                Spotify
+              </a>
+            </Button>
+          </div>
+
+          <div className="space-y-4 pt-2">
             <h3 className="font-bold px-1">Transmissão ao Vivo</h3>
             <a
               href="https://www.youtube.com/@ibpalavra/featured"
@@ -137,9 +143,43 @@ export default function Events() {
               </a>
             </Button>
           </div>
+        </TabsContent>
 
-          {/* Gallery */}
-          <div className="space-y-3">
+        <TabsContent value="agenda" className="space-y-3 mt-6">
+          {AGENDA.map((event) => (
+            <Card
+              key={event.id}
+              className="shadow-none border-muted/60 overflow-hidden"
+            >
+              <div className="flex items-stretch">
+                <div className="w-20 bg-primary/5 border-r border-primary/10 flex flex-col items-center justify-center shrink-0 py-3 transition-colors duration-300">
+                  <span className="font-bold text-xl leading-none text-primary">
+                    {event.date.split(' ')[0]}
+                  </span>
+                  <span className="text-xs uppercase font-semibold text-primary/70 mt-1">
+                    {event.date.split(' ')[1]}
+                  </span>
+                </div>
+                <CardContent className="p-4 flex-1">
+                  <h3 className="font-semibold text-base mb-2">
+                    {event.title}
+                  </h3>
+                  <div className="space-y-1.5">
+                    <div className="flex items-center text-[13px] text-muted-foreground gap-2">
+                      <Clock className="w-3.5 h-3.5" />
+                      {event.time}
+                    </div>
+                    <div className="flex items-center text-[13px] text-muted-foreground gap-2">
+                      <MapPin className="w-3.5 h-3.5" />
+                      {event.location}
+                    </div>
+                  </div>
+                </CardContent>
+              </div>
+            </Card>
+          ))}
+
+          <div className="space-y-3 pt-6">
             <h3 className="font-bold px-1">Galeria de Fotos</h3>
             <div className="grid grid-cols-2 gap-2">
               <img

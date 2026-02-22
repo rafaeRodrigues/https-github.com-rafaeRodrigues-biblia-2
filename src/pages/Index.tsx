@@ -31,7 +31,7 @@ export default function Index() {
           <h2 className="text-[17px] font-bold tracking-tight text-foreground">
             Programação
           </h2>
-          <Link to="/campus" className="text-sm font-semibold text-primary">
+          <Link to="/midia" className="text-sm font-semibold text-primary">
             Ver mais
           </Link>
         </div>
@@ -76,7 +76,7 @@ export default function Index() {
           <h2 className="text-[17px] font-bold tracking-tight text-foreground">
             Células
           </h2>
-          <Link to="/campus" className="text-sm font-semibold text-primary">
+          <Link to="/midia" className="text-sm font-semibold text-primary">
             Ver mais
           </Link>
         </div>

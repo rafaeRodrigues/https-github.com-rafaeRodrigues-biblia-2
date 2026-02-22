@@ -19249,6 +19249,24 @@ var Moon = createLucideIcon("moon", [["path", {
 	d: "M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401",
 	key: "kfwtm"
 }]]);
+var Music = createLucideIcon("music", [
+	["path", {
+		d: "M9 18V5l12-2v13",
+		key: "1jmyc2"
+	}],
+	["circle", {
+		cx: "6",
+		cy: "18",
+		r: "3",
+		key: "fqmcym"
+	}],
+	["circle", {
+		cx: "18",
+		cy: "16",
+		r: "3",
+		key: "1hluhg"
+	}]
+]);
 var PenTool = createLucideIcon("pen-tool", [
 	["path", {
 		d: "M15.707 21.293a1 1 0 0 1-1.414 0l-1.586-1.586a1 1 0 0 1 0-1.414l5.586-5.586a1 1 0 0 1 1.414 0l1.586 1.586a1 1 0 0 1 0 1.414z",
@@ -19428,17 +19446,6 @@ var Users = createLucideIcon("users", [
 		key: "nufk8"
 	}]
 ]);
-var Video = createLucideIcon("video", [["path", {
-	d: "m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5",
-	key: "ftymec"
-}], ["rect", {
-	x: "2",
-	y: "6",
-	width: "14",
-	height: "12",
-	rx: "2",
-	key: "158x01"
-}]]);
 var X = createLucideIcon("x", [["path", {
 	d: "M18 6 6 18",
 	key: "1bl5f8"
@@ -34046,7 +34053,7 @@ function Index() {
 						className: "text-[17px] font-bold tracking-tight text-foreground",
 						children: "Programação"
 					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Link, {
-						to: "/campus",
+						to: "/midia",
 						className: "text-sm font-semibold text-primary",
 						children: "Ver mais"
 					})]
@@ -34118,7 +34125,7 @@ function Index() {
 						className: "text-[17px] font-bold tracking-tight text-foreground",
 						children: "Células"
 					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Link, {
-						to: "/campus",
+						to: "/midia",
 						className: "text-sm font-semibold text-primary",
 						children: "Ver mais"
 					})]
@@ -34843,6 +34850,19 @@ var TabsContent = import_react.forwardRef(({ className, ...props }, ref) => /* @
 	...props
 }));
 TabsContent.displayName = Content$1.displayName;
+async function getSocialLinks() {
+	try {
+		const { data, error } = await supabase.from("app_config").select("value").eq("key", "social_links").single();
+		if (error) {
+			if (error.code !== "PGRST116") console.error("Error fetching social links", error);
+			return null;
+		}
+		return data?.value;
+	} catch (e) {
+		console.error("Error fetching config", e);
+		return null;
+	}
+}
 var AGENDA = [
 	{
 		id: 1,
@@ -34866,74 +34886,72 @@ var AGENDA = [
 		location: "Diversos"
 	}
 ];
-function Events() {
+function Media() {
+	const [links, setLinks] = (0, import_react.useState)({
+		instagram: "https://www.instagram.com/_ibpalavra?igsh=cXZxaDNwajlhdWk4",
+		spotify: "https://open.spotify.com/search/Igreja%20Batista%20da%20Palavra"
+	});
+	(0, import_react.useEffect)(() => {
+		getSocialLinks().then((data) => {
+			if (data) setLinks((prev) => ({
+				...prev,
+				...data
+			}));
+		});
+	}, []);
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 		className: "space-y-6 animate-fade-in-up py-4",
 		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 			className: "flex flex-col gap-1 px-1",
 			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h1", {
 				className: "text-2xl font-bold tracking-tight",
-				children: "Campus"
+				children: "Mídia"
 			}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 				className: "text-muted-foreground text-sm",
-				children: "Agenda, eventos e mídia da igreja."
+				children: "Acompanhe nossos conteúdos, agenda e redes sociais."
 			})]
 		}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Tabs, {
-			defaultValue: "agenda",
+			defaultValue: "redes",
 			className: "w-full",
 			children: [
 				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(TabsList, {
 					className: "grid w-full grid-cols-2 p-1 bg-muted/40 h-12 rounded-xl",
 					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(TabsTrigger, {
+						value: "redes",
+						className: "rounded-lg font-semibold flex items-center gap-2",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CirclePlay, { className: "w-4 h-4" }), "Redes"]
+					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(TabsTrigger, {
 						value: "agenda",
 						className: "rounded-lg font-semibold flex items-center gap-2",
 						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CalendarDays, { className: "w-4 h-4" }), "Agenda"]
-					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(TabsTrigger, {
-						value: "media",
-						className: "rounded-lg font-semibold flex items-center gap-2",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Video, { className: "w-4 h-4" }), "Mídia"]
 					})]
 				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(TabsContent, {
-					value: "agenda",
-					className: "space-y-3 mt-6",
-					children: AGENDA.map((event) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Card, {
-						className: "shadow-none border-muted/60 overflow-hidden",
-						children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "flex items-stretch",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-								className: "w-20 bg-primary/5 border-r border-primary/10 flex flex-col items-center justify-center shrink-0 py-3 transition-colors duration-300",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-									className: "font-bold text-xl leading-none text-primary",
-									children: event.date.split(" ")[0]
-								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-									className: "text-xs uppercase font-semibold text-primary/70 mt-1",
-									children: event.date.split(" ")[1]
-								})]
-							}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardContent, {
-								className: "p-4 flex-1",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
-									className: "font-semibold text-base mb-2",
-									children: event.title
-								}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-									className: "space-y-1.5",
-									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-										className: "flex items-center text-[13px] text-muted-foreground gap-2",
-										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Clock, { className: "w-3.5 h-3.5" }), event.time]
-									}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-										className: "flex items-center text-[13px] text-muted-foreground gap-2",
-										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(MapPin, { className: "w-3.5 h-3.5" }), event.location]
-									})]
-								})]
-							})]
-						})
-					}, event.id))
-				}),
 				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(TabsContent, {
-					value: "media",
+					value: "redes",
 					className: "space-y-6 mt-6",
 					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-						className: "space-y-4",
+						className: "grid gap-3",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
+							asChild: true,
+							className: "w-full h-14 rounded-xl font-bold bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 hover:opacity-90 text-white shadow-md border-0 text-base",
+							children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("a", {
+								href: links.instagram,
+								target: "_blank",
+								rel: "noopener noreferrer",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Instagram, { className: "w-5 h-5 mr-2" }), "Instagram"]
+							})
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
+							asChild: true,
+							className: "w-full h-14 rounded-xl font-bold bg-[#1DB954] hover:bg-[#1ed760] text-white shadow-md border-0 text-base",
+							children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("a", {
+								href: links.spotify,
+								target: "_blank",
+								rel: "noopener noreferrer",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Music, { className: "w-5 h-5 mr-2" }), "Spotify"]
+							})
+						})]
+					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "space-y-4 pt-2",
 						children: [
 							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
 								className: "font-bold px-1",
@@ -34974,8 +34992,43 @@ function Events() {
 								})
 							})
 						]
-					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-						className: "space-y-3",
+					})]
+				}),
+				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(TabsContent, {
+					value: "agenda",
+					className: "space-y-3 mt-6",
+					children: [AGENDA.map((event) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Card, {
+						className: "shadow-none border-muted/60 overflow-hidden",
+						children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "flex items-stretch",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "w-20 bg-primary/5 border-r border-primary/10 flex flex-col items-center justify-center shrink-0 py-3 transition-colors duration-300",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+									className: "font-bold text-xl leading-none text-primary",
+									children: event.date.split(" ")[0]
+								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+									className: "text-xs uppercase font-semibold text-primary/70 mt-1",
+									children: event.date.split(" ")[1]
+								})]
+							}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardContent, {
+								className: "p-4 flex-1",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
+									className: "font-semibold text-base mb-2",
+									children: event.title
+								}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+									className: "space-y-1.5",
+									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+										className: "flex items-center text-[13px] text-muted-foreground gap-2",
+										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Clock, { className: "w-3.5 h-3.5" }), event.time]
+									}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+										className: "flex items-center text-[13px] text-muted-foreground gap-2",
+										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(MapPin, { className: "w-3.5 h-3.5" }), event.location]
+									})]
+								})]
+							})]
+						})
+					}, event.id)), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "space-y-3 pt-6",
 						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
 							className: "font-bold px-1",
 							children: "Galeria de Fotos"
@@ -38175,7 +38228,7 @@ var NotFound = () => {
 	});
 };
 var NotFound_default = NotFound;
-var _1000486575_fd3e2_default = "/assets/1000486575-fd3e2-jj_MBhyP.png";
+var _1000486575_8a4e3_default = "/assets/1000486575-8a4e3-CyetfJma.png";
 function ThemeToggle({ className }) {
 	const { theme, setTheme } = z();
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Button, {
@@ -38241,6 +38294,12 @@ var ExternalNavItem = ({ href, icon: Icon$2, label }) => {
 };
 function Layout() {
 	const location = useLocation();
+	const [mapsUrl, setMapsUrl] = (0, import_react.useState)("https://maps.app.goo.gl/4tQWGHvNJ1a626KW8");
+	(0, import_react.useEffect)(() => {
+		getSocialLinks().then((links) => {
+			if (links?.maps) setMapsUrl(links.maps);
+		});
+	}, []);
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 		className: "flex h-screen bg-background text-foreground overflow-hidden transition-colors duration-300",
 		children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
@@ -38251,7 +38310,7 @@ function Layout() {
 					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 						className: "flex flex-col justify-center h-full max-w-[60%]",
 						children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
-							src: _1000486575_fd3e2_default,
+							src: _1000486575_8a4e3_default,
 							alt: "Igreja Batista da Palavra",
 							className: "h-8 w-auto object-contain object-left invert mix-blend-multiply dark:invert-0 dark:mix-blend-screen opacity-90 transition-all duration-300"
 						})
@@ -38290,21 +38349,21 @@ function Layout() {
 							current: location.pathname
 						}),
 						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(NavItem, {
+							icon: CirclePlay,
+							label: "Mídia",
+							to: "/midia",
+							current: location.pathname
+						}),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(ExternalNavItem, {
 							icon: MapPin,
 							label: "Campus",
-							to: "/campus",
-							current: location.pathname
+							href: mapsUrl
 						}),
 						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(NavItem, {
 							icon: LayoutGrid,
 							label: "Gestão",
 							to: "/management",
 							current: location.pathname
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(ExternalNavItem, {
-							icon: Instagram,
-							label: "Instagram",
-							href: "https://www.instagram.com/_ibpalavra?igsh=cXZxaDNwajlhdWk4"
 						})
 					]
 				})
@@ -38377,7 +38436,7 @@ function Login() {
 				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 					className: "relative z-10 flex flex-col items-center justify-center w-full px-8 pb-10 animate-fade-in-down",
 					children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
-						src: _1000486575_fd3e2_default,
+						src: _1000486575_8a4e3_default,
 						alt: "Logo Igreja",
 						className: "w-56 h-auto max-h-32 object-contain mix-blend-screen opacity-90 transition-all duration-300"
 					})
@@ -38713,8 +38772,8 @@ var App = () => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AuthProvider, { chil
 							element: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Church, {})
 						}),
 						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Route, {
-							path: "/campus",
-							element: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Events, {})
+							path: "/midia",
+							element: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Media, {})
 						}),
 						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Route, {
 							path: "/management",
@@ -38745,4 +38804,4 @@ var App = () => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AuthProvider, { chil
 var App_default = App;
 (0, import_client.createRoot)(document.getElementById("root")).render(/* @__PURE__ */ (0, import_jsx_runtime.jsx)(App_default, {}));
 
-//# sourceMappingURL=index-Bs27jLkp.js.map
+//# sourceMappingURL=index-JHcTTS3S.js.map
