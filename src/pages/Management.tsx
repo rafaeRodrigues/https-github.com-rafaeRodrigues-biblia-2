@@ -2,9 +2,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import {
   Card,
   CardContent,
-  CardDescription,
   CardHeader,
   CardTitle,
+  CardDescription,
 } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -20,151 +20,114 @@ import {
   Copy,
   CreditCard,
   Heart,
-  Check,
   FileText,
   Calendar as CalendarIcon,
   User,
+  LogOut,
 } from 'lucide-react'
 import { useState } from 'react'
 import { useToast } from '@/hooks/use-toast'
-import { Calendar } from '@/components/ui/calendar'
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/components/ui/popover'
-import { format } from 'date-fns'
-import { ptBR } from 'date-fns/locale'
-import { cn } from '@/lib/utils'
 
 export default function Management() {
   const { toast } = useToast()
   const [copied, setCopied] = useState(false)
-  const [date, setDate] = useState<Date>()
-  const [scheduleDate, setScheduleDate] = useState<Date>()
 
   const handleCopyPix = () => {
     navigator.clipboard.writeText('00.000.000/0001-00')
     setCopied(true)
-    toast({
-      title: 'Chave PIX copiada!',
-      description: 'Cole no aplicativo do seu banco para transferir.',
-    })
+    toast({ title: 'Chave PIX copiada!' })
     setTimeout(() => setCopied(false), 2000)
   }
 
-  const handleSaveProfile = (e: React.FormEvent) => {
+  const handleSave = (e: React.FormEvent) => {
     e.preventDefault()
-    toast({
-      title: 'Perfil atualizado',
-      description: 'Seus dados foram salvos com sucesso.',
-    })
-  }
-
-  const handleRequestDocument = (e: React.FormEvent) => {
-    e.preventDefault()
-    toast({
-      title: 'Solicitação enviada',
-      description: 'O documento foi solicitado à secretaria.',
-    })
-  }
-
-  const handleSchedule = (e: React.FormEvent) => {
-    e.preventDefault()
-    toast({
-      title: 'Agendamento solicitado',
-      description: 'Entraremos em contato para confirmar o horário.',
-    })
+    toast({ title: 'Sucesso', description: 'Operação realizada com sucesso.' })
   }
 
   return (
-    <div className="space-y-6 animate-fade-in-up">
-      <div className="flex flex-col gap-1">
-        <h1 className="text-2xl font-bold tracking-tight">Gestão da Conta</h1>
+    <div className="space-y-6 animate-fade-in-up py-4">
+      <div className="flex flex-col gap-1 px-1">
+        <h1 className="text-2xl font-bold tracking-tight">Menu</h1>
         <p className="text-muted-foreground text-sm">
-          Gerencie suas contribuições, dados e solicitações.
+          Gestão, contribuições e secretaria.
         </p>
       </div>
 
       <Tabs defaultValue="contribuicao" className="w-full">
-        <TabsList className="grid w-full grid-cols-3 h-auto p-1 bg-muted/50">
+        <TabsList className="grid w-full grid-cols-3 p-1 bg-muted/40 h-12 rounded-xl">
           <TabsTrigger
             value="contribuicao"
-            className="py-2.5 text-xs sm:text-sm"
+            className="rounded-lg text-[13px] font-semibold"
           >
-            Contribuição
+            Doar
           </TabsTrigger>
-          <TabsTrigger value="perfil" className="py-2.5 text-xs sm:text-sm">
-            Meu Perfil
+          <TabsTrigger
+            value="perfil"
+            className="rounded-lg text-[13px] font-semibold"
+          >
+            Perfil
           </TabsTrigger>
-          <TabsTrigger value="secretaria" className="py-2.5 text-xs sm:text-sm">
+          <TabsTrigger
+            value="secretaria"
+            className="rounded-lg text-[13px] font-semibold"
+          >
             Secretaria
           </TabsTrigger>
         </TabsList>
 
         {/* CONTRIBUIÇÃO */}
-        <TabsContent value="contribuicao" className="space-y-4 mt-4">
-          <Card className="shadow-sm">
+        <TabsContent value="contribuicao" className="space-y-4 mt-6">
+          <Card className="shadow-none border-muted/60">
             <CardHeader className="pb-4">
-              <CardTitle className="text-lg flex items-center gap-2">
+              <CardTitle className="text-[17px] flex items-center gap-2">
                 <Heart className="w-5 h-5 text-primary" />
-                Dízimos e Ofertas via PIX
+                PIX
               </CardTitle>
-              <CardDescription>
-                Contribua de forma rápida e segura.
-              </CardDescription>
+              <CardDescription>Dízimos e ofertas instantâneos.</CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="flex flex-col sm:flex-row gap-3">
-                <div className="relative flex-1">
-                  <Input
-                    readOnly
-                    value="00.000.000/0001-00"
-                    className="bg-muted/50 font-mono text-center sm:text-left h-12 text-base"
-                  />
-                </div>
+              <div className="flex gap-2">
+                <Input
+                  readOnly
+                  value="00.000.000/0001-00"
+                  className="bg-muted/20 font-mono h-12 text-base"
+                />
                 <Button
                   onClick={handleCopyPix}
                   variant="secondary"
-                  className="sm:w-36 h-12"
+                  className="w-14 h-12 shrink-0"
                 >
-                  {copied ? (
-                    <Check className="w-4 h-4 mr-2 text-green-600" />
-                  ) : (
-                    <Copy className="w-4 h-4 mr-2" />
-                  )}
-                  {copied ? 'Copiado' : 'Copiar Chave'}
+                  <Copy className="w-5 h-5" />
                 </Button>
               </div>
             </CardContent>
           </Card>
 
-          <Card className="shadow-sm">
+          <Card className="shadow-none border-muted/60">
             <CardHeader className="pb-4">
-              <CardTitle className="text-lg flex items-center gap-2">
-                <CreditCard className="w-5 h-5" />
+              <CardTitle className="text-[17px] flex items-center gap-2">
+                <CreditCard className="w-5 h-5 text-primary" />
                 Cartão de Crédito
               </CardTitle>
-              <CardDescription>
-                Para contribuições únicas ou recorrentes.
-              </CardDescription>
             </CardHeader>
             <CardContent>
-              <form
-                className="space-y-4"
-                onSubmit={(e) => {
-                  e.preventDefault()
-                  toast({ title: 'Cartão cadastrado com sucesso!' })
-                }}
-              >
+              <form className="space-y-4" onSubmit={handleSave}>
                 <div className="space-y-2">
                   <Label>Número do Cartão</Label>
-                  <Input placeholder="0000 0000 0000 0000" required />
+                  <Input
+                    placeholder="0000 0000 0000 0000"
+                    className="bg-muted/20 h-12"
+                    required
+                  />
                 </div>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-3">
                   <div className="space-y-2">
                     <Label>Validade</Label>
-                    <Input placeholder="MM/AA" required />
+                    <Input
+                      placeholder="MM/AA"
+                      className="bg-muted/20 h-12"
+                      required
+                    />
                   </div>
                   <div className="space-y-2">
                     <Label>CVV</Label>
@@ -172,20 +135,25 @@ export default function Management() {
                       placeholder="123"
                       type="password"
                       maxLength={4}
+                      className="bg-muted/20 h-12"
                       required
                     />
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <Label>Nome Impresso no Cartão</Label>
+                  <Label>Valor (R$)</Label>
                   <Input
-                    placeholder="JOAO A SILVA"
-                    className="uppercase"
+                    placeholder="0,00"
+                    type="number"
+                    className="bg-muted/20 h-12 font-semibold text-lg"
                     required
                   />
                 </div>
-                <Button type="submit" className="w-full mt-2">
-                  Salvar Cartão
+                <Button
+                  type="submit"
+                  className="w-full h-12 rounded-xl font-semibold mt-2"
+                >
+                  Contribuir
                 </Button>
               </form>
             </CardContent>
@@ -193,182 +161,136 @@ export default function Management() {
         </TabsContent>
 
         {/* PERFIL */}
-        <TabsContent value="perfil" className="space-y-4 mt-4">
-          <Card className="shadow-sm">
+        <TabsContent value="perfil" className="space-y-4 mt-6">
+          <Card className="shadow-none border-muted/60">
             <CardHeader className="pb-4">
-              <CardTitle className="text-lg flex items-center gap-2">
-                <User className="w-5 h-5" />
+              <CardTitle className="text-[17px] flex items-center gap-2">
+                <User className="w-5 h-5 text-primary" />
                 Meus Dados
               </CardTitle>
-              <CardDescription>
-                Mantenha suas informações sempre atualizadas.
-              </CardDescription>
             </CardHeader>
             <CardContent>
-              <form onSubmit={handleSaveProfile} className="space-y-4">
+              <form onSubmit={handleSave} className="space-y-4">
                 <div className="space-y-2">
                   <Label>Nome Completo</Label>
-                  <Input defaultValue="João da Silva" required />
+                  <Input
+                    defaultValue="João da Silva"
+                    className="bg-muted/20 h-12"
+                    required
+                  />
                 </div>
                 <div className="space-y-2">
                   <Label>E-mail</Label>
                   <Input
                     type="email"
-                    defaultValue="joao.silva@email.com"
+                    defaultValue="joao@email.com"
+                    className="bg-muted/20 h-12"
                     required
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label>Telefone / WhatsApp</Label>
-                  <Input defaultValue="(11) 99999-9999" required />
+                  <Label>WhatsApp</Label>
+                  <Input
+                    defaultValue="(11) 99999-9999"
+                    className="bg-muted/20 h-12"
+                    required
+                  />
                 </div>
-                <div className="space-y-2 flex flex-col">
-                  <Label>Data de Batismo (Opcional)</Label>
-                  <Popover>
-                    <PopoverTrigger asChild>
-                      <Button
-                        variant={'outline'}
-                        className={cn(
-                          'w-full justify-start text-left font-normal',
-                          !date && 'text-muted-foreground',
-                        )}
-                      >
-                        <CalendarIcon className="mr-2 h-4 w-4" />
-                        {date ? (
-                          format(date, 'PPP', { locale: ptBR })
-                        ) : (
-                          <span>Selecione a data</span>
-                        )}
-                      </Button>
-                    </PopoverTrigger>
-                    <PopoverContent className="w-auto p-0" align="start">
-                      <Calendar
-                        mode="single"
-                        selected={date}
-                        onSelect={setDate}
-                        initialFocus
-                        locale={ptBR}
-                      />
-                    </PopoverContent>
-                  </Popover>
+                <div className="space-y-2">
+                  <Label>Data de Batismo</Label>
+                  <Input type="date" className="bg-muted/20 h-12" />
                 </div>
-                <Button type="submit" className="w-full mt-2">
-                  Salvar Alterações
+                <Button
+                  type="submit"
+                  className="w-full h-12 rounded-xl font-semibold mt-2"
+                >
+                  Salvar Perfil
                 </Button>
               </form>
             </CardContent>
           </Card>
+
+          <Button
+            variant="ghost"
+            className="w-full text-destructive hover:bg-destructive/10 hover:text-destructive h-12"
+          >
+            <LogOut className="w-5 h-5 mr-2" />
+            Sair da Conta
+          </Button>
         </TabsContent>
 
         {/* SECRETARIA */}
-        <TabsContent value="secretaria" className="space-y-4 mt-4">
-          <Card className="shadow-sm">
+        <TabsContent value="secretaria" className="space-y-4 mt-6">
+          <Card className="shadow-none border-muted/60">
             <CardHeader className="pb-4">
-              <CardTitle className="text-lg flex items-center gap-2">
-                <FileText className="w-5 h-5" />
+              <CardTitle className="text-[17px] flex items-center gap-2">
+                <FileText className="w-5 h-5 text-primary" />
                 Solicitar Documentos
               </CardTitle>
-              <CardDescription>
-                Peça certificados e cartas de recomendação.
-              </CardDescription>
             </CardHeader>
             <CardContent>
-              <form onSubmit={handleRequestDocument} className="space-y-4">
+              <form onSubmit={handleSave} className="space-y-4">
                 <div className="space-y-2">
                   <Label>Tipo de Documento</Label>
                   <Select required>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Selecione o documento necessário" />
+                    <SelectTrigger className="h-12 bg-muted/20">
+                      <SelectValue placeholder="Selecione..." />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="certificado_membro">
+                      <SelectItem value="membro">
                         Certificado de Membro
                       </SelectItem>
-                      <SelectItem value="certificado_batismo">
+                      <SelectItem value="batismo">
                         Certificado de Batismo
                       </SelectItem>
-                      <SelectItem value="carta_recomendacao">
+                      <SelectItem value="recomendacao">
                         Carta de Recomendação
-                      </SelectItem>
-                      <SelectItem value="historico_cursos">
-                        Histórico de Cursos
                       </SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
-                <Button type="submit" className="w-full">
-                  Enviar Solicitação
+                <Button
+                  type="submit"
+                  className="w-full h-12 rounded-xl font-semibold"
+                >
+                  Solicitar
                 </Button>
               </form>
             </CardContent>
           </Card>
 
-          <Card className="shadow-sm">
+          <Card className="shadow-none border-muted/60">
             <CardHeader className="pb-4">
-              <CardTitle className="text-lg flex items-center gap-2">
-                <CalendarIcon className="w-5 h-5" />
-                Agendamento Pastoral
+              <CardTitle className="text-[17px] flex items-center gap-2">
+                <CalendarIcon className="w-5 h-5 text-primary" />
+                Atendimento Pastoral
               </CardTitle>
-              <CardDescription>
-                Marque um horário para aconselhamento.
-              </CardDescription>
             </CardHeader>
             <CardContent>
-              <form onSubmit={handleSchedule} className="space-y-4">
-                <div className="space-y-2 flex flex-col">
+              <form onSubmit={handleSave} className="space-y-4">
+                <div className="space-y-2">
                   <Label>Data Preferencial</Label>
-                  <Popover>
-                    <PopoverTrigger asChild>
-                      <Button
-                        variant={'outline'}
-                        className={cn(
-                          'w-full justify-start text-left font-normal',
-                          !scheduleDate && 'text-muted-foreground',
-                        )}
-                      >
-                        <CalendarIcon className="mr-2 h-4 w-4" />
-                        {scheduleDate ? (
-                          format(scheduleDate, 'PPP', { locale: ptBR })
-                        ) : (
-                          <span>Escolha um dia útil</span>
-                        )}
-                      </Button>
-                    </PopoverTrigger>
-                    <PopoverContent className="w-auto p-0" align="start">
-                      <Calendar
-                        mode="single"
-                        selected={scheduleDate}
-                        onSelect={setScheduleDate}
-                        disabled={(date) =>
-                          date < new Date() || date.getDay() === 0
-                        }
-                        initialFocus
-                        locale={ptBR}
-                      />
-                    </PopoverContent>
-                  </Popover>
+                  <Input type="date" className="bg-muted/20 h-12" required />
                 </div>
                 <div className="space-y-2">
                   <Label>Período</Label>
                   <Select required>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Qual o melhor período?" />
+                    <SelectTrigger className="h-12 bg-muted/20">
+                      <SelectValue placeholder="Selecione o turno..." />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="manha">
-                        Manhã (09:00 - 12:00)
-                      </SelectItem>
-                      <SelectItem value="tarde">
-                        Tarde (14:00 - 18:00)
-                      </SelectItem>
-                      <SelectItem value="noite">
-                        Noite (19:00 - 21:00)
-                      </SelectItem>
+                      <SelectItem value="manha">Manhã</SelectItem>
+                      <SelectItem value="tarde">Tarde</SelectItem>
+                      <SelectItem value="noite">Noite</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
-                <Button type="submit" variant="secondary" className="w-full">
-                  Solicitar Agendamento
+                <Button
+                  type="submit"
+                  variant="secondary"
+                  className="w-full h-12 rounded-xl font-semibold"
+                >
+                  Agendar
                 </Button>
               </form>
             </CardContent>

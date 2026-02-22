@@ -5,15 +5,6 @@ var __getOwnPropNames = Object.getOwnPropertyNames;
 var __getProtoOf = Object.getPrototypeOf;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
 var __commonJSMin = (cb, mod) => () => (mod || cb((mod = { exports: {} }).exports, mod), mod.exports);
-var __export = (all, symbols) => {
-	let target = {};
-	for (var name in all) __defProp(target, name, {
-		get: all[name],
-		enumerable: true
-	});
-	if (symbols) __defProp(target, Symbol.toStringTag, { value: "Module" });
-	return target;
-};
 var __copyProps = (to, from, except, desc) => {
 	if (from && typeof from === "object" || typeof from === "function") for (var keys = __getOwnPropNames(from), i = 0, n = keys.length, key; i < n; i++) {
 		key = keys[i];
@@ -490,8 +481,8 @@ var require_react_development = /* @__PURE__ */ __commonJSMin(((exports, module)
 				"=": "=0",
 				":": "=2"
 			};
-			return "$" + key.replace(/[=:]/g, function(match$2) {
-				return escaperLookup[match$2];
+			return "$" + key.replace(/[=:]/g, function(match) {
+				return escaperLookup[match];
 			});
 		}
 		function getElementKey(element, index$1) {
@@ -1109,7 +1100,7 @@ var require_react_dom_development = /* @__PURE__ */ __commonJSMin(((exports) => 
 			return dispatcher;
 		}
 		"undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(Error());
-		var React$29 = require_react(), Internals = {
+		var React$2 = require_react(), Internals = {
 			d: {
 				f: noop,
 				r: function() {
@@ -1125,7 +1116,7 @@ var require_react_dom_development = /* @__PURE__ */ __commonJSMin(((exports) => 
 			},
 			p: 0,
 			findDOMNode: null
-		}, REACT_PORTAL_TYPE = Symbol.for("react.portal"), ReactSharedInternals = React$29.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE;
+		}, REACT_PORTAL_TYPE = Symbol.for("react.portal"), ReactSharedInternals = React$2.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE;
 		"function" === typeof Map && null != Map.prototype && "function" === typeof Map.prototype.forEach && "function" === typeof Set && null != Set.prototype && "function" === typeof Set.prototype.clear && "function" === typeof Set.prototype.forEach || console.error("React depends on Map and Set built-in types. Make sure that you load a polyfill in older browsers. https://reactjs.org/link/react-polyfills");
 		exports.__DOM_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE = Internals;
 		exports.createPortal = function(children, container) {
@@ -1645,8 +1636,8 @@ var require_react_dom_client_development = /* @__PURE__ */ __commonJSMin(((expor
 			if (void 0 === prefix) try {
 				throw Error();
 			} catch (x$1) {
-				var match$2 = x$1.stack.trim().match(/\n( *(at )?)/);
-				prefix = match$2 && match$2[1] || "";
+				var match = x$1.stack.trim().match(/\n( *(at )?)/);
+				prefix = match && match[1] || "";
 				suffix = -1 < x$1.stack.indexOf("\n    at") ? " (<anonymous>)" : -1 < x$1.stack.indexOf("@") ? "@unknown:0:0" : "";
 			}
 			return "\n" + prefix + name + suffix;
@@ -2365,7 +2356,7 @@ var require_react_dom_client_development = /* @__PURE__ */ __commonJSMin(((expor
 			"number" === type && getActiveElement(node.ownerDocument) === node || node.defaultValue === "" + value || (node.defaultValue = "" + value);
 		}
 		function validateOptionProps(element, props) {
-			props.value ?? ("object" === typeof props.children && null !== props.children ? React$29.Children.forEach(props.children, function(child) {
+			props.value ?? ("object" === typeof props.children && null !== props.children ? React$2.Children.forEach(props.children, function(child) {
 				null == child || "string" === typeof child || "number" === typeof child || "bigint" === typeof child || didWarnInvalidChild || (didWarnInvalidChild = !0, console.error("Cannot infer the option value of complex children. Pass a `value` prop or use a plain string as children to <option>."));
 			}) : null == props.dangerouslySetInnerHTML || didWarnInvalidInnerHTML || (didWarnInvalidInnerHTML = !0, console.error("Pass a `value` prop if you set dangerouslyInnerHTML so React knows which value should be selected.")));
 			null == props.selected || didWarnSelectedSetOnOption || (console.error("Use the `defaultValue` or `value` props on <select> instead of setting `selected` on <option>."), didWarnSelectedSetOnOption = !0);
@@ -6810,11 +6801,11 @@ var require_react_dom_client_development = /* @__PURE__ */ __commonJSMin(((expor
 						JSCompiler_object_inline_digest_2724 = JSCompiler_object_inline_componentStack_2726.nextSibling && JSCompiler_object_inline_componentStack_2726.nextSibling.dataset;
 						if (JSCompiler_object_inline_digest_2724) {
 							nextPrimaryChildren = JSCompiler_object_inline_digest_2724.dgst;
-							var message$1 = JSCompiler_object_inline_digest_2724.msg;
+							var message = JSCompiler_object_inline_digest_2724.msg;
 							mode = JSCompiler_object_inline_digest_2724.stck;
 							var componentStack = JSCompiler_object_inline_digest_2724.cstck;
 						}
-						JSCompiler_object_inline_message_2723 = message$1;
+						JSCompiler_object_inline_message_2723 = message;
 						JSCompiler_object_inline_digest_2724 = nextPrimaryChildren;
 						JSCompiler_object_inline_stack_2725 = mode;
 						JSCompiler_object_inline_componentStack_2726 = componentStack;
@@ -12656,10 +12647,10 @@ var require_react_dom_client_development = /* @__PURE__ */ __commonJSMin(((expor
 			container[internalContainerInstanceKey] && (container._reactRootContainer ? console.error("You are calling ReactDOMClient.createRoot() on a container that was previously passed to ReactDOM.render(). This is not supported.") : console.error("You are calling ReactDOMClient.createRoot() on a container that has already been passed to createRoot() before. Instead, call root.render() on the existing root instead if you want to update it."));
 		}
 		"undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(Error());
-		var Scheduler = require_scheduler(), React$29 = require_react(), ReactDOM$2 = require_react_dom(), assign = Object.assign, REACT_LEGACY_ELEMENT_TYPE = Symbol.for("react.element"), REACT_ELEMENT_TYPE = Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = Symbol.for("react.profiler"), REACT_CONSUMER_TYPE = Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = Symbol.for("react.memo"), REACT_LAZY_TYPE$1 = Symbol.for("react.lazy");
+		var Scheduler = require_scheduler(), React$2 = require_react(), ReactDOM$2 = require_react_dom(), assign = Object.assign, REACT_LEGACY_ELEMENT_TYPE = Symbol.for("react.element"), REACT_ELEMENT_TYPE = Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = Symbol.for("react.profiler"), REACT_CONSUMER_TYPE = Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = Symbol.for("react.memo"), REACT_LAZY_TYPE$1 = Symbol.for("react.lazy");
 		var REACT_ACTIVITY_TYPE = Symbol.for("react.activity");
 		var REACT_MEMO_CACHE_SENTINEL = Symbol.for("react.memo_cache_sentinel");
-		var MAYBE_ITERATOR_SYMBOL = Symbol.iterator, REACT_CLIENT_REFERENCE = Symbol.for("react.client.reference"), isArrayImpl = Array.isArray, ReactSharedInternals = React$29.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, ReactDOMSharedInternals = ReactDOM$2.__DOM_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, NotPending = Object.freeze({
+		var MAYBE_ITERATOR_SYMBOL = Symbol.iterator, REACT_CLIENT_REFERENCE = Symbol.for("react.client.reference"), isArrayImpl = Array.isArray, ReactSharedInternals = React$2.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, ReactDOMSharedInternals = ReactDOM$2.__DOM_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, NotPending = Object.freeze({
 			pending: !1,
 			data: null,
 			method: null,
@@ -15281,7 +15272,7 @@ var require_react_dom_client_development = /* @__PURE__ */ __commonJSMin(((expor
 			}
 		};
 		(function() {
-			var isomorphicReactPackageVersion = React$29.version;
+			var isomorphicReactPackageVersion = React$2.version;
 			if ("19.2.4" !== isomorphicReactPackageVersion) throw Error("Incompatible React versions: The \"react\" and \"react-dom\" packages must have the exact same version. Instead got:\n  - react:      " + (isomorphicReactPackageVersion + "\n  - react-dom:  19.2.4\nLearn more: https://react.dev/warnings/version-mismatch"));
 		})();
 		"function" === typeof Map && null != Map.prototype && "function" === typeof Map.prototype.forEach && "function" === typeof Set && null != Set.prototype && "function" === typeof Set.prototype.clear && "function" === typeof Set.prototype.forEach || console.error("React depends on Map and Set built-in types. Make sure that you load a polyfill in older browsers. https://react.dev/link/react-polyfills");
@@ -15438,14 +15429,14 @@ function createBrowserHistory(options$1 = {}) {
 	}
 	return getUrlBasedHistory(createBrowserLocation, createBrowserHref, null, options$1);
 }
-function invariant(value, message$1) {
-	if (value === false || value === null || typeof value === "undefined") throw new Error(message$1);
+function invariant(value, message) {
+	if (value === false || value === null || typeof value === "undefined") throw new Error(message);
 }
-function warning(cond, message$1) {
+function warning(cond, message) {
 	if (!cond) {
-		if (typeof console !== "undefined") console.warn(message$1);
+		if (typeof console !== "undefined") console.warn(message);
 		try {
-			throw new Error(message$1);
+			throw new Error(message);
 		} catch (e) {}
 	}
 }
@@ -15614,8 +15605,8 @@ function matchRoutesImpl(routes, locationArg, basename, allowPartial) {
 	}
 	return matches;
 }
-function convertRouteMatchToUiMatch(match$2, loaderData) {
-	let { route, pathname, params } = match$2;
+function convertRouteMatchToUiMatch(match, loaderData) {
+	let { route, pathname, params } = match;
 	return {
 		id: route.id,
 		pathname,
@@ -15699,26 +15690,26 @@ function matchRouteBranch(branch, pathname, allowPartial = false) {
 		let meta = routesMeta[i];
 		let end = i === routesMeta.length - 1;
 		let remainingPathname = matchedPathname === "/" ? pathname : pathname.slice(matchedPathname.length) || "/";
-		let match$2 = matchPath({
+		let match = matchPath({
 			path: meta.relativePath,
 			caseSensitive: meta.caseSensitive,
 			end
 		}, remainingPathname);
 		let route = meta.route;
-		if (!match$2 && end && allowPartial && !routesMeta[routesMeta.length - 1].route.index) match$2 = matchPath({
+		if (!match && end && allowPartial && !routesMeta[routesMeta.length - 1].route.index) match = matchPath({
 			path: meta.relativePath,
 			caseSensitive: meta.caseSensitive,
 			end: false
 		}, remainingPathname);
-		if (!match$2) return null;
-		Object.assign(matchedParams, match$2.params);
+		if (!match) return null;
+		Object.assign(matchedParams, match.params);
 		matches.push({
 			params: matchedParams,
-			pathname: joinPaths([matchedPathname, match$2.pathname]),
-			pathnameBase: normalizePathname(joinPaths([matchedPathname, match$2.pathnameBase])),
+			pathname: joinPaths([matchedPathname, match.pathname]),
+			pathnameBase: normalizePathname(joinPaths([matchedPathname, match.pathnameBase])),
 			route
 		});
-		if (match$2.pathnameBase !== "/") matchedPathname = joinPaths([matchedPathname, match$2.pathnameBase]);
+		if (match.pathnameBase !== "/") matchedPathname = joinPaths([matchedPathname, match.pathnameBase]);
 	}
 	return matches;
 }
@@ -15729,11 +15720,11 @@ function matchPath(pattern, pathname) {
 		end: true
 	};
 	let [matcher, compiledParams] = compilePath(pattern.path, pattern.caseSensitive, pattern.end);
-	let match$2 = pathname.match(matcher);
-	if (!match$2) return null;
-	let matchedPathname = match$2[0];
+	let match = pathname.match(matcher);
+	if (!match) return null;
+	let matchedPathname = match[0];
 	let pathnameBase = matchedPathname.replace(/(.)\/+$/, "$1");
-	let captureGroups = match$2.slice(1);
+	let captureGroups = match.slice(1);
 	return {
 		params: compiledParams.reduce((memo2, { paramName, isOptional }, index$1) => {
 			if (paramName === "*") {
@@ -15811,11 +15802,11 @@ function getInvalidPathError(char, field, dest, path) {
 	return `Cannot include a '${char}' character in a manually specified \`to.${field}\` field [${JSON.stringify(path)}].  Please separate it out to the \`to.${dest}\` field. Alternatively you may provide the full path as a string in <Link to="..."> and the router will parse it for you.`;
 }
 function getPathContributingMatches(matches) {
-	return matches.filter((match$2, index$1) => index$1 === 0 || match$2.route.path && match$2.route.path.length > 0);
+	return matches.filter((match, index$1) => index$1 === 0 || match.route.path && match.route.path.length > 0);
 }
 function getResolveToMatches(matches) {
 	let pathMatches = getPathContributingMatches(matches);
-	return pathMatches.map((match$2, idx) => idx === pathMatches.length - 1 ? match$2.pathname : match$2.pathnameBase);
+	return pathMatches.map((match, idx) => idx === pathMatches.length - 1 ? match.pathname : match.pathnameBase);
 }
 function resolveTo(toArg, routePathnames, locationPathname, isPathRelative = false) {
 	let to;
@@ -16039,10 +16030,10 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
 	let matches = matchRoutes(routes, { pathname: remainingPathname });
 	warning(parentRoute || matches != null, `No routes matched location "${location.pathname}${location.search}${location.hash}" `);
 	warning(matches == null || matches[matches.length - 1].route.element !== void 0 || matches[matches.length - 1].route.Component !== void 0 || matches[matches.length - 1].route.lazy !== void 0, `Matched leaf route at location "${location.pathname}${location.search}${location.hash}" does not have an element or Component. This means it will render an <Outlet /> with a null value by default resulting in an "empty" page.`);
-	let renderedMatches = _renderMatches(matches && matches.map((match$2) => Object.assign({}, match$2, {
-		params: Object.assign({}, parentParams, match$2.params),
-		pathname: joinPaths([parentPathnameBase, navigator$1.encodeLocation ? navigator$1.encodeLocation(match$2.pathname.replace(/\?/g, "%3F").replace(/#/g, "%23")).pathname : match$2.pathname]),
-		pathnameBase: match$2.pathnameBase === "/" ? parentPathnameBase : joinPaths([parentPathnameBase, navigator$1.encodeLocation ? navigator$1.encodeLocation(match$2.pathnameBase.replace(/\?/g, "%3F").replace(/#/g, "%23")).pathname : match$2.pathnameBase])
+	let renderedMatches = _renderMatches(matches && matches.map((match) => Object.assign({}, match, {
+		params: Object.assign({}, parentParams, match.params),
+		pathname: joinPaths([parentPathnameBase, navigator$1.encodeLocation ? navigator$1.encodeLocation(match.pathname.replace(/\?/g, "%3F").replace(/#/g, "%23")).pathname : match.pathname]),
+		pathnameBase: match.pathnameBase === "/" ? parentPathnameBase : joinPaths([parentPathnameBase, navigator$1.encodeLocation ? navigator$1.encodeLocation(match.pathnameBase.replace(/\?/g, "%3F").replace(/#/g, "%23")).pathname : match.pathnameBase])
 	})), parentMatches, dataRouterState, onError, future);
 	if (locationArg && renderedMatches) return /* @__PURE__ */ import_react.createElement(LocationContext.Provider, { value: {
 		location: {
@@ -16059,7 +16050,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
 }
 function DefaultErrorComponent() {
 	let error = useRouteError();
-	let message$1 = isRouteErrorResponse(error) ? `${error.status} ${error.statusText}` : error instanceof Error ? error.message : JSON.stringify(error);
+	let message = isRouteErrorResponse(error) ? `${error.status} ${error.statusText}` : error instanceof Error ? error.message : JSON.stringify(error);
 	let stack = error instanceof Error ? error.stack : null;
 	let lightgrey = "rgba(200,200,200, 0.5)";
 	let preStyles = {
@@ -16073,7 +16064,7 @@ function DefaultErrorComponent() {
 	let devInfo = null;
 	console.error("Error handled by React Router default ErrorBoundary:", error);
 	devInfo = /* @__PURE__ */ import_react.createElement(import_react.Fragment, null, /* @__PURE__ */ import_react.createElement("p", null, "💿 Hey developer 👋"), /* @__PURE__ */ import_react.createElement("p", null, "You can provide a way better UX than this when your app throws errors by providing your own ", /* @__PURE__ */ import_react.createElement("code", { style: codeStyles }, "ErrorBoundary"), " or", " ", /* @__PURE__ */ import_react.createElement("code", { style: codeStyles }, "errorElement"), " prop on your route."));
-	return /* @__PURE__ */ import_react.createElement(import_react.Fragment, null, /* @__PURE__ */ import_react.createElement("h2", null, "Unexpected Application Error!"), /* @__PURE__ */ import_react.createElement("h3", { style: { fontStyle: "italic" } }, message$1), stack ? /* @__PURE__ */ import_react.createElement("pre", { style: preStyles }, stack) : null, devInfo);
+	return /* @__PURE__ */ import_react.createElement(import_react.Fragment, null, /* @__PURE__ */ import_react.createElement("h2", null, "Unexpected Application Error!"), /* @__PURE__ */ import_react.createElement("h3", { style: { fontStyle: "italic" } }, message), stack ? /* @__PURE__ */ import_react.createElement("pre", { style: preStyles }, stack) : null, devInfo);
 }
 var defaultErrorElement = /* @__PURE__ */ import_react.createElement(DefaultErrorComponent, null);
 var RenderErrorBoundary = class extends import_react.Component {
@@ -16142,9 +16133,9 @@ function RSCErrorHandler({ children, error }) {
 	}
 	return children;
 }
-function RenderedRoute({ routeContext, match: match$2, children }) {
+function RenderedRoute({ routeContext, match, children }) {
 	let dataRouterContext = import_react.useContext(DataRouterContext);
-	if (dataRouterContext && dataRouterContext.static && dataRouterContext.staticContext && (match$2.route.errorElement || match$2.route.ErrorBoundary)) dataRouterContext.staticContext._deepestRenderedBoundaryId = match$2.route.id;
+	if (dataRouterContext && dataRouterContext.static && dataRouterContext.staticContext && (match.route.errorElement || match.route.ErrorBoundary)) dataRouterContext.staticContext._deepestRenderedBoundaryId = match.route.id;
 	return /* @__PURE__ */ import_react.createElement(RouteContext.Provider, { value: routeContext }, children);
 }
 function _renderMatches(matches, parentMatches = [], dataRouterState = null, onErrorHandler = null, future = null) {
@@ -16164,12 +16155,12 @@ function _renderMatches(matches, parentMatches = [], dataRouterState = null, onE
 	let renderFallback = false;
 	let fallbackIndex = -1;
 	if (dataRouterState) for (let i = 0; i < renderedMatches.length; i++) {
-		let match$2 = renderedMatches[i];
-		if (match$2.route.HydrateFallback || match$2.route.hydrateFallbackElement) fallbackIndex = i;
-		if (match$2.route.id) {
+		let match = renderedMatches[i];
+		if (match.route.HydrateFallback || match.route.hydrateFallbackElement) fallbackIndex = i;
+		if (match.route.id) {
 			let { loaderData, errors: errors2 } = dataRouterState;
-			let needsToRunLoader = match$2.route.loader && !loaderData.hasOwnProperty(match$2.route.id) && (!errors2 || errors2[match$2.route.id] === void 0);
-			if (match$2.route.lazy || needsToRunLoader) {
+			let needsToRunLoader = match.route.loader && !loaderData.hasOwnProperty(match.route.id) && (!errors2 || errors2[match.route.id] === void 0);
+			if (match.route.lazy || needsToRunLoader) {
 				renderFallback = true;
 				if (fallbackIndex >= 0) renderedMatches = renderedMatches.slice(0, fallbackIndex + 1);
 				else renderedMatches = [renderedMatches[0]];
@@ -16185,14 +16176,14 @@ function _renderMatches(matches, parentMatches = [], dataRouterState = null, onE
 			errorInfo
 		});
 	} : void 0;
-	return renderedMatches.reduceRight((outlet, match$2, index$1) => {
+	return renderedMatches.reduceRight((outlet, match, index$1) => {
 		let error;
 		let shouldRenderHydrateFallback = false;
 		let errorElement = null;
 		let hydrateFallbackElement = null;
 		if (dataRouterState) {
-			error = errors && match$2.route.id ? errors[match$2.route.id] : void 0;
-			errorElement = match$2.route.errorElement || defaultErrorElement;
+			error = errors && match.route.id ? errors[match.route.id] : void 0;
+			errorElement = match.route.errorElement || defaultErrorElement;
 			if (renderFallback) {
 				if (fallbackIndex < 0 && index$1 === 0) {
 					warningOnce("route-fallback", false, "No `HydrateFallback` element provided to render during initial hydration");
@@ -16200,7 +16191,7 @@ function _renderMatches(matches, parentMatches = [], dataRouterState = null, onE
 					hydrateFallbackElement = null;
 				} else if (fallbackIndex === index$1) {
 					shouldRenderHydrateFallback = true;
-					hydrateFallbackElement = match$2.route.hydrateFallbackElement || null;
+					hydrateFallbackElement = match.route.hydrateFallbackElement || null;
 				}
 			}
 		}
@@ -16209,11 +16200,11 @@ function _renderMatches(matches, parentMatches = [], dataRouterState = null, onE
 			let children;
 			if (error) children = errorElement;
 			else if (shouldRenderHydrateFallback) children = hydrateFallbackElement;
-			else if (match$2.route.Component) children = /* @__PURE__ */ import_react.createElement(match$2.route.Component, null);
-			else if (match$2.route.element) children = match$2.route.element;
+			else if (match.route.Component) children = /* @__PURE__ */ import_react.createElement(match.route.Component, null);
+			else if (match.route.element) children = match.route.element;
 			else children = outlet;
 			return /* @__PURE__ */ import_react.createElement(RenderedRoute, {
-				match: match$2,
+				match,
 				routeContext: {
 					outlet,
 					matches: matches2,
@@ -16222,7 +16213,7 @@ function _renderMatches(matches, parentMatches = [], dataRouterState = null, onE
 				children
 			});
 		};
-		return dataRouterState && (match$2.route.ErrorBoundary || match$2.route.errorElement || index$1 === 0) ? /* @__PURE__ */ import_react.createElement(RenderErrorBoundary, {
+		return dataRouterState && (match.route.ErrorBoundary || match.route.errorElement || index$1 === 0) ? /* @__PURE__ */ import_react.createElement(RenderErrorBoundary, {
 			location: dataRouterState.location,
 			revalidation: dataRouterState.revalidation,
 			component: errorElement,
@@ -16296,10 +16287,10 @@ function useNavigateStable() {
 	}, [router, id]);
 }
 var alreadyWarned = {};
-function warningOnce(key, cond, message$1) {
+function warningOnce(key, cond, message) {
 	if (!cond && !alreadyWarned[key]) {
 		alreadyWarned[key] = true;
-		warning(false, message$1);
+		warning(false, message);
 	}
 }
 import_react.useOptimistic;
@@ -16496,10 +16487,10 @@ var ESCAPE_LOOKUP = {
 };
 var ESCAPE_REGEX = /[&><\u2028\u2029]/g;
 function escapeHtml(html) {
-	return html.replace(ESCAPE_REGEX, (match$2) => ESCAPE_LOOKUP[match$2]);
+	return html.replace(ESCAPE_REGEX, (match) => ESCAPE_LOOKUP[match]);
 }
-function invariant2(value, message$1) {
-	if (value === false || value === null || typeof value === "undefined") throw new Error(message$1);
+function invariant2(value, message) {
+	if (value === false || value === null || typeof value === "undefined") throw new Error(message);
 }
 function singleFetchUrl(reqUrl, basename, trailingSlashAware, extension) {
 	let url = typeof reqUrl === "string" ? new URL(reqUrl, typeof window === "undefined" ? "server://singlefetch/" : window.location.origin) : reqUrl;
@@ -16537,8 +16528,8 @@ function isHtmlLinkDescriptor(object) {
 	return typeof object.rel === "string" && typeof object.href === "string";
 }
 async function getKeyedPrefetchLinks(matches, manifest, routeModules) {
-	return dedupeLinkDescriptors((await Promise.all(matches.map(async (match$2) => {
-		let route = manifest.routes[match$2.route.id];
+	return dedupeLinkDescriptors((await Promise.all(matches.map(async (match) => {
+		let route = manifest.routes[match.route.id];
 		if (route) {
 			let mod = await loadRouteModule(route, routeModules);
 			return mod.links ? mod.links() : [];
@@ -16554,24 +16545,24 @@ async function getKeyedPrefetchLinks(matches, manifest, routeModules) {
 	}));
 }
 function getNewMatchesForLinks(page, nextMatches, currentMatches, manifest, location, mode) {
-	let isNew = (match$2, index$1) => {
+	let isNew = (match, index$1) => {
 		if (!currentMatches[index$1]) return true;
-		return match$2.route.id !== currentMatches[index$1].route.id;
+		return match.route.id !== currentMatches[index$1].route.id;
 	};
-	let matchPathChanged = (match$2, index$1) => {
-		return currentMatches[index$1].pathname !== match$2.pathname || currentMatches[index$1].route.path?.endsWith("*") && currentMatches[index$1].params["*"] !== match$2.params["*"];
+	let matchPathChanged = (match, index$1) => {
+		return currentMatches[index$1].pathname !== match.pathname || currentMatches[index$1].route.path?.endsWith("*") && currentMatches[index$1].params["*"] !== match.params["*"];
 	};
-	if (mode === "assets") return nextMatches.filter((match$2, index$1) => isNew(match$2, index$1) || matchPathChanged(match$2, index$1));
-	if (mode === "data") return nextMatches.filter((match$2, index$1) => {
-		let manifestRoute = manifest.routes[match$2.route.id];
+	if (mode === "assets") return nextMatches.filter((match, index$1) => isNew(match, index$1) || matchPathChanged(match, index$1));
+	if (mode === "data") return nextMatches.filter((match, index$1) => {
+		let manifestRoute = manifest.routes[match.route.id];
 		if (!manifestRoute || !manifestRoute.hasLoader) return false;
-		if (isNew(match$2, index$1) || matchPathChanged(match$2, index$1)) return true;
-		if (match$2.route.shouldRevalidate) {
-			let routeChoice = match$2.route.shouldRevalidate({
+		if (isNew(match, index$1) || matchPathChanged(match, index$1)) return true;
+		if (match.route.shouldRevalidate) {
+			let routeChoice = match.route.shouldRevalidate({
 				currentUrl: new URL(location.pathname + location.search + location.hash, window.origin),
 				currentParams: currentMatches[0]?.params || {},
 				nextUrl: new URL(page, window.origin),
-				nextParams: match$2.params,
+				nextParams: match.params,
 				defaultShouldRevalidate: true
 			});
 			if (typeof routeChoice === "boolean") return routeChoice;
@@ -16581,8 +16572,8 @@ function getNewMatchesForLinks(page, nextMatches, currentMatches, manifest, loca
 	return [];
 }
 function getModuleLinkHrefs(matches, manifest, { includeHydrateFallback } = {}) {
-	return dedupeHrefs(matches.map((match$2) => {
-		let route = manifest.routes[match$2.route.id];
+	return dedupeHrefs(matches.map((match) => {
+		let route = manifest.routes[match.route.id];
 		if (!route) return [];
 		let hrefs = [route.module];
 		if (route.clientActionModule) hrefs = hrefs.concat(route.clientActionModule);
@@ -17093,7 +17084,7 @@ function useFormAction(action, { relative } = {}) {
 	let { basename } = import_react.useContext(NavigationContext);
 	let routeContext = import_react.useContext(RouteContext);
 	invariant(routeContext, "useFormAction must be used inside a RouteContext");
-	let [match$2] = routeContext.matches.slice(-1);
+	let [match] = routeContext.matches.slice(-1);
 	let path = { ...useResolvedPath(action ? action : ".", { relative }) };
 	let location = useLocation();
 	if (action == null) {
@@ -17107,7 +17098,7 @@ function useFormAction(action, { relative } = {}) {
 			path.search = qs ? `?${qs}` : "";
 		}
 	}
-	if ((!action || action === ".") && match$2.route.index) path.search = path.search ? path.search.replace(/^\?/, "?index&") : "?index";
+	if ((!action || action === ".") && match.route.index) path.search = path.search ? path.search.replace(/^\?/, "?index&") : "?index";
 	if (basename !== "/") path.pathname = path.pathname === "/" ? basename : joinPaths([basename, path.pathname]);
 	return createPath(path);
 }
@@ -17537,15 +17528,15 @@ var require_react_jsx_runtime_development = /* @__PURE__ */ __commonJSMin(((expo
 		function isValidElement(object) {
 			return "object" === typeof object && null !== object && object.$$typeof === REACT_ELEMENT_TYPE;
 		}
-		var React$29 = require_react(), REACT_ELEMENT_TYPE = Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = Symbol.for("react.profiler"), REACT_CONSUMER_TYPE = Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = Symbol.for("react.memo"), REACT_LAZY_TYPE$1 = Symbol.for("react.lazy"), REACT_ACTIVITY_TYPE = Symbol.for("react.activity"), REACT_CLIENT_REFERENCE = Symbol.for("react.client.reference"), ReactSharedInternals = React$29.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, hasOwnProperty = Object.prototype.hasOwnProperty, isArrayImpl = Array.isArray, createTask = console.createTask ? console.createTask : function() {
+		var React$2 = require_react(), REACT_ELEMENT_TYPE = Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = Symbol.for("react.profiler"), REACT_CONSUMER_TYPE = Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = Symbol.for("react.memo"), REACT_LAZY_TYPE$1 = Symbol.for("react.lazy"), REACT_ACTIVITY_TYPE = Symbol.for("react.activity"), REACT_CLIENT_REFERENCE = Symbol.for("react.client.reference"), ReactSharedInternals = React$2.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, hasOwnProperty = Object.prototype.hasOwnProperty, isArrayImpl = Array.isArray, createTask = console.createTask ? console.createTask : function() {
 			return null;
 		};
-		React$29 = { react_stack_bottom_frame: function(callStackForError) {
+		React$2 = { react_stack_bottom_frame: function(callStackForError) {
 			return callStackForError();
 		} };
 		var specialPropKeyWarningShown;
 		var didWarnAboutElementRef = {};
-		var unknownOwnerDebugStack = React$29.react_stack_bottom_frame.bind(React$29, UnknownOwner)();
+		var unknownOwnerDebugStack = React$2.react_stack_bottom_frame.bind(React$2, UnknownOwner)();
 		var unknownOwnerDebugTask = createTask(getTaskName(UnknownOwner));
 		var didWarnAboutKeySpread = {};
 		exports.Fragment = REACT_FRAGMENT_TYPE;
@@ -17562,7 +17553,7 @@ var require_react_jsx_runtime_development = /* @__PURE__ */ __commonJSMin(((expo
 var import_jsx_runtime = /* @__PURE__ */ __toESM((/* @__PURE__ */ __commonJSMin(((exports, module) => {
 	module.exports = require_react_jsx_runtime_development();
 })))(), 1);
-function createContextScope(scopeName, createContextScopeDeps = []) {
+function createContextScope$1(scopeName, createContextScopeDeps = []) {
 	let defaultContexts = [];
 	function createContext3(rootComponentName, defaultContext) {
 		const BaseContext = import_react.createContext(defaultContext);
@@ -17716,7 +17707,7 @@ function getElementRef$2(element) {
 }
 function createCollection(name) {
 	const PROVIDER_NAME$2 = name + "CollectionProvider";
-	const [createCollectionContext, createCollectionScope$3] = createContextScope(PROVIDER_NAME$2);
+	const [createCollectionContext, createCollectionScope$3] = createContextScope$1(PROVIDER_NAME$2);
 	const [CollectionProviderImpl, useCollectionContext] = createCollectionContext(PROVIDER_NAME$2, {
 		collectionRef: { current: null },
 		itemMap: /* @__PURE__ */ new Map()
@@ -17784,7 +17775,7 @@ function createCollection(name) {
 		createCollectionScope$3
 	];
 }
-var Primitive = [
+var Primitive$1 = [
 	"a",
 	"button",
 	"div",
@@ -17803,10 +17794,10 @@ var Primitive = [
 	"svg",
 	"ul"
 ].reduce((primitive, node) => {
-	const Slot$3 = /* @__PURE__ */ createSlot(`Primitive.${node}`);
+	const Slot$2 = /* @__PURE__ */ createSlot(`Primitive.${node}`);
 	const Node$1 = import_react.forwardRef((props, forwardedRef) => {
 		const { asChild, ...primitiveProps } = props;
-		const Comp = asChild ? Slot$3 : node;
+		const Comp = asChild ? Slot$2 : node;
 		if (typeof window !== "undefined") window[Symbol.for("radix-ui")] = true;
 		return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Comp, {
 			...primitiveProps,
@@ -17918,7 +17909,7 @@ var DismissableLayer = import_react.forwardRef((props, forwardedRef) => {
 		document.addEventListener(CONTEXT_UPDATE, handleUpdate);
 		return () => document.removeEventListener(CONTEXT_UPDATE, handleUpdate);
 	}, []);
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.div, {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.div, {
 		...layerProps,
 		ref: composedRefs,
 		style: {
@@ -17945,7 +17936,7 @@ var DismissableLayerBranch = import_react.forwardRef((props, forwardedRef) => {
 			};
 		}
 	}, [context.branches]);
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.div, {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.div, {
 		...props,
 		ref: composedRefs
 	});
@@ -18011,23 +18002,23 @@ function handleAndDispatchCustomEvent$1(name, handler, detail, { discrete }) {
 	if (discrete) dispatchDiscreteCustomEvent(target, event);
 	else target.dispatchEvent(event);
 }
-var Root$7 = DismissableLayer;
+var Root$5 = DismissableLayer;
 var Branch = DismissableLayerBranch;
 var useLayoutEffect2 = globalThis?.document ? import_react.useLayoutEffect : () => {};
 var import_react_dom$5 = /* @__PURE__ */ __toESM(require_react_dom(), 1);
-var PORTAL_NAME$3 = "Portal";
+var PORTAL_NAME$2 = "Portal";
 var Portal = import_react.forwardRef((props, forwardedRef) => {
 	const { container: containerProp, ...portalProps } = props;
 	const [mounted, setMounted] = import_react.useState(false);
 	useLayoutEffect2(() => setMounted(true), []);
 	const container = containerProp || mounted && globalThis?.document?.body;
-	return container ? import_react_dom$5.createPortal(/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.div, {
+	return container ? import_react_dom$5.createPortal(/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.div, {
 		...portalProps,
 		ref: forwardedRef
 	}), container) : null;
 });
-Portal.displayName = PORTAL_NAME$3;
-function useStateMachine$1(initialState, machine) {
+Portal.displayName = PORTAL_NAME$2;
+function useStateMachine(initialState, machine) {
 	return import_react.useReducer((state, event) => {
 		return machine[state][event] ?? state;
 	}, initialState);
@@ -18045,7 +18036,7 @@ function usePresence(present) {
 	const stylesRef = import_react.useRef(null);
 	const prevPresentRef = import_react.useRef(present);
 	const prevAnimationNameRef = import_react.useRef("none");
-	const [state, send] = useStateMachine$1(present ? "mounted" : "unmounted", {
+	const [state, send] = useStateMachine(present ? "mounted" : "unmounted", {
 		mounted: {
 			UNMOUNT: "unmounted",
 			ANIMATION_OUT: "unmountSuspended"
@@ -18192,7 +18183,7 @@ var VISUALLY_HIDDEN_STYLES = Object.freeze({
 });
 var NAME$2 = "VisuallyHidden";
 var VisuallyHidden = import_react.forwardRef((props, forwardedRef) => {
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.span, {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.span, {
 		...props,
 		ref: forwardedRef,
 		style: {
@@ -18202,11 +18193,11 @@ var VisuallyHidden = import_react.forwardRef((props, forwardedRef) => {
 	});
 });
 VisuallyHidden.displayName = NAME$2;
-var Root$6 = VisuallyHidden;
+var Root$4 = VisuallyHidden;
 var import_react_dom$4 = /* @__PURE__ */ __toESM(require_react_dom(), 1);
 var PROVIDER_NAME$1 = "ToastProvider";
 var [Collection$2, useCollection$2, createCollectionScope$2] = createCollection("Toast");
-var [createToastContext, createToastScope] = createContextScope("Toast", [createCollectionScope$2]);
+var [createToastContext, createToastScope] = createContextScope$1("Toast", [createCollectionScope$2]);
 var [ToastProviderProvider, useToastProviderContext] = createToastContext(PROVIDER_NAME$1);
 var ToastProvider$1 = (props) => {
 	const { __scopeToast, label = "Notification", duration = 5e3, swipeDirection = "right", swipeThreshold = 50, children } = props;
@@ -18235,13 +18226,13 @@ var ToastProvider$1 = (props) => {
 	});
 };
 ToastProvider$1.displayName = PROVIDER_NAME$1;
-var VIEWPORT_NAME$2 = "ToastViewport";
+var VIEWPORT_NAME$1 = "ToastViewport";
 var VIEWPORT_DEFAULT_HOTKEY = ["F8"];
 var VIEWPORT_PAUSE = "toast.viewportPause";
 var VIEWPORT_RESUME = "toast.viewportResume";
 var ToastViewport$1 = import_react.forwardRef((props, forwardedRef) => {
 	const { __scopeToast, hotkey = VIEWPORT_DEFAULT_HOTKEY, label = "Notifications ({hotkey})", ...viewportProps } = props;
-	const context = useToastProviderContext(VIEWPORT_NAME$2, __scopeToast);
+	const context = useToastProviderContext(VIEWPORT_NAME$1, __scopeToast);
 	const getItems = useCollection$2(__scopeToast);
 	const wrapperRef = import_react.useRef(null);
 	const headFocusProxyRef = import_react.useRef(null);
@@ -18342,7 +18333,7 @@ var ToastViewport$1 = import_react.forwardRef((props, forwardedRef) => {
 			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Collection$2.Slot, {
 				scope: __scopeToast,
-				children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.ol, {
+				children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.ol, {
 					tabIndex: -1,
 					...viewportProps,
 					ref: composedRefs
@@ -18357,7 +18348,7 @@ var ToastViewport$1 = import_react.forwardRef((props, forwardedRef) => {
 		]
 	});
 });
-ToastViewport$1.displayName = VIEWPORT_NAME$2;
+ToastViewport$1.displayName = VIEWPORT_NAME$1;
 var FOCUS_PROXY_NAME = "ToastFocusProxy";
 var FocusProxy = import_react.forwardRef((props, forwardedRef) => {
 	const { __scopeToast, onFocusFromOutsideViewport, ...proxyProps } = props;
@@ -18501,13 +18492,13 @@ var ToastImpl = import_react.forwardRef((props, forwardedRef) => {
 		onClose: handleClose,
 		children: import_react_dom$4.createPortal(/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Collection$2.ItemSlot, {
 			scope: __scopeToast,
-			children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Root$7, {
+			children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Root$5, {
 				asChild: true,
 				onEscapeKeyDown: composeEventHandlers(onEscapeKeyDown, () => {
 					if (!context.isFocusedToastEscapeKeyDownRef.current) handleClose();
 					context.isFocusedToastEscapeKeyDownRef.current = false;
 				}),
-				children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.li, {
+				children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.li, {
 					tabIndex: 0,
 					"data-state": open ? "open" : "closed",
 					"data-swipe-direction": context.swipeDirection,
@@ -18607,7 +18598,7 @@ var ToastAnnounce = (props) => {
 var TITLE_NAME = "ToastTitle";
 var ToastTitle$1 = import_react.forwardRef((props, forwardedRef) => {
 	const { __scopeToast, ...titleProps } = props;
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.div, {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.div, {
 		...titleProps,
 		ref: forwardedRef
 	});
@@ -18616,7 +18607,7 @@ ToastTitle$1.displayName = TITLE_NAME;
 var DESCRIPTION_NAME = "ToastDescription";
 var ToastDescription$1 = import_react.forwardRef((props, forwardedRef) => {
 	const { __scopeToast, ...descriptionProps } = props;
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.div, {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.div, {
 		...descriptionProps,
 		ref: forwardedRef
 	});
@@ -18639,13 +18630,13 @@ var ToastAction$1 = import_react.forwardRef((props, forwardedRef) => {
 	});
 });
 ToastAction$1.displayName = ACTION_NAME;
-var CLOSE_NAME$1 = "ToastClose";
+var CLOSE_NAME = "ToastClose";
 var ToastClose$1 = import_react.forwardRef((props, forwardedRef) => {
 	const { __scopeToast, ...closeProps } = props;
-	const interactiveContext = useToastInteractiveContext(CLOSE_NAME$1, __scopeToast);
+	const interactiveContext = useToastInteractiveContext(CLOSE_NAME, __scopeToast);
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ToastAnnounceExclude, {
 		asChild: true,
-		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.button, {
+		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.button, {
 			type: "button",
 			...closeProps,
 			ref: forwardedRef,
@@ -18653,10 +18644,10 @@ var ToastClose$1 = import_react.forwardRef((props, forwardedRef) => {
 		})
 	});
 });
-ToastClose$1.displayName = CLOSE_NAME$1;
+ToastClose$1.displayName = CLOSE_NAME;
 var ToastAnnounceExclude = import_react.forwardRef((props, forwardedRef) => {
 	const { __scopeToast, altText, ...announceExcludeProps } = props;
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.div, {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.div, {
 		"data-radix-toast-announce-exclude": "",
 		"data-radix-toast-announce-alt": altText || void 0,
 		...announceExcludeProps,
@@ -18730,8 +18721,8 @@ function focusFirst$2(candidates) {
 	});
 }
 var Provider$1 = ToastProvider$1;
-var Viewport$2 = ToastViewport$1;
-var Root2$4 = Toast$2;
+var Viewport$1 = ToastViewport$1;
+var Root2$3 = Toast$2;
 var Title = ToastTitle$1;
 var Description = ToastDescription$1;
 var Action = ToastAction$1;
@@ -18808,7 +18799,7 @@ var toKebabCase = (string) => string.replace(/([a-z0-9])([A-Z])/g, "$1-$2").toLo
 * This source code is licensed under the ISC license.
 * See the LICENSE file in the root directory of this source tree.
 */
-var toCamelCase = (string) => string.replace(/^([A-Z])|[\s-_]+(\w)/g, (match$2, p1, p2) => p2 ? p2.toUpperCase() : p1.toLowerCase());
+var toCamelCase = (string) => string.replace(/^([A-Z])|[\s-_]+(\w)/g, (match, p1, p2) => p2 ? p2.toUpperCase() : p1.toLowerCase());
 /**
 * @license lucide-react v0.575.0 - ISC
 *
@@ -18904,6 +18895,52 @@ var Book = createLucideIcon("book", [["path", {
 	d: "M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20",
 	key: "k3hazp"
 }]]);
+var CalendarDays = createLucideIcon("calendar-days", [
+	["path", {
+		d: "M8 2v4",
+		key: "1cmpym"
+	}],
+	["path", {
+		d: "M16 2v4",
+		key: "4m81vk"
+	}],
+	["rect", {
+		width: "18",
+		height: "18",
+		x: "3",
+		y: "4",
+		rx: "2",
+		key: "1hopcy"
+	}],
+	["path", {
+		d: "M3 10h18",
+		key: "8toen8"
+	}],
+	["path", {
+		d: "M8 14h.01",
+		key: "6423bh"
+	}],
+	["path", {
+		d: "M12 14h.01",
+		key: "1etili"
+	}],
+	["path", {
+		d: "M16 14h.01",
+		key: "1gbofw"
+	}],
+	["path", {
+		d: "M8 18h.01",
+		key: "lrp35t"
+	}],
+	["path", {
+		d: "M12 18h.01",
+		key: "mhygvu"
+	}],
+	["path", {
+		d: "M16 18h.01",
+		key: "kzsmim"
+	}]
+]);
 var Calendar = createLucideIcon("calendar", [
 	["path", {
 		d: "M8 2v4",
@@ -18934,17 +18971,18 @@ var ChevronDown = createLucideIcon("chevron-down", [["path", {
 	d: "m6 9 6 6 6-6",
 	key: "qrunsl"
 }]]);
-var ChevronLeft = createLucideIcon("chevron-left", [["path", {
-	d: "m15 18-6-6 6-6",
-	key: "1wnfg3"
-}]]);
-var ChevronRight = createLucideIcon("chevron-right", [["path", {
-	d: "m9 18 6-6-6-6",
-	key: "mthhwq"
-}]]);
 var ChevronUp = createLucideIcon("chevron-up", [["path", {
 	d: "m18 15-6-6-6 6",
 	key: "153udz"
+}]]);
+var CircleCheck = createLucideIcon("circle-check", [["circle", {
+	cx: "12",
+	cy: "12",
+	r: "10",
+	key: "1mglay"
+}], ["path", {
+	d: "m9 12 2 2 4-4",
+	key: "dzmm74"
 }]]);
 var CirclePlay = createLucideIcon("circle-play", [["path", {
 	d: "M9 9.003a1 1 0 0 1 1.517-.859l4.997 2.997a1 1 0 0 1 0 1.718l-4.997 2.997A1 1 0 0 1 9 14.996z",
@@ -18955,6 +18993,24 @@ var CirclePlay = createLucideIcon("circle-play", [["path", {
 	r: "10",
 	key: "1mglay"
 }]]);
+var CircleUser = createLucideIcon("circle-user", [
+	["circle", {
+		cx: "12",
+		cy: "12",
+		r: "10",
+		key: "1mglay"
+	}],
+	["circle", {
+		cx: "12",
+		cy: "10",
+		r: "3",
+		key: "ilqhr7"
+	}],
+	["path", {
+		d: "M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662",
+		key: "154egf"
+	}]
+]);
 var Clock = createLucideIcon("clock", [["circle", {
 	cx: "12",
 	cy: "12",
@@ -19023,6 +19079,54 @@ var House = createLucideIcon("house", [["path", {
 	d: "M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z",
 	key: "r6nss1"
 }]]);
+var LayoutGrid = createLucideIcon("layout-grid", [
+	["rect", {
+		width: "7",
+		height: "7",
+		x: "3",
+		y: "3",
+		rx: "1",
+		key: "1g98yp"
+	}],
+	["rect", {
+		width: "7",
+		height: "7",
+		x: "14",
+		y: "3",
+		rx: "1",
+		key: "6d4xhi"
+	}],
+	["rect", {
+		width: "7",
+		height: "7",
+		x: "14",
+		y: "14",
+		rx: "1",
+		key: "nxv5o0"
+	}],
+	["rect", {
+		width: "7",
+		height: "7",
+		x: "3",
+		y: "14",
+		rx: "1",
+		key: "1bb6yr"
+	}]
+]);
+var LogOut = createLucideIcon("log-out", [
+	["path", {
+		d: "m16 17 5-5-5-5",
+		key: "1bji2h"
+	}],
+	["path", {
+		d: "M21 12H9",
+		key: "dn1m92"
+	}],
+	["path", {
+		d: "M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4",
+		key: "1uf3rs"
+	}]
+]);
 var MapPin = createLucideIcon("map-pin", [["path", {
 	d: "M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0",
 	key: "1r0f0z"
@@ -19031,6 +19135,33 @@ var MapPin = createLucideIcon("map-pin", [["path", {
 	cy: "10",
 	r: "3",
 	key: "ilqhr7"
+}]]);
+var PenTool = createLucideIcon("pen-tool", [
+	["path", {
+		d: "M15.707 21.293a1 1 0 0 1-1.414 0l-1.586-1.586a1 1 0 0 1 0-1.414l5.586-5.586a1 1 0 0 1 1.414 0l1.586 1.586a1 1 0 0 1 0 1.414z",
+		key: "nt11vn"
+	}],
+	["path", {
+		d: "m18 13-1.375-6.874a1 1 0 0 0-.746-.776L3.235 2.028a1 1 0 0 0-1.207 1.207L5.35 15.879a1 1 0 0 0 .776.746L13 18",
+		key: "15qc1e"
+	}],
+	["path", {
+		d: "m2.3 2.3 7.286 7.286",
+		key: "1wuzzi"
+	}],
+	["circle", {
+		cx: "11",
+		cy: "11",
+		r: "2",
+		key: "xmgehs"
+	}]
+]);
+var Quote = createLucideIcon("quote", [["path", {
+	d: "M16 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z",
+	key: "rib7q0"
+}], ["path", {
+	d: "M5 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z",
+	key: "1ymkrd"
 }]]);
 var Search = createLucideIcon("search", [["path", {
 	d: "m21 21-4.34-4.34",
@@ -19048,6 +19179,15 @@ var Send = createLucideIcon("send", [["path", {
 	d: "m21.854 2.147-10.94 10.939",
 	key: "12cjpa"
 }]]);
+var Settings = createLucideIcon("settings", [["path", {
+	d: "M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915",
+	key: "1i5ecw"
+}], ["circle", {
+	cx: "12",
+	cy: "12",
+	r: "3",
+	key: "1v7zrd"
+}]]);
 var User = createLucideIcon("user", [["path", {
 	d: "M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2",
 	key: "975kel"
@@ -19056,6 +19196,37 @@ var User = createLucideIcon("user", [["path", {
 	cy: "7",
 	r: "4",
 	key: "17ys0d"
+}]]);
+var Users = createLucideIcon("users", [
+	["path", {
+		d: "M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2",
+		key: "1yyitq"
+	}],
+	["path", {
+		d: "M16 3.128a4 4 0 0 1 0 7.744",
+		key: "16gr8j"
+	}],
+	["path", {
+		d: "M22 21v-2a4 4 0 0 0-3-3.87",
+		key: "kshegd"
+	}],
+	["circle", {
+		cx: "9",
+		cy: "7",
+		r: "4",
+		key: "nufk8"
+	}]
+]);
+var Video = createLucideIcon("video", [["path", {
+	d: "m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5",
+	key: "ftymec"
+}], ["rect", {
+	x: "2",
+	y: "6",
+	width: "14",
+	height: "12",
+	rx: "2",
+	key: "158x01"
 }]]);
 var X = createLucideIcon("x", [["path", {
 	d: "M18 6 6 18",
@@ -20453,12 +20624,12 @@ function cn(...inputs) {
 	return twMerge(clsx(inputs));
 }
 var ToastProvider = Provider$1;
-var ToastViewport = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Viewport$2, {
+var ToastViewport = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Viewport$1, {
 	ref,
 	className: cn("fixed top-0 z-[100] flex max-h-screen w-full flex-col-reverse p-4 sm:bottom-0 sm:right-0 sm:top-auto sm:flex-col md:max-w-[420px]", className),
 	...props
 }));
-ToastViewport.displayName = Viewport$2.displayName;
+ToastViewport.displayName = Viewport$1.displayName;
 var toastVariants = cva("group pointer-events-auto relative flex w-full items-center justify-between space-x-4 overflow-hidden rounded-md border p-6 pr-8 shadow-lg transition-all data-[swipe=cancel]:translate-x-0 data-[swipe=end]:translate-x-[var(--radix-toast-swipe-end-x)] data-[swipe=move]:translate-x-[var(--radix-toast-swipe-move-x)] data-[swipe=move]:transition-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[swipe=end]:animate-out data-[state=closed]:fade-out-80 data-[state=closed]:slide-out-to-right-full data-[state=open]:slide-in-from-top-full data-[state=open]:sm:slide-in-from-bottom-full", {
 	variants: { variant: {
 		default: "border bg-background text-foreground",
@@ -20467,13 +20638,13 @@ var toastVariants = cva("group pointer-events-auto relative flex w-full items-ce
 	defaultVariants: { variant: "default" }
 });
 var Toast$1 = import_react.forwardRef(({ className, variant, ...props }, ref) => {
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Root2$4, {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Root2$3, {
 		ref,
 		className: cn(toastVariants({ variant }), className),
 		...props
 	});
 });
-Toast$1.displayName = Root2$4.displayName;
+Toast$1.displayName = Root2$3.displayName;
 var ToastAction = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Action, {
 	ref,
 	className: cn("inline-flex h-8 shrink-0 items-center justify-center rounded-md border bg-transparent px-3 text-sm font-medium ring-offset-background transition-colors hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 group-[.destructive]:border-muted/40 group-[.destructive]:hover:border-destructive/30 group-[.destructive]:hover:bg-destructive group-[.destructive]:hover:text-destructive-foreground group-[.destructive]:focus:ring-destructive", className),
@@ -20683,7 +20854,7 @@ var Observer = class {
 		};
 		this.create = (data) => {
 			var _data_id;
-			const { message: message$1, ...rest } = data;
+			const { message, ...rest } = data;
 			const id = typeof (data == null ? void 0 : data.id) === "number" || ((_data_id = data.id) == null ? void 0 : _data_id.length) > 0 ? data.id : toastsCounter++;
 			const alreadyExists = this.toasts.find((toast$2) => {
 				return toast$2.id === id;
@@ -20696,20 +20867,20 @@ var Observer = class {
 						...toast$2,
 						...data,
 						id,
-						title: message$1
+						title: message
 					});
 					return {
 						...toast$2,
 						...data,
 						id,
 						dismissible,
-						title: message$1
+						title: message
 					};
 				}
 				return toast$2;
 			});
 			else this.addToast({
-				title: message$1,
+				title: message,
 				...rest,
 				dismissible,
 				id
@@ -20731,45 +20902,45 @@ var Observer = class {
 			});
 			return id;
 		};
-		this.message = (message$1, data) => {
+		this.message = (message, data) => {
 			return this.create({
 				...data,
-				message: message$1
+				message
 			});
 		};
-		this.error = (message$1, data) => {
+		this.error = (message, data) => {
 			return this.create({
 				...data,
-				message: message$1,
+				message,
 				type: "error"
 			});
 		};
-		this.success = (message$1, data) => {
+		this.success = (message, data) => {
 			return this.create({
 				...data,
 				type: "success",
-				message: message$1
+				message
 			});
 		};
-		this.info = (message$1, data) => {
+		this.info = (message, data) => {
 			return this.create({
 				...data,
 				type: "info",
-				message: message$1
+				message
 			});
 		};
-		this.warning = (message$1, data) => {
+		this.warning = (message, data) => {
 			return this.create({
 				...data,
 				type: "warning",
-				message: message$1
+				message
 			});
 		};
-		this.loading = (message$1, data) => {
+		this.loading = (message, data) => {
 			return this.create({
 				...data,
 				type: "loading",
-				message: message$1
+				message
 			});
 		};
 		this.promise = (promise, data) => {
@@ -20853,10 +21024,10 @@ var Observer = class {
 			if (typeof id !== "string" && typeof id !== "number") return { unwrap };
 			else return Object.assign(id, { unwrap });
 		};
-		this.custom = (jsx$24, data) => {
+		this.custom = (jsx$22, data) => {
 			const id = (data == null ? void 0 : data.id) || toastsCounter++;
 			this.create({
-				jsx: jsx$24(id),
+				jsx: jsx$22(id),
 				id,
 				...data
 			});
@@ -20871,10 +21042,10 @@ var Observer = class {
 	}
 };
 var ToastState = new Observer();
-var toastFunction = (message$1, data) => {
+var toastFunction = (message, data) => {
 	const id = (data == null ? void 0 : data.id) || toastsCounter++;
 	ToastState.addToast({
-		title: message$1,
+		title: message,
 		...data,
 		id
 	});
@@ -21491,8 +21662,8 @@ var sides = [
 	"bottom",
 	"left"
 ];
-var min$1 = Math.min;
-var max$1 = Math.max;
+var min = Math.min;
+var max = Math.max;
 var round = Math.round;
 var floor = Math.floor;
 var createCoords = (v) => ({
@@ -21510,7 +21681,7 @@ var oppositeAlignmentMap = {
 	end: "start"
 };
 function clamp$1(start, value, end) {
-	return max$1(start, min$1(value, end));
+	return max(start, min(value, end));
 }
 function evaluate(value, param) {
 	return typeof value === "function" ? value(param) : value;
@@ -21792,14 +21963,14 @@ var arrow$2 = (options$1) => ({
 		if (!clientSize || !await (platform$1.isElement == null ? void 0 : platform$1.isElement(arrowOffsetParent))) clientSize = elements.floating[clientProp] || rects.floating[length];
 		const centerToReference = endDiff / 2 - startDiff / 2;
 		const largestPossiblePadding = clientSize / 2 - arrowDimensions[length] / 2 - 1;
-		const minPadding = min$1(paddingObject[minProp], largestPossiblePadding);
-		const maxPadding = min$1(paddingObject[maxProp], largestPossiblePadding);
-		const min$1$1 = minPadding;
-		const max$2 = clientSize - arrowDimensions[length] - maxPadding;
+		const minPadding = min(paddingObject[minProp], largestPossiblePadding);
+		const maxPadding = min(paddingObject[maxProp], largestPossiblePadding);
+		const min$1 = minPadding;
+		const max$1 = clientSize - arrowDimensions[length] - maxPadding;
 		const center = clientSize / 2 - arrowDimensions[length] / 2 + centerToReference;
-		const offset$3 = clamp$1(min$1$1, center, max$2);
-		const shouldAddOffset = !middlewareData.arrow && getAlignment(placement) != null && center !== offset$3 && rects.reference[length] / 2 - (center < min$1$1 ? minPadding : maxPadding) - arrowDimensions[length] / 2 < 0;
-		const alignmentOffset = shouldAddOffset ? center < min$1$1 ? center - min$1$1 : center - max$2 : 0;
+		const offset$3 = clamp$1(min$1, center, max$1);
+		const shouldAddOffset = !middlewareData.arrow && getAlignment(placement) != null && center !== offset$3 && rects.reference[length] / 2 - (center < min$1 ? minPadding : maxPadding) - arrowDimensions[length] / 2 < 0;
+		const alignmentOffset = shouldAddOffset ? center < min$1 ? center - min$1 : center - max$1 : 0;
 		return {
 			[axis]: coords[axis] + alignmentOffset,
 			data: {
@@ -21998,16 +22169,16 @@ var shift$2 = function(options$1) {
 			if (checkMainAxis) {
 				const minSide = mainAxis === "y" ? "top" : "left";
 				const maxSide = mainAxis === "y" ? "bottom" : "right";
-				const min$2 = mainAxisCoord + overflow[minSide];
-				const max$2 = mainAxisCoord - overflow[maxSide];
-				mainAxisCoord = clamp$1(min$2, mainAxisCoord, max$2);
+				const min$1 = mainAxisCoord + overflow[minSide];
+				const max$1 = mainAxisCoord - overflow[maxSide];
+				mainAxisCoord = clamp$1(min$1, mainAxisCoord, max$1);
 			}
 			if (checkCrossAxis) {
 				const minSide = crossAxis === "y" ? "top" : "left";
 				const maxSide = crossAxis === "y" ? "bottom" : "right";
-				const min$2 = crossAxisCoord + overflow[minSide];
-				const max$2 = crossAxisCoord - overflow[maxSide];
-				crossAxisCoord = clamp$1(min$2, crossAxisCoord, max$2);
+				const min$1 = crossAxisCoord + overflow[minSide];
+				const max$1 = crossAxisCoord - overflow[maxSide];
+				crossAxisCoord = clamp$1(min$1, crossAxisCoord, max$1);
 			}
 			const limitedCoords = limiter.fn({
 				...state,
@@ -22100,20 +22271,20 @@ var size$2 = function(options$1) {
 			}
 			const maximumClippingHeight = height - overflow.top - overflow.bottom;
 			const maximumClippingWidth = width - overflow.left - overflow.right;
-			const overflowAvailableHeight = min$1(height - overflow[heightSide], maximumClippingHeight);
-			const overflowAvailableWidth = min$1(width - overflow[widthSide], maximumClippingWidth);
+			const overflowAvailableHeight = min(height - overflow[heightSide], maximumClippingHeight);
+			const overflowAvailableWidth = min(width - overflow[widthSide], maximumClippingWidth);
 			const noShift = !state.middlewareData.shift;
 			let availableHeight = overflowAvailableHeight;
 			let availableWidth = overflowAvailableWidth;
 			if ((_state$middlewareData = state.middlewareData.shift) != null && _state$middlewareData.enabled.x) availableWidth = maximumClippingWidth;
 			if ((_state$middlewareData2 = state.middlewareData.shift) != null && _state$middlewareData2.enabled.y) availableHeight = maximumClippingHeight;
 			if (noShift && !alignment) {
-				const xMin = max$1(overflow.left, 0);
-				const xMax = max$1(overflow.right, 0);
-				const yMin = max$1(overflow.top, 0);
-				const yMax = max$1(overflow.bottom, 0);
-				if (isYAxis) availableWidth = width - 2 * (xMin !== 0 || xMax !== 0 ? xMin + xMax : max$1(overflow.left, overflow.right));
-				else availableHeight = height - 2 * (yMin !== 0 || yMax !== 0 ? yMin + yMax : max$1(overflow.top, overflow.bottom));
+				const xMin = max(overflow.left, 0);
+				const xMax = max(overflow.right, 0);
+				const yMin = max(overflow.top, 0);
+				const yMax = max(overflow.bottom, 0);
+				if (isYAxis) availableWidth = width - 2 * (xMin !== 0 || xMax !== 0 ? xMin + xMax : max(overflow.left, overflow.right));
+				else availableHeight = height - 2 * (yMin !== 0 || yMax !== 0 ? yMin + yMax : max(overflow.top, overflow.bottom));
 			}
 			await apply({
 				...state,
@@ -22407,11 +22578,11 @@ function getDocumentRect(element) {
 	const html = getDocumentElement(element);
 	const scroll = getNodeScroll(element);
 	const body = element.ownerDocument.body;
-	const width = max$1(html.scrollWidth, html.clientWidth, body.scrollWidth, body.clientWidth);
-	const height = max$1(html.scrollHeight, html.clientHeight, body.scrollHeight, body.clientHeight);
+	const width = max(html.scrollWidth, html.clientWidth, body.scrollWidth, body.clientWidth);
+	const height = max(html.scrollHeight, html.clientHeight, body.scrollHeight, body.clientHeight);
 	let x$1 = -scroll.scrollLeft + getWindowScrollBarX(element);
 	const y = -scroll.scrollTop;
-	if (getComputedStyle$1(body).direction === "rtl") x$1 += max$1(html.clientWidth, body.clientWidth) - width;
+	if (getComputedStyle$1(body).direction === "rtl") x$1 += max(html.clientWidth, body.clientWidth) - width;
 	return {
 		width,
 		height,
@@ -22511,10 +22682,10 @@ function getClippingRect(_ref) {
 	const firstClippingAncestor = clippingAncestors[0];
 	const clippingRect = clippingAncestors.reduce((accRect, clippingAncestor) => {
 		const rect = getClientRectFromClippingAncestor(element, clippingAncestor, strategy);
-		accRect.top = max$1(rect.top, accRect.top);
-		accRect.right = min$1(rect.right, accRect.right);
-		accRect.bottom = min$1(rect.bottom, accRect.bottom);
-		accRect.left = max$1(rect.left, accRect.left);
+		accRect.top = max(rect.top, accRect.top);
+		accRect.right = min(rect.right, accRect.right);
+		accRect.bottom = min(rect.bottom, accRect.bottom);
+		accRect.left = max(rect.left, accRect.left);
 		return accRect;
 	}, getClientRectFromClippingAncestor(element, firstClippingAncestor, strategy));
 	return {
@@ -22643,7 +22814,7 @@ function observeMove(element, onMove) {
 		const insetLeft = floor(left);
 		const options$1 = {
 			rootMargin: -insetTop + "px " + -insetRight + "px " + -insetBottom + "px " + -insetLeft + "px",
-			threshold: max$1(0, min$1(1, threshold)) || 1
+			threshold: max(0, min(1, threshold)) || 1
 		};
 		let isFirstUpdate = true;
 		function handleObserve(entries) {
@@ -22985,7 +23156,7 @@ var arrow = (options$1, deps) => ({
 var NAME$1 = "Arrow";
 var Arrow$1 = import_react.forwardRef((props, forwardedRef) => {
 	const { children, width = 10, height = 5, ...arrowProps } = props;
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.svg, {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.svg, {
 		...arrowProps,
 		ref: forwardedRef,
 		width,
@@ -22996,7 +23167,7 @@ var Arrow$1 = import_react.forwardRef((props, forwardedRef) => {
 	});
 });
 Arrow$1.displayName = NAME$1;
-var Root$5 = Arrow$1;
+var Root$3 = Arrow$1;
 function useSize(element) {
 	const [size$3, setSize] = import_react.useState(void 0);
 	useLayoutEffect2(() => {
@@ -23032,7 +23203,7 @@ function useSize(element) {
 	return size$3;
 }
 var POPPER_NAME = "Popper";
-var [createPopperContext, createPopperScope] = createContextScope(POPPER_NAME);
+var [createPopperContext, createPopperScope] = createContextScope$1(POPPER_NAME);
 var [PopperProvider, usePopperContext] = createPopperContext(POPPER_NAME);
 var Popper = (props) => {
 	const { __scopePopper, children } = props;
@@ -23045,10 +23216,10 @@ var Popper = (props) => {
 	});
 };
 Popper.displayName = POPPER_NAME;
-var ANCHOR_NAME$1 = "PopperAnchor";
+var ANCHOR_NAME = "PopperAnchor";
 var PopperAnchor = import_react.forwardRef((props, forwardedRef) => {
 	const { __scopePopper, virtualRef, ...anchorProps } = props;
-	const context = usePopperContext(ANCHOR_NAME$1, __scopePopper);
+	const context = usePopperContext(ANCHOR_NAME, __scopePopper);
 	const ref = import_react.useRef(null);
 	const composedRefs = useComposedRefs(forwardedRef, ref);
 	const anchorRef = import_react.useRef(null);
@@ -23057,17 +23228,17 @@ var PopperAnchor = import_react.forwardRef((props, forwardedRef) => {
 		anchorRef.current = virtualRef?.current || ref.current;
 		if (previousAnchor !== anchorRef.current) context.onAnchorChange(anchorRef.current);
 	});
-	return virtualRef ? null : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.div, {
+	return virtualRef ? null : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.div, {
 		...anchorProps,
 		ref: composedRefs
 	});
 });
-PopperAnchor.displayName = ANCHOR_NAME$1;
-var CONTENT_NAME$4 = "PopperContent";
-var [PopperContentProvider, useContentContext] = createPopperContext(CONTENT_NAME$4);
+PopperAnchor.displayName = ANCHOR_NAME;
+var CONTENT_NAME$3 = "PopperContent";
+var [PopperContentProvider, useContentContext] = createPopperContext(CONTENT_NAME$3);
 var PopperContent = import_react.forwardRef((props, forwardedRef) => {
 	const { __scopePopper, side = "bottom", sideOffset = 0, align = "center", alignOffset = 0, arrowPadding = 0, avoidCollisions = true, collisionBoundary = [], collisionPadding: collisionPaddingProp = 0, sticky = "partial", hideWhenDetached = false, updatePositionStrategy = "optimized", onPlaced, ...contentProps } = props;
-	const context = usePopperContext(CONTENT_NAME$4, __scopePopper);
+	const context = usePopperContext(CONTENT_NAME$3, __scopePopper);
 	const [content, setContent] = import_react.useState(null);
 	const composedRefs = useComposedRefs(forwardedRef, (node) => setContent(node));
 	const [arrow$3, setArrow] = import_react.useState(null);
@@ -23167,7 +23338,7 @@ var PopperContent = import_react.forwardRef((props, forwardedRef) => {
 			arrowX,
 			arrowY,
 			shouldHideArrow: cannotCenterArrow,
-			children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.div, {
+			children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.div, {
 				"data-side": placedSide,
 				"data-align": placedAlign,
 				...contentProps,
@@ -23180,8 +23351,8 @@ var PopperContent = import_react.forwardRef((props, forwardedRef) => {
 		})
 	});
 });
-PopperContent.displayName = CONTENT_NAME$4;
-var ARROW_NAME$3 = "PopperArrow";
+PopperContent.displayName = CONTENT_NAME$3;
+var ARROW_NAME$2 = "PopperArrow";
 var OPPOSITE_SIDE = {
 	top: "bottom",
 	right: "left",
@@ -23190,7 +23361,7 @@ var OPPOSITE_SIDE = {
 };
 var PopperArrow = import_react.forwardRef(function PopperArrow2(props, forwardedRef) {
 	const { __scopePopper, ...arrowProps } = props;
-	const contentContext = useContentContext(ARROW_NAME$3, __scopePopper);
+	const contentContext = useContentContext(ARROW_NAME$2, __scopePopper);
 	const baseSide = OPPOSITE_SIDE[contentContext.placedSide];
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
 		ref: contentContext.onArrowChange,
@@ -23213,7 +23384,7 @@ var PopperArrow = import_react.forwardRef(function PopperArrow2(props, forwarded
 			}[contentContext.placedSide],
 			visibility: contentContext.shouldHideArrow ? "hidden" : void 0
 		},
-		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Root$5, {
+		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Root$3, {
 			...arrowProps,
 			ref: forwardedRef,
 			style: {
@@ -23223,7 +23394,7 @@ var PopperArrow = import_react.forwardRef(function PopperArrow2(props, forwarded
 		})
 	});
 });
-PopperArrow.displayName = ARROW_NAME$3;
+PopperArrow.displayName = ARROW_NAME$2;
 function isNotNull(value) {
 	return value !== null;
 }
@@ -23268,12 +23439,12 @@ function getSideAndAlignFromPlacement(placement) {
 	const [side, align = "center"] = placement.split("-");
 	return [side, align];
 }
-var Root2$3 = Popper;
+var Root2$2 = Popper;
 var Anchor = PopperAnchor;
 var Content$1 = PopperContent;
 var Arrow = PopperArrow;
-var [createTooltipContext, createTooltipScope] = createContextScope("Tooltip", [createPopperScope]);
-var usePopperScope$2 = createPopperScope();
+var [createTooltipContext, createTooltipScope] = createContextScope$1("Tooltip", [createPopperScope]);
+var usePopperScope$1 = createPopperScope();
 var PROVIDER_NAME = "TooltipProvider";
 var DEFAULT_DELAY_DURATION = 700;
 var TOOLTIP_OPEN = "tooltip.open";
@@ -23313,7 +23484,7 @@ var [TooltipContextProvider, useTooltipContext] = createTooltipContext(TOOLTIP_N
 var Tooltip$1 = (props) => {
 	const { __scopeTooltip, children, open: openProp, defaultOpen, onOpenChange, disableHoverableContent: disableHoverableContentProp, delayDuration: delayDurationProp } = props;
 	const providerContext = useTooltipProviderContext(TOOLTIP_NAME, props.__scopeTooltip);
-	const popperScope = usePopperScope$2(__scopeTooltip);
+	const popperScope = usePopperScope$1(__scopeTooltip);
 	const [trigger, setTrigger] = import_react.useState(null);
 	const contentId = useId();
 	const openTimerRef = import_react.useRef(0);
@@ -23362,7 +23533,7 @@ var Tooltip$1 = (props) => {
 			}
 		};
 	}, []);
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Root2$3, {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Root2$2, {
 		...popperScope,
 		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(TooltipContextProvider, {
 			scope: __scopeTooltip,
@@ -23394,12 +23565,12 @@ var Tooltip$1 = (props) => {
 	});
 };
 Tooltip$1.displayName = TOOLTIP_NAME;
-var TRIGGER_NAME$4 = "TooltipTrigger";
+var TRIGGER_NAME$3 = "TooltipTrigger";
 var TooltipTrigger$1 = import_react.forwardRef((props, forwardedRef) => {
 	const { __scopeTooltip, ...triggerProps } = props;
-	const context = useTooltipContext(TRIGGER_NAME$4, __scopeTooltip);
-	const providerContext = useTooltipProviderContext(TRIGGER_NAME$4, __scopeTooltip);
-	const popperScope = usePopperScope$2(__scopeTooltip);
+	const context = useTooltipContext(TRIGGER_NAME$3, __scopeTooltip);
+	const providerContext = useTooltipProviderContext(TRIGGER_NAME$3, __scopeTooltip);
+	const popperScope = usePopperScope$1(__scopeTooltip);
 	const composedRefs = useComposedRefs(forwardedRef, import_react.useRef(null), context.onTriggerChange);
 	const isPointerDownRef = import_react.useRef(false);
 	const hasPointerMoveOpenedRef = import_react.useRef(false);
@@ -23410,7 +23581,7 @@ var TooltipTrigger$1 = import_react.forwardRef((props, forwardedRef) => {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Anchor, {
 		asChild: true,
 		...popperScope,
-		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.button, {
+		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.button, {
 			"aria-describedby": context.open ? context.contentId : void 0,
 			"data-state": context.stateAttribute,
 			...triggerProps,
@@ -23439,13 +23610,13 @@ var TooltipTrigger$1 = import_react.forwardRef((props, forwardedRef) => {
 		})
 	});
 });
-TooltipTrigger$1.displayName = TRIGGER_NAME$4;
-var PORTAL_NAME$2 = "TooltipPortal";
-var [PortalProvider$1, usePortalContext$1] = createTooltipContext(PORTAL_NAME$2, { forceMount: void 0 });
+TooltipTrigger$1.displayName = TRIGGER_NAME$3;
+var PORTAL_NAME$1 = "TooltipPortal";
+var [PortalProvider, usePortalContext] = createTooltipContext(PORTAL_NAME$1, { forceMount: void 0 });
 var TooltipPortal = (props) => {
 	const { __scopeTooltip, forceMount, children, container } = props;
-	const context = useTooltipContext(PORTAL_NAME$2, __scopeTooltip);
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(PortalProvider$1, {
+	const context = useTooltipContext(PORTAL_NAME$1, __scopeTooltip);
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(PortalProvider, {
 		scope: __scopeTooltip,
 		forceMount,
 		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Presence, {
@@ -23458,12 +23629,12 @@ var TooltipPortal = (props) => {
 		})
 	});
 };
-TooltipPortal.displayName = PORTAL_NAME$2;
-var CONTENT_NAME$3 = "TooltipContent";
+TooltipPortal.displayName = PORTAL_NAME$1;
+var CONTENT_NAME$2 = "TooltipContent";
 var TooltipContent$1 = import_react.forwardRef((props, forwardedRef) => {
-	const portalContext = usePortalContext$1(CONTENT_NAME$3, props.__scopeTooltip);
+	const portalContext = usePortalContext(CONTENT_NAME$2, props.__scopeTooltip);
 	const { forceMount = portalContext.forceMount, side = "top", ...contentProps } = props;
-	const context = useTooltipContext(CONTENT_NAME$3, props.__scopeTooltip);
+	const context = useTooltipContext(CONTENT_NAME$2, props.__scopeTooltip);
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Presence, {
 		present: forceMount || context.open,
 		children: context.disableHoverableContent ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(TooltipContentImpl, {
@@ -23478,8 +23649,8 @@ var TooltipContent$1 = import_react.forwardRef((props, forwardedRef) => {
 	});
 });
 var TooltipContentHoverable = import_react.forwardRef((props, forwardedRef) => {
-	const context = useTooltipContext(CONTENT_NAME$3, props.__scopeTooltip);
-	const providerContext = useTooltipProviderContext(CONTENT_NAME$3, props.__scopeTooltip);
+	const context = useTooltipContext(CONTENT_NAME$2, props.__scopeTooltip);
+	const providerContext = useTooltipProviderContext(CONTENT_NAME$2, props.__scopeTooltip);
 	const ref = import_react.useRef(null);
 	const composedRefs = useComposedRefs(forwardedRef, ref);
 	const [pointerGraceArea, setPointerGraceArea] = import_react.useState(null);
@@ -23556,8 +23727,8 @@ var [VisuallyHiddenContentContextProvider, useVisuallyHiddenContentContext] = cr
 var Slottable = /* @__PURE__ */ createSlottable("TooltipContent");
 var TooltipContentImpl = import_react.forwardRef((props, forwardedRef) => {
 	const { __scopeTooltip, children, "aria-label": ariaLabel, onEscapeKeyDown, onPointerDownOutside, ...contentProps } = props;
-	const context = useTooltipContext(CONTENT_NAME$3, __scopeTooltip);
-	const popperScope = usePopperScope$2(__scopeTooltip);
+	const context = useTooltipContext(CONTENT_NAME$2, __scopeTooltip);
+	const popperScope = usePopperScope$1(__scopeTooltip);
 	const { onClose } = context;
 	import_react.useEffect(() => {
 		document.addEventListener(TOOLTIP_OPEN, onClose);
@@ -23595,7 +23766,7 @@ var TooltipContentImpl = import_react.forwardRef((props, forwardedRef) => {
 			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Slottable, { children }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(VisuallyHiddenContentContextProvider, {
 				scope: __scopeTooltip,
 				isInside: true,
-				children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Root$6, {
+				children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Root$4, {
 					id: context.contentId,
 					role: "tooltip",
 					children: ariaLabel || children
@@ -23604,18 +23775,18 @@ var TooltipContentImpl = import_react.forwardRef((props, forwardedRef) => {
 		})
 	});
 });
-TooltipContent$1.displayName = CONTENT_NAME$3;
-var ARROW_NAME$2 = "TooltipArrow";
+TooltipContent$1.displayName = CONTENT_NAME$2;
+var ARROW_NAME$1 = "TooltipArrow";
 var TooltipArrow = import_react.forwardRef((props, forwardedRef) => {
 	const { __scopeTooltip, ...arrowProps } = props;
-	const popperScope = usePopperScope$2(__scopeTooltip);
-	return useVisuallyHiddenContentContext(ARROW_NAME$2, __scopeTooltip).isInside ? null : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Arrow, {
+	const popperScope = usePopperScope$1(__scopeTooltip);
+	return useVisuallyHiddenContentContext(ARROW_NAME$1, __scopeTooltip).isInside ? null : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Arrow, {
 		...popperScope,
 		...arrowProps,
 		ref: forwardedRef
 	});
 });
-TooltipArrow.displayName = ARROW_NAME$2;
+TooltipArrow.displayName = ARROW_NAME$1;
 function getExitSideFromRect(point, rect) {
 	const top = Math.abs(rect.top - point.y);
 	const bottom = Math.abs(rect.bottom - point.y);
@@ -23747,15 +23918,15 @@ function getHullPresorted(points) {
 	else return upperHull.concat(lowerHull);
 }
 var Provider = TooltipProvider$1;
-var Content2$2 = TooltipContent$1;
+var Content2$1 = TooltipContent$1;
 var TooltipProvider = Provider;
-var TooltipContent = import_react.forwardRef(({ className, sideOffset = 4, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Content2$2, {
+var TooltipContent = import_react.forwardRef(({ className, sideOffset = 4, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Content2$1, {
 	ref,
 	sideOffset,
 	className: cn("z-50 overflow-hidden rounded-md border bg-popover px-3 py-1.5 text-sm text-popover-foreground shadow-md animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 origin-[--radix-tooltip-content-transform-origin]", className),
 	...props
 }));
-TooltipContent.displayName = Content2$2.displayName;
+TooltipContent.displayName = Content2$1.displayName;
 var Card = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 	ref,
 	className: cn("rounded-lg border bg-card text-card-foreground shadow-sm", className),
@@ -23792,6 +23963,153 @@ var CardFooter = import_react.forwardRef(({ className, ...props }, ref) => /* @_
 	...props
 }));
 CardFooter.displayName = "CardFooter";
+var DiaryBtn = ({ icon: Icon$2, label, to }) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Link, {
+	to,
+	className: "flex flex-col items-center gap-2 group",
+	children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+		className: "w-14 h-14 bg-muted/60 rounded-2xl flex items-center justify-center group-hover:bg-primary/10 group-hover:text-primary transition-colors",
+		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Icon$2, { className: "w-6 h-6 text-foreground/70 group-hover:text-primary" })
+	}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+		className: "text-[11px] font-semibold text-center leading-tight text-muted-foreground group-hover:text-foreground",
+		children: label
+	})]
+});
+function Index() {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+		className: "space-y-8 animate-fade-in-up py-4",
+		children: [
+			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+				className: "w-full aspect-[4/3] rounded-3xl overflow-hidden relative shadow-sm",
+				children: [
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
+						src: "https://img.usecurling.com/p/800/600?q=church%20worship&color=blue",
+						className: "w-full h-full object-cover",
+						alt: "Culto ao vivo"
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-4",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+							className: "text-white/80 text-xs font-semibold uppercase tracking-wider mb-1",
+							children: "Ao vivo"
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", {
+							className: "text-white text-xl font-bold leading-tight",
+							children: "Culto de Celebração"
+						})]
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5",
+						children: [
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "w-1.5 h-1.5 rounded-full bg-white opacity-100" }),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "w-1.5 h-1.5 rounded-full bg-white opacity-40" }),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "w-1.5 h-1.5 rounded-full bg-white opacity-40" })
+						]
+					})
+				]
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+				className: "space-y-3",
+				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+					className: "flex justify-between items-center px-1",
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", {
+						className: "text-[17px] font-bold tracking-tight text-foreground",
+						children: "Programação"
+					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Link, {
+						to: "/campus",
+						className: "text-sm font-semibold text-primary",
+						children: "Ver mais"
+					})]
+				}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+					className: "flex gap-3 overflow-x-auto pb-2 snap-x snap-mandatory -mx-4 px-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]",
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Card, {
+						className: "min-w-[260px] shrink-0 snap-center shadow-none border-muted/60 bg-muted/20",
+						children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardContent, {
+							className: "p-4",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
+								className: "font-semibold text-[15px] mb-2",
+								children: "Culto de Celebração"
+							}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "flex items-center text-sm text-muted-foreground gap-2 font-medium",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Calendar, { className: "w-4 h-4" }), "28/08/2024 às 19:30"]
+							})]
+						})
+					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Card, {
+						className: "min-w-[260px] shrink-0 snap-center shadow-none border-muted/60 bg-muted/20",
+						children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardContent, {
+							className: "p-4",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
+								className: "font-semibold text-[15px] mb-2",
+								children: "Escola Bíblica"
+							}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "flex items-center text-sm text-muted-foreground gap-2 font-medium",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Calendar, { className: "w-4 h-4" }), "01/09/2024 às 09:00"]
+							})]
+						})
+					})]
+				})]
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+				className: "space-y-4",
+				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", {
+					className: "text-[17px] font-bold tracking-tight text-foreground px-1",
+					children: "Diário"
+				}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+					className: "flex justify-between items-start px-2",
+					children: [
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(DiaryBtn, {
+							icon: Book,
+							label: "Bíblia",
+							to: "/bible"
+						}),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(DiaryBtn, {
+							icon: BookOpen,
+							label: "Estudos",
+							to: "/plans"
+						}),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(DiaryBtn, {
+							icon: PenTool,
+							label: "Anotações",
+							to: "/plans"
+						}),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(DiaryBtn, {
+							icon: LayoutGrid,
+							label: "Plano de Leitura",
+							to: "/plans"
+						})
+					]
+				})]
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+				className: "space-y-3",
+				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+					className: "flex justify-between items-center px-1",
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", {
+						className: "text-[17px] font-bold tracking-tight text-foreground",
+						children: "Células"
+					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Link, {
+						to: "/campus",
+						className: "text-sm font-semibold text-primary",
+						children: "Ver mais"
+					})]
+				}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Card, {
+					className: "shadow-none border-muted/60 bg-primary/5",
+					children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardContent, {
+						className: "p-4 flex items-center gap-4",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+							className: "w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0",
+							children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Users, { className: "w-6 h-6 text-primary" })
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
+							className: "font-semibold text-[15px]",
+							children: "Encontre uma Célula"
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+							className: "text-sm text-muted-foreground",
+							children: "Conecte-se com pessoas perto de você."
+						})] })]
+					})
+				})]
+			})
+		]
+	});
+}
 var REACT_LAZY_TYPE = Symbol.for("react.lazy");
 var use = import_react[" use ".trim().toString()];
 function isPromiseLike(value) {
@@ -23831,7 +24149,7 @@ function createSlot$1(ownerName) {
 	Slot2.displayName = `${ownerName}.Slot`;
 	return Slot2;
 }
-var Slot$2 = /* @__PURE__ */ createSlot$1("Slot");
+var Slot$1 = /* @__PURE__ */ createSlot$1("Slot");
 /* @__NO_SIDE_EFFECTS__ */
 function createSlotClone(ownerName) {
 	const SlotClone = import_react.forwardRef((props, forwardedRef) => {
@@ -23906,8 +24224,8 @@ var buttonVariants = cva("inline-flex items-center justify-center gap-2 whitespa
 		size: "default"
 	}
 });
-var Button$1 = import_react.forwardRef(({ className, variant, size: size$3, asChild = false, ...props }, ref) => {
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(asChild ? Slot$2 : "button", {
+var Button = import_react.forwardRef(({ className, variant, size: size$3, asChild = false, ...props }, ref) => {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(asChild ? Slot$1 : "button", {
 		className: cn(buttonVariants({
 			variant,
 			size: size$3,
@@ -23917,7 +24235,7 @@ var Button$1 = import_react.forwardRef(({ className, variant, size: size$3, asCh
 		...props
 	});
 });
-Button$1.displayName = "Button";
+Button.displayName = "Button";
 var Textarea = import_react.forwardRef(({ className, ...props }, ref) => {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("textarea", {
 		className: cn("flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm", className),
@@ -23940,7 +24258,7 @@ function usePrevious(value) {
 	}, [value]);
 }
 var CHECKBOX_NAME = "Checkbox";
-var [createCheckboxContext, createCheckboxScope] = createContextScope(CHECKBOX_NAME);
+var [createCheckboxContext, createCheckboxScope] = createContextScope$1(CHECKBOX_NAME);
 var [CheckboxProviderImpl, useCheckboxContext] = createCheckboxContext(CHECKBOX_NAME);
 function CheckboxProvider(props) {
 	const { __scopeCheckbox, checked: checkedProp, children, defaultChecked, disabled, form, name, onCheckedChange, required, value = "on", internal_do_not_use_render } = props;
@@ -23976,9 +24294,9 @@ function CheckboxProvider(props) {
 		children: isFunction(internal_do_not_use_render) ? internal_do_not_use_render(context) : children
 	});
 }
-var TRIGGER_NAME$3 = "CheckboxTrigger";
+var TRIGGER_NAME$2 = "CheckboxTrigger";
 var CheckboxTrigger = import_react.forwardRef(({ __scopeCheckbox, onKeyDown, onClick, ...checkboxProps }, forwardedRef) => {
-	const { control, value, disabled, checked, required, setControl, setChecked, hasConsumerStoppedPropagationRef, isFormControl, bubbleInput } = useCheckboxContext(TRIGGER_NAME$3, __scopeCheckbox);
+	const { control, value, disabled, checked, required, setControl, setChecked, hasConsumerStoppedPropagationRef, isFormControl, bubbleInput } = useCheckboxContext(TRIGGER_NAME$2, __scopeCheckbox);
 	const composedRefs = useComposedRefs(forwardedRef, setControl);
 	const initialCheckedStateRef = import_react.useRef(checked);
 	import_react.useEffect(() => {
@@ -23989,12 +24307,12 @@ var CheckboxTrigger = import_react.forwardRef(({ __scopeCheckbox, onKeyDown, onC
 			return () => form.removeEventListener("reset", reset);
 		}
 	}, [control, setChecked]);
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.button, {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.button, {
 		type: "button",
 		role: "checkbox",
 		"aria-checked": isIndeterminate(checked) ? "mixed" : checked,
 		"aria-required": required,
-		"data-state": getState$1(checked),
+		"data-state": getState(checked),
 		"data-disabled": disabled ? "" : void 0,
 		disabled,
 		value,
@@ -24012,7 +24330,7 @@ var CheckboxTrigger = import_react.forwardRef(({ __scopeCheckbox, onKeyDown, onC
 		})
 	});
 });
-CheckboxTrigger.displayName = TRIGGER_NAME$3;
+CheckboxTrigger.displayName = TRIGGER_NAME$2;
 var Checkbox$1 = import_react.forwardRef((props, forwardedRef) => {
 	const { __scopeCheckbox, name, checked, defaultChecked, required, disabled, value, onCheckedChange, form, ...checkboxProps } = props;
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CheckboxProvider, {
@@ -24039,8 +24357,8 @@ var CheckboxIndicator = import_react.forwardRef((props, forwardedRef) => {
 	const context = useCheckboxContext(INDICATOR_NAME$1, __scopeCheckbox);
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Presence, {
 		present: forceMount || isIndeterminate(context.checked) || context.checked === true,
-		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.span, {
-			"data-state": getState$1(context.checked),
+		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.span, {
+			"data-state": getState(context.checked),
 			"data-disabled": context.disabled ? "" : void 0,
 			...indicatorProps,
 			ref: forwardedRef,
@@ -24077,7 +24395,7 @@ var CheckboxBubbleInput = import_react.forwardRef(({ __scopeCheckbox, ...props }
 		hasConsumerStoppedPropagationRef
 	]);
 	const defaultCheckedRef = import_react.useRef(isIndeterminate(checked) ? false : checked);
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.input, {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.input, {
 		type: "checkbox",
 		"aria-hidden": true,
 		defaultChecked: defaultChecked ?? defaultCheckedRef.current,
@@ -24107,7 +24425,7 @@ function isFunction(value) {
 function isIndeterminate(checked) {
 	return checked === "indeterminate";
 }
-function getState$1(checked) {
+function getState(checked) {
 	return isIndeterminate(checked) ? "indeterminate" : checked ? "checked" : "unchecked";
 }
 var Checkbox = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Checkbox$1, {
@@ -24120,71 +24438,8 @@ var Checkbox = import_react.forwardRef(({ className, ...props }, ref) => /* @__P
 	})
 }));
 Checkbox.displayName = Checkbox$1.displayName;
-function createContextScope$1(scopeName, createContextScopeDeps = []) {
-	let defaultContexts = [];
-	function createContext3(rootComponentName, defaultContext) {
-		const BaseContext = import_react.createContext(defaultContext);
-		BaseContext.displayName = rootComponentName + "Context";
-		const index$1 = defaultContexts.length;
-		defaultContexts = [...defaultContexts, defaultContext];
-		const Provider$2 = (props) => {
-			const { scope, children, ...context } = props;
-			const Context = scope?.[scopeName]?.[index$1] || BaseContext;
-			const value = import_react.useMemo(() => context, Object.values(context));
-			return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Context.Provider, {
-				value,
-				children
-			});
-		};
-		Provider$2.displayName = rootComponentName + "Provider";
-		function useContext2(consumerName, scope) {
-			const Context = scope?.[scopeName]?.[index$1] || BaseContext;
-			const context = import_react.useContext(Context);
-			if (context) return context;
-			if (defaultContext !== void 0) return defaultContext;
-			throw new Error(`\`${consumerName}\` must be used within \`${rootComponentName}\``);
-		}
-		return [Provider$2, useContext2];
-	}
-	const createScope = () => {
-		const scopeContexts = defaultContexts.map((defaultContext) => {
-			return import_react.createContext(defaultContext);
-		});
-		return function useScope(scope) {
-			const contexts = scope?.[scopeName] || scopeContexts;
-			return import_react.useMemo(() => ({ [`__scope${scopeName}`]: {
-				...scope,
-				[scopeName]: contexts
-			} }), [scope, contexts]);
-		};
-	};
-	createScope.scopeName = scopeName;
-	return [createContext3, composeContextScopes(createScope, ...createContextScopeDeps)];
-}
-function composeContextScopes(...scopes) {
-	const baseScope = scopes[0];
-	if (scopes.length === 1) return baseScope;
-	const createScope = () => {
-		const scopeHooks = scopes.map((createScope2) => ({
-			useScope: createScope2(),
-			scopeName: createScope2.scopeName
-		}));
-		return function useComposedScopes(overrideScopes) {
-			const nextScopes = scopeHooks.reduce((nextScopes2, { useScope, scopeName }) => {
-				const currentScope = useScope(overrideScopes)[`__scope${scopeName}`];
-				return {
-					...nextScopes2,
-					...currentScope
-				};
-			}, {});
-			return import_react.useMemo(() => ({ [`__scope${baseScope.scopeName}`]: nextScopes }), [nextScopes]);
-		};
-	};
-	createScope.scopeName = baseScope.scopeName;
-	return createScope;
-}
 require_react_dom();
-var Primitive$1 = [
+var Primitive = [
 	"a",
 	"button",
 	"div",
@@ -24203,10 +24458,10 @@ var Primitive$1 = [
 	"svg",
 	"ul"
 ].reduce((primitive, node) => {
-	const Slot$3 = /* @__PURE__ */ createSlot$1(`Primitive.${node}`);
+	const Slot$2 = /* @__PURE__ */ createSlot$1(`Primitive.${node}`);
 	const Node$1 = import_react.forwardRef((props, forwardedRef) => {
 		const { asChild, ...primitiveProps } = props;
-		const Comp = asChild ? Slot$3 : node;
+		const Comp = asChild ? Slot$2 : node;
 		if (typeof window !== "undefined") window[Symbol.for("radix-ui")] = true;
 		return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Comp, {
 			...primitiveProps,
@@ -24219,90 +24474,9 @@ var Primitive$1 = [
 		[node]: Node$1
 	};
 }, {});
-var PROGRESS_NAME = "Progress";
-var DEFAULT_MAX = 100;
-var [createProgressContext, createProgressScope] = createContextScope$1(PROGRESS_NAME);
-var [ProgressProvider, useProgressContext] = createProgressContext(PROGRESS_NAME);
-var Progress$1 = import_react.forwardRef((props, forwardedRef) => {
-	const { __scopeProgress, value: valueProp = null, max: maxProp, getValueLabel = defaultGetValueLabel, ...progressProps } = props;
-	if ((maxProp || maxProp === 0) && !isValidMaxNumber(maxProp)) console.error(getInvalidMaxError(`${maxProp}`, "Progress"));
-	const max$2 = isValidMaxNumber(maxProp) ? maxProp : DEFAULT_MAX;
-	if (valueProp !== null && !isValidValueNumber(valueProp, max$2)) console.error(getInvalidValueError(`${valueProp}`, "Progress"));
-	const value = isValidValueNumber(valueProp, max$2) ? valueProp : null;
-	const valueLabel = isNumber(value) ? getValueLabel(value, max$2) : void 0;
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ProgressProvider, {
-		scope: __scopeProgress,
-		value,
-		max: max$2,
-		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.div, {
-			"aria-valuemax": max$2,
-			"aria-valuemin": 0,
-			"aria-valuenow": isNumber(value) ? value : void 0,
-			"aria-valuetext": valueLabel,
-			role: "progressbar",
-			"data-state": getProgressState(value, max$2),
-			"data-value": value ?? void 0,
-			"data-max": max$2,
-			...progressProps,
-			ref: forwardedRef
-		})
-	});
-});
-Progress$1.displayName = PROGRESS_NAME;
-var INDICATOR_NAME = "ProgressIndicator";
-var ProgressIndicator = import_react.forwardRef((props, forwardedRef) => {
-	const { __scopeProgress, ...indicatorProps } = props;
-	const context = useProgressContext(INDICATOR_NAME, __scopeProgress);
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.div, {
-		"data-state": getProgressState(context.value, context.max),
-		"data-value": context.value ?? void 0,
-		"data-max": context.max,
-		...indicatorProps,
-		ref: forwardedRef
-	});
-});
-ProgressIndicator.displayName = INDICATOR_NAME;
-function defaultGetValueLabel(value, max$2) {
-	return `${Math.round(value / max$2 * 100)}%`;
-}
-function getProgressState(value, maxValue) {
-	return value == null ? "indeterminate" : value === maxValue ? "complete" : "loading";
-}
-function isNumber(value) {
-	return typeof value === "number";
-}
-function isValidMaxNumber(max$2) {
-	return isNumber(max$2) && !isNaN(max$2) && max$2 > 0;
-}
-function isValidValueNumber(value, max$2) {
-	return isNumber(value) && !isNaN(value) && value <= max$2 && value >= 0;
-}
-function getInvalidMaxError(propValue, componentName) {
-	return `Invalid prop \`max\` of value \`${propValue}\` supplied to \`${componentName}\`. Only numbers greater than 0 are valid max values. Defaulting to \`${DEFAULT_MAX}\`.`;
-}
-function getInvalidValueError(propValue, componentName) {
-	return `Invalid prop \`value\` of value \`${propValue}\` supplied to \`${componentName}\`. The \`value\` prop must be:
-  - a positive number
-  - less than the value passed to \`max\` (or ${DEFAULT_MAX} if no \`max\` prop is set)
-  - \`null\` or \`undefined\` if the progress is indeterminate.
-
-Defaulting to \`null\`.`;
-}
-var Root$4 = Progress$1;
-var Indicator = ProgressIndicator;
-var Progress = import_react.forwardRef(({ className, value, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Root$4, {
-	ref,
-	className: cn("relative h-4 w-full overflow-hidden rounded-full bg-secondary", className),
-	...props,
-	children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Indicator, {
-		className: "h-full w-full flex-1 bg-primary transition-all",
-		style: { transform: `translateX(-${100 - (value || 0)}%)` }
-	})
-}));
-Progress.displayName = Root$4.displayName;
 var NAME = "Label";
 var Label$2 = import_react.forwardRef((props, forwardedRef) => {
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.label, {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.label, {
 		...props,
 		ref: forwardedRef,
 		onMouseDown: (event) => {
@@ -24313,15 +24487,15 @@ var Label$2 = import_react.forwardRef((props, forwardedRef) => {
 	});
 });
 Label$2.displayName = NAME;
-var Root$3 = Label$2;
+var Root$2 = Label$2;
 var labelVariants = cva("text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70");
-var Label = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Root$3, {
+var Label = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Root$2, {
 	ref,
 	className: cn(labelVariants(), className),
 	...props
 }));
-Label.displayName = Root$3.displayName;
-function Index() {
+Label.displayName = Root$2.displayName;
+function Church() {
 	const { toast: toast$2 } = useToast();
 	const [request, setRequest] = (0, import_react.useState)("");
 	const [anonymous, setAnonymous] = (0, import_react.useState)(false);
@@ -24329,264 +24503,98 @@ function Index() {
 		e.preventDefault();
 		toast$2({
 			title: "Pedido enviado!",
-			description: "Seu pedido de oração foi recebido e estaremos orando por você."
+			description: "Seu pedido de oração foi recebido."
 		});
 		setRequest("");
 		setAnonymous(false);
 	};
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-		className: "space-y-6 animate-fade-in-up",
+		className: "space-y-6 animate-fade-in-up py-4",
 		children: [
 			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-				className: "flex flex-col gap-1",
+				className: "flex flex-col gap-1 px-1",
 				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h1", {
 					className: "text-2xl font-bold tracking-tight",
-					children: "Espiritualidade"
+					children: "Igreja"
 				}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 					className: "text-muted-foreground text-sm",
-					children: "Alimente sua fé e compartilhe seus pedidos de oração."
+					children: "Espiritualidade e comunhão."
 				})]
 			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Card, {
-				className: "bg-primary/5 border-primary/20 shadow-sm overflow-hidden relative",
-				children: [
-					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-						className: "absolute top-0 right-0 p-4 opacity-5",
-						children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(BookOpen, { className: "w-24 h-24" })
-					}),
-					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardHeader, {
-						className: "pb-3",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardTitle, {
-							className: "text-lg flex items-center gap-2",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(BookOpen, { className: "w-5 h-5 text-primary" }), "Palavra do Dia"]
-						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardDescription, {
-							className: "text-primary/70 font-medium",
-							children: "Salmos 23:1"
-						})]
-					}),
-					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardContent, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("blockquote", {
-						className: "border-l-4 border-primary pl-4 italic text-lg sm:text-xl font-medium mb-4 text-foreground/90 leading-relaxed",
-						children: "\"O Senhor é o meu pastor; de nada me faltará.\""
-					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-						className: "text-sm text-muted-foreground leading-relaxed",
-						children: "Reflexão: Deus cuida de nós em todos os momentos. Confie na providência divina e descanse no amor do Pai, sabendo que Ele supre todas as nossas necessidades diárias."
-					})] }),
-					/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardFooter, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button$1, {
-						asChild: true,
-						variant: "outline",
-						className: "w-full sm:w-auto hover:bg-primary hover:text-primary-foreground transition-all",
-						children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Link, {
-							to: "/bible",
-							children: "Acessar Bíblia Digital"
-						})
-					}) })
-				]
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-				className: "grid grid-cols-1 md:grid-cols-2 gap-6",
-				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Card, {
-					className: "shadow-sm",
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardHeader, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardTitle, {
-						className: "text-lg flex items-center gap-2",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Send, { className: "w-5 h-5 text-primary" }), "Pedidos de Oração"]
-					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardDescription, { children: "Compartilhe suas lutas e vitórias com a igreja." })] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardContent, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("form", {
-						onSubmit: handlePrayerRequest,
-						className: "space-y-4",
-						children: [
-							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-								className: "space-y-2",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, {
-									htmlFor: "prayer",
-									children: "Seu pedido"
-								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Textarea, {
-									id: "prayer",
-									placeholder: "Descreva seu pedido de oração aqui...",
-									value: request,
-									onChange: (e) => setRequest(e.target.value),
-									className: "resize-none min-h-[100px]",
-									required: true
-								})]
-							}),
-							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-								className: "flex items-center space-x-2",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Checkbox, {
-									id: "anonymous",
-									checked: anonymous,
-									onCheckedChange: (c) => setAnonymous(c)
-								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, {
-									htmlFor: "anonymous",
-									className: "font-normal text-sm cursor-pointer",
-									children: "Enviar anonimamente"
-								})]
-							}),
-							/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button$1, {
-								type: "submit",
-								className: "w-full transition-all",
-								children: "Enviar Pedido"
-							})
-						]
-					}) })]
-				}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Card, {
-					className: "shadow-sm",
+				className: "bg-primary border-transparent text-primary-foreground shadow-lg overflow-hidden relative",
+				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+					className: "absolute top-0 right-0 p-4 opacity-10",
+					children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Quote, { className: "w-24 h-24" })
+				}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardContent, {
+					className: "p-6 relative z-10",
 					children: [
-						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardHeader, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardTitle, {
-							className: "text-lg flex items-center gap-2",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(BookMarked, { className: "w-5 h-5 text-primary" }), "Planos de Leitura"]
-						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardDescription, { children: "Acompanhe seu progresso diário de leitura bíblica." })] }),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardContent, {
-							className: "space-y-6",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-								className: "space-y-2.5",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-									className: "flex justify-between text-sm",
-									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-										className: "font-medium",
-										children: "Jornada da Fé (30 dias)"
-									}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-										className: "text-primary font-semibold",
-										children: "40%"
-									})]
-								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Progress, {
-									value: 40,
-									className: "h-2"
-								})]
-							}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-								className: "space-y-2.5",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-									className: "flex justify-between text-sm",
-									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-										className: "font-medium",
-										children: "Restauração Familiar (15 dias)"
-									}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-										className: "text-primary font-semibold",
-										children: "10%"
-									})]
-								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Progress, {
-									value: 10,
-									className: "h-2"
-								})]
+						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "flex items-center gap-2 mb-4 opacity-90",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(BookOpen, { className: "w-5 h-5" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+								className: "font-semibold text-sm tracking-widest uppercase",
+								children: "Palavra do Dia"
 							})]
 						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardFooter, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button$1, {
-							variant: "ghost",
-							className: "w-full text-primary hover:text-primary hover:bg-primary/5",
-							children: "Explorar mais planos"
-						}) })
-					]
-				})]
-			})
-		]
-	});
-}
-var Input = import_react.forwardRef(({ className, type, ...props }, ref) => {
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", {
-		type,
-		className: cn("flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm", className),
-		ref,
-		...props
-	});
-});
-Input.displayName = "Input";
-var MOCK_VERSES = [
-	{
-		book: "Gênesis",
-		chapter: 1,
-		verse: 1,
-		text: "No princípio criou Deus os céus e a terra."
-	},
-	{
-		book: "João",
-		chapter: 3,
-		verse: 16,
-		text: "Porque Deus amou o mundo de tal maneira que deu o seu Filho unigênito, para que todo aquele que nele crê não pereça, mas tenha a vida eterna."
-	},
-	{
-		book: "Filipenses",
-		chapter: 4,
-		verse: 13,
-		text: "Posso todas as coisas em Cristo que me fortalece."
-	},
-	{
-		book: "Salmos",
-		chapter: 23,
-		verse: 1,
-		text: "O Senhor é o meu pastor; de nada me faltará."
-	},
-	{
-		book: "Romanos",
-		chapter: 8,
-		verse: 28,
-		text: "E sabemos que todas as coisas contribuem juntamente para o bem daqueles que amam a Deus, daqueles que são chamados segundo o seu propósito."
-	}
-];
-function Bible() {
-	const [search, setSearch] = (0, import_react.useState)("");
-	const filtered = search.trim() === "" ? MOCK_VERSES : MOCK_VERSES.filter((v) => v.text.toLowerCase().includes(search.toLowerCase()) || v.book.toLowerCase().includes(search.toLowerCase()));
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-		className: "space-y-6 animate-fade-in-up",
-		children: [
-			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-				className: "flex items-center gap-2",
-				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button$1, {
-					variant: "ghost",
-					size: "icon",
-					asChild: true,
-					className: "shrink-0 -ml-2",
-					children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Link, {
-						to: "/",
-						children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ChevronLeft, { className: "w-5 h-5" })
-					})
-				}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h1", {
-					className: "text-2xl font-bold tracking-tight flex items-center gap-2",
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Book, { className: "w-6 h-6 text-primary hidden sm:block" }), "Bíblia Digital"]
-				})]
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-				className: "relative group",
-				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Search, { className: "absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground group-focus-within:text-primary transition-colors" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Input, {
-					className: "pl-9 h-12 text-base rounded-xl bg-background border-muted shadow-sm focus-visible:ring-primary/20",
-					placeholder: "Buscar versículo, palavra-chave ou livro...",
-					value: search,
-					onChange: (e) => setSearch(e.target.value)
-				})]
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-				className: "space-y-3",
-				children: [filtered.map((v, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Card, {
-					className: "hover:border-primary/50 transition-colors shadow-sm",
-					children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardContent, {
-						className: "p-4 sm:p-5",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
-							className: "font-semibold text-sm text-primary mb-2 tracking-tight",
-							children: [
-								v.book,
-								" ",
-								v.chapter,
-								":",
-								v.verse
-							]
-						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-							className: "text-foreground leading-relaxed",
-							children: v.text
-						})]
-					})
-				}, i)), filtered.length === 0 && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-					className: "text-center py-16 px-4",
-					children: [
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-							className: "w-16 h-16 bg-muted/50 rounded-full flex items-center justify-center mx-auto mb-4",
-							children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Search, { className: "w-8 h-8 text-muted-foreground/50" })
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
-							className: "text-lg font-medium mb-1",
-							children: "Nenhum resultado"
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("blockquote", {
+							className: "text-xl font-medium mb-4 leading-relaxed",
+							children: "\"Deixo-vos a paz, a minha paz vos dou; não vo-la dou como o mundo a dá. Não se turbe o vosso coração, nem se atemorize.\""
 						}),
 						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-							className: "text-muted-foreground text-sm",
-							children: "Não encontramos nenhum versículo correspondente à sua busca."
+							className: "text-sm font-bold opacity-90 mb-4",
+							children: "João 14:27"
+						}),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+							className: "pt-4 border-t border-primary-foreground/20",
+							children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+								className: "text-sm opacity-80 leading-relaxed font-medium",
+								children: "Reflexão: A verdadeira paz não é a ausência de problemas, mas a presença de Cristo em nosso coração. Descanse nEle hoje."
+							})
 						})
 					]
 				})]
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Card, {
+				className: "shadow-none border-muted/60",
+				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardHeader, {
+					className: "pb-3",
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardTitle, {
+						className: "text-lg flex items-center gap-2",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Send, { className: "w-5 h-5 text-primary" }), "Pedidos de Oração"]
+					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardDescription, { children: "Como podemos orar por você hoje?" })]
+				}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardContent, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("form", {
+					onSubmit: handlePrayerRequest,
+					className: "space-y-4",
+					children: [
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+							className: "space-y-2",
+							children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Textarea, {
+								placeholder: "Descreva seu pedido aqui...",
+								value: request,
+								onChange: (e) => setRequest(e.target.value),
+								className: "resize-none min-h-[120px] bg-muted/20",
+								required: true
+							})
+						}),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "flex items-center space-x-2 py-1",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Checkbox, {
+								id: "anonymous",
+								checked: anonymous,
+								onCheckedChange: (c) => setAnonymous(c)
+							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, {
+								htmlFor: "anonymous",
+								className: "font-medium text-sm cursor-pointer select-none",
+								children: "Enviar anonimamente"
+							})]
+						}),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
+							type: "submit",
+							className: "w-full font-semibold h-12 rounded-xl",
+							children: "Enviar Pedido"
+						})
+					]
+				}) })]
 			})
 		]
 	});
@@ -24603,7 +24611,7 @@ var EVENT_OPTIONS$1 = {
 };
 var GROUP_NAME$1 = "RovingFocusGroup";
 var [Collection$1, useCollection$1, createCollectionScope$1] = createCollection(GROUP_NAME$1);
-var [createRovingFocusGroupContext, createRovingFocusGroupScope] = createContextScope(GROUP_NAME$1, [createCollectionScope$1]);
+var [createRovingFocusGroupContext, createRovingFocusGroupScope] = createContextScope$1(GROUP_NAME$1, [createCollectionScope$1]);
 var [RovingFocusProvider, useRovingFocusContext] = createRovingFocusGroupContext(GROUP_NAME$1);
 var RovingFocusGroup = import_react.forwardRef((props, forwardedRef) => {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Collection$1.Provider, {
@@ -24651,7 +24659,7 @@ var RovingFocusGroupImpl = import_react.forwardRef((props, forwardedRef) => {
 		onItemShiftTab: import_react.useCallback(() => setIsTabbingBackOut(true), []),
 		onFocusableItemAdd: import_react.useCallback(() => setFocusableItemsCount((prevCount) => prevCount + 1), []),
 		onFocusableItemRemove: import_react.useCallback(() => setFocusableItemsCount((prevCount) => prevCount - 1), []),
-		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.div, {
+		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.div, {
 			tabIndex: isTabbingBackOut || focusableItemsCount === 0 ? -1 : 0,
 			"data-orientation": orientation,
 			...groupProps,
@@ -24707,7 +24715,7 @@ var RovingFocusGroupItem = import_react.forwardRef((props, forwardedRef) => {
 		id,
 		focusable,
 		active,
-		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.span, {
+		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.span, {
 			tabIndex: isCurrentTabStop ? 0 : -1,
 			"data-orientation": context.orientation,
 			...itemProps,
@@ -24776,10 +24784,10 @@ function focusFirst$1(candidates, preventScroll = false) {
 function wrapArray$1(array, startIndex) {
 	return array.map((_$1, index$1) => array[(startIndex + index$1) % array.length]);
 }
-var Root$2 = RovingFocusGroup;
+var Root$1 = RovingFocusGroup;
 var Item$1 = RovingFocusGroupItem;
 var TABS_NAME = "Tabs";
-var [createTabsContext, createTabsScope] = createContextScope(TABS_NAME, [createRovingFocusGroupScope]);
+var [createTabsContext, createTabsScope] = createContextScope$1(TABS_NAME, [createRovingFocusGroupScope]);
 var useRovingFocusGroupScope = createRovingFocusGroupScope();
 var [TabsProvider, useTabsContext] = createTabsContext(TABS_NAME);
 var Tabs$1 = import_react.forwardRef((props, forwardedRef) => {
@@ -24799,7 +24807,7 @@ var Tabs$1 = import_react.forwardRef((props, forwardedRef) => {
 		orientation,
 		dir: direction,
 		activationMode,
-		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.div, {
+		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.div, {
 			dir: direction,
 			"data-orientation": orientation,
 			...tabsProps,
@@ -24813,13 +24821,13 @@ var TabsList$1 = import_react.forwardRef((props, forwardedRef) => {
 	const { __scopeTabs, loop = true, ...listProps } = props;
 	const context = useTabsContext(TAB_LIST_NAME, __scopeTabs);
 	const rovingFocusGroupScope = useRovingFocusGroupScope(__scopeTabs);
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Root$2, {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Root$1, {
 		asChild: true,
 		...rovingFocusGroupScope,
 		orientation: context.orientation,
 		dir: context.dir,
 		loop,
-		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.div, {
+		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.div, {
 			role: "tablist",
 			"aria-orientation": context.orientation,
 			...listProps,
@@ -24828,10 +24836,10 @@ var TabsList$1 = import_react.forwardRef((props, forwardedRef) => {
 	});
 });
 TabsList$1.displayName = TAB_LIST_NAME;
-var TRIGGER_NAME$2 = "TabsTrigger";
+var TRIGGER_NAME$1 = "TabsTrigger";
 var TabsTrigger$1 = import_react.forwardRef((props, forwardedRef) => {
 	const { __scopeTabs, value, disabled = false, ...triggerProps } = props;
-	const context = useTabsContext(TRIGGER_NAME$2, __scopeTabs);
+	const context = useTabsContext(TRIGGER_NAME$1, __scopeTabs);
 	const rovingFocusGroupScope = useRovingFocusGroupScope(__scopeTabs);
 	const triggerId = makeTriggerId(context.baseId, value);
 	const contentId = makeContentId(context.baseId, value);
@@ -24841,7 +24849,7 @@ var TabsTrigger$1 = import_react.forwardRef((props, forwardedRef) => {
 		...rovingFocusGroupScope,
 		focusable: !disabled,
 		active: isSelected,
-		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.button, {
+		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.button, {
 			type: "button",
 			role: "tab",
 			"aria-selected": isSelected,
@@ -24866,11 +24874,11 @@ var TabsTrigger$1 = import_react.forwardRef((props, forwardedRef) => {
 		})
 	});
 });
-TabsTrigger$1.displayName = TRIGGER_NAME$2;
-var CONTENT_NAME$2 = "TabsContent";
+TabsTrigger$1.displayName = TRIGGER_NAME$1;
+var CONTENT_NAME$1 = "TabsContent";
 var TabsContent$1 = import_react.forwardRef((props, forwardedRef) => {
 	const { __scopeTabs, value, forceMount, children, ...contentProps } = props;
-	const context = useTabsContext(CONTENT_NAME$2, __scopeTabs);
+	const context = useTabsContext(CONTENT_NAME$1, __scopeTabs);
 	const triggerId = makeTriggerId(context.baseId, value);
 	const contentId = makeContentId(context.baseId, value);
 	const isSelected = value === context.value;
@@ -24881,7 +24889,7 @@ var TabsContent$1 = import_react.forwardRef((props, forwardedRef) => {
 	}, []);
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Presence, {
 		present: forceMount || isSelected,
-		children: ({ present }) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.div, {
+		children: ({ present }) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.div, {
 			"data-state": isSelected ? "active" : "inactive",
 			"data-orientation": context.orientation,
 			role: "tabpanel",
@@ -24899,150 +24907,116 @@ var TabsContent$1 = import_react.forwardRef((props, forwardedRef) => {
 		})
 	});
 });
-TabsContent$1.displayName = CONTENT_NAME$2;
+TabsContent$1.displayName = CONTENT_NAME$1;
 function makeTriggerId(baseId, value) {
 	return `${baseId}-trigger-${value}`;
 }
 function makeContentId(baseId, value) {
 	return `${baseId}-content-${value}`;
 }
-var Root2$2 = Tabs$1;
+var Root2$1 = Tabs$1;
 var List = TabsList$1;
-var Trigger$2 = TabsTrigger$1;
+var Trigger$1 = TabsTrigger$1;
 var Content = TabsContent$1;
-var Tabs = Root2$2;
+var Tabs = Root2$1;
 var TabsList = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(List, {
 	ref,
 	className: cn("inline-flex h-10 items-center justify-center rounded-md bg-muted p-1 text-muted-foreground", className),
 	...props
 }));
 TabsList.displayName = List.displayName;
-var TabsTrigger = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Trigger$2, {
+var TabsTrigger = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Trigger$1, {
 	ref,
 	className: cn("inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm", className),
 	...props
 }));
-TabsTrigger.displayName = Trigger$2.displayName;
+TabsTrigger.displayName = Trigger$1.displayName;
 var TabsContent = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Content, {
 	ref,
 	className: cn("mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2", className),
 	...props
 }));
 TabsContent.displayName = Content.displayName;
-var badgeVariants = cva("inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2", {
-	variants: { variant: {
-		default: "border-transparent bg-primary text-primary-foreground hover:bg-primary/80",
-		secondary: "border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80",
-		destructive: "border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/80",
-		outline: "text-foreground"
-	} },
-	defaultVariants: { variant: "default" }
-});
-function Badge({ className, variant, ...props }) {
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-		className: cn(badgeVariants({ variant }), className),
-		...props
-	});
-}
 var AGENDA = [
 	{
 		id: 1,
 		title: "Culto de Celebração",
-		date: "25 Fev",
-		time: "19:00",
-		location: "Templo Principal",
-		type: "Culto"
+		date: "28 Ago",
+		time: "19:30",
+		location: "Templo Principal"
 	},
 	{
 		id: 2,
-		title: "Escola Bíblica Dominical",
-		date: "26 Fev",
+		title: "Escola Bíblica",
+		date: "01 Set",
 		time: "09:00",
-		location: "Salas de Aula",
-		type: "Ensino"
+		location: "Salas de Aula"
 	},
 	{
 		id: 3,
-		title: "Reunião de Liderança",
-		date: "28 Fev",
+		title: "Reunião de Células",
+		date: "04 Set",
 		time: "20:00",
-		location: "Salão Social",
-		type: "Administrativo"
-	},
-	{
-		id: 4,
-		title: "Culto de Oração",
-		date: "01 Mar",
-		time: "19:30",
-		location: "Capela",
-		type: "Culto"
+		location: "Diversos"
 	}
 ];
 function Events() {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-		className: "space-y-6 animate-fade-in-up h-full flex flex-col",
+		className: "space-y-6 animate-fade-in-up py-4",
 		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-			className: "flex flex-col gap-1 shrink-0",
+			className: "flex flex-col gap-1 px-1",
 			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h1", {
 				className: "text-2xl font-bold tracking-tight",
-				children: "Eventos e Mídia"
+				children: "Campus"
 			}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 				className: "text-muted-foreground text-sm",
-				children: "Acompanhe a programação da igreja e nossos cultos ao vivo."
+				children: "Agenda, eventos e mídia da igreja."
 			})]
 		}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Tabs, {
 			defaultValue: "agenda",
-			className: "w-full flex-1 flex flex-col",
+			className: "w-full",
 			children: [
 				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(TabsList, {
-					className: "grid w-full grid-cols-2 p-1 bg-muted/50",
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(TabsTrigger, {
+					className: "grid w-full grid-cols-2 p-1 bg-muted/40 h-12 rounded-xl",
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(TabsTrigger, {
 						value: "agenda",
-						children: "Agenda Geral"
-					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(TabsTrigger, {
+						className: "rounded-lg font-semibold flex items-center gap-2",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CalendarDays, { className: "w-4 h-4" }), "Agenda"]
+					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(TabsTrigger, {
 						value: "media",
-						children: "Transmissão e Mídia"
+						className: "rounded-lg font-semibold flex items-center gap-2",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Video, { className: "w-4 h-4" }), "Mídia"]
 					})]
 				}),
 				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(TabsContent, {
 					value: "agenda",
-					className: "space-y-3 mt-4 flex-1",
+					className: "space-y-3 mt-6",
 					children: AGENDA.map((event) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Card, {
-						className: "shadow-sm hover:shadow transition-shadow",
-						children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardContent, {
-							className: "p-4 flex gap-4 items-start",
+						className: "shadow-none border-muted/60 overflow-hidden",
+						children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "flex items-stretch",
 							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-								className: "flex flex-col items-center justify-center bg-primary/10 text-primary rounded-lg min-w-[4rem] h-16 shrink-0 border border-primary/10",
+								className: "w-20 bg-primary/5 border-r border-primary/10 flex flex-col items-center justify-center shrink-0 py-3",
 								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-									className: "font-bold text-lg leading-none tracking-tight",
+									className: "font-bold text-xl leading-none text-primary",
 									children: event.date.split(" ")[0]
 								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-									className: "text-xs uppercase font-medium mt-1",
+									className: "text-xs uppercase font-semibold text-primary/70 mt-1",
 									children: event.date.split(" ")[1]
 								})]
-							}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-								className: "space-y-2 flex-1 min-w-0",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-									className: "flex justify-between items-start gap-2",
-									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
-										className: "font-semibold text-base leading-tight truncate",
-										children: event.title
-									}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Badge, {
-										variant: "secondary",
-										className: "text-[10px] shrink-0 font-medium bg-secondary/50",
-										children: event.type
-									})]
+							}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardContent, {
+								className: "p-4 flex-1",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
+									className: "font-semibold text-base mb-2",
+									children: event.title
 								}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-									className: "flex flex-wrap items-center text-xs sm:text-sm text-muted-foreground gap-x-4 gap-y-1.5",
-									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
-										className: "flex items-center gap-1.5",
+									className: "space-y-1.5",
+									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+										className: "flex items-center text-[13px] text-muted-foreground gap-2",
 										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Clock, { className: "w-3.5 h-3.5" }), event.time]
-									}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
-										className: "flex items-center gap-1.5 truncate",
-										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(MapPin, { className: "w-3.5 h-3.5 shrink-0" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-											className: "truncate",
-											children: event.location
-										})]
+									}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+										className: "flex items-center text-[13px] text-muted-foreground gap-2",
+										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(MapPin, { className: "w-3.5 h-3.5" }), event.location]
 									})]
 								})]
 							})]
@@ -25051,98 +25025,77 @@ function Events() {
 				}),
 				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(TabsContent, {
 					value: "media",
-					className: "space-y-6 mt-4 flex-1",
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Card, {
-						className: "bg-zinc-950 text-white overflow-hidden border-0 relative shadow-md",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "aspect-video bg-zinc-900 flex flex-col items-center justify-center group cursor-pointer relative overflow-hidden",
+					className: "space-y-6 mt-6",
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "space-y-3",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
+							className: "font-bold px-1",
+							children: "Transmissão ao Vivo"
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Card, {
+							className: "border-none shadow-md overflow-hidden relative group cursor-pointer rounded-2xl",
 							children: [
 								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
 									src: "https://img.usecurling.com/p/800/450?q=church%20worship",
-									alt: "Live Stream",
-									className: "absolute inset-0 w-full h-full object-cover opacity-50 group-hover:scale-105 transition-transform duration-700"
+									className: "w-full aspect-video object-cover",
+									alt: "Live"
 								}),
-								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "absolute inset-0 bg-gradient-to-t from-zinc-950/90 via-black/40 to-transparent" }),
-								/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CirclePlay, { className: "w-16 h-16 text-white z-10 opacity-90 group-hover:scale-110 transition-all drop-shadow-lg" }),
-								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
-									className: "absolute bottom-4 left-4 z-10 font-medium flex items-center gap-2 text-sm bg-black/50 px-3 py-1.5 rounded-full backdrop-blur-sm border border-white/10",
-									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "w-2 h-2 rounded-full bg-red-500 animate-pulse" }), "Ao Vivo Agora"]
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+									className: "absolute inset-0 bg-black/40 flex items-center justify-center",
+									children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CirclePlay, { className: "w-14 h-14 text-white opacity-90 group-hover:scale-110 transition-transform" })
+								}),
+								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+									className: "absolute bottom-3 left-3 bg-red-600/90 text-white text-[11px] font-bold px-2 py-1 rounded-md uppercase tracking-wider flex items-center gap-1.5",
+									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "w-1.5 h-1.5 bg-white rounded-full animate-pulse" }), "Ao Vivo"]
 								})
 							]
-						}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardContent, {
-							className: "p-4 sm:p-5 bg-zinc-950",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
-								className: "font-semibold text-lg leading-tight mb-1",
-								children: "Culto de Celebração e Adoração"
-							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-								className: "text-zinc-400 text-sm",
-								children: "Domingo, 19:00 - Acompanhe nossa transmissão online."
-							})]
-						})]
-					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-						className: "flex items-center justify-between mb-4",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
-							className: "font-semibold text-lg",
-							children: "Últimos Eventos"
-						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
-							variant: "link",
-							className: "text-primary p-0 h-auto text-sm",
-							children: "Ver tudo"
 						})]
 					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-						className: "grid grid-cols-2 sm:grid-cols-3 gap-3",
-						children: [
-							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-								className: "relative aspect-square rounded-xl overflow-hidden group",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
-									src: "https://img.usecurling.com/p/300/300?q=baptism",
-									alt: "Gallery",
-									className: "object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
-								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-									className: "absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3",
-									children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-										className: "text-white text-xs font-medium",
-										children: "Batismos"
-									})
-								})]
-							}),
-							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-								className: "relative aspect-square rounded-xl overflow-hidden group",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
-									src: "https://img.usecurling.com/p/300/300?q=choir",
-									alt: "Gallery",
-									className: "object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
-								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-									className: "absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3",
-									children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-										className: "text-white text-xs font-medium",
-										children: "Coral"
-									})
-								})]
-							}),
-							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-								className: "relative aspect-square rounded-xl overflow-hidden group hidden sm:block",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
-									src: "https://img.usecurling.com/p/300/300?q=community",
-									alt: "Gallery",
-									className: "object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
-								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-									className: "absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3",
-									children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-										className: "text-white text-xs font-medium",
-										children: "Comunhão"
-									})
-								})]
-							})
-						]
-					})] })]
+						className: "space-y-3",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
+							className: "font-bold px-1",
+							children: "Galeria de Fotos"
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "grid grid-cols-2 gap-2",
+							children: [
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
+									src: "https://img.usecurling.com/p/400/400?q=worship",
+									className: "w-full aspect-square object-cover rounded-xl",
+									alt: "Galeria"
+								}),
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
+									src: "https://img.usecurling.com/p/400/400?q=youth",
+									className: "w-full aspect-square object-cover rounded-xl",
+									alt: "Galeria"
+								}),
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
+									src: "https://img.usecurling.com/p/400/400?q=church%20event",
+									className: "w-full aspect-square object-cover rounded-xl",
+									alt: "Galeria"
+								}),
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
+									src: "https://img.usecurling.com/p/400/400?q=baptism",
+									className: "w-full aspect-square object-cover rounded-xl",
+									alt: "Galeria"
+								})
+							]
+						})]
+					})]
 				})
 			]
 		})]
 	});
 }
-function clamp(value, [min$2, max$2]) {
-	return Math.min(max$2, Math.max(min$2, value));
+var Input = import_react.forwardRef(({ className, type, ...props }, ref) => {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", {
+		type,
+		className: cn("flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm", className),
+		ref,
+		...props
+	});
+});
+Input.displayName = "Input";
+function clamp(value, [min$1, max$1]) {
+	return Math.min(max$1, Math.max(min$1, value));
 }
 var count = 0;
 function useFocusGuards() {
@@ -25278,7 +25231,7 @@ var FocusScope = import_react.forwardRef((props, forwardedRef) => {
 		trapped,
 		focusScope.paused
 	]);
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.div, {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.div, {
 		tabIndex: -1,
 		...scopeProps,
 		ref: composedRefs,
@@ -26056,13 +26009,13 @@ var OPEN_KEYS = [
 var SELECTION_KEYS = [" ", "Enter"];
 var SELECT_NAME = "Select";
 var [Collection, useCollection, createCollectionScope] = createCollection(SELECT_NAME);
-var [createSelectContext, createSelectScope] = createContextScope(SELECT_NAME, [createCollectionScope, createPopperScope]);
-var usePopperScope$1 = createPopperScope();
+var [createSelectContext, createSelectScope] = createContextScope$1(SELECT_NAME, [createCollectionScope, createPopperScope]);
+var usePopperScope = createPopperScope();
 var [SelectProvider, useSelectContext] = createSelectContext(SELECT_NAME);
 var [SelectNativeOptionsProvider, useSelectNativeOptionsContext] = createSelectContext(SELECT_NAME);
-var Select$2 = (props) => {
+var Select$1 = (props) => {
 	const { __scopeSelect, children, open: openProp, defaultOpen, onOpenChange, value: valueProp, defaultValue, onValueChange, dir, name, autoComplete, disabled, required, form } = props;
-	const popperScope = usePopperScope$1(__scopeSelect);
+	const popperScope = usePopperScope(__scopeSelect);
 	const [trigger, setTrigger] = import_react.useState(null);
 	const [valueNode, setValueNode] = import_react.useState(null);
 	const [valueNodeHasChildren, setValueNodeHasChildren] = import_react.useState(false);
@@ -26083,7 +26036,7 @@ var Select$2 = (props) => {
 	const isFormControl = trigger ? form || !!trigger.closest("form") : true;
 	const [nativeOptionsSet, setNativeOptionsSet] = import_react.useState(/* @__PURE__ */ new Set());
 	const nativeSelectKey = Array.from(nativeOptionsSet).map((option) => option.props.value).join(";");
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Root2$3, {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Root2$2, {
 		...popperScope,
 		children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(SelectProvider, {
 			required,
@@ -26133,12 +26086,12 @@ var Select$2 = (props) => {
 		})
 	});
 };
-Select$2.displayName = SELECT_NAME;
-var TRIGGER_NAME$1 = "SelectTrigger";
+Select$1.displayName = SELECT_NAME;
+var TRIGGER_NAME = "SelectTrigger";
 var SelectTrigger$1 = import_react.forwardRef((props, forwardedRef) => {
 	const { __scopeSelect, disabled = false, ...triggerProps } = props;
-	const popperScope = usePopperScope$1(__scopeSelect);
-	const context = useSelectContext(TRIGGER_NAME$1, __scopeSelect);
+	const popperScope = usePopperScope(__scopeSelect);
+	const context = useSelectContext(TRIGGER_NAME, __scopeSelect);
 	const isDisabled = context.disabled || disabled;
 	const composedRefs = useComposedRefs(forwardedRef, context.onTriggerChange);
 	const getItems = useCollection(__scopeSelect);
@@ -26161,7 +26114,7 @@ var SelectTrigger$1 = import_react.forwardRef((props, forwardedRef) => {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Anchor, {
 		asChild: true,
 		...popperScope,
-		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.button, {
+		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.button, {
 			type: "button",
 			role: "combobox",
 			"aria-controls": context.contentId,
@@ -26200,7 +26153,7 @@ var SelectTrigger$1 = import_react.forwardRef((props, forwardedRef) => {
 		})
 	});
 });
-SelectTrigger$1.displayName = TRIGGER_NAME$1;
+SelectTrigger$1.displayName = TRIGGER_NAME;
 var VALUE_NAME = "SelectValue";
 var SelectValue$1 = import_react.forwardRef((props, forwardedRef) => {
 	const { __scopeSelect, className, style, children, placeholder = "", ...valueProps } = props;
@@ -26211,7 +26164,7 @@ var SelectValue$1 = import_react.forwardRef((props, forwardedRef) => {
 	useLayoutEffect2(() => {
 		onValueNodeHasChildrenChange(hasChildren);
 	}, [onValueNodeHasChildrenChange, hasChildren]);
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.span, {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.span, {
 		...valueProps,
 		ref: composedRefs,
 		style: { pointerEvents: "none" },
@@ -26222,7 +26175,7 @@ SelectValue$1.displayName = VALUE_NAME;
 var ICON_NAME = "SelectIcon";
 var SelectIcon = import_react.forwardRef((props, forwardedRef) => {
 	const { __scopeSelect, children, ...iconProps } = props;
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.span, {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.span, {
 		"aria-hidden": true,
 		...iconProps,
 		ref: forwardedRef,
@@ -26230,17 +26183,17 @@ var SelectIcon = import_react.forwardRef((props, forwardedRef) => {
 	});
 });
 SelectIcon.displayName = ICON_NAME;
-var PORTAL_NAME$1 = "SelectPortal";
+var PORTAL_NAME = "SelectPortal";
 var SelectPortal = (props) => {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Portal, {
 		asChild: true,
 		...props
 	});
 };
-SelectPortal.displayName = PORTAL_NAME$1;
-var CONTENT_NAME$1 = "SelectContent";
+SelectPortal.displayName = PORTAL_NAME;
+var CONTENT_NAME = "SelectContent";
 var SelectContent$1 = import_react.forwardRef((props, forwardedRef) => {
-	const context = useSelectContext(CONTENT_NAME$1, props.__scopeSelect);
+	const context = useSelectContext(CONTENT_NAME, props.__scopeSelect);
 	const [fragment, setFragment] = import_react.useState();
 	useLayoutEffect2(() => {
 		setFragment(new DocumentFragment());
@@ -26260,14 +26213,14 @@ var SelectContent$1 = import_react.forwardRef((props, forwardedRef) => {
 		ref: forwardedRef
 	});
 });
-SelectContent$1.displayName = CONTENT_NAME$1;
+SelectContent$1.displayName = CONTENT_NAME;
 var CONTENT_MARGIN = 10;
-var [SelectContentProvider, useSelectContentContext] = createSelectContext(CONTENT_NAME$1);
+var [SelectContentProvider, useSelectContentContext] = createSelectContext(CONTENT_NAME);
 var CONTENT_IMPL_NAME = "SelectContentImpl";
-var Slot$1 = /* @__PURE__ */ createSlot("SelectContent.RemoveScroll");
+var Slot = /* @__PURE__ */ createSlot("SelectContent.RemoveScroll");
 var SelectContentImpl = import_react.forwardRef((props, forwardedRef) => {
 	const { __scopeSelect, position = "item-aligned", onCloseAutoFocus, onEscapeKeyDown, onPointerDownOutside, side, sideOffset, align, alignOffset, arrowPadding, collisionBoundary, collisionPadding, sticky, hideWhenDetached, avoidCollisions, ...contentProps } = props;
-	const context = useSelectContext(CONTENT_NAME$1, __scopeSelect);
+	const context = useSelectContext(CONTENT_NAME, __scopeSelect);
 	const [content, setContent] = import_react.useState(null);
 	const [viewport, setViewport] = import_react.useState(null);
 	const composedRefs = useComposedRefs(forwardedRef, (node) => setContent(node));
@@ -26391,7 +26344,7 @@ var SelectContentImpl = import_react.forwardRef((props, forwardedRef) => {
 		isPositioned,
 		searchRef,
 		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Combination_default, {
-			as: Slot$1,
+			as: Slot,
 			allowPinchZoom: true,
 			children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(FocusScope, {
 				asChild: true,
@@ -26457,8 +26410,8 @@ SelectContentImpl.displayName = CONTENT_IMPL_NAME;
 var ITEM_ALIGNED_POSITION_NAME = "SelectItemAlignedPosition";
 var SelectItemAlignedPosition = import_react.forwardRef((props, forwardedRef) => {
 	const { __scopeSelect, onPlaced, ...popperProps } = props;
-	const context = useSelectContext(CONTENT_NAME$1, __scopeSelect);
-	const contentContext = useSelectContentContext(CONTENT_NAME$1, __scopeSelect);
+	const context = useSelectContext(CONTENT_NAME, __scopeSelect);
+	const contentContext = useSelectContentContext(CONTENT_NAME, __scopeSelect);
 	const [contentWrapper, setContentWrapper] = import_react.useState(null);
 	const [content, setContent] = import_react.useState(null);
 	const composedRefs = useComposedRefs(forwardedRef, (node) => setContent(node));
@@ -26567,7 +26520,7 @@ var SelectItemAlignedPosition = import_react.forwardRef((props, forwardedRef) =>
 				position: "fixed",
 				zIndex: contentZIndex
 			},
-			children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.div, {
+			children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.div, {
 				...popperProps,
 				ref: composedRefs,
 				style: {
@@ -26583,7 +26536,7 @@ SelectItemAlignedPosition.displayName = ITEM_ALIGNED_POSITION_NAME;
 var POPPER_POSITION_NAME = "SelectPopperPosition";
 var SelectPopperPosition = import_react.forwardRef((props, forwardedRef) => {
 	const { __scopeSelect, align = "start", collisionPadding = CONTENT_MARGIN, ...popperProps } = props;
-	const popperScope = usePopperScope$1(__scopeSelect);
+	const popperScope = usePopperScope(__scopeSelect);
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Content$1, {
 		...popperScope,
 		...popperProps,
@@ -26602,12 +26555,12 @@ var SelectPopperPosition = import_react.forwardRef((props, forwardedRef) => {
 	});
 });
 SelectPopperPosition.displayName = POPPER_POSITION_NAME;
-var [SelectViewportProvider, useSelectViewportContext] = createSelectContext(CONTENT_NAME$1, {});
-var VIEWPORT_NAME$1 = "SelectViewport";
+var [SelectViewportProvider, useSelectViewportContext] = createSelectContext(CONTENT_NAME, {});
+var VIEWPORT_NAME = "SelectViewport";
 var SelectViewport = import_react.forwardRef((props, forwardedRef) => {
 	const { __scopeSelect, nonce, ...viewportProps } = props;
-	const contentContext = useSelectContentContext(VIEWPORT_NAME$1, __scopeSelect);
-	const viewportContext = useSelectViewportContext(VIEWPORT_NAME$1, __scopeSelect);
+	const contentContext = useSelectContentContext(VIEWPORT_NAME, __scopeSelect);
+	const viewportContext = useSelectViewportContext(VIEWPORT_NAME, __scopeSelect);
 	const composedRefs = useComposedRefs(forwardedRef, contentContext.onViewportChange);
 	const prevScrollTopRef = import_react.useRef(0);
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("style", {
@@ -26615,7 +26568,7 @@ var SelectViewport = import_react.forwardRef((props, forwardedRef) => {
 		nonce
 	}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Collection.Slot, {
 		scope: __scopeSelect,
-		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.div, {
+		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.div, {
 			"data-radix-select-viewport": "",
 			role: "presentation",
 			...viewportProps,
@@ -26653,7 +26606,7 @@ var SelectViewport = import_react.forwardRef((props, forwardedRef) => {
 		})
 	})] });
 });
-SelectViewport.displayName = VIEWPORT_NAME$1;
+SelectViewport.displayName = VIEWPORT_NAME;
 var GROUP_NAME = "SelectGroup";
 var [SelectGroupContextProvider, useSelectGroupContext] = createSelectContext(GROUP_NAME);
 var SelectGroup$1 = import_react.forwardRef((props, forwardedRef) => {
@@ -26662,7 +26615,7 @@ var SelectGroup$1 = import_react.forwardRef((props, forwardedRef) => {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectGroupContextProvider, {
 		scope: __scopeSelect,
 		id: groupId,
-		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.div, {
+		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.div, {
 			role: "group",
 			"aria-labelledby": groupId,
 			...groupProps,
@@ -26675,7 +26628,7 @@ var LABEL_NAME = "SelectLabel";
 var SelectLabel$1 = import_react.forwardRef((props, forwardedRef) => {
 	const { __scopeSelect, ...labelProps } = props;
 	const groupContext = useSelectGroupContext(LABEL_NAME, __scopeSelect);
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.div, {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.div, {
 		id: groupContext.id,
 		...labelProps,
 		ref: forwardedRef
@@ -26715,7 +26668,7 @@ var SelectItem$1 = import_react.forwardRef((props, forwardedRef) => {
 			value,
 			disabled,
 			textValue,
-			children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.div, {
+			children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.div, {
 				role: "option",
 				"aria-labelledby": textId,
 				"data-highlighted": isFocused ? "" : void 0,
@@ -26783,7 +26736,7 @@ var SelectItemText = import_react.forwardRef((props, forwardedRef) => {
 		onNativeOptionRemove,
 		nativeOption
 	]);
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.span, {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.span, {
 		id: itemContext.textId,
 		...itemTextProps,
 		ref: composedRefs
@@ -26793,7 +26746,7 @@ SelectItemText.displayName = ITEM_TEXT_NAME;
 var ITEM_INDICATOR_NAME = "SelectItemIndicator";
 var SelectItemIndicator = import_react.forwardRef((props, forwardedRef) => {
 	const { __scopeSelect, ...itemIndicatorProps } = props;
-	return useSelectItemContext(ITEM_INDICATOR_NAME, __scopeSelect).isSelected ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.span, {
+	return useSelectItemContext(ITEM_INDICATOR_NAME, __scopeSelect).isSelected ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.span, {
 		"aria-hidden": true,
 		...itemIndicatorProps,
 		ref: forwardedRef
@@ -26872,7 +26825,7 @@ var SelectScrollButtonImpl = import_react.forwardRef((props, forwardedRef) => {
 	useLayoutEffect2(() => {
 		getItems().find((item) => item.ref.current === document.activeElement)?.ref.current?.scrollIntoView({ block: "nearest" });
 	}, [getItems]);
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.div, {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.div, {
 		"aria-hidden": true,
 		...scrollIndicatorProps,
 		ref: forwardedRef,
@@ -26895,26 +26848,26 @@ var SelectScrollButtonImpl = import_react.forwardRef((props, forwardedRef) => {
 var SEPARATOR_NAME = "SelectSeparator";
 var SelectSeparator$1 = import_react.forwardRef((props, forwardedRef) => {
 	const { __scopeSelect, ...separatorProps } = props;
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.div, {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.div, {
 		"aria-hidden": true,
 		...separatorProps,
 		ref: forwardedRef
 	});
 });
 SelectSeparator$1.displayName = SEPARATOR_NAME;
-var ARROW_NAME$1 = "SelectArrow";
+var ARROW_NAME = "SelectArrow";
 var SelectArrow = import_react.forwardRef((props, forwardedRef) => {
 	const { __scopeSelect, ...arrowProps } = props;
-	const popperScope = usePopperScope$1(__scopeSelect);
-	const context = useSelectContext(ARROW_NAME$1, __scopeSelect);
-	const contentContext = useSelectContentContext(ARROW_NAME$1, __scopeSelect);
+	const popperScope = usePopperScope(__scopeSelect);
+	const context = useSelectContext(ARROW_NAME, __scopeSelect);
+	const contentContext = useSelectContentContext(ARROW_NAME, __scopeSelect);
 	return context.open && contentContext.position === "popper" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Arrow, {
 		...popperScope,
 		...arrowProps,
 		ref: forwardedRef
 	}) : null;
 });
-SelectArrow.displayName = ARROW_NAME$1;
+SelectArrow.displayName = ARROW_NAME;
 var BUBBLE_INPUT_NAME = "SelectBubbleInput";
 var SelectBubbleInput = import_react.forwardRef(({ __scopeSelect, value, ...props }, forwardedRef) => {
 	const ref = import_react.useRef(null);
@@ -26931,7 +26884,7 @@ var SelectBubbleInput = import_react.forwardRef(({ __scopeSelect, value, ...prop
 			select.dispatchEvent(event);
 		}
 	}, [prevValue, value]);
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.select, {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive$1.select, {
 		...props,
 		style: {
 			...VISUALLY_HIDDEN_STYLES,
@@ -26982,13 +26935,13 @@ function findNextItem(items, search, currentItem) {
 function wrapArray(array, startIndex) {
 	return array.map((_$1, index$1) => array[(startIndex + index$1) % array.length]);
 }
-var Root2$1 = Select$2;
-var Trigger$1 = SelectTrigger$1;
+var Root2 = Select$1;
+var Trigger = SelectTrigger$1;
 var Value = SelectValue$1;
 var Icon = SelectIcon;
-var Portal$2 = SelectPortal;
-var Content2$1 = SelectContent$1;
-var Viewport$1 = SelectViewport;
+var Portal$1 = SelectPortal;
+var Content2 = SelectContent$1;
+var Viewport = SelectViewport;
 var Label$1 = SelectLabel$1;
 var Item = SelectItem$1;
 var ItemText = SelectItemText;
@@ -26996,9 +26949,9 @@ var ItemIndicator = SelectItemIndicator;
 var ScrollUpButton = SelectScrollUpButton$1;
 var ScrollDownButton = SelectScrollDownButton$1;
 var Separator = SelectSeparator$1;
-var Select = Root2$1;
+var Select = Root2;
 var SelectValue = Value;
-var SelectTrigger = import_react.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Trigger$1, {
+var SelectTrigger = import_react.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Trigger, {
 	ref,
 	className: cn("flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background data-[placeholder]:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1", className),
 	...props,
@@ -27007,7 +26960,7 @@ var SelectTrigger = import_react.forwardRef(({ className, children, ...props }, 
 		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ChevronDown, { className: "h-4 w-4 opacity-50" })
 	})]
 }));
-SelectTrigger.displayName = Trigger$1.displayName;
+SelectTrigger.displayName = Trigger.displayName;
 var SelectScrollUpButton = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ScrollUpButton, {
 	ref,
 	className: cn("flex cursor-default items-center justify-center py-1", className),
@@ -27022,21 +26975,21 @@ var SelectScrollDownButton = import_react.forwardRef(({ className, ...props }, r
 	children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ChevronDown, { className: "h-4 w-4" })
 }));
 SelectScrollDownButton.displayName = ScrollDownButton.displayName;
-var SelectContent = import_react.forwardRef(({ className, children, position = "popper", ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Portal$2, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Content2$1, {
+var SelectContent = import_react.forwardRef(({ className, children, position = "popper", ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Portal$1, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Content2, {
 	ref,
 	className: cn("relative z-50 max-h-[--radix-select-content-available-height] min-w-[8rem] overflow-y-auto overflow-x-hidden rounded-md border bg-popover text-popover-foreground shadow-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 origin-[--radix-select-content-transform-origin]", position === "popper" && "data-[side=bottom]:translate-y-1 data-[side=left]:-translate-x-1 data-[side=right]:translate-x-1 data-[side=top]:-translate-y-1", className),
 	position,
 	...props,
 	children: [
 		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectScrollUpButton, {}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Viewport$1, {
+		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Viewport, {
 			className: cn("p-1", position === "popper" && "h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)]"),
 			children
 		}),
 		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectScrollDownButton, {})
 	]
 }) }));
-SelectContent.displayName = Content2$1.displayName;
+SelectContent.displayName = Content2.displayName;
 var SelectLabel = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label$1, {
 	ref,
 	className: cn("py-1.5 pl-8 pr-2 text-sm font-semibold", className),
@@ -27059,4537 +27012,108 @@ var SelectSeparator = import_react.forwardRef(({ className, ...props }, ref) => 
 	...props
 }));
 SelectSeparator.displayName = Separator.displayName;
-function tzName(timeZone, date, format$1 = "long") {
-	return new Intl.DateTimeFormat("en-US", {
-		hour: "numeric",
-		timeZone,
-		timeZoneName: format$1
-	}).format(date).split(/\s/g).slice(2).join(" ");
-}
-var offsetFormatCache = {};
-var offsetCache = {};
-function tzOffset(timeZone, date) {
-	try {
-		const offsetStr = (offsetFormatCache[timeZone] ||= new Intl.DateTimeFormat("en-US", {
-			timeZone,
-			timeZoneName: "longOffset"
-		}).format)(date).split("GMT")[1];
-		if (offsetStr in offsetCache) return offsetCache[offsetStr];
-		return calcOffset(offsetStr, offsetStr.split(":"));
-	} catch {
-		if (timeZone in offsetCache) return offsetCache[timeZone];
-		const captures = timeZone?.match(offsetRe);
-		if (captures) return calcOffset(timeZone, captures.slice(1));
-		return NaN;
-	}
-}
-var offsetRe = /([+-]\d\d):?(\d\d)?/;
-function calcOffset(cacheStr, values) {
-	const hours = +(values[0] || 0);
-	const minutes = +(values[1] || 0);
-	const seconds = +(values[2] || 0) / 60;
-	return offsetCache[cacheStr] = hours * 60 + minutes > 0 ? hours * 60 + minutes + seconds : hours * 60 - minutes - seconds;
-}
-var TZDateMini = class TZDateMini extends Date {
-	constructor(...args) {
-		super();
-		if (args.length > 1 && typeof args[args.length - 1] === "string") this.timeZone = args.pop();
-		this.internal = /* @__PURE__ */ new Date();
-		if (isNaN(tzOffset(this.timeZone, this))) this.setTime(NaN);
-		else if (!args.length) this.setTime(Date.now());
-		else if (typeof args[0] === "number" && (args.length === 1 || args.length === 2 && typeof args[1] !== "number")) this.setTime(args[0]);
-		else if (typeof args[0] === "string") this.setTime(+new Date(args[0]));
-		else if (args[0] instanceof Date) this.setTime(+args[0]);
-		else {
-			this.setTime(+new Date(...args));
-			adjustToSystemTZ(this, NaN);
-			syncToInternal(this);
-		}
-	}
-	static tz(tz, ...args) {
-		return args.length ? new TZDateMini(...args, tz) : new TZDateMini(Date.now(), tz);
-	}
-	withTimeZone(timeZone) {
-		return new TZDateMini(+this, timeZone);
-	}
-	getTimezoneOffset() {
-		const offset$3 = -tzOffset(this.timeZone, this);
-		return offset$3 > 0 ? Math.floor(offset$3) : Math.ceil(offset$3);
-	}
-	setTime(time) {
-		Date.prototype.setTime.apply(this, arguments);
-		syncToInternal(this);
-		return +this;
-	}
-	[Symbol.for("constructDateFrom")](date) {
-		return new TZDateMini(+new Date(date), this.timeZone);
-	}
-};
-var re = /^(get|set)(?!UTC)/;
-Object.getOwnPropertyNames(Date.prototype).forEach((method) => {
-	if (!re.test(method)) return;
-	const utcMethod = method.replace(re, "$1UTC");
-	if (!TZDateMini.prototype[utcMethod]) return;
-	if (method.startsWith("get")) TZDateMini.prototype[method] = function() {
-		return this.internal[utcMethod]();
-	};
-	else {
-		TZDateMini.prototype[method] = function() {
-			Date.prototype[utcMethod].apply(this.internal, arguments);
-			syncFromInternal(this);
-			return +this;
-		};
-		TZDateMini.prototype[utcMethod] = function() {
-			Date.prototype[utcMethod].apply(this, arguments);
-			syncToInternal(this);
-			return +this;
-		};
-	}
-});
-function syncToInternal(date) {
-	date.internal.setTime(+date);
-	date.internal.setUTCSeconds(date.internal.getUTCSeconds() - Math.round(-tzOffset(date.timeZone, date) * 60));
-}
-function syncFromInternal(date) {
-	Date.prototype.setFullYear.call(date, date.internal.getUTCFullYear(), date.internal.getUTCMonth(), date.internal.getUTCDate());
-	Date.prototype.setHours.call(date, date.internal.getUTCHours(), date.internal.getUTCMinutes(), date.internal.getUTCSeconds(), date.internal.getUTCMilliseconds());
-	adjustToSystemTZ(date);
-}
-function adjustToSystemTZ(date) {
-	const baseOffset = tzOffset(date.timeZone, date);
-	const offset$3 = baseOffset > 0 ? Math.floor(baseOffset) : Math.ceil(baseOffset);
-	const prevHour = /* @__PURE__ */ new Date(+date);
-	prevHour.setUTCHours(prevHour.getUTCHours() - 1);
-	const systemOffset = -(/* @__PURE__ */ new Date(+date)).getTimezoneOffset();
-	const systemDSTChange = systemOffset - -(/* @__PURE__ */ new Date(+prevHour)).getTimezoneOffset();
-	const dstShift = Date.prototype.getHours.apply(date) !== date.internal.getUTCHours();
-	if (systemDSTChange && dstShift) date.internal.setUTCMinutes(date.internal.getUTCMinutes() + systemDSTChange);
-	const offsetDiff = systemOffset - offset$3;
-	if (offsetDiff) Date.prototype.setUTCMinutes.call(date, Date.prototype.getUTCMinutes.call(date) + offsetDiff);
-	const systemDate = /* @__PURE__ */ new Date(+date);
-	systemDate.setUTCSeconds(0);
-	const systemSecondsOffset = systemOffset > 0 ? systemDate.getSeconds() : (systemDate.getSeconds() - 60) % 60;
-	const secondsOffset = Math.round(-(tzOffset(date.timeZone, date) * 60)) % 60;
-	if (secondsOffset || systemSecondsOffset) {
-		date.internal.setUTCSeconds(date.internal.getUTCSeconds() + secondsOffset);
-		Date.prototype.setUTCSeconds.call(date, Date.prototype.getUTCSeconds.call(date) + secondsOffset + systemSecondsOffset);
-	}
-	const postBaseOffset = tzOffset(date.timeZone, date);
-	const postOffset = postBaseOffset > 0 ? Math.floor(postBaseOffset) : Math.ceil(postBaseOffset);
-	const postOffsetDiff = -(/* @__PURE__ */ new Date(+date)).getTimezoneOffset() - postOffset;
-	const offsetChanged = postOffset !== offset$3;
-	const postDiff = postOffsetDiff - offsetDiff;
-	if (offsetChanged && postDiff) {
-		Date.prototype.setUTCMinutes.call(date, Date.prototype.getUTCMinutes.call(date) + postDiff);
-		const newBaseOffset = tzOffset(date.timeZone, date);
-		const offsetChange = postOffset - (newBaseOffset > 0 ? Math.floor(newBaseOffset) : Math.ceil(newBaseOffset));
-		if (offsetChange) {
-			date.internal.setUTCMinutes(date.internal.getUTCMinutes() + offsetChange);
-			Date.prototype.setUTCMinutes.call(date, Date.prototype.getUTCMinutes.call(date) + offsetChange);
-		}
-	}
-}
-var TZDate = class TZDate extends TZDateMini {
-	static tz(tz, ...args) {
-		return args.length ? new TZDate(...args, tz) : new TZDate(Date.now(), tz);
-	}
-	toISOString() {
-		const [sign, hours, minutes] = this.tzComponents();
-		const tz = `${sign}${hours}:${minutes}`;
-		return this.internal.toISOString().slice(0, -1) + tz;
-	}
-	toString() {
-		return `${this.toDateString()} ${this.toTimeString()}`;
-	}
-	toDateString() {
-		const [day, date, month, year] = this.internal.toUTCString().split(" ");
-		return `${day?.slice(0, -1)} ${month} ${date} ${year}`;
-	}
-	toTimeString() {
-		const time = this.internal.toUTCString().split(" ")[4];
-		const [sign, hours, minutes] = this.tzComponents();
-		return `${time} GMT${sign}${hours}${minutes} (${tzName(this.timeZone, this)})`;
-	}
-	toLocaleString(locales, options$1) {
-		return Date.prototype.toLocaleString.call(this, locales, {
-			...options$1,
-			timeZone: options$1?.timeZone || this.timeZone
-		});
-	}
-	toLocaleDateString(locales, options$1) {
-		return Date.prototype.toLocaleDateString.call(this, locales, {
-			...options$1,
-			timeZone: options$1?.timeZone || this.timeZone
-		});
-	}
-	toLocaleTimeString(locales, options$1) {
-		return Date.prototype.toLocaleTimeString.call(this, locales, {
-			...options$1,
-			timeZone: options$1?.timeZone || this.timeZone
-		});
-	}
-	tzComponents() {
-		const offset$3 = this.getTimezoneOffset();
-		return [
-			offset$3 > 0 ? "-" : "+",
-			String(Math.floor(Math.abs(offset$3) / 60)).padStart(2, "0"),
-			String(Math.abs(offset$3) % 60).padStart(2, "0")
-		];
-	}
-	withTimeZone(timeZone) {
-		return new TZDate(+this, timeZone);
-	}
-	[Symbol.for("constructDateFrom")](date) {
-		return new TZDate(+new Date(date), this.timeZone);
-	}
-};
-const daysInYear = 365.2425;
-Math.pow(10, 8) * 24 * 60 * 60 * 1e3;
-const millisecondsInWeek = 6048e5;
-const millisecondsInDay = 864e5;
-const secondsInDay = 3600 * 24;
-secondsInDay * 7;
-secondsInDay * daysInYear / 12 * 3;
-const constructFromSymbol = Symbol.for("constructDateFrom");
-function constructFrom(date, value) {
-	if (typeof date === "function") return date(value);
-	if (date && typeof date === "object" && constructFromSymbol in date) return date[constructFromSymbol](value);
-	if (date instanceof Date) return new date.constructor(value);
-	return new Date(value);
-}
-function toDate(argument, context) {
-	return constructFrom(context || argument, argument);
-}
-function addDays(date, amount, options$1) {
-	const _date = toDate(date, options$1?.in);
-	if (isNaN(amount)) return constructFrom(options$1?.in || date, NaN);
-	if (!amount) return _date;
-	_date.setDate(_date.getDate() + amount);
-	return _date;
-}
-function addMonths(date, amount, options$1) {
-	const _date = toDate(date, options$1?.in);
-	if (isNaN(amount)) return constructFrom(options$1?.in || date, NaN);
-	if (!amount) return _date;
-	const dayOfMonth = _date.getDate();
-	const endOfDesiredMonth = constructFrom(options$1?.in || date, _date.getTime());
-	endOfDesiredMonth.setMonth(_date.getMonth() + amount + 1, 0);
-	if (dayOfMonth >= endOfDesiredMonth.getDate()) return endOfDesiredMonth;
-	else {
-		_date.setFullYear(endOfDesiredMonth.getFullYear(), endOfDesiredMonth.getMonth(), dayOfMonth);
-		return _date;
-	}
-}
-var defaultOptions = {};
-function getDefaultOptions() {
-	return defaultOptions;
-}
-function startOfWeek(date, options$1) {
-	const defaultOptions$1 = getDefaultOptions();
-	const weekStartsOn = options$1?.weekStartsOn ?? options$1?.locale?.options?.weekStartsOn ?? defaultOptions$1.weekStartsOn ?? defaultOptions$1.locale?.options?.weekStartsOn ?? 0;
-	const _date = toDate(date, options$1?.in);
-	const day = _date.getDay();
-	const diff = (day < weekStartsOn ? 7 : 0) + day - weekStartsOn;
-	_date.setDate(_date.getDate() - diff);
-	_date.setHours(0, 0, 0, 0);
-	return _date;
-}
-function startOfISOWeek(date, options$1) {
-	return startOfWeek(date, {
-		...options$1,
-		weekStartsOn: 1
-	});
-}
-function getISOWeekYear(date, options$1) {
-	const _date = toDate(date, options$1?.in);
-	const year = _date.getFullYear();
-	const fourthOfJanuaryOfNextYear = constructFrom(_date, 0);
-	fourthOfJanuaryOfNextYear.setFullYear(year + 1, 0, 4);
-	fourthOfJanuaryOfNextYear.setHours(0, 0, 0, 0);
-	const startOfNextYear = startOfISOWeek(fourthOfJanuaryOfNextYear);
-	const fourthOfJanuaryOfThisYear = constructFrom(_date, 0);
-	fourthOfJanuaryOfThisYear.setFullYear(year, 0, 4);
-	fourthOfJanuaryOfThisYear.setHours(0, 0, 0, 0);
-	const startOfThisYear = startOfISOWeek(fourthOfJanuaryOfThisYear);
-	if (_date.getTime() >= startOfNextYear.getTime()) return year + 1;
-	else if (_date.getTime() >= startOfThisYear.getTime()) return year;
-	else return year - 1;
-}
-function getTimezoneOffsetInMilliseconds(date) {
-	const _date = toDate(date);
-	const utcDate = new Date(Date.UTC(_date.getFullYear(), _date.getMonth(), _date.getDate(), _date.getHours(), _date.getMinutes(), _date.getSeconds(), _date.getMilliseconds()));
-	utcDate.setUTCFullYear(_date.getFullYear());
-	return +date - +utcDate;
-}
-function normalizeDates(context, ...dates) {
-	const normalize = constructFrom.bind(null, context || dates.find((date) => typeof date === "object"));
-	return dates.map(normalize);
-}
-function startOfDay(date, options$1) {
-	const _date = toDate(date, options$1?.in);
-	_date.setHours(0, 0, 0, 0);
-	return _date;
-}
-function differenceInCalendarDays(laterDate, earlierDate, options$1) {
-	const [laterDate_, earlierDate_] = normalizeDates(options$1?.in, laterDate, earlierDate);
-	const laterStartOfDay = startOfDay(laterDate_);
-	const earlierStartOfDay = startOfDay(earlierDate_);
-	const laterTimestamp = +laterStartOfDay - getTimezoneOffsetInMilliseconds(laterStartOfDay);
-	const earlierTimestamp = +earlierStartOfDay - getTimezoneOffsetInMilliseconds(earlierStartOfDay);
-	return Math.round((laterTimestamp - earlierTimestamp) / millisecondsInDay);
-}
-function startOfISOWeekYear(date, options$1) {
-	const year = getISOWeekYear(date, options$1);
-	const fourthOfJanuary = constructFrom(options$1?.in || date, 0);
-	fourthOfJanuary.setFullYear(year, 0, 4);
-	fourthOfJanuary.setHours(0, 0, 0, 0);
-	return startOfISOWeek(fourthOfJanuary);
-}
-function addWeeks(date, amount, options$1) {
-	return addDays(date, amount * 7, options$1);
-}
-function addYears(date, amount, options$1) {
-	return addMonths(date, amount * 12, options$1);
-}
-function max(dates, options$1) {
-	let result;
-	let context = options$1?.in;
-	dates.forEach((date) => {
-		if (!context && typeof date === "object") context = constructFrom.bind(null, date);
-		const date_ = toDate(date, context);
-		if (!result || result < date_ || isNaN(+date_)) result = date_;
-	});
-	return constructFrom(context, result || NaN);
-}
-function min(dates, options$1) {
-	let result;
-	let context = options$1?.in;
-	dates.forEach((date) => {
-		if (!context && typeof date === "object") context = constructFrom.bind(null, date);
-		const date_ = toDate(date, context);
-		if (!result || result > date_ || isNaN(+date_)) result = date_;
-	});
-	return constructFrom(context, result || NaN);
-}
-function isSameDay(laterDate, earlierDate, options$1) {
-	const [dateLeft_, dateRight_] = normalizeDates(options$1?.in, laterDate, earlierDate);
-	return +startOfDay(dateLeft_) === +startOfDay(dateRight_);
-}
-function isDate(value) {
-	return value instanceof Date || typeof value === "object" && Object.prototype.toString.call(value) === "[object Date]";
-}
-function isValid(date) {
-	return !(!isDate(date) && typeof date !== "number" || isNaN(+toDate(date)));
-}
-function differenceInCalendarMonths(laterDate, earlierDate, options$1) {
-	const [laterDate_, earlierDate_] = normalizeDates(options$1?.in, laterDate, earlierDate);
-	const yearsDiff = laterDate_.getFullYear() - earlierDate_.getFullYear();
-	const monthsDiff = laterDate_.getMonth() - earlierDate_.getMonth();
-	return yearsDiff * 12 + monthsDiff;
-}
-function endOfMonth(date, options$1) {
-	const _date = toDate(date, options$1?.in);
-	const month = _date.getMonth();
-	_date.setFullYear(_date.getFullYear(), month + 1, 0);
-	_date.setHours(23, 59, 59, 999);
-	return _date;
-}
-function normalizeInterval(context, interval) {
-	const [start, end] = normalizeDates(context, interval.start, interval.end);
-	return {
-		start,
-		end
-	};
-}
-function eachMonthOfInterval(interval, options$1) {
-	const { start, end } = normalizeInterval(options$1?.in, interval);
-	let reversed = +start > +end;
-	const endTime = reversed ? +start : +end;
-	const date = reversed ? end : start;
-	date.setHours(0, 0, 0, 0);
-	date.setDate(1);
-	let step = options$1?.step ?? 1;
-	if (!step) return [];
-	if (step < 0) {
-		step = -step;
-		reversed = !reversed;
-	}
-	const dates = [];
-	while (+date <= endTime) {
-		dates.push(constructFrom(start, date));
-		date.setMonth(date.getMonth() + step);
-	}
-	return reversed ? dates.reverse() : dates;
-}
-function startOfMonth(date, options$1) {
-	const _date = toDate(date, options$1?.in);
-	_date.setDate(1);
-	_date.setHours(0, 0, 0, 0);
-	return _date;
-}
-function endOfYear(date, options$1) {
-	const _date = toDate(date, options$1?.in);
-	const year = _date.getFullYear();
-	_date.setFullYear(year + 1, 0, 0);
-	_date.setHours(23, 59, 59, 999);
-	return _date;
-}
-function startOfYear(date, options$1) {
-	const date_ = toDate(date, options$1?.in);
-	date_.setFullYear(date_.getFullYear(), 0, 1);
-	date_.setHours(0, 0, 0, 0);
-	return date_;
-}
-function eachYearOfInterval(interval, options$1) {
-	const { start, end } = normalizeInterval(options$1?.in, interval);
-	let reversed = +start > +end;
-	const endTime = reversed ? +start : +end;
-	const date = reversed ? end : start;
-	date.setHours(0, 0, 0, 0);
-	date.setMonth(0, 1);
-	let step = options$1?.step ?? 1;
-	if (!step) return [];
-	if (step < 0) {
-		step = -step;
-		reversed = !reversed;
-	}
-	const dates = [];
-	while (+date <= endTime) {
-		dates.push(constructFrom(start, date));
-		date.setFullYear(date.getFullYear() + step);
-	}
-	return reversed ? dates.reverse() : dates;
-}
-function endOfWeek(date, options$1) {
-	const defaultOptions$1 = getDefaultOptions();
-	const weekStartsOn = options$1?.weekStartsOn ?? options$1?.locale?.options?.weekStartsOn ?? defaultOptions$1.weekStartsOn ?? defaultOptions$1.locale?.options?.weekStartsOn ?? 0;
-	const _date = toDate(date, options$1?.in);
-	const day = _date.getDay();
-	const diff = (day < weekStartsOn ? -7 : 0) + 6 - (day - weekStartsOn);
-	_date.setDate(_date.getDate() + diff);
-	_date.setHours(23, 59, 59, 999);
-	return _date;
-}
-function endOfISOWeek(date, options$1) {
-	return endOfWeek(date, {
-		...options$1,
-		weekStartsOn: 1
-	});
-}
-var formatDistanceLocale$1 = {
-	lessThanXSeconds: {
-		one: "less than a second",
-		other: "less than {{count}} seconds"
-	},
-	xSeconds: {
-		one: "1 second",
-		other: "{{count}} seconds"
-	},
-	halfAMinute: "half a minute",
-	lessThanXMinutes: {
-		one: "less than a minute",
-		other: "less than {{count}} minutes"
-	},
-	xMinutes: {
-		one: "1 minute",
-		other: "{{count}} minutes"
-	},
-	aboutXHours: {
-		one: "about 1 hour",
-		other: "about {{count}} hours"
-	},
-	xHours: {
-		one: "1 hour",
-		other: "{{count}} hours"
-	},
-	xDays: {
-		one: "1 day",
-		other: "{{count}} days"
-	},
-	aboutXWeeks: {
-		one: "about 1 week",
-		other: "about {{count}} weeks"
-	},
-	xWeeks: {
-		one: "1 week",
-		other: "{{count}} weeks"
-	},
-	aboutXMonths: {
-		one: "about 1 month",
-		other: "about {{count}} months"
-	},
-	xMonths: {
-		one: "1 month",
-		other: "{{count}} months"
-	},
-	aboutXYears: {
-		one: "about 1 year",
-		other: "about {{count}} years"
-	},
-	xYears: {
-		one: "1 year",
-		other: "{{count}} years"
-	},
-	overXYears: {
-		one: "over 1 year",
-		other: "over {{count}} years"
-	},
-	almostXYears: {
-		one: "almost 1 year",
-		other: "almost {{count}} years"
-	}
-};
-const formatDistance$1 = (token, count$3, options$1) => {
-	let result;
-	const tokenValue = formatDistanceLocale$1[token];
-	if (typeof tokenValue === "string") result = tokenValue;
-	else if (count$3 === 1) result = tokenValue.one;
-	else result = tokenValue.other.replace("{{count}}", count$3.toString());
-	if (options$1?.addSuffix) if (options$1.comparison && options$1.comparison > 0) return "in " + result;
-	else return result + " ago";
-	return result;
-};
-function buildFormatLongFn(args) {
-	return (options$1 = {}) => {
-		const width = options$1.width ? String(options$1.width) : args.defaultWidth;
-		return args.formats[width] || args.formats[args.defaultWidth];
-	};
-}
-const formatLong$1 = {
-	date: buildFormatLongFn({
-		formats: {
-			full: "EEEE, MMMM do, y",
-			long: "MMMM do, y",
-			medium: "MMM d, y",
-			short: "MM/dd/yyyy"
-		},
-		defaultWidth: "full"
-	}),
-	time: buildFormatLongFn({
-		formats: {
-			full: "h:mm:ss a zzzz",
-			long: "h:mm:ss a z",
-			medium: "h:mm:ss a",
-			short: "h:mm a"
-		},
-		defaultWidth: "full"
-	}),
-	dateTime: buildFormatLongFn({
-		formats: {
-			full: "{{date}} 'at' {{time}}",
-			long: "{{date}} 'at' {{time}}",
-			medium: "{{date}}, {{time}}",
-			short: "{{date}}, {{time}}"
-		},
-		defaultWidth: "full"
-	})
-};
-var formatRelativeLocale$1 = {
-	lastWeek: "'last' eeee 'at' p",
-	yesterday: "'yesterday at' p",
-	today: "'today at' p",
-	tomorrow: "'tomorrow at' p",
-	nextWeek: "eeee 'at' p",
-	other: "P"
-};
-const formatRelative$1 = (token, _date, _baseDate, _options) => formatRelativeLocale$1[token];
-function buildLocalizeFn(args) {
-	return (value, options$1) => {
-		const context = options$1?.context ? String(options$1.context) : "standalone";
-		let valuesArray;
-		if (context === "formatting" && args.formattingValues) {
-			const defaultWidth = args.defaultFormattingWidth || args.defaultWidth;
-			const width = options$1?.width ? String(options$1.width) : defaultWidth;
-			valuesArray = args.formattingValues[width] || args.formattingValues[defaultWidth];
-		} else {
-			const defaultWidth = args.defaultWidth;
-			const width = options$1?.width ? String(options$1.width) : args.defaultWidth;
-			valuesArray = args.values[width] || args.values[defaultWidth];
-		}
-		const index$1 = args.argumentCallback ? args.argumentCallback(value) : value;
-		return valuesArray[index$1];
-	};
-}
-var eraValues$1 = {
-	narrow: ["B", "A"],
-	abbreviated: ["BC", "AD"],
-	wide: ["Before Christ", "Anno Domini"]
-};
-var quarterValues$1 = {
-	narrow: [
-		"1",
-		"2",
-		"3",
-		"4"
-	],
-	abbreviated: [
-		"Q1",
-		"Q2",
-		"Q3",
-		"Q4"
-	],
-	wide: [
-		"1st quarter",
-		"2nd quarter",
-		"3rd quarter",
-		"4th quarter"
-	]
-};
-var monthValues$1 = {
-	narrow: [
-		"J",
-		"F",
-		"M",
-		"A",
-		"M",
-		"J",
-		"J",
-		"A",
-		"S",
-		"O",
-		"N",
-		"D"
-	],
-	abbreviated: [
-		"Jan",
-		"Feb",
-		"Mar",
-		"Apr",
-		"May",
-		"Jun",
-		"Jul",
-		"Aug",
-		"Sep",
-		"Oct",
-		"Nov",
-		"Dec"
-	],
-	wide: [
-		"January",
-		"February",
-		"March",
-		"April",
-		"May",
-		"June",
-		"July",
-		"August",
-		"September",
-		"October",
-		"November",
-		"December"
-	]
-};
-var dayValues$1 = {
-	narrow: [
-		"S",
-		"M",
-		"T",
-		"W",
-		"T",
-		"F",
-		"S"
-	],
-	short: [
-		"Su",
-		"Mo",
-		"Tu",
-		"We",
-		"Th",
-		"Fr",
-		"Sa"
-	],
-	abbreviated: [
-		"Sun",
-		"Mon",
-		"Tue",
-		"Wed",
-		"Thu",
-		"Fri",
-		"Sat"
-	],
-	wide: [
-		"Sunday",
-		"Monday",
-		"Tuesday",
-		"Wednesday",
-		"Thursday",
-		"Friday",
-		"Saturday"
-	]
-};
-var dayPeriodValues$1 = {
-	narrow: {
-		am: "a",
-		pm: "p",
-		midnight: "mi",
-		noon: "n",
-		morning: "morning",
-		afternoon: "afternoon",
-		evening: "evening",
-		night: "night"
-	},
-	abbreviated: {
-		am: "AM",
-		pm: "PM",
-		midnight: "midnight",
-		noon: "noon",
-		morning: "morning",
-		afternoon: "afternoon",
-		evening: "evening",
-		night: "night"
-	},
-	wide: {
-		am: "a.m.",
-		pm: "p.m.",
-		midnight: "midnight",
-		noon: "noon",
-		morning: "morning",
-		afternoon: "afternoon",
-		evening: "evening",
-		night: "night"
-	}
-};
-var formattingDayPeriodValues$1 = {
-	narrow: {
-		am: "a",
-		pm: "p",
-		midnight: "mi",
-		noon: "n",
-		morning: "in the morning",
-		afternoon: "in the afternoon",
-		evening: "in the evening",
-		night: "at night"
-	},
-	abbreviated: {
-		am: "AM",
-		pm: "PM",
-		midnight: "midnight",
-		noon: "noon",
-		morning: "in the morning",
-		afternoon: "in the afternoon",
-		evening: "in the evening",
-		night: "at night"
-	},
-	wide: {
-		am: "a.m.",
-		pm: "p.m.",
-		midnight: "midnight",
-		noon: "noon",
-		morning: "in the morning",
-		afternoon: "in the afternoon",
-		evening: "in the evening",
-		night: "at night"
-	}
-};
-var ordinalNumber$1 = (dirtyNumber, _options) => {
-	const number = Number(dirtyNumber);
-	const rem100 = number % 100;
-	if (rem100 > 20 || rem100 < 10) switch (rem100 % 10) {
-		case 1: return number + "st";
-		case 2: return number + "nd";
-		case 3: return number + "rd";
-	}
-	return number + "th";
-};
-const localize$1 = {
-	ordinalNumber: ordinalNumber$1,
-	era: buildLocalizeFn({
-		values: eraValues$1,
-		defaultWidth: "wide"
-	}),
-	quarter: buildLocalizeFn({
-		values: quarterValues$1,
-		defaultWidth: "wide",
-		argumentCallback: (quarter) => quarter - 1
-	}),
-	month: buildLocalizeFn({
-		values: monthValues$1,
-		defaultWidth: "wide"
-	}),
-	day: buildLocalizeFn({
-		values: dayValues$1,
-		defaultWidth: "wide"
-	}),
-	dayPeriod: buildLocalizeFn({
-		values: dayPeriodValues$1,
-		defaultWidth: "wide",
-		formattingValues: formattingDayPeriodValues$1,
-		defaultFormattingWidth: "wide"
-	})
-};
-function buildMatchFn(args) {
-	return (string, options$1 = {}) => {
-		const width = options$1.width;
-		const matchPattern = width && args.matchPatterns[width] || args.matchPatterns[args.defaultMatchWidth];
-		const matchResult = string.match(matchPattern);
-		if (!matchResult) return null;
-		const matchedString = matchResult[0];
-		const parsePatterns = width && args.parsePatterns[width] || args.parsePatterns[args.defaultParseWidth];
-		const key = Array.isArray(parsePatterns) ? findIndex(parsePatterns, (pattern) => pattern.test(matchedString)) : findKey(parsePatterns, (pattern) => pattern.test(matchedString));
-		let value;
-		value = args.valueCallback ? args.valueCallback(key) : key;
-		value = options$1.valueCallback ? options$1.valueCallback(value) : value;
-		const rest = string.slice(matchedString.length);
-		return {
-			value,
-			rest
-		};
-	};
-}
-function findKey(object, predicate) {
-	for (const key in object) if (Object.prototype.hasOwnProperty.call(object, key) && predicate(object[key])) return key;
-}
-function findIndex(array, predicate) {
-	for (let key = 0; key < array.length; key++) if (predicate(array[key])) return key;
-}
-function buildMatchPatternFn(args) {
-	return (string, options$1 = {}) => {
-		const matchResult = string.match(args.matchPattern);
-		if (!matchResult) return null;
-		const matchedString = matchResult[0];
-		const parseResult = string.match(args.parsePattern);
-		if (!parseResult) return null;
-		let value = args.valueCallback ? args.valueCallback(parseResult[0]) : parseResult[0];
-		value = options$1.valueCallback ? options$1.valueCallback(value) : value;
-		const rest = string.slice(matchedString.length);
-		return {
-			value,
-			rest
-		};
-	};
-}
-const enUS$1 = {
-	code: "en-US",
-	formatDistance: formatDistance$1,
-	formatLong: formatLong$1,
-	formatRelative: formatRelative$1,
-	localize: localize$1,
-	match: {
-		ordinalNumber: buildMatchPatternFn({
-			matchPattern: /^(\d+)(th|st|nd|rd)?/i,
-			parsePattern: /\d+/i,
-			valueCallback: (value) => parseInt(value, 10)
-		}),
-		era: buildMatchFn({
-			matchPatterns: {
-				narrow: /^(b|a)/i,
-				abbreviated: /^(b\.?\s?c\.?|b\.?\s?c\.?\s?e\.?|a\.?\s?d\.?|c\.?\s?e\.?)/i,
-				wide: /^(before christ|before common era|anno domini|common era)/i
-			},
-			defaultMatchWidth: "wide",
-			parsePatterns: { any: [/^b/i, /^(a|c)/i] },
-			defaultParseWidth: "any"
-		}),
-		quarter: buildMatchFn({
-			matchPatterns: {
-				narrow: /^[1234]/i,
-				abbreviated: /^q[1234]/i,
-				wide: /^[1234](th|st|nd|rd)? quarter/i
-			},
-			defaultMatchWidth: "wide",
-			parsePatterns: { any: [
-				/1/i,
-				/2/i,
-				/3/i,
-				/4/i
-			] },
-			defaultParseWidth: "any",
-			valueCallback: (index$1) => index$1 + 1
-		}),
-		month: buildMatchFn({
-			matchPatterns: {
-				narrow: /^[jfmasond]/i,
-				abbreviated: /^(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)/i,
-				wide: /^(january|february|march|april|may|june|july|august|september|october|november|december)/i
-			},
-			defaultMatchWidth: "wide",
-			parsePatterns: {
-				narrow: [
-					/^j/i,
-					/^f/i,
-					/^m/i,
-					/^a/i,
-					/^m/i,
-					/^j/i,
-					/^j/i,
-					/^a/i,
-					/^s/i,
-					/^o/i,
-					/^n/i,
-					/^d/i
-				],
-				any: [
-					/^ja/i,
-					/^f/i,
-					/^mar/i,
-					/^ap/i,
-					/^may/i,
-					/^jun/i,
-					/^jul/i,
-					/^au/i,
-					/^s/i,
-					/^o/i,
-					/^n/i,
-					/^d/i
-				]
-			},
-			defaultParseWidth: "any"
-		}),
-		day: buildMatchFn({
-			matchPatterns: {
-				narrow: /^[smtwf]/i,
-				short: /^(su|mo|tu|we|th|fr|sa)/i,
-				abbreviated: /^(sun|mon|tue|wed|thu|fri|sat)/i,
-				wide: /^(sunday|monday|tuesday|wednesday|thursday|friday|saturday)/i
-			},
-			defaultMatchWidth: "wide",
-			parsePatterns: {
-				narrow: [
-					/^s/i,
-					/^m/i,
-					/^t/i,
-					/^w/i,
-					/^t/i,
-					/^f/i,
-					/^s/i
-				],
-				any: [
-					/^su/i,
-					/^m/i,
-					/^tu/i,
-					/^w/i,
-					/^th/i,
-					/^f/i,
-					/^sa/i
-				]
-			},
-			defaultParseWidth: "any"
-		}),
-		dayPeriod: buildMatchFn({
-			matchPatterns: {
-				narrow: /^(a|p|mi|n|(in the|at) (morning|afternoon|evening|night))/i,
-				any: /^([ap]\.?\s?m\.?|midnight|noon|(in the|at) (morning|afternoon|evening|night))/i
-			},
-			defaultMatchWidth: "any",
-			parsePatterns: { any: {
-				am: /^a/i,
-				pm: /^p/i,
-				midnight: /^mi/i,
-				noon: /^no/i,
-				morning: /morning/i,
-				afternoon: /afternoon/i,
-				evening: /evening/i,
-				night: /night/i
-			} },
-			defaultParseWidth: "any"
-		})
-	},
-	options: {
-		weekStartsOn: 0,
-		firstWeekContainsDate: 1
-	}
-};
-function getDayOfYear(date, options$1) {
-	const _date = toDate(date, options$1?.in);
-	return differenceInCalendarDays(_date, startOfYear(_date)) + 1;
-}
-function getISOWeek(date, options$1) {
-	const _date = toDate(date, options$1?.in);
-	const diff = +startOfISOWeek(_date) - +startOfISOWeekYear(_date);
-	return Math.round(diff / millisecondsInWeek) + 1;
-}
-function getWeekYear(date, options$1) {
-	const _date = toDate(date, options$1?.in);
-	const year = _date.getFullYear();
-	const defaultOptions$1 = getDefaultOptions();
-	const firstWeekContainsDate = options$1?.firstWeekContainsDate ?? options$1?.locale?.options?.firstWeekContainsDate ?? defaultOptions$1.firstWeekContainsDate ?? defaultOptions$1.locale?.options?.firstWeekContainsDate ?? 1;
-	const firstWeekOfNextYear = constructFrom(options$1?.in || date, 0);
-	firstWeekOfNextYear.setFullYear(year + 1, 0, firstWeekContainsDate);
-	firstWeekOfNextYear.setHours(0, 0, 0, 0);
-	const startOfNextYear = startOfWeek(firstWeekOfNextYear, options$1);
-	const firstWeekOfThisYear = constructFrom(options$1?.in || date, 0);
-	firstWeekOfThisYear.setFullYear(year, 0, firstWeekContainsDate);
-	firstWeekOfThisYear.setHours(0, 0, 0, 0);
-	const startOfThisYear = startOfWeek(firstWeekOfThisYear, options$1);
-	if (+_date >= +startOfNextYear) return year + 1;
-	else if (+_date >= +startOfThisYear) return year;
-	else return year - 1;
-}
-function startOfWeekYear(date, options$1) {
-	const defaultOptions$1 = getDefaultOptions();
-	const firstWeekContainsDate = options$1?.firstWeekContainsDate ?? options$1?.locale?.options?.firstWeekContainsDate ?? defaultOptions$1.firstWeekContainsDate ?? defaultOptions$1.locale?.options?.firstWeekContainsDate ?? 1;
-	const year = getWeekYear(date, options$1);
-	const firstWeek = constructFrom(options$1?.in || date, 0);
-	firstWeek.setFullYear(year, 0, firstWeekContainsDate);
-	firstWeek.setHours(0, 0, 0, 0);
-	return startOfWeek(firstWeek, options$1);
-}
-function getWeek(date, options$1) {
-	const _date = toDate(date, options$1?.in);
-	const diff = +startOfWeek(_date, options$1) - +startOfWeekYear(_date, options$1);
-	return Math.round(diff / millisecondsInWeek) + 1;
-}
-function addLeadingZeros(number, targetLength) {
-	return (number < 0 ? "-" : "") + Math.abs(number).toString().padStart(targetLength, "0");
-}
-const lightFormatters = {
-	y(date, token) {
-		const signedYear = date.getFullYear();
-		const year = signedYear > 0 ? signedYear : 1 - signedYear;
-		return addLeadingZeros(token === "yy" ? year % 100 : year, token.length);
-	},
-	M(date, token) {
-		const month = date.getMonth();
-		return token === "M" ? String(month + 1) : addLeadingZeros(month + 1, 2);
-	},
-	d(date, token) {
-		return addLeadingZeros(date.getDate(), token.length);
-	},
-	a(date, token) {
-		const dayPeriodEnumValue = date.getHours() / 12 >= 1 ? "pm" : "am";
-		switch (token) {
-			case "a":
-			case "aa": return dayPeriodEnumValue.toUpperCase();
-			case "aaa": return dayPeriodEnumValue;
-			case "aaaaa": return dayPeriodEnumValue[0];
-			case "aaaa":
-			default: return dayPeriodEnumValue === "am" ? "a.m." : "p.m.";
-		}
-	},
-	h(date, token) {
-		return addLeadingZeros(date.getHours() % 12 || 12, token.length);
-	},
-	H(date, token) {
-		return addLeadingZeros(date.getHours(), token.length);
-	},
-	m(date, token) {
-		return addLeadingZeros(date.getMinutes(), token.length);
-	},
-	s(date, token) {
-		return addLeadingZeros(date.getSeconds(), token.length);
-	},
-	S(date, token) {
-		const numberOfDigits = token.length;
-		const milliseconds = date.getMilliseconds();
-		return addLeadingZeros(Math.trunc(milliseconds * Math.pow(10, numberOfDigits - 3)), token.length);
-	}
-};
-var dayPeriodEnum = {
-	am: "am",
-	pm: "pm",
-	midnight: "midnight",
-	noon: "noon",
-	morning: "morning",
-	afternoon: "afternoon",
-	evening: "evening",
-	night: "night"
-};
-const formatters = {
-	G: function(date, token, localize$2) {
-		const era = date.getFullYear() > 0 ? 1 : 0;
-		switch (token) {
-			case "G":
-			case "GG":
-			case "GGG": return localize$2.era(era, { width: "abbreviated" });
-			case "GGGGG": return localize$2.era(era, { width: "narrow" });
-			case "GGGG":
-			default: return localize$2.era(era, { width: "wide" });
-		}
-	},
-	y: function(date, token, localize$2) {
-		if (token === "yo") {
-			const signedYear = date.getFullYear();
-			const year = signedYear > 0 ? signedYear : 1 - signedYear;
-			return localize$2.ordinalNumber(year, { unit: "year" });
-		}
-		return lightFormatters.y(date, token);
-	},
-	Y: function(date, token, localize$2, options$1) {
-		const signedWeekYear = getWeekYear(date, options$1);
-		const weekYear = signedWeekYear > 0 ? signedWeekYear : 1 - signedWeekYear;
-		if (token === "YY") return addLeadingZeros(weekYear % 100, 2);
-		if (token === "Yo") return localize$2.ordinalNumber(weekYear, { unit: "year" });
-		return addLeadingZeros(weekYear, token.length);
-	},
-	R: function(date, token) {
-		return addLeadingZeros(getISOWeekYear(date), token.length);
-	},
-	u: function(date, token) {
-		return addLeadingZeros(date.getFullYear(), token.length);
-	},
-	Q: function(date, token, localize$2) {
-		const quarter = Math.ceil((date.getMonth() + 1) / 3);
-		switch (token) {
-			case "Q": return String(quarter);
-			case "QQ": return addLeadingZeros(quarter, 2);
-			case "Qo": return localize$2.ordinalNumber(quarter, { unit: "quarter" });
-			case "QQQ": return localize$2.quarter(quarter, {
-				width: "abbreviated",
-				context: "formatting"
-			});
-			case "QQQQQ": return localize$2.quarter(quarter, {
-				width: "narrow",
-				context: "formatting"
-			});
-			case "QQQQ":
-			default: return localize$2.quarter(quarter, {
-				width: "wide",
-				context: "formatting"
-			});
-		}
-	},
-	q: function(date, token, localize$2) {
-		const quarter = Math.ceil((date.getMonth() + 1) / 3);
-		switch (token) {
-			case "q": return String(quarter);
-			case "qq": return addLeadingZeros(quarter, 2);
-			case "qo": return localize$2.ordinalNumber(quarter, { unit: "quarter" });
-			case "qqq": return localize$2.quarter(quarter, {
-				width: "abbreviated",
-				context: "standalone"
-			});
-			case "qqqqq": return localize$2.quarter(quarter, {
-				width: "narrow",
-				context: "standalone"
-			});
-			case "qqqq":
-			default: return localize$2.quarter(quarter, {
-				width: "wide",
-				context: "standalone"
-			});
-		}
-	},
-	M: function(date, token, localize$2) {
-		const month = date.getMonth();
-		switch (token) {
-			case "M":
-			case "MM": return lightFormatters.M(date, token);
-			case "Mo": return localize$2.ordinalNumber(month + 1, { unit: "month" });
-			case "MMM": return localize$2.month(month, {
-				width: "abbreviated",
-				context: "formatting"
-			});
-			case "MMMMM": return localize$2.month(month, {
-				width: "narrow",
-				context: "formatting"
-			});
-			case "MMMM":
-			default: return localize$2.month(month, {
-				width: "wide",
-				context: "formatting"
-			});
-		}
-	},
-	L: function(date, token, localize$2) {
-		const month = date.getMonth();
-		switch (token) {
-			case "L": return String(month + 1);
-			case "LL": return addLeadingZeros(month + 1, 2);
-			case "Lo": return localize$2.ordinalNumber(month + 1, { unit: "month" });
-			case "LLL": return localize$2.month(month, {
-				width: "abbreviated",
-				context: "standalone"
-			});
-			case "LLLLL": return localize$2.month(month, {
-				width: "narrow",
-				context: "standalone"
-			});
-			case "LLLL":
-			default: return localize$2.month(month, {
-				width: "wide",
-				context: "standalone"
-			});
-		}
-	},
-	w: function(date, token, localize$2, options$1) {
-		const week = getWeek(date, options$1);
-		if (token === "wo") return localize$2.ordinalNumber(week, { unit: "week" });
-		return addLeadingZeros(week, token.length);
-	},
-	I: function(date, token, localize$2) {
-		const isoWeek = getISOWeek(date);
-		if (token === "Io") return localize$2.ordinalNumber(isoWeek, { unit: "week" });
-		return addLeadingZeros(isoWeek, token.length);
-	},
-	d: function(date, token, localize$2) {
-		if (token === "do") return localize$2.ordinalNumber(date.getDate(), { unit: "date" });
-		return lightFormatters.d(date, token);
-	},
-	D: function(date, token, localize$2) {
-		const dayOfYear = getDayOfYear(date);
-		if (token === "Do") return localize$2.ordinalNumber(dayOfYear, { unit: "dayOfYear" });
-		return addLeadingZeros(dayOfYear, token.length);
-	},
-	E: function(date, token, localize$2) {
-		const dayOfWeek = date.getDay();
-		switch (token) {
-			case "E":
-			case "EE":
-			case "EEE": return localize$2.day(dayOfWeek, {
-				width: "abbreviated",
-				context: "formatting"
-			});
-			case "EEEEE": return localize$2.day(dayOfWeek, {
-				width: "narrow",
-				context: "formatting"
-			});
-			case "EEEEEE": return localize$2.day(dayOfWeek, {
-				width: "short",
-				context: "formatting"
-			});
-			case "EEEE":
-			default: return localize$2.day(dayOfWeek, {
-				width: "wide",
-				context: "formatting"
-			});
-		}
-	},
-	e: function(date, token, localize$2, options$1) {
-		const dayOfWeek = date.getDay();
-		const localDayOfWeek = (dayOfWeek - options$1.weekStartsOn + 8) % 7 || 7;
-		switch (token) {
-			case "e": return String(localDayOfWeek);
-			case "ee": return addLeadingZeros(localDayOfWeek, 2);
-			case "eo": return localize$2.ordinalNumber(localDayOfWeek, { unit: "day" });
-			case "eee": return localize$2.day(dayOfWeek, {
-				width: "abbreviated",
-				context: "formatting"
-			});
-			case "eeeee": return localize$2.day(dayOfWeek, {
-				width: "narrow",
-				context: "formatting"
-			});
-			case "eeeeee": return localize$2.day(dayOfWeek, {
-				width: "short",
-				context: "formatting"
-			});
-			case "eeee":
-			default: return localize$2.day(dayOfWeek, {
-				width: "wide",
-				context: "formatting"
-			});
-		}
-	},
-	c: function(date, token, localize$2, options$1) {
-		const dayOfWeek = date.getDay();
-		const localDayOfWeek = (dayOfWeek - options$1.weekStartsOn + 8) % 7 || 7;
-		switch (token) {
-			case "c": return String(localDayOfWeek);
-			case "cc": return addLeadingZeros(localDayOfWeek, token.length);
-			case "co": return localize$2.ordinalNumber(localDayOfWeek, { unit: "day" });
-			case "ccc": return localize$2.day(dayOfWeek, {
-				width: "abbreviated",
-				context: "standalone"
-			});
-			case "ccccc": return localize$2.day(dayOfWeek, {
-				width: "narrow",
-				context: "standalone"
-			});
-			case "cccccc": return localize$2.day(dayOfWeek, {
-				width: "short",
-				context: "standalone"
-			});
-			case "cccc":
-			default: return localize$2.day(dayOfWeek, {
-				width: "wide",
-				context: "standalone"
-			});
-		}
-	},
-	i: function(date, token, localize$2) {
-		const dayOfWeek = date.getDay();
-		const isoDayOfWeek = dayOfWeek === 0 ? 7 : dayOfWeek;
-		switch (token) {
-			case "i": return String(isoDayOfWeek);
-			case "ii": return addLeadingZeros(isoDayOfWeek, token.length);
-			case "io": return localize$2.ordinalNumber(isoDayOfWeek, { unit: "day" });
-			case "iii": return localize$2.day(dayOfWeek, {
-				width: "abbreviated",
-				context: "formatting"
-			});
-			case "iiiii": return localize$2.day(dayOfWeek, {
-				width: "narrow",
-				context: "formatting"
-			});
-			case "iiiiii": return localize$2.day(dayOfWeek, {
-				width: "short",
-				context: "formatting"
-			});
-			case "iiii":
-			default: return localize$2.day(dayOfWeek, {
-				width: "wide",
-				context: "formatting"
-			});
-		}
-	},
-	a: function(date, token, localize$2) {
-		const dayPeriodEnumValue = date.getHours() / 12 >= 1 ? "pm" : "am";
-		switch (token) {
-			case "a":
-			case "aa": return localize$2.dayPeriod(dayPeriodEnumValue, {
-				width: "abbreviated",
-				context: "formatting"
-			});
-			case "aaa": return localize$2.dayPeriod(dayPeriodEnumValue, {
-				width: "abbreviated",
-				context: "formatting"
-			}).toLowerCase();
-			case "aaaaa": return localize$2.dayPeriod(dayPeriodEnumValue, {
-				width: "narrow",
-				context: "formatting"
-			});
-			case "aaaa":
-			default: return localize$2.dayPeriod(dayPeriodEnumValue, {
-				width: "wide",
-				context: "formatting"
-			});
-		}
-	},
-	b: function(date, token, localize$2) {
-		const hours = date.getHours();
-		let dayPeriodEnumValue;
-		if (hours === 12) dayPeriodEnumValue = dayPeriodEnum.noon;
-		else if (hours === 0) dayPeriodEnumValue = dayPeriodEnum.midnight;
-		else dayPeriodEnumValue = hours / 12 >= 1 ? "pm" : "am";
-		switch (token) {
-			case "b":
-			case "bb": return localize$2.dayPeriod(dayPeriodEnumValue, {
-				width: "abbreviated",
-				context: "formatting"
-			});
-			case "bbb": return localize$2.dayPeriod(dayPeriodEnumValue, {
-				width: "abbreviated",
-				context: "formatting"
-			}).toLowerCase();
-			case "bbbbb": return localize$2.dayPeriod(dayPeriodEnumValue, {
-				width: "narrow",
-				context: "formatting"
-			});
-			case "bbbb":
-			default: return localize$2.dayPeriod(dayPeriodEnumValue, {
-				width: "wide",
-				context: "formatting"
-			});
-		}
-	},
-	B: function(date, token, localize$2) {
-		const hours = date.getHours();
-		let dayPeriodEnumValue;
-		if (hours >= 17) dayPeriodEnumValue = dayPeriodEnum.evening;
-		else if (hours >= 12) dayPeriodEnumValue = dayPeriodEnum.afternoon;
-		else if (hours >= 4) dayPeriodEnumValue = dayPeriodEnum.morning;
-		else dayPeriodEnumValue = dayPeriodEnum.night;
-		switch (token) {
-			case "B":
-			case "BB":
-			case "BBB": return localize$2.dayPeriod(dayPeriodEnumValue, {
-				width: "abbreviated",
-				context: "formatting"
-			});
-			case "BBBBB": return localize$2.dayPeriod(dayPeriodEnumValue, {
-				width: "narrow",
-				context: "formatting"
-			});
-			case "BBBB":
-			default: return localize$2.dayPeriod(dayPeriodEnumValue, {
-				width: "wide",
-				context: "formatting"
-			});
-		}
-	},
-	h: function(date, token, localize$2) {
-		if (token === "ho") {
-			let hours = date.getHours() % 12;
-			if (hours === 0) hours = 12;
-			return localize$2.ordinalNumber(hours, { unit: "hour" });
-		}
-		return lightFormatters.h(date, token);
-	},
-	H: function(date, token, localize$2) {
-		if (token === "Ho") return localize$2.ordinalNumber(date.getHours(), { unit: "hour" });
-		return lightFormatters.H(date, token);
-	},
-	K: function(date, token, localize$2) {
-		const hours = date.getHours() % 12;
-		if (token === "Ko") return localize$2.ordinalNumber(hours, { unit: "hour" });
-		return addLeadingZeros(hours, token.length);
-	},
-	k: function(date, token, localize$2) {
-		let hours = date.getHours();
-		if (hours === 0) hours = 24;
-		if (token === "ko") return localize$2.ordinalNumber(hours, { unit: "hour" });
-		return addLeadingZeros(hours, token.length);
-	},
-	m: function(date, token, localize$2) {
-		if (token === "mo") return localize$2.ordinalNumber(date.getMinutes(), { unit: "minute" });
-		return lightFormatters.m(date, token);
-	},
-	s: function(date, token, localize$2) {
-		if (token === "so") return localize$2.ordinalNumber(date.getSeconds(), { unit: "second" });
-		return lightFormatters.s(date, token);
-	},
-	S: function(date, token) {
-		return lightFormatters.S(date, token);
-	},
-	X: function(date, token, _localize) {
-		const timezoneOffset = date.getTimezoneOffset();
-		if (timezoneOffset === 0) return "Z";
-		switch (token) {
-			case "X": return formatTimezoneWithOptionalMinutes(timezoneOffset);
-			case "XXXX":
-			case "XX": return formatTimezone(timezoneOffset);
-			case "XXXXX":
-			case "XXX":
-			default: return formatTimezone(timezoneOffset, ":");
-		}
-	},
-	x: function(date, token, _localize) {
-		const timezoneOffset = date.getTimezoneOffset();
-		switch (token) {
-			case "x": return formatTimezoneWithOptionalMinutes(timezoneOffset);
-			case "xxxx":
-			case "xx": return formatTimezone(timezoneOffset);
-			case "xxxxx":
-			case "xxx":
-			default: return formatTimezone(timezoneOffset, ":");
-		}
-	},
-	O: function(date, token, _localize) {
-		const timezoneOffset = date.getTimezoneOffset();
-		switch (token) {
-			case "O":
-			case "OO":
-			case "OOO": return "GMT" + formatTimezoneShort(timezoneOffset, ":");
-			case "OOOO":
-			default: return "GMT" + formatTimezone(timezoneOffset, ":");
-		}
-	},
-	z: function(date, token, _localize) {
-		const timezoneOffset = date.getTimezoneOffset();
-		switch (token) {
-			case "z":
-			case "zz":
-			case "zzz": return "GMT" + formatTimezoneShort(timezoneOffset, ":");
-			case "zzzz":
-			default: return "GMT" + formatTimezone(timezoneOffset, ":");
-		}
-	},
-	t: function(date, token, _localize) {
-		return addLeadingZeros(Math.trunc(+date / 1e3), token.length);
-	},
-	T: function(date, token, _localize) {
-		return addLeadingZeros(+date, token.length);
-	}
-};
-function formatTimezoneShort(offset$3, delimiter = "") {
-	const sign = offset$3 > 0 ? "-" : "+";
-	const absOffset = Math.abs(offset$3);
-	const hours = Math.trunc(absOffset / 60);
-	const minutes = absOffset % 60;
-	if (minutes === 0) return sign + String(hours);
-	return sign + String(hours) + delimiter + addLeadingZeros(minutes, 2);
-}
-function formatTimezoneWithOptionalMinutes(offset$3, delimiter) {
-	if (offset$3 % 60 === 0) return (offset$3 > 0 ? "-" : "+") + addLeadingZeros(Math.abs(offset$3) / 60, 2);
-	return formatTimezone(offset$3, delimiter);
-}
-function formatTimezone(offset$3, delimiter = "") {
-	const sign = offset$3 > 0 ? "-" : "+";
-	const absOffset = Math.abs(offset$3);
-	const hours = addLeadingZeros(Math.trunc(absOffset / 60), 2);
-	const minutes = addLeadingZeros(absOffset % 60, 2);
-	return sign + hours + delimiter + minutes;
-}
-var dateLongFormatter = (pattern, formatLong$2) => {
-	switch (pattern) {
-		case "P": return formatLong$2.date({ width: "short" });
-		case "PP": return formatLong$2.date({ width: "medium" });
-		case "PPP": return formatLong$2.date({ width: "long" });
-		case "PPPP":
-		default: return formatLong$2.date({ width: "full" });
-	}
-};
-var timeLongFormatter = (pattern, formatLong$2) => {
-	switch (pattern) {
-		case "p": return formatLong$2.time({ width: "short" });
-		case "pp": return formatLong$2.time({ width: "medium" });
-		case "ppp": return formatLong$2.time({ width: "long" });
-		case "pppp":
-		default: return formatLong$2.time({ width: "full" });
-	}
-};
-var dateTimeLongFormatter = (pattern, formatLong$2) => {
-	const matchResult = pattern.match(/(P+)(p+)?/) || [];
-	const datePattern = matchResult[1];
-	const timePattern = matchResult[2];
-	if (!timePattern) return dateLongFormatter(pattern, formatLong$2);
-	let dateTimeFormat;
-	switch (datePattern) {
-		case "P":
-			dateTimeFormat = formatLong$2.dateTime({ width: "short" });
-			break;
-		case "PP":
-			dateTimeFormat = formatLong$2.dateTime({ width: "medium" });
-			break;
-		case "PPP":
-			dateTimeFormat = formatLong$2.dateTime({ width: "long" });
-			break;
-		case "PPPP":
-		default:
-			dateTimeFormat = formatLong$2.dateTime({ width: "full" });
-			break;
-	}
-	return dateTimeFormat.replace("{{date}}", dateLongFormatter(datePattern, formatLong$2)).replace("{{time}}", timeLongFormatter(timePattern, formatLong$2));
-};
-const longFormatters = {
-	p: timeLongFormatter,
-	P: dateTimeLongFormatter
-};
-var dayOfYearTokenRE = /^D+$/;
-var weekYearTokenRE = /^Y+$/;
-var throwTokens = [
-	"D",
-	"DD",
-	"YY",
-	"YYYY"
-];
-function isProtectedDayOfYearToken(token) {
-	return dayOfYearTokenRE.test(token);
-}
-function isProtectedWeekYearToken(token) {
-	return weekYearTokenRE.test(token);
-}
-function warnOrThrowProtectedError(token, format$1, input) {
-	const _message = message(token, format$1, input);
-	console.warn(_message);
-	if (throwTokens.includes(token)) throw new RangeError(_message);
-}
-function message(token, format$1, input) {
-	const subject = token[0] === "Y" ? "years" : "days of the month";
-	return `Use \`${token.toLowerCase()}\` instead of \`${token}\` (in \`${format$1}\`) for formatting ${subject} to the input \`${input}\`; see: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md`;
-}
-var formattingTokensRegExp = /[yYQqMLwIdDecihHKkms]o|(\w)\1*|''|'(''|[^'])+('|$)|./g;
-var longFormattingTokensRegExp = /P+p+|P+|p+|''|'(''|[^'])+('|$)|./g;
-var escapedStringRegExp = /^'([^]*?)'?$/;
-var doubleQuoteRegExp = /''/g;
-var unescapedLatinCharacterRegExp = /[a-zA-Z]/;
-function format(date, formatStr, options$1) {
-	const defaultOptions$1 = getDefaultOptions();
-	const locale = options$1?.locale ?? defaultOptions$1.locale ?? enUS$1;
-	const firstWeekContainsDate = options$1?.firstWeekContainsDate ?? options$1?.locale?.options?.firstWeekContainsDate ?? defaultOptions$1.firstWeekContainsDate ?? defaultOptions$1.locale?.options?.firstWeekContainsDate ?? 1;
-	const weekStartsOn = options$1?.weekStartsOn ?? options$1?.locale?.options?.weekStartsOn ?? defaultOptions$1.weekStartsOn ?? defaultOptions$1.locale?.options?.weekStartsOn ?? 0;
-	const originalDate = toDate(date, options$1?.in);
-	if (!isValid(originalDate)) throw new RangeError("Invalid time value");
-	let parts = formatStr.match(longFormattingTokensRegExp).map((substring) => {
-		const firstCharacter = substring[0];
-		if (firstCharacter === "p" || firstCharacter === "P") {
-			const longFormatter = longFormatters[firstCharacter];
-			return longFormatter(substring, locale.formatLong);
-		}
-		return substring;
-	}).join("").match(formattingTokensRegExp).map((substring) => {
-		if (substring === "''") return {
-			isToken: false,
-			value: "'"
-		};
-		const firstCharacter = substring[0];
-		if (firstCharacter === "'") return {
-			isToken: false,
-			value: cleanEscapedString(substring)
-		};
-		if (formatters[firstCharacter]) return {
-			isToken: true,
-			value: substring
-		};
-		if (firstCharacter.match(unescapedLatinCharacterRegExp)) throw new RangeError("Format string contains an unescaped latin alphabet character `" + firstCharacter + "`");
-		return {
-			isToken: false,
-			value: substring
-		};
-	});
-	if (locale.localize.preprocessor) parts = locale.localize.preprocessor(originalDate, parts);
-	const formatterOptions = {
-		firstWeekContainsDate,
-		weekStartsOn,
-		locale
-	};
-	return parts.map((part) => {
-		if (!part.isToken) return part.value;
-		const token = part.value;
-		if (!options$1?.useAdditionalWeekYearTokens && isProtectedWeekYearToken(token) || !options$1?.useAdditionalDayOfYearTokens && isProtectedDayOfYearToken(token)) warnOrThrowProtectedError(token, formatStr, String(date));
-		const formatter = formatters[token[0]];
-		return formatter(originalDate, token, locale.localize, formatterOptions);
-	}).join("");
-}
-function cleanEscapedString(input) {
-	const matched = input.match(escapedStringRegExp);
-	if (!matched) return input;
-	return matched[1].replace(doubleQuoteRegExp, "'");
-}
-function getDaysInMonth(date, options$1) {
-	const _date = toDate(date, options$1?.in);
-	const year = _date.getFullYear();
-	const monthIndex = _date.getMonth();
-	const lastDayOfMonth = constructFrom(_date, 0);
-	lastDayOfMonth.setFullYear(year, monthIndex + 1, 0);
-	lastDayOfMonth.setHours(0, 0, 0, 0);
-	return lastDayOfMonth.getDate();
-}
-function getMonth(date, options$1) {
-	return toDate(date, options$1?.in).getMonth();
-}
-function getYear(date, options$1) {
-	return toDate(date, options$1?.in).getFullYear();
-}
-function isAfter(date, dateToCompare) {
-	return +toDate(date) > +toDate(dateToCompare);
-}
-function isBefore(date, dateToCompare) {
-	return +toDate(date) < +toDate(dateToCompare);
-}
-function isSameMonth(laterDate, earlierDate, options$1) {
-	const [laterDate_, earlierDate_] = normalizeDates(options$1?.in, laterDate, earlierDate);
-	return laterDate_.getFullYear() === earlierDate_.getFullYear() && laterDate_.getMonth() === earlierDate_.getMonth();
-}
-function isSameYear(laterDate, earlierDate, options$1) {
-	const [laterDate_, earlierDate_] = normalizeDates(options$1?.in, laterDate, earlierDate);
-	return laterDate_.getFullYear() === earlierDate_.getFullYear();
-}
-function setMonth(date, month, options$1) {
-	const _date = toDate(date, options$1?.in);
-	const year = _date.getFullYear();
-	const day = _date.getDate();
-	const midMonth = constructFrom(options$1?.in || date, 0);
-	midMonth.setFullYear(year, month, 15);
-	midMonth.setHours(0, 0, 0, 0);
-	const daysInMonth = getDaysInMonth(midMonth);
-	_date.setMonth(month, Math.min(day, daysInMonth));
-	return _date;
-}
-function setYear(date, year, options$1) {
-	const date_ = toDate(date, options$1?.in);
-	if (isNaN(+date_)) return constructFrom(options$1?.in || date, NaN);
-	date_.setFullYear(year);
-	return date_;
-}
-var FIVE_WEEKS = 5;
-var FOUR_WEEKS = 4;
-function getBroadcastWeeksInMonth(month, dateLib) {
-	const firstDayOfMonth = dateLib.startOfMonth(month);
-	const firstDayOfWeek = firstDayOfMonth.getDay() > 0 ? firstDayOfMonth.getDay() : 7;
-	const broadcastStartDate = dateLib.addDays(month, -firstDayOfWeek + 1);
-	const lastDateOfLastWeek = dateLib.addDays(broadcastStartDate, FIVE_WEEKS * 7 - 1);
-	return dateLib.getMonth(month) === dateLib.getMonth(lastDateOfLastWeek) ? FIVE_WEEKS : FOUR_WEEKS;
-}
-function startOfBroadcastWeek(date, dateLib) {
-	const firstOfMonth = dateLib.startOfMonth(date);
-	const dayOfWeek = firstOfMonth.getDay();
-	if (dayOfWeek === 1) return firstOfMonth;
-	else if (dayOfWeek === 0) return dateLib.addDays(firstOfMonth, -6);
-	else return dateLib.addDays(firstOfMonth, -1 * (dayOfWeek - 1));
-}
-function endOfBroadcastWeek(date, dateLib) {
-	const startDate = startOfBroadcastWeek(date, dateLib);
-	const numberOfWeeks = getBroadcastWeeksInMonth(date, dateLib);
-	return dateLib.addDays(startDate, numberOfWeeks * 7 - 1);
-}
-var formatDistanceLocale = {
-	lessThanXSeconds: {
-		one: "menos de um segundo",
-		other: "menos de {{count}} segundos"
-	},
-	xSeconds: {
-		one: "1 segundo",
-		other: "{{count}} segundos"
-	},
-	halfAMinute: "meio minuto",
-	lessThanXMinutes: {
-		one: "menos de um minuto",
-		other: "menos de {{count}} minutos"
-	},
-	xMinutes: {
-		one: "1 minuto",
-		other: "{{count}} minutos"
-	},
-	aboutXHours: {
-		one: "cerca de 1 hora",
-		other: "cerca de {{count}} horas"
-	},
-	xHours: {
-		one: "1 hora",
-		other: "{{count}} horas"
-	},
-	xDays: {
-		one: "1 dia",
-		other: "{{count}} dias"
-	},
-	aboutXWeeks: {
-		one: "cerca de 1 semana",
-		other: "cerca de {{count}} semanas"
-	},
-	xWeeks: {
-		one: "1 semana",
-		other: "{{count}} semanas"
-	},
-	aboutXMonths: {
-		one: "cerca de 1 mês",
-		other: "cerca de {{count}} meses"
-	},
-	xMonths: {
-		one: "1 mês",
-		other: "{{count}} meses"
-	},
-	aboutXYears: {
-		one: "cerca de 1 ano",
-		other: "cerca de {{count}} anos"
-	},
-	xYears: {
-		one: "1 ano",
-		other: "{{count}} anos"
-	},
-	overXYears: {
-		one: "mais de 1 ano",
-		other: "mais de {{count}} anos"
-	},
-	almostXYears: {
-		one: "quase 1 ano",
-		other: "quase {{count}} anos"
-	}
-};
-const formatDistance = (token, count$3, options$1) => {
-	let result;
-	const tokenValue = formatDistanceLocale[token];
-	if (typeof tokenValue === "string") result = tokenValue;
-	else if (count$3 === 1) result = tokenValue.one;
-	else result = tokenValue.other.replace("{{count}}", String(count$3));
-	if (options$1?.addSuffix) if (options$1.comparison && options$1.comparison > 0) return "em " + result;
-	else return "há " + result;
-	return result;
-};
-const formatLong = {
-	date: buildFormatLongFn({
-		formats: {
-			full: "EEEE, d 'de' MMMM 'de' y",
-			long: "d 'de' MMMM 'de' y",
-			medium: "d MMM y",
-			short: "dd/MM/yyyy"
-		},
-		defaultWidth: "full"
-	}),
-	time: buildFormatLongFn({
-		formats: {
-			full: "HH:mm:ss zzzz",
-			long: "HH:mm:ss z",
-			medium: "HH:mm:ss",
-			short: "HH:mm"
-		},
-		defaultWidth: "full"
-	}),
-	dateTime: buildFormatLongFn({
-		formats: {
-			full: "{{date}} 'às' {{time}}",
-			long: "{{date}} 'às' {{time}}",
-			medium: "{{date}}, {{time}}",
-			short: "{{date}}, {{time}}"
-		},
-		defaultWidth: "full"
-	})
-};
-var formatRelativeLocale = {
-	lastWeek: (date) => {
-		const weekday = date.getDay();
-		return "'" + (weekday === 0 || weekday === 6 ? "último" : "última") + "' eeee 'às' p";
-	},
-	yesterday: "'ontem às' p",
-	today: "'hoje às' p",
-	tomorrow: "'amanhã às' p",
-	nextWeek: "eeee 'às' p",
-	other: "P"
-};
-const formatRelative = (token, date, _baseDate, _options) => {
-	const format$1 = formatRelativeLocale[token];
-	if (typeof format$1 === "function") return format$1(date);
-	return format$1;
-};
-var eraValues = {
-	narrow: ["AC", "DC"],
-	abbreviated: ["AC", "DC"],
-	wide: ["antes de cristo", "depois de cristo"]
-};
-var quarterValues = {
-	narrow: [
-		"1",
-		"2",
-		"3",
-		"4"
-	],
-	abbreviated: [
-		"T1",
-		"T2",
-		"T3",
-		"T4"
-	],
-	wide: [
-		"1º trimestre",
-		"2º trimestre",
-		"3º trimestre",
-		"4º trimestre"
-	]
-};
-var monthValues = {
-	narrow: [
-		"j",
-		"f",
-		"m",
-		"a",
-		"m",
-		"j",
-		"j",
-		"a",
-		"s",
-		"o",
-		"n",
-		"d"
-	],
-	abbreviated: [
-		"jan",
-		"fev",
-		"mar",
-		"abr",
-		"mai",
-		"jun",
-		"jul",
-		"ago",
-		"set",
-		"out",
-		"nov",
-		"dez"
-	],
-	wide: [
-		"janeiro",
-		"fevereiro",
-		"março",
-		"abril",
-		"maio",
-		"junho",
-		"julho",
-		"agosto",
-		"setembro",
-		"outubro",
-		"novembro",
-		"dezembro"
-	]
-};
-var dayValues = {
-	narrow: [
-		"D",
-		"S",
-		"T",
-		"Q",
-		"Q",
-		"S",
-		"S"
-	],
-	short: [
-		"dom",
-		"seg",
-		"ter",
-		"qua",
-		"qui",
-		"sex",
-		"sab"
-	],
-	abbreviated: [
-		"domingo",
-		"segunda",
-		"terça",
-		"quarta",
-		"quinta",
-		"sexta",
-		"sábado"
-	],
-	wide: [
-		"domingo",
-		"segunda-feira",
-		"terça-feira",
-		"quarta-feira",
-		"quinta-feira",
-		"sexta-feira",
-		"sábado"
-	]
-};
-var dayPeriodValues = {
-	narrow: {
-		am: "a",
-		pm: "p",
-		midnight: "mn",
-		noon: "md",
-		morning: "manhã",
-		afternoon: "tarde",
-		evening: "tarde",
-		night: "noite"
-	},
-	abbreviated: {
-		am: "AM",
-		pm: "PM",
-		midnight: "meia-noite",
-		noon: "meio-dia",
-		morning: "manhã",
-		afternoon: "tarde",
-		evening: "tarde",
-		night: "noite"
-	},
-	wide: {
-		am: "a.m.",
-		pm: "p.m.",
-		midnight: "meia-noite",
-		noon: "meio-dia",
-		morning: "manhã",
-		afternoon: "tarde",
-		evening: "tarde",
-		night: "noite"
-	}
-};
-var formattingDayPeriodValues = {
-	narrow: {
-		am: "a",
-		pm: "p",
-		midnight: "mn",
-		noon: "md",
-		morning: "da manhã",
-		afternoon: "da tarde",
-		evening: "da tarde",
-		night: "da noite"
-	},
-	abbreviated: {
-		am: "AM",
-		pm: "PM",
-		midnight: "meia-noite",
-		noon: "meio-dia",
-		morning: "da manhã",
-		afternoon: "da tarde",
-		evening: "da tarde",
-		night: "da noite"
-	},
-	wide: {
-		am: "a.m.",
-		pm: "p.m.",
-		midnight: "meia-noite",
-		noon: "meio-dia",
-		morning: "da manhã",
-		afternoon: "da tarde",
-		evening: "da tarde",
-		night: "da noite"
-	}
-};
-var ordinalNumber = (dirtyNumber, options$1) => {
-	const number = Number(dirtyNumber);
-	if (options$1?.unit === "week") return number + "ª";
-	return number + "º";
-};
-const ptBR = {
-	code: "pt-BR",
-	formatDistance,
-	formatLong,
-	formatRelative,
-	localize: {
-		ordinalNumber,
-		era: buildLocalizeFn({
-			values: eraValues,
-			defaultWidth: "wide"
-		}),
-		quarter: buildLocalizeFn({
-			values: quarterValues,
-			defaultWidth: "wide",
-			argumentCallback: (quarter) => quarter - 1
-		}),
-		month: buildLocalizeFn({
-			values: monthValues,
-			defaultWidth: "wide"
-		}),
-		day: buildLocalizeFn({
-			values: dayValues,
-			defaultWidth: "wide"
-		}),
-		dayPeriod: buildLocalizeFn({
-			values: dayPeriodValues,
-			defaultWidth: "wide",
-			formattingValues: formattingDayPeriodValues,
-			defaultFormattingWidth: "wide"
-		})
-	},
-	match: {
-		ordinalNumber: buildMatchPatternFn({
-			matchPattern: /^(\d+)[ºªo]?/i,
-			parsePattern: /\d+/i,
-			valueCallback: (value) => parseInt(value, 10)
-		}),
-		era: buildMatchFn({
-			matchPatterns: {
-				narrow: /^(ac|dc|a|d)/i,
-				abbreviated: /^(a\.?\s?c\.?|d\.?\s?c\.?)/i,
-				wide: /^(antes de cristo|depois de cristo)/i
-			},
-			defaultMatchWidth: "wide",
-			parsePatterns: {
-				any: [/^ac/i, /^dc/i],
-				wide: [/^antes de cristo/i, /^depois de cristo/i]
-			},
-			defaultParseWidth: "any"
-		}),
-		quarter: buildMatchFn({
-			matchPatterns: {
-				narrow: /^[1234]/i,
-				abbreviated: /^T[1234]/i,
-				wide: /^[1234](º)? trimestre/i
-			},
-			defaultMatchWidth: "wide",
-			parsePatterns: { any: [
-				/1/i,
-				/2/i,
-				/3/i,
-				/4/i
-			] },
-			defaultParseWidth: "any",
-			valueCallback: (index$1) => index$1 + 1
-		}),
-		month: buildMatchFn({
-			matchPatterns: {
-				narrow: /^[jfmajsond]/i,
-				abbreviated: /^(jan|fev|mar|abr|mai|jun|jul|ago|set|out|nov|dez)/i,
-				wide: /^(janeiro|fevereiro|março|abril|maio|junho|julho|agosto|setembro|outubro|novembro|dezembro)/i
-			},
-			defaultMatchWidth: "wide",
-			parsePatterns: {
-				narrow: [
-					/^j/i,
-					/^f/i,
-					/^m/i,
-					/^a/i,
-					/^m/i,
-					/^j/i,
-					/^j/i,
-					/^a/i,
-					/^s/i,
-					/^o/i,
-					/^n/i,
-					/^d/i
-				],
-				any: [
-					/^ja/i,
-					/^fev/i,
-					/^mar/i,
-					/^abr/i,
-					/^mai/i,
-					/^jun/i,
-					/^jul/i,
-					/^ago/i,
-					/^set/i,
-					/^out/i,
-					/^nov/i,
-					/^dez/i
-				]
-			},
-			defaultParseWidth: "any"
-		}),
-		day: buildMatchFn({
-			matchPatterns: {
-				narrow: /^(dom|[23456]ª?|s[aá]b)/i,
-				short: /^(dom|[23456]ª?|s[aá]b)/i,
-				abbreviated: /^(dom|seg|ter|qua|qui|sex|s[aá]b)/i,
-				wide: /^(domingo|(segunda|ter[cç]a|quarta|quinta|sexta)([- ]feira)?|s[aá]bado)/i
-			},
-			defaultMatchWidth: "wide",
-			parsePatterns: {
-				short: [
-					/^d/i,
-					/^2/i,
-					/^3/i,
-					/^4/i,
-					/^5/i,
-					/^6/i,
-					/^s[aá]/i
-				],
-				narrow: [
-					/^d/i,
-					/^2/i,
-					/^3/i,
-					/^4/i,
-					/^5/i,
-					/^6/i,
-					/^s[aá]/i
-				],
-				any: [
-					/^d/i,
-					/^seg/i,
-					/^t/i,
-					/^qua/i,
-					/^qui/i,
-					/^sex/i,
-					/^s[aá]b/i
-				]
-			},
-			defaultParseWidth: "any"
-		}),
-		dayPeriod: buildMatchFn({
-			matchPatterns: {
-				narrow: /^(a|p|mn|md|(da) (manhã|tarde|noite))/i,
-				any: /^([ap]\.?\s?m\.?|meia[-\s]noite|meio[-\s]dia|(da) (manhã|tarde|noite))/i
-			},
-			defaultMatchWidth: "any",
-			parsePatterns: { any: {
-				am: /^a/i,
-				pm: /^p/i,
-				midnight: /^mn|^meia[-\s]noite/i,
-				noon: /^md|^meio[-\s]dia/i,
-				morning: /manhã/i,
-				afternoon: /tarde/i,
-				evening: /tarde/i,
-				night: /noite/i
-			} },
-			defaultParseWidth: "any"
-		})
-	},
-	options: {
-		weekStartsOn: 0,
-		firstWeekContainsDate: 1
-	}
-};
-const enUS = {
-	...enUS$1,
-	labels: {
-		labelDayButton: (date, modifiers, options$1, dateLib) => {
-			let formatDate;
-			if (dateLib && typeof dateLib.format === "function") formatDate = dateLib.format.bind(dateLib);
-			else formatDate = (d, pattern) => format(d, pattern, {
-				locale: enUS$1,
-				...options$1
-			});
-			let label = formatDate(date, "PPPP");
-			if (modifiers.today) label = `Today, ${label}`;
-			if (modifiers.selected) label = `${label}, selected`;
-			return label;
-		},
-		labelMonthDropdown: "Choose the Month",
-		labelNext: "Go to the Next Month",
-		labelPrevious: "Go to the Previous Month",
-		labelWeekNumber: (weekNumber) => `Week ${weekNumber}`,
-		labelYearDropdown: "Choose the Year",
-		labelGrid: (date, options$1, dateLib) => {
-			let formatDate;
-			if (dateLib && typeof dateLib.format === "function") formatDate = dateLib.format.bind(dateLib);
-			else formatDate = (d, pattern) => format(d, pattern, {
-				locale: enUS$1,
-				...options$1
-			});
-			return formatDate(date, "LLLL yyyy");
-		},
-		labelGridcell: (date, modifiers, options$1, dateLib) => {
-			let formatDate;
-			if (dateLib && typeof dateLib.format === "function") formatDate = dateLib.format.bind(dateLib);
-			else formatDate = (d, pattern) => format(d, pattern, {
-				locale: enUS$1,
-				...options$1
-			});
-			let label = formatDate(date, "PPPP");
-			if (modifiers?.today) label = `Today, ${label}`;
-			return label;
-		},
-		labelNav: "Navigation bar",
-		labelWeekNumberHeader: "Week Number",
-		labelWeekday: (date, options$1, dateLib) => {
-			let formatDate;
-			if (dateLib && typeof dateLib.format === "function") formatDate = dateLib.format.bind(dateLib);
-			else formatDate = (d, pattern) => format(d, pattern, {
-				locale: enUS$1,
-				...options$1
-			});
-			return formatDate(date, "cccc");
-		}
-	}
-};
-var DateLib = class DateLib {
-	constructor(options$1, overrides) {
-		this.Date = Date;
-		this.today = () => {
-			if (this.overrides?.today) return this.overrides.today();
-			if (this.options.timeZone) return TZDate.tz(this.options.timeZone);
-			return new this.Date();
-		};
-		this.newDate = (year, monthIndex, date) => {
-			if (this.overrides?.newDate) return this.overrides.newDate(year, monthIndex, date);
-			if (this.options.timeZone) return new TZDate(year, monthIndex, date, this.options.timeZone);
-			return new Date(year, monthIndex, date);
-		};
-		this.addDays = (date, amount) => {
-			return this.overrides?.addDays ? this.overrides.addDays(date, amount) : addDays(date, amount);
-		};
-		this.addMonths = (date, amount) => {
-			return this.overrides?.addMonths ? this.overrides.addMonths(date, amount) : addMonths(date, amount);
-		};
-		this.addWeeks = (date, amount) => {
-			return this.overrides?.addWeeks ? this.overrides.addWeeks(date, amount) : addWeeks(date, amount);
-		};
-		this.addYears = (date, amount) => {
-			return this.overrides?.addYears ? this.overrides.addYears(date, amount) : addYears(date, amount);
-		};
-		this.differenceInCalendarDays = (dateLeft, dateRight) => {
-			return this.overrides?.differenceInCalendarDays ? this.overrides.differenceInCalendarDays(dateLeft, dateRight) : differenceInCalendarDays(dateLeft, dateRight);
-		};
-		this.differenceInCalendarMonths = (dateLeft, dateRight) => {
-			return this.overrides?.differenceInCalendarMonths ? this.overrides.differenceInCalendarMonths(dateLeft, dateRight) : differenceInCalendarMonths(dateLeft, dateRight);
-		};
-		this.eachMonthOfInterval = (interval) => {
-			return this.overrides?.eachMonthOfInterval ? this.overrides.eachMonthOfInterval(interval) : eachMonthOfInterval(interval);
-		};
-		this.eachYearOfInterval = (interval) => {
-			const years = this.overrides?.eachYearOfInterval ? this.overrides.eachYearOfInterval(interval) : eachYearOfInterval(interval);
-			const uniqueYears = new Set(years.map((d) => this.getYear(d)));
-			if (uniqueYears.size === years.length) return years;
-			const yearsArray = [];
-			uniqueYears.forEach((y) => {
-				yearsArray.push(new Date(y, 0, 1));
-			});
-			return yearsArray;
-		};
-		this.endOfBroadcastWeek = (date) => {
-			return this.overrides?.endOfBroadcastWeek ? this.overrides.endOfBroadcastWeek(date) : endOfBroadcastWeek(date, this);
-		};
-		this.endOfISOWeek = (date) => {
-			return this.overrides?.endOfISOWeek ? this.overrides.endOfISOWeek(date) : endOfISOWeek(date);
-		};
-		this.endOfMonth = (date) => {
-			return this.overrides?.endOfMonth ? this.overrides.endOfMonth(date) : endOfMonth(date);
-		};
-		this.endOfWeek = (date, options$2) => {
-			return this.overrides?.endOfWeek ? this.overrides.endOfWeek(date, options$2) : endOfWeek(date, this.options);
-		};
-		this.endOfYear = (date) => {
-			return this.overrides?.endOfYear ? this.overrides.endOfYear(date) : endOfYear(date);
-		};
-		this.format = (date, formatStr, _options) => {
-			const formatted = this.overrides?.format ? this.overrides.format(date, formatStr, this.options) : format(date, formatStr, this.options);
-			if (this.options.numerals && this.options.numerals !== "latn") return this.replaceDigits(formatted);
-			return formatted;
-		};
-		this.getISOWeek = (date) => {
-			return this.overrides?.getISOWeek ? this.overrides.getISOWeek(date) : getISOWeek(date);
-		};
-		this.getMonth = (date, _options) => {
-			return this.overrides?.getMonth ? this.overrides.getMonth(date, this.options) : getMonth(date, this.options);
-		};
-		this.getYear = (date, _options) => {
-			return this.overrides?.getYear ? this.overrides.getYear(date, this.options) : getYear(date, this.options);
-		};
-		this.getWeek = (date, _options) => {
-			return this.overrides?.getWeek ? this.overrides.getWeek(date, this.options) : getWeek(date, this.options);
-		};
-		this.isAfter = (date, dateToCompare) => {
-			return this.overrides?.isAfter ? this.overrides.isAfter(date, dateToCompare) : isAfter(date, dateToCompare);
-		};
-		this.isBefore = (date, dateToCompare) => {
-			return this.overrides?.isBefore ? this.overrides.isBefore(date, dateToCompare) : isBefore(date, dateToCompare);
-		};
-		this.isDate = (value) => {
-			return this.overrides?.isDate ? this.overrides.isDate(value) : isDate(value);
-		};
-		this.isSameDay = (dateLeft, dateRight) => {
-			return this.overrides?.isSameDay ? this.overrides.isSameDay(dateLeft, dateRight) : isSameDay(dateLeft, dateRight);
-		};
-		this.isSameMonth = (dateLeft, dateRight) => {
-			return this.overrides?.isSameMonth ? this.overrides.isSameMonth(dateLeft, dateRight) : isSameMonth(dateLeft, dateRight);
-		};
-		this.isSameYear = (dateLeft, dateRight) => {
-			return this.overrides?.isSameYear ? this.overrides.isSameYear(dateLeft, dateRight) : isSameYear(dateLeft, dateRight);
-		};
-		this.max = (dates) => {
-			return this.overrides?.max ? this.overrides.max(dates) : max(dates);
-		};
-		this.min = (dates) => {
-			return this.overrides?.min ? this.overrides.min(dates) : min(dates);
-		};
-		this.setMonth = (date, month) => {
-			return this.overrides?.setMonth ? this.overrides.setMonth(date, month) : setMonth(date, month);
-		};
-		this.setYear = (date, year) => {
-			return this.overrides?.setYear ? this.overrides.setYear(date, year) : setYear(date, year);
-		};
-		this.startOfBroadcastWeek = (date, _dateLib) => {
-			return this.overrides?.startOfBroadcastWeek ? this.overrides.startOfBroadcastWeek(date, this) : startOfBroadcastWeek(date, this);
-		};
-		this.startOfDay = (date) => {
-			return this.overrides?.startOfDay ? this.overrides.startOfDay(date) : startOfDay(date);
-		};
-		this.startOfISOWeek = (date) => {
-			return this.overrides?.startOfISOWeek ? this.overrides.startOfISOWeek(date) : startOfISOWeek(date);
-		};
-		this.startOfMonth = (date) => {
-			return this.overrides?.startOfMonth ? this.overrides.startOfMonth(date) : startOfMonth(date);
-		};
-		this.startOfWeek = (date, _options) => {
-			return this.overrides?.startOfWeek ? this.overrides.startOfWeek(date, this.options) : startOfWeek(date, this.options);
-		};
-		this.startOfYear = (date) => {
-			return this.overrides?.startOfYear ? this.overrides.startOfYear(date) : startOfYear(date);
-		};
-		this.options = {
-			locale: enUS,
-			...options$1
-		};
-		this.overrides = overrides;
-	}
-	getDigitMap() {
-		const { numerals = "latn" } = this.options;
-		const formatter = new Intl.NumberFormat("en-US", { numberingSystem: numerals });
-		const digitMap = {};
-		for (let i = 0; i < 10; i++) digitMap[i.toString()] = formatter.format(i);
-		return digitMap;
-	}
-	replaceDigits(input) {
-		const digitMap = this.getDigitMap();
-		return input.replace(/\d/g, (digit) => digitMap[digit] || digit);
-	}
-	formatNumber(value) {
-		return this.replaceDigits(value.toString());
-	}
-	getMonthYearOrder() {
-		const code = this.options.locale?.code;
-		if (!code) return "month-first";
-		return DateLib.yearFirstLocales.has(code) ? "year-first" : "month-first";
-	}
-	formatMonthYear(date) {
-		const { locale, timeZone, numerals } = this.options;
-		const localeCode = locale?.code;
-		if (localeCode && DateLib.yearFirstLocales.has(localeCode)) try {
-			return new Intl.DateTimeFormat(localeCode, {
-				month: "long",
-				year: "numeric",
-				timeZone,
-				numberingSystem: numerals
-			}).format(date);
-		} catch {}
-		const pattern = this.getMonthYearOrder() === "year-first" ? "y LLLL" : "LLLL y";
-		return this.format(date, pattern);
-	}
-};
-DateLib.yearFirstLocales = new Set([
-	"eu",
-	"hu",
-	"ja",
-	"ja-Hira",
-	"ja-JP",
-	"ko",
-	"ko-KR",
-	"lt",
-	"lt-LT",
-	"lv",
-	"lv-LV",
-	"mn",
-	"mn-MN",
-	"zh",
-	"zh-CN",
-	"zh-HK",
-	"zh-TW"
-]);
-const defaultDateLib = new DateLib();
-var CalendarDay = class {
-	constructor(date, displayMonth, dateLib = defaultDateLib) {
-		this.date = date;
-		this.displayMonth = displayMonth;
-		this.outside = Boolean(displayMonth && !dateLib.isSameMonth(date, displayMonth));
-		this.dateLib = dateLib;
-		this.isoDate = dateLib.format(date, "yyyy-MM-dd");
-		this.displayMonthId = dateLib.format(displayMonth, "yyyy-MM");
-		this.dateMonthId = dateLib.format(date, "yyyy-MM");
-	}
-	isEqualTo(day) {
-		return this.dateLib.isSameDay(day.date, this.date) && this.dateLib.isSameMonth(day.displayMonth, this.displayMonth);
-	}
-};
-var CalendarMonth = class {
-	constructor(month, weeks) {
-		this.date = month;
-		this.weeks = weeks;
-	}
-};
-var CalendarWeek = class {
-	constructor(weekNumber, days) {
-		this.days = days;
-		this.weekNumber = weekNumber;
-	}
-};
-function Button$2(props) {
-	return import_react.createElement("button", { ...props });
-}
-function CaptionLabel(props) {
-	return import_react.createElement("span", { ...props });
-}
-function Chevron(props) {
-	const { size: size$3 = 24, orientation = "left", className } = props;
-	return import_react.createElement("svg", {
-		className,
-		width: size$3,
-		height: size$3,
-		viewBox: "0 0 24 24"
-	}, orientation === "up" && import_react.createElement("polygon", { points: "6.77 17 12.5 11.43 18.24 17 20 15.28 12.5 8 5 15.28" }), orientation === "down" && import_react.createElement("polygon", { points: "6.77 8 12.5 13.57 18.24 8 20 9.72 12.5 17 5 9.72" }), orientation === "left" && import_react.createElement("polygon", { points: "16 18.112 9.81111111 12 16 5.87733333 14.0888889 4 6 12 14.0888889 20" }), orientation === "right" && import_react.createElement("polygon", { points: "8 18.112 14.18888889 12 8 5.87733333 9.91111111 4 18 12 9.91111111 20" }));
-}
-function Day(props) {
-	const { day, modifiers, ...tdProps } = props;
-	return import_react.createElement("td", { ...tdProps });
-}
-function DayButton(props) {
-	const { day, modifiers, ...buttonProps } = props;
-	const ref = import_react.useRef(null);
-	import_react.useEffect(() => {
-		if (modifiers.focused) ref.current?.focus();
-	}, [modifiers.focused]);
-	return import_react.createElement("button", {
-		ref,
-		...buttonProps
-	});
-}
-var UI;
-(function(UI$1) {
-	UI$1["Root"] = "root";
-	UI$1["Chevron"] = "chevron";
-	UI$1["Day"] = "day";
-	UI$1["DayButton"] = "day_button";
-	UI$1["CaptionLabel"] = "caption_label";
-	UI$1["Dropdowns"] = "dropdowns";
-	UI$1["Dropdown"] = "dropdown";
-	UI$1["DropdownRoot"] = "dropdown_root";
-	UI$1["Footer"] = "footer";
-	UI$1["MonthGrid"] = "month_grid";
-	UI$1["MonthCaption"] = "month_caption";
-	UI$1["MonthsDropdown"] = "months_dropdown";
-	UI$1["Month"] = "month";
-	UI$1["Months"] = "months";
-	UI$1["Nav"] = "nav";
-	UI$1["NextMonthButton"] = "button_next";
-	UI$1["PreviousMonthButton"] = "button_previous";
-	UI$1["Week"] = "week";
-	UI$1["Weeks"] = "weeks";
-	UI$1["Weekday"] = "weekday";
-	UI$1["Weekdays"] = "weekdays";
-	UI$1["WeekNumber"] = "week_number";
-	UI$1["WeekNumberHeader"] = "week_number_header";
-	UI$1["YearsDropdown"] = "years_dropdown";
-})(UI || (UI = {}));
-var DayFlag;
-(function(DayFlag$1) {
-	DayFlag$1["disabled"] = "disabled";
-	DayFlag$1["hidden"] = "hidden";
-	DayFlag$1["outside"] = "outside";
-	DayFlag$1["focused"] = "focused";
-	DayFlag$1["today"] = "today";
-})(DayFlag || (DayFlag = {}));
-var SelectionState;
-(function(SelectionState$1) {
-	SelectionState$1["range_end"] = "range_end";
-	SelectionState$1["range_middle"] = "range_middle";
-	SelectionState$1["range_start"] = "range_start";
-	SelectionState$1["selected"] = "selected";
-})(SelectionState || (SelectionState = {}));
-var Animation;
-(function(Animation$1) {
-	Animation$1["weeks_before_enter"] = "weeks_before_enter";
-	Animation$1["weeks_before_exit"] = "weeks_before_exit";
-	Animation$1["weeks_after_enter"] = "weeks_after_enter";
-	Animation$1["weeks_after_exit"] = "weeks_after_exit";
-	Animation$1["caption_after_enter"] = "caption_after_enter";
-	Animation$1["caption_after_exit"] = "caption_after_exit";
-	Animation$1["caption_before_enter"] = "caption_before_enter";
-	Animation$1["caption_before_exit"] = "caption_before_exit";
-})(Animation || (Animation = {}));
-function Dropdown(props) {
-	const { options: options$1, className, components, classNames, ...selectProps } = props;
-	const cssClassSelect = [classNames[UI.Dropdown], className].join(" ");
-	const selectedOption = options$1?.find(({ value }) => value === selectProps.value);
-	return import_react.createElement("span", {
-		"data-disabled": selectProps.disabled,
-		className: classNames[UI.DropdownRoot]
-	}, import_react.createElement(components.Select, {
-		className: cssClassSelect,
-		...selectProps
-	}, options$1?.map(({ value, label, disabled }) => import_react.createElement(components.Option, {
-		key: value,
-		value,
-		disabled
-	}, label))), import_react.createElement("span", {
-		className: classNames[UI.CaptionLabel],
-		"aria-hidden": true
-	}, selectedOption?.label, import_react.createElement(components.Chevron, {
-		orientation: "down",
-		size: 18,
-		className: classNames[UI.Chevron]
-	})));
-}
-function DropdownNav(props) {
-	return import_react.createElement("div", { ...props });
-}
-function Footer(props) {
-	return import_react.createElement("div", { ...props });
-}
-function Month(props) {
-	const { calendarMonth, displayIndex, ...divProps } = props;
-	return import_react.createElement("div", { ...divProps }, props.children);
-}
-function MonthCaption(props) {
-	const { calendarMonth, displayIndex, ...divProps } = props;
-	return import_react.createElement("div", { ...divProps });
-}
-function MonthGrid(props) {
-	return import_react.createElement("table", { ...props });
-}
-function Months(props) {
-	return import_react.createElement("div", { ...props });
-}
-const dayPickerContext = (0, import_react.createContext)(void 0);
-function useDayPicker() {
-	const context = (0, import_react.useContext)(dayPickerContext);
-	if (context === void 0) throw new Error("useDayPicker() must be used within a custom component.");
-	return context;
-}
-function MonthsDropdown(props) {
-	const { components } = useDayPicker();
-	return import_react.createElement(components.Dropdown, { ...props });
-}
-function Nav(props) {
-	const { onPreviousClick, onNextClick, previousMonth, nextMonth, ...navProps } = props;
-	const { components, classNames, labels: { labelPrevious: labelPrevious$1, labelNext: labelNext$1 } } = useDayPicker();
-	const handleNextClick = (0, import_react.useCallback)((e) => {
-		if (nextMonth) onNextClick?.(e);
-	}, [nextMonth, onNextClick]);
-	const handlePreviousClick = (0, import_react.useCallback)((e) => {
-		if (previousMonth) onPreviousClick?.(e);
-	}, [previousMonth, onPreviousClick]);
-	return import_react.createElement("nav", { ...navProps }, import_react.createElement(components.PreviousMonthButton, {
-		type: "button",
-		className: classNames[UI.PreviousMonthButton],
-		tabIndex: previousMonth ? void 0 : -1,
-		"aria-disabled": previousMonth ? void 0 : true,
-		"aria-label": labelPrevious$1(previousMonth),
-		onClick: handlePreviousClick
-	}, import_react.createElement(components.Chevron, {
-		disabled: previousMonth ? void 0 : true,
-		className: classNames[UI.Chevron],
-		orientation: "left"
-	})), import_react.createElement(components.NextMonthButton, {
-		type: "button",
-		className: classNames[UI.NextMonthButton],
-		tabIndex: nextMonth ? void 0 : -1,
-		"aria-disabled": nextMonth ? void 0 : true,
-		"aria-label": labelNext$1(nextMonth),
-		onClick: handleNextClick
-	}, import_react.createElement(components.Chevron, {
-		disabled: nextMonth ? void 0 : true,
-		orientation: "right",
-		className: classNames[UI.Chevron]
-	})));
-}
-function NextMonthButton(props) {
-	const { components } = useDayPicker();
-	return import_react.createElement(components.Button, { ...props });
-}
-function Option(props) {
-	return import_react.createElement("option", { ...props });
-}
-function PreviousMonthButton(props) {
-	const { components } = useDayPicker();
-	return import_react.createElement(components.Button, { ...props });
-}
-function Root$1(props) {
-	const { rootRef, ...rest } = props;
-	return import_react.createElement("div", {
-		...rest,
-		ref: rootRef
-	});
-}
-function Select$1(props) {
-	return import_react.createElement("select", { ...props });
-}
-function Week(props) {
-	const { week, ...trProps } = props;
-	return import_react.createElement("tr", { ...trProps });
-}
-function Weekday(props) {
-	return import_react.createElement("th", { ...props });
-}
-function Weekdays(props) {
-	return import_react.createElement("thead", { "aria-hidden": true }, import_react.createElement("tr", { ...props }));
-}
-function WeekNumber(props) {
-	const { week, ...thProps } = props;
-	return import_react.createElement("th", { ...thProps });
-}
-function WeekNumberHeader(props) {
-	return import_react.createElement("th", { ...props });
-}
-function Weeks(props) {
-	return import_react.createElement("tbody", { ...props });
-}
-function YearsDropdown(props) {
-	const { components } = useDayPicker();
-	return import_react.createElement(components.Dropdown, { ...props });
-}
-var custom_components_exports = /* @__PURE__ */ __export({
-	Button: () => Button$2,
-	CaptionLabel: () => CaptionLabel,
-	Chevron: () => Chevron,
-	Day: () => Day,
-	DayButton: () => DayButton,
-	Dropdown: () => Dropdown,
-	DropdownNav: () => DropdownNav,
-	Footer: () => Footer,
-	Month: () => Month,
-	MonthCaption: () => MonthCaption,
-	MonthGrid: () => MonthGrid,
-	Months: () => Months,
-	MonthsDropdown: () => MonthsDropdown,
-	Nav: () => Nav,
-	NextMonthButton: () => NextMonthButton,
-	Option: () => Option,
-	PreviousMonthButton: () => PreviousMonthButton,
-	Root: () => Root$1,
-	Select: () => Select$1,
-	Week: () => Week,
-	WeekNumber: () => WeekNumber,
-	WeekNumberHeader: () => WeekNumberHeader,
-	Weekday: () => Weekday,
-	Weekdays: () => Weekdays,
-	Weeks: () => Weeks,
-	YearsDropdown: () => YearsDropdown
-}, 1);
-function rangeIncludesDate(range, date, excludeEnds = false, dateLib = defaultDateLib) {
-	let { from, to } = range;
-	const { differenceInCalendarDays: differenceInCalendarDays$1, isSameDay: isSameDay$1 } = dateLib;
-	if (from && to) {
-		if (differenceInCalendarDays$1(to, from) < 0) [from, to] = [to, from];
-		return differenceInCalendarDays$1(date, from) >= (excludeEnds ? 1 : 0) && differenceInCalendarDays$1(to, date) >= (excludeEnds ? 1 : 0);
-	}
-	if (!excludeEnds && to) return isSameDay$1(to, date);
-	if (!excludeEnds && from) return isSameDay$1(from, date);
-	return false;
-}
-function isDateInterval(matcher) {
-	return Boolean(matcher && typeof matcher === "object" && "before" in matcher && "after" in matcher);
-}
-function isDateRange(value) {
-	return Boolean(value && typeof value === "object" && "from" in value);
-}
-function isDateAfterType(value) {
-	return Boolean(value && typeof value === "object" && "after" in value);
-}
-function isDateBeforeType(value) {
-	return Boolean(value && typeof value === "object" && "before" in value);
-}
-function isDayOfWeekType(value) {
-	return Boolean(value && typeof value === "object" && "dayOfWeek" in value);
-}
-function isDatesArray(value, dateLib) {
-	return Array.isArray(value) && value.every(dateLib.isDate);
-}
-function dateMatchModifiers(date, matchers, dateLib = defaultDateLib) {
-	const matchersArr = !Array.isArray(matchers) ? [matchers] : matchers;
-	const { isSameDay: isSameDay$1, differenceInCalendarDays: differenceInCalendarDays$1, isAfter: isAfter$1 } = dateLib;
-	return matchersArr.some((matcher) => {
-		if (typeof matcher === "boolean") return matcher;
-		if (dateLib.isDate(matcher)) return isSameDay$1(date, matcher);
-		if (isDatesArray(matcher, dateLib)) return matcher.some((matcherDate) => isSameDay$1(date, matcherDate));
-		if (isDateRange(matcher)) return rangeIncludesDate(matcher, date, false, dateLib);
-		if (isDayOfWeekType(matcher)) {
-			if (!Array.isArray(matcher.dayOfWeek)) return matcher.dayOfWeek === date.getDay();
-			return matcher.dayOfWeek.includes(date.getDay());
-		}
-		if (isDateInterval(matcher)) {
-			const diffBefore = differenceInCalendarDays$1(matcher.before, date);
-			const diffAfter = differenceInCalendarDays$1(matcher.after, date);
-			const isDayBefore = diffBefore > 0;
-			const isDayAfter = diffAfter < 0;
-			if (isAfter$1(matcher.before, matcher.after)) return isDayAfter && isDayBefore;
-			else return isDayBefore || isDayAfter;
-		}
-		if (isDateAfterType(matcher)) return differenceInCalendarDays$1(date, matcher.after) > 0;
-		if (isDateBeforeType(matcher)) return differenceInCalendarDays$1(matcher.before, date) > 0;
-		if (typeof matcher === "function") return matcher(date);
-		return false;
-	});
-}
-function createGetModifiers(days, props, navStart, navEnd, dateLib) {
-	const { disabled, hidden, modifiers, showOutsideDays, broadcastCalendar, today = dateLib.today() } = props;
-	const { isSameDay: isSameDay$1, isSameMonth: isSameMonth$1, startOfMonth: startOfMonth$1, isBefore: isBefore$1, endOfMonth: endOfMonth$1, isAfter: isAfter$1 } = dateLib;
-	const computedNavStart = navStart && startOfMonth$1(navStart);
-	const computedNavEnd = navEnd && endOfMonth$1(navEnd);
-	const internalModifiersMap = {
-		[DayFlag.focused]: [],
-		[DayFlag.outside]: [],
-		[DayFlag.disabled]: [],
-		[DayFlag.hidden]: [],
-		[DayFlag.today]: []
-	};
-	const customModifiersMap = {};
-	for (const day of days) {
-		const { date, displayMonth } = day;
-		const isOutside = Boolean(displayMonth && !isSameMonth$1(date, displayMonth));
-		const isBeforeNavStart = Boolean(computedNavStart && isBefore$1(date, computedNavStart));
-		const isAfterNavEnd = Boolean(computedNavEnd && isAfter$1(date, computedNavEnd));
-		const isDisabled = Boolean(disabled && dateMatchModifiers(date, disabled, dateLib));
-		const isHidden$1 = Boolean(hidden && dateMatchModifiers(date, hidden, dateLib)) || isBeforeNavStart || isAfterNavEnd || !broadcastCalendar && !showOutsideDays && isOutside || broadcastCalendar && showOutsideDays === false && isOutside;
-		const isToday = isSameDay$1(date, today);
-		if (isOutside) internalModifiersMap.outside.push(day);
-		if (isDisabled) internalModifiersMap.disabled.push(day);
-		if (isHidden$1) internalModifiersMap.hidden.push(day);
-		if (isToday) internalModifiersMap.today.push(day);
-		if (modifiers) Object.keys(modifiers).forEach((name) => {
-			const modifierValue = modifiers?.[name];
-			if (!(modifierValue ? dateMatchModifiers(date, modifierValue, dateLib) : false)) return;
-			if (customModifiersMap[name]) customModifiersMap[name].push(day);
-			else customModifiersMap[name] = [day];
-		});
-	}
-	return (day) => {
-		const dayFlags = {
-			[DayFlag.focused]: false,
-			[DayFlag.disabled]: false,
-			[DayFlag.hidden]: false,
-			[DayFlag.outside]: false,
-			[DayFlag.today]: false
-		};
-		const customModifiers = {};
-		for (const name in internalModifiersMap) dayFlags[name] = internalModifiersMap[name].some((d) => d === day);
-		for (const name in customModifiersMap) customModifiers[name] = customModifiersMap[name].some((d) => d === day);
-		return {
-			...dayFlags,
-			...customModifiers
-		};
-	};
-}
-function getClassNamesForModifiers(modifiers, classNames, modifiersClassNames = {}) {
-	return Object.entries(modifiers).filter(([, active]) => active === true).reduce((previousValue, [key]) => {
-		if (modifiersClassNames[key]) previousValue.push(modifiersClassNames[key]);
-		else if (classNames[DayFlag[key]]) previousValue.push(classNames[DayFlag[key]]);
-		else if (classNames[SelectionState[key]]) previousValue.push(classNames[SelectionState[key]]);
-		return previousValue;
-	}, [classNames[UI.Day]]);
-}
-function getComponents(customComponents) {
-	return {
-		...custom_components_exports,
-		...customComponents
-	};
-}
-function getDataAttributes(props) {
-	const dataAttributes = {
-		"data-mode": props.mode ?? void 0,
-		"data-required": "required" in props ? props.required : void 0,
-		"data-multiple-months": props.numberOfMonths && props.numberOfMonths > 1 || void 0,
-		"data-week-numbers": props.showWeekNumber || void 0,
-		"data-broadcast-calendar": props.broadcastCalendar || void 0,
-		"data-nav-layout": props.navLayout || void 0
-	};
-	Object.entries(props).forEach(([key, val]) => {
-		if (key.startsWith("data-")) dataAttributes[key] = val;
-	});
-	return dataAttributes;
-}
-function getDefaultClassNames() {
-	const classNames = {};
-	for (const key in UI) classNames[UI[key]] = `rdp-${UI[key]}`;
-	for (const key in DayFlag) classNames[DayFlag[key]] = `rdp-${DayFlag[key]}`;
-	for (const key in SelectionState) classNames[SelectionState[key]] = `rdp-${SelectionState[key]}`;
-	for (const key in Animation) classNames[Animation[key]] = `rdp-${Animation[key]}`;
-	return classNames;
-}
-function formatCaption(month, options$1, dateLib) {
-	return (dateLib ?? new DateLib(options$1)).formatMonthYear(month);
-}
-const formatMonthCaption = formatCaption;
-function formatDay(date, options$1, dateLib) {
-	return (dateLib ?? new DateLib(options$1)).format(date, "d");
-}
-function formatMonthDropdown(month, dateLib = defaultDateLib) {
-	return dateLib.format(month, "LLLL");
-}
-function formatWeekdayName(weekday, options$1, dateLib) {
-	return (dateLib ?? new DateLib(options$1)).format(weekday, "cccccc");
-}
-function formatWeekNumber(weekNumber, dateLib = defaultDateLib) {
-	if (weekNumber < 10) return dateLib.formatNumber(`0${weekNumber.toLocaleString()}`);
-	return dateLib.formatNumber(`${weekNumber.toLocaleString()}`);
-}
-function formatWeekNumberHeader() {
-	return ``;
-}
-function formatYearDropdown(year, dateLib = defaultDateLib) {
-	return dateLib.format(year, "yyyy");
-}
-const formatYearCaption = formatYearDropdown;
-var formatters_exports = /* @__PURE__ */ __export({
-	formatCaption: () => formatCaption,
-	formatDay: () => formatDay,
-	formatMonthCaption: () => formatMonthCaption,
-	formatMonthDropdown: () => formatMonthDropdown,
-	formatWeekNumber: () => formatWeekNumber,
-	formatWeekNumberHeader: () => formatWeekNumberHeader,
-	formatWeekdayName: () => formatWeekdayName,
-	formatYearCaption: () => formatYearCaption,
-	formatYearDropdown: () => formatYearDropdown
-}, 1);
-function getFormatters(customFormatters) {
-	if (customFormatters?.formatMonthCaption && !customFormatters.formatCaption) customFormatters.formatCaption = customFormatters.formatMonthCaption;
-	if (customFormatters?.formatYearCaption && !customFormatters.formatYearDropdown) customFormatters.formatYearDropdown = customFormatters.formatYearCaption;
-	return {
-		...formatters_exports,
-		...customFormatters
-	};
-}
-function labelDayButton(date, modifiers, options$1, dateLib) {
-	let label = (dateLib ?? new DateLib(options$1)).format(date, "PPPP");
-	if (modifiers.today) label = `Today, ${label}`;
-	if (modifiers.selected) label = `${label}, selected`;
-	return label;
-}
-const labelDay = labelDayButton;
-function labelGrid(date, options$1, dateLib) {
-	return (dateLib ?? new DateLib(options$1)).formatMonthYear(date);
-}
-const labelCaption = labelGrid;
-function labelGridcell(date, modifiers, options$1, dateLib) {
-	let label = (dateLib ?? new DateLib(options$1)).format(date, "PPPP");
-	if (modifiers?.today) label = `Today, ${label}`;
-	return label;
-}
-function labelMonthDropdown(_options) {
-	return "Choose the Month";
-}
-function labelNav() {
-	return "";
-}
-var defaultLabel = "Go to the Next Month";
-function labelNext(_month, _options) {
-	return defaultLabel;
-}
-function labelPrevious(_month) {
-	return "Go to the Previous Month";
-}
-function labelWeekday(date, options$1, dateLib) {
-	return (dateLib ?? new DateLib(options$1)).format(date, "cccc");
-}
-function labelWeekNumber(weekNumber, _options) {
-	return `Week ${weekNumber}`;
-}
-function labelWeekNumberHeader(_options) {
-	return "Week Number";
-}
-function labelYearDropdown(_options) {
-	return "Choose the Year";
-}
-var labels_exports = /* @__PURE__ */ __export({
-	labelCaption: () => labelCaption,
-	labelDay: () => labelDay,
-	labelDayButton: () => labelDayButton,
-	labelGrid: () => labelGrid,
-	labelGridcell: () => labelGridcell,
-	labelMonthDropdown: () => labelMonthDropdown,
-	labelNav: () => labelNav,
-	labelNext: () => labelNext,
-	labelPrevious: () => labelPrevious,
-	labelWeekNumber: () => labelWeekNumber,
-	labelWeekNumberHeader: () => labelWeekNumberHeader,
-	labelWeekday: () => labelWeekday,
-	labelYearDropdown: () => labelYearDropdown
-}, 1);
-var resolveLabel = (defaultLabel$1, customLabel, localeLabel) => {
-	if (customLabel) return customLabel;
-	if (localeLabel) return typeof localeLabel === "function" ? localeLabel : (..._args) => localeLabel;
-	return defaultLabel$1;
-};
-function getLabels(customLabels, options$1) {
-	const localeLabels = options$1.locale?.labels ?? {};
-	return {
-		...labels_exports,
-		...customLabels ?? {},
-		labelDayButton: resolveLabel(labelDayButton, customLabels?.labelDayButton, localeLabels.labelDayButton),
-		labelMonthDropdown: resolveLabel(labelMonthDropdown, customLabels?.labelMonthDropdown, localeLabels.labelMonthDropdown),
-		labelNext: resolveLabel(labelNext, customLabels?.labelNext, localeLabels.labelNext),
-		labelPrevious: resolveLabel(labelPrevious, customLabels?.labelPrevious, localeLabels.labelPrevious),
-		labelWeekNumber: resolveLabel(labelWeekNumber, customLabels?.labelWeekNumber, localeLabels.labelWeekNumber),
-		labelYearDropdown: resolveLabel(labelYearDropdown, customLabels?.labelYearDropdown, localeLabels.labelYearDropdown),
-		labelGrid: resolveLabel(labelGrid, customLabels?.labelGrid, localeLabels.labelGrid),
-		labelGridcell: resolveLabel(labelGridcell, customLabels?.labelGridcell, localeLabels.labelGridcell),
-		labelNav: resolveLabel(labelNav, customLabels?.labelNav, localeLabels.labelNav),
-		labelWeekNumberHeader: resolveLabel(labelWeekNumberHeader, customLabels?.labelWeekNumberHeader, localeLabels.labelWeekNumberHeader),
-		labelWeekday: resolveLabel(labelWeekday, customLabels?.labelWeekday, localeLabels.labelWeekday)
-	};
-}
-function getMonthOptions(displayMonth, navStart, navEnd, formatters$1, dateLib) {
-	const { startOfMonth: startOfMonth$1, startOfYear: startOfYear$1, endOfYear: endOfYear$1, eachMonthOfInterval: eachMonthOfInterval$1, getMonth: getMonth$1 } = dateLib;
-	return eachMonthOfInterval$1({
-		start: startOfYear$1(displayMonth),
-		end: endOfYear$1(displayMonth)
-	}).map((month) => {
-		const label = formatters$1.formatMonthDropdown(month, dateLib);
-		return {
-			value: getMonth$1(month),
-			label,
-			disabled: navStart && month < startOfMonth$1(navStart) || navEnd && month > startOfMonth$1(navEnd) || false
-		};
-	});
-}
-function getStyleForModifiers(dayModifiers, styles = {}, modifiersStyles = {}) {
-	let style = { ...styles?.[UI.Day] };
-	Object.entries(dayModifiers).filter(([, active]) => active === true).forEach(([modifier]) => {
-		style = {
-			...style,
-			...modifiersStyles?.[modifier]
-		};
-	});
-	return style;
-}
-function getWeekdays(dateLib, ISOWeek, broadcastCalendar, today) {
-	const referenceToday = today ?? dateLib.today();
-	const start = broadcastCalendar ? dateLib.startOfBroadcastWeek(referenceToday, dateLib) : ISOWeek ? dateLib.startOfISOWeek(referenceToday) : dateLib.startOfWeek(referenceToday);
-	const days = [];
-	for (let i = 0; i < 7; i++) {
-		const day = dateLib.addDays(start, i);
-		days.push(day);
-	}
-	return days;
-}
-function getYearOptions(navStart, navEnd, formatters$1, dateLib, reverse = false) {
-	if (!navStart) return void 0;
-	if (!navEnd) return void 0;
-	const { startOfYear: startOfYear$1, endOfYear: endOfYear$1, eachYearOfInterval: eachYearOfInterval$1, getYear: getYear$1 } = dateLib;
-	const years = eachYearOfInterval$1({
-		start: startOfYear$1(navStart),
-		end: endOfYear$1(navEnd)
-	});
-	if (reverse) years.reverse();
-	return years.map((year) => {
-		const label = formatters$1.formatYearDropdown(year, dateLib);
-		return {
-			value: getYear$1(year),
-			label,
-			disabled: false
-		};
-	});
-}
-function createNoonOverrides(timeZone, options$1 = {}) {
-	const { weekStartsOn, locale } = options$1;
-	const fallbackWeekStartsOn = weekStartsOn ?? locale?.options?.weekStartsOn ?? 0;
-	const toNoonTZDate = (date) => {
-		const normalizedDate = typeof date === "number" || typeof date === "string" ? new Date(date) : date;
-		return new TZDate(normalizedDate.getFullYear(), normalizedDate.getMonth(), normalizedDate.getDate(), 12, 0, 0, timeZone);
-	};
-	const toCalendarDate = (date) => {
-		const zoned = toNoonTZDate(date);
-		return new Date(zoned.getFullYear(), zoned.getMonth(), zoned.getDate(), 0, 0, 0, 0);
-	};
-	return {
-		today: () => {
-			return toNoonTZDate(TZDate.tz(timeZone));
-		},
-		newDate: (year, monthIndex, date) => {
-			return new TZDate(year, monthIndex, date, 12, 0, 0, timeZone);
-		},
-		startOfDay: (date) => {
-			return toNoonTZDate(date);
-		},
-		startOfWeek: (date, options$2) => {
-			const base = toNoonTZDate(date);
-			const weekStartsOnValue = options$2?.weekStartsOn ?? fallbackWeekStartsOn;
-			const diff = (base.getDay() - weekStartsOnValue + 7) % 7;
-			base.setDate(base.getDate() - diff);
-			return base;
-		},
-		startOfISOWeek: (date) => {
-			const base = toNoonTZDate(date);
-			const diff = (base.getDay() - 1 + 7) % 7;
-			base.setDate(base.getDate() - diff);
-			return base;
-		},
-		startOfMonth: (date) => {
-			const base = toNoonTZDate(date);
-			base.setDate(1);
-			return base;
-		},
-		startOfYear: (date) => {
-			const base = toNoonTZDate(date);
-			base.setMonth(0, 1);
-			return base;
-		},
-		endOfWeek: (date, options$2) => {
-			const base = toNoonTZDate(date);
-			const diff = (((options$2?.weekStartsOn ?? fallbackWeekStartsOn) + 6) % 7 - base.getDay() + 7) % 7;
-			base.setDate(base.getDate() + diff);
-			return base;
-		},
-		endOfISOWeek: (date) => {
-			const base = toNoonTZDate(date);
-			const diff = (7 - base.getDay()) % 7;
-			base.setDate(base.getDate() + diff);
-			return base;
-		},
-		endOfMonth: (date) => {
-			const base = toNoonTZDate(date);
-			base.setMonth(base.getMonth() + 1, 0);
-			return base;
-		},
-		endOfYear: (date) => {
-			const base = toNoonTZDate(date);
-			base.setMonth(11, 31);
-			return base;
-		},
-		eachMonthOfInterval: (interval) => {
-			const start = toNoonTZDate(interval.start);
-			const end = toNoonTZDate(interval.end);
-			const result = [];
-			const cursor = new TZDate(start.getFullYear(), start.getMonth(), 1, 12, 0, 0, timeZone);
-			const endKey = end.getFullYear() * 12 + end.getMonth();
-			while (cursor.getFullYear() * 12 + cursor.getMonth() <= endKey) {
-				result.push(new TZDate(cursor, timeZone));
-				cursor.setMonth(cursor.getMonth() + 1, 1);
-			}
-			return result;
-		},
-		addDays: (date, amount) => {
-			const base = toNoonTZDate(date);
-			base.setDate(base.getDate() + amount);
-			return base;
-		},
-		addWeeks: (date, amount) => {
-			const base = toNoonTZDate(date);
-			base.setDate(base.getDate() + amount * 7);
-			return base;
-		},
-		addMonths: (date, amount) => {
-			const base = toNoonTZDate(date);
-			base.setMonth(base.getMonth() + amount);
-			return base;
-		},
-		addYears: (date, amount) => {
-			const base = toNoonTZDate(date);
-			base.setFullYear(base.getFullYear() + amount);
-			return base;
-		},
-		eachYearOfInterval: (interval) => {
-			const start = toNoonTZDate(interval.start);
-			const end = toNoonTZDate(interval.end);
-			const years = [];
-			const cursor = new TZDate(start.getFullYear(), 0, 1, 12, 0, 0, timeZone);
-			while (cursor.getFullYear() <= end.getFullYear()) {
-				years.push(new TZDate(cursor, timeZone));
-				cursor.setFullYear(cursor.getFullYear() + 1, 0, 1);
-			}
-			return years;
-		},
-		getWeek: (date, options$2) => {
-			return getWeek(toCalendarDate(date), {
-				weekStartsOn: options$2?.weekStartsOn ?? fallbackWeekStartsOn,
-				firstWeekContainsDate: options$2?.firstWeekContainsDate ?? locale?.options?.firstWeekContainsDate ?? 1
-			});
-		},
-		getISOWeek: (date) => {
-			return getISOWeek(toCalendarDate(date));
-		},
-		differenceInCalendarDays: (dateLeft, dateRight) => {
-			return differenceInCalendarDays(toCalendarDate(dateLeft), toCalendarDate(dateRight));
-		},
-		differenceInCalendarMonths: (dateLeft, dateRight) => {
-			return differenceInCalendarMonths(toCalendarDate(dateLeft), toCalendarDate(dateRight));
-		}
-	};
-}
-var asHtmlElement = (element) => {
-	if (element instanceof HTMLElement) return element;
-	return null;
-};
-var queryMonthEls = (element) => [...element.querySelectorAll("[data-animated-month]") ?? []];
-var queryMonthEl = (element) => asHtmlElement(element.querySelector("[data-animated-month]"));
-var queryCaptionEl = (element) => asHtmlElement(element.querySelector("[data-animated-caption]"));
-var queryWeeksEl = (element) => asHtmlElement(element.querySelector("[data-animated-weeks]"));
-var queryNavEl = (element) => asHtmlElement(element.querySelector("[data-animated-nav]"));
-var queryWeekdaysEl = (element) => asHtmlElement(element.querySelector("[data-animated-weekdays]"));
-function useAnimation(rootElRef, enabled, { classNames, months, focused, dateLib }) {
-	const previousRootElSnapshotRef = (0, import_react.useRef)(null);
-	const previousMonthsRef = (0, import_react.useRef)(months);
-	const animatingRef = (0, import_react.useRef)(false);
-	(0, import_react.useLayoutEffect)(() => {
-		const previousMonths = previousMonthsRef.current;
-		previousMonthsRef.current = months;
-		if (!enabled || !rootElRef.current || !(rootElRef.current instanceof HTMLElement) || months.length === 0 || previousMonths.length === 0 || months.length !== previousMonths.length) return;
-		const isSameMonth$1 = dateLib.isSameMonth(months[0].date, previousMonths[0].date);
-		const isAfterPreviousMonth = dateLib.isAfter(months[0].date, previousMonths[0].date);
-		const captionAnimationClass = isAfterPreviousMonth ? classNames[Animation.caption_after_enter] : classNames[Animation.caption_before_enter];
-		const weeksAnimationClass = isAfterPreviousMonth ? classNames[Animation.weeks_after_enter] : classNames[Animation.weeks_before_enter];
-		const previousRootElSnapshot = previousRootElSnapshotRef.current;
-		const rootElSnapshot = rootElRef.current.cloneNode(true);
-		if (rootElSnapshot instanceof HTMLElement) {
-			queryMonthEls(rootElSnapshot).forEach((currentMonthElSnapshot) => {
-				if (!(currentMonthElSnapshot instanceof HTMLElement)) return;
-				const previousMonthElSnapshot = queryMonthEl(currentMonthElSnapshot);
-				if (previousMonthElSnapshot && currentMonthElSnapshot.contains(previousMonthElSnapshot)) currentMonthElSnapshot.removeChild(previousMonthElSnapshot);
-				const captionEl = queryCaptionEl(currentMonthElSnapshot);
-				if (captionEl) captionEl.classList.remove(captionAnimationClass);
-				const weeksEl = queryWeeksEl(currentMonthElSnapshot);
-				if (weeksEl) weeksEl.classList.remove(weeksAnimationClass);
-			});
-			previousRootElSnapshotRef.current = rootElSnapshot;
-		} else previousRootElSnapshotRef.current = null;
-		if (animatingRef.current || isSameMonth$1 || focused) return;
-		const previousMonthEls = previousRootElSnapshot instanceof HTMLElement ? queryMonthEls(previousRootElSnapshot) : [];
-		const currentMonthEls = queryMonthEls(rootElRef.current);
-		if (currentMonthEls?.every((el) => el instanceof HTMLElement) && previousMonthEls && previousMonthEls.every((el) => el instanceof HTMLElement)) {
-			animatingRef.current = true;
-			const cleanUpFunctions = [];
-			rootElRef.current.style.isolation = "isolate";
-			const navEl = queryNavEl(rootElRef.current);
-			if (navEl) navEl.style.zIndex = "1";
-			currentMonthEls.forEach((currentMonthEl, index$1) => {
-				const previousMonthEl = previousMonthEls[index$1];
-				if (!previousMonthEl) return;
-				currentMonthEl.style.position = "relative";
-				currentMonthEl.style.overflow = "hidden";
-				const captionEl = queryCaptionEl(currentMonthEl);
-				if (captionEl) captionEl.classList.add(captionAnimationClass);
-				const weeksEl = queryWeeksEl(currentMonthEl);
-				if (weeksEl) weeksEl.classList.add(weeksAnimationClass);
-				const cleanUp = () => {
-					animatingRef.current = false;
-					if (rootElRef.current) rootElRef.current.style.isolation = "";
-					if (navEl) navEl.style.zIndex = "";
-					if (captionEl) captionEl.classList.remove(captionAnimationClass);
-					if (weeksEl) weeksEl.classList.remove(weeksAnimationClass);
-					currentMonthEl.style.position = "";
-					currentMonthEl.style.overflow = "";
-					if (currentMonthEl.contains(previousMonthEl)) currentMonthEl.removeChild(previousMonthEl);
-				};
-				cleanUpFunctions.push(cleanUp);
-				previousMonthEl.style.pointerEvents = "none";
-				previousMonthEl.style.position = "absolute";
-				previousMonthEl.style.overflow = "hidden";
-				previousMonthEl.setAttribute("aria-hidden", "true");
-				const previousWeekdaysEl = queryWeekdaysEl(previousMonthEl);
-				if (previousWeekdaysEl) previousWeekdaysEl.style.opacity = "0";
-				const previousCaptionEl = queryCaptionEl(previousMonthEl);
-				if (previousCaptionEl) {
-					previousCaptionEl.classList.add(isAfterPreviousMonth ? classNames[Animation.caption_before_exit] : classNames[Animation.caption_after_exit]);
-					previousCaptionEl.addEventListener("animationend", cleanUp);
-				}
-				const previousWeeksEl = queryWeeksEl(previousMonthEl);
-				if (previousWeeksEl) previousWeeksEl.classList.add(isAfterPreviousMonth ? classNames[Animation.weeks_before_exit] : classNames[Animation.weeks_after_exit]);
-				currentMonthEl.insertBefore(previousMonthEl, currentMonthEl.firstChild);
-			});
-		}
-	});
-}
-function getDates(displayMonths, maxDate, props, dateLib) {
-	const firstMonth = displayMonths[0];
-	const lastMonth = displayMonths[displayMonths.length - 1];
-	const { ISOWeek, fixedWeeks, broadcastCalendar } = props ?? {};
-	const { addDays: addDays$1, differenceInCalendarDays: differenceInCalendarDays$1, differenceInCalendarMonths: differenceInCalendarMonths$1, endOfBroadcastWeek: endOfBroadcastWeek$1, endOfISOWeek: endOfISOWeek$1, endOfMonth: endOfMonth$1, endOfWeek: endOfWeek$1, isAfter: isAfter$1, startOfBroadcastWeek: startOfBroadcastWeek$1, startOfISOWeek: startOfISOWeek$1, startOfWeek: startOfWeek$1 } = dateLib;
-	const startWeekFirstDate = broadcastCalendar ? startOfBroadcastWeek$1(firstMonth, dateLib) : ISOWeek ? startOfISOWeek$1(firstMonth) : startOfWeek$1(firstMonth);
-	const displayMonthsWeekEnd = broadcastCalendar ? endOfBroadcastWeek$1(lastMonth) : ISOWeek ? endOfISOWeek$1(endOfMonth$1(lastMonth)) : endOfWeek$1(endOfMonth$1(lastMonth));
-	const constraintWeekEnd = maxDate && (broadcastCalendar ? endOfBroadcastWeek$1(maxDate) : ISOWeek ? endOfISOWeek$1(maxDate) : endOfWeek$1(maxDate));
-	const nOfDays = differenceInCalendarDays$1(constraintWeekEnd && isAfter$1(displayMonthsWeekEnd, constraintWeekEnd) ? constraintWeekEnd : displayMonthsWeekEnd, startWeekFirstDate);
-	const nOfMonths = differenceInCalendarMonths$1(lastMonth, firstMonth) + 1;
-	const dates = [];
-	for (let i = 0; i <= nOfDays; i++) {
-		const date = addDays$1(startWeekFirstDate, i);
-		dates.push(date);
-	}
-	const extraDates = (broadcastCalendar ? 35 : 42) * nOfMonths;
-	if (fixedWeeks && dates.length < extraDates) {
-		const daysToAdd = extraDates - dates.length;
-		for (let i = 0; i < daysToAdd; i++) {
-			const date = addDays$1(dates[dates.length - 1], 1);
-			dates.push(date);
-		}
-	}
-	return dates;
-}
-function getDays(calendarMonths) {
-	const initialDays = [];
-	return calendarMonths.reduce((days, month) => {
-		const weekDays = month.weeks.reduce((weekDays$1, week) => {
-			return weekDays$1.concat(week.days.slice());
-		}, initialDays.slice());
-		return days.concat(weekDays.slice());
-	}, initialDays.slice());
-}
-function getDisplayMonths(firstDisplayedMonth, calendarEndMonth, props, dateLib) {
-	const { numberOfMonths = 1 } = props;
-	const months = [];
-	for (let i = 0; i < numberOfMonths; i++) {
-		const month = dateLib.addMonths(firstDisplayedMonth, i);
-		if (calendarEndMonth && month > calendarEndMonth) break;
-		months.push(month);
-	}
-	return months;
-}
-function getInitialMonth(props, navStart, navEnd, dateLib) {
-	const { month, defaultMonth, today = dateLib.today(), numberOfMonths = 1 } = props;
-	let initialMonth = month || defaultMonth || today;
-	const { differenceInCalendarMonths: differenceInCalendarMonths$1, addMonths: addMonths$1, startOfMonth: startOfMonth$1 } = dateLib;
-	if (navEnd && differenceInCalendarMonths$1(navEnd, initialMonth) < numberOfMonths - 1) initialMonth = addMonths$1(navEnd, -1 * (numberOfMonths - 1));
-	if (navStart && differenceInCalendarMonths$1(initialMonth, navStart) < 0) initialMonth = navStart;
-	return startOfMonth$1(initialMonth);
-}
-function getMonths(displayMonths, dates, props, dateLib) {
-	const { addDays: addDays$1, endOfBroadcastWeek: endOfBroadcastWeek$1, endOfISOWeek: endOfISOWeek$1, endOfMonth: endOfMonth$1, endOfWeek: endOfWeek$1, getISOWeek: getISOWeek$1, getWeek: getWeek$1, startOfBroadcastWeek: startOfBroadcastWeek$1, startOfISOWeek: startOfISOWeek$1, startOfWeek: startOfWeek$1 } = dateLib;
-	const dayPickerMonths = displayMonths.reduce((months, month) => {
-		const firstDateOfFirstWeek = props.broadcastCalendar ? startOfBroadcastWeek$1(month, dateLib) : props.ISOWeek ? startOfISOWeek$1(month) : startOfWeek$1(month);
-		const lastDateOfLastWeek = props.broadcastCalendar ? endOfBroadcastWeek$1(month) : props.ISOWeek ? endOfISOWeek$1(endOfMonth$1(month)) : endOfWeek$1(endOfMonth$1(month));
-		const monthDates = dates.filter((date) => {
-			return date >= firstDateOfFirstWeek && date <= lastDateOfLastWeek;
-		});
-		const nrOfDaysWithFixedWeeks = props.broadcastCalendar ? 35 : 42;
-		if (props.fixedWeeks && monthDates.length < nrOfDaysWithFixedWeeks) {
-			const extraDates = dates.filter((date) => {
-				const daysToAdd = nrOfDaysWithFixedWeeks - monthDates.length;
-				return date > lastDateOfLastWeek && date <= addDays$1(lastDateOfLastWeek, daysToAdd);
-			});
-			monthDates.push(...extraDates);
-		}
-		const dayPickerMonth = new CalendarMonth(month, monthDates.reduce((weeks, date) => {
-			const weekNumber = props.ISOWeek ? getISOWeek$1(date) : getWeek$1(date);
-			const week = weeks.find((week$1) => week$1.weekNumber === weekNumber);
-			const day = new CalendarDay(date, month, dateLib);
-			if (!week) weeks.push(new CalendarWeek(weekNumber, [day]));
-			else week.days.push(day);
-			return weeks;
-		}, []));
-		months.push(dayPickerMonth);
-		return months;
-	}, []);
-	if (!props.reverseMonths) return dayPickerMonths;
-	else return dayPickerMonths.reverse();
-}
-function getNavMonths(props, dateLib) {
-	let { startMonth, endMonth } = props;
-	const { startOfYear: startOfYear$1, startOfDay: startOfDay$1, startOfMonth: startOfMonth$1, endOfMonth: endOfMonth$1, addYears: addYears$1, endOfYear: endOfYear$1, newDate, today } = dateLib;
-	const { fromYear, toYear, fromMonth, toMonth } = props;
-	if (!startMonth && fromMonth) startMonth = fromMonth;
-	if (!startMonth && fromYear) startMonth = dateLib.newDate(fromYear, 0, 1);
-	if (!endMonth && toMonth) endMonth = toMonth;
-	if (!endMonth && toYear) endMonth = newDate(toYear, 11, 31);
-	const hasYearDropdown = props.captionLayout === "dropdown" || props.captionLayout === "dropdown-years";
-	if (startMonth) startMonth = startOfMonth$1(startMonth);
-	else if (fromYear) startMonth = newDate(fromYear, 0, 1);
-	else if (!startMonth && hasYearDropdown) startMonth = startOfYear$1(addYears$1(props.today ?? today(), -100));
-	if (endMonth) endMonth = endOfMonth$1(endMonth);
-	else if (toYear) endMonth = newDate(toYear, 11, 31);
-	else if (!endMonth && hasYearDropdown) endMonth = endOfYear$1(props.today ?? today());
-	return [startMonth ? startOfDay$1(startMonth) : startMonth, endMonth ? startOfDay$1(endMonth) : endMonth];
-}
-function getNextMonth(firstDisplayedMonth, calendarEndMonth, options$1, dateLib) {
-	if (options$1.disableNavigation) return;
-	const { pagedNavigation, numberOfMonths = 1 } = options$1;
-	const { startOfMonth: startOfMonth$1, addMonths: addMonths$1, differenceInCalendarMonths: differenceInCalendarMonths$1 } = dateLib;
-	const offset$3 = pagedNavigation ? numberOfMonths : 1;
-	const month = startOfMonth$1(firstDisplayedMonth);
-	if (!calendarEndMonth) return addMonths$1(month, offset$3);
-	if (differenceInCalendarMonths$1(calendarEndMonth, firstDisplayedMonth) < numberOfMonths) return;
-	return addMonths$1(month, offset$3);
-}
-function getPreviousMonth(firstDisplayedMonth, calendarStartMonth, options$1, dateLib) {
-	if (options$1.disableNavigation) return;
-	const { pagedNavigation, numberOfMonths } = options$1;
-	const { startOfMonth: startOfMonth$1, addMonths: addMonths$1, differenceInCalendarMonths: differenceInCalendarMonths$1 } = dateLib;
-	const offset$3 = pagedNavigation ? numberOfMonths ?? 1 : 1;
-	const month = startOfMonth$1(firstDisplayedMonth);
-	if (!calendarStartMonth) return addMonths$1(month, -offset$3);
-	if (differenceInCalendarMonths$1(month, calendarStartMonth) <= 0) return;
-	return addMonths$1(month, -offset$3);
-}
-function getWeeks(months) {
-	return months.reduce((weeks, month) => {
-		return weeks.concat(month.weeks.slice());
-	}, [].slice());
-}
-function useControlledValue(defaultValue, controlledValue) {
-	const [uncontrolledValue, setValue] = (0, import_react.useState)(defaultValue);
-	return [controlledValue === void 0 ? uncontrolledValue : controlledValue, setValue];
-}
-function useCalendar(props, dateLib) {
-	const [navStart, navEnd] = getNavMonths(props, dateLib);
-	const { startOfMonth: startOfMonth$1, endOfMonth: endOfMonth$1 } = dateLib;
-	const initialMonth = getInitialMonth(props, navStart, navEnd, dateLib);
-	const [firstMonth, setFirstMonth] = useControlledValue(initialMonth, props.month ? initialMonth : void 0);
-	(0, import_react.useEffect)(() => {
-		setFirstMonth(getInitialMonth(props, navStart, navEnd, dateLib));
-	}, [props.timeZone]);
-	const { months, weeks, days, previousMonth, nextMonth } = (0, import_react.useMemo)(() => {
-		const displayMonths = getDisplayMonths(firstMonth, navEnd, { numberOfMonths: props.numberOfMonths }, dateLib);
-		const months$1 = getMonths(displayMonths, getDates(displayMonths, props.endMonth ? endOfMonth$1(props.endMonth) : void 0, {
-			ISOWeek: props.ISOWeek,
-			fixedWeeks: props.fixedWeeks,
-			broadcastCalendar: props.broadcastCalendar
-		}, dateLib), {
-			broadcastCalendar: props.broadcastCalendar,
-			fixedWeeks: props.fixedWeeks,
-			ISOWeek: props.ISOWeek,
-			reverseMonths: props.reverseMonths
-		}, dateLib);
-		return {
-			months: months$1,
-			weeks: getWeeks(months$1),
-			days: getDays(months$1),
-			previousMonth: getPreviousMonth(firstMonth, navStart, props, dateLib),
-			nextMonth: getNextMonth(firstMonth, navEnd, props, dateLib)
-		};
-	}, [
-		dateLib,
-		firstMonth.getTime(),
-		navEnd?.getTime(),
-		navStart?.getTime(),
-		props.disableNavigation,
-		props.broadcastCalendar,
-		props.endMonth?.getTime(),
-		props.fixedWeeks,
-		props.ISOWeek,
-		props.numberOfMonths,
-		props.pagedNavigation,
-		props.reverseMonths
-	]);
-	const { disableNavigation, onMonthChange } = props;
-	const isDayInCalendar = (day) => weeks.some((week) => week.days.some((d) => d.isEqualTo(day)));
-	const goToMonth = (date) => {
-		if (disableNavigation) return;
-		let newMonth = startOfMonth$1(date);
-		if (navStart && newMonth < startOfMonth$1(navStart)) newMonth = startOfMonth$1(navStart);
-		if (navEnd && newMonth > startOfMonth$1(navEnd)) newMonth = startOfMonth$1(navEnd);
-		setFirstMonth(newMonth);
-		onMonthChange?.(newMonth);
-	};
-	const goToDay = (day) => {
-		if (isDayInCalendar(day)) return;
-		goToMonth(day.date);
-	};
-	return {
-		months,
-		weeks,
-		days,
-		navStart,
-		navEnd,
-		previousMonth,
-		nextMonth,
-		goToMonth,
-		goToDay
-	};
-}
-var FocusTargetPriority;
-(function(FocusTargetPriority$1) {
-	FocusTargetPriority$1[FocusTargetPriority$1["Today"] = 0] = "Today";
-	FocusTargetPriority$1[FocusTargetPriority$1["Selected"] = 1] = "Selected";
-	FocusTargetPriority$1[FocusTargetPriority$1["LastFocused"] = 2] = "LastFocused";
-	FocusTargetPriority$1[FocusTargetPriority$1["FocusedModifier"] = 3] = "FocusedModifier";
-})(FocusTargetPriority || (FocusTargetPriority = {}));
-function isFocusableDay(modifiers) {
-	return !modifiers[DayFlag.disabled] && !modifiers[DayFlag.hidden] && !modifiers[DayFlag.outside];
-}
-function calculateFocusTarget(days, getModifiers, isSelected, lastFocused) {
-	let focusTarget;
-	let foundFocusTargetPriority = -1;
-	for (const day of days) {
-		const modifiers = getModifiers(day);
-		if (isFocusableDay(modifiers)) {
-			if (modifiers[DayFlag.focused] && foundFocusTargetPriority < FocusTargetPriority.FocusedModifier) {
-				focusTarget = day;
-				foundFocusTargetPriority = FocusTargetPriority.FocusedModifier;
-			} else if (lastFocused?.isEqualTo(day) && foundFocusTargetPriority < FocusTargetPriority.LastFocused) {
-				focusTarget = day;
-				foundFocusTargetPriority = FocusTargetPriority.LastFocused;
-			} else if (isSelected(day.date) && foundFocusTargetPriority < FocusTargetPriority.Selected) {
-				focusTarget = day;
-				foundFocusTargetPriority = FocusTargetPriority.Selected;
-			} else if (modifiers[DayFlag.today] && foundFocusTargetPriority < FocusTargetPriority.Today) {
-				focusTarget = day;
-				foundFocusTargetPriority = FocusTargetPriority.Today;
-			}
-		}
-	}
-	if (!focusTarget) focusTarget = days.find((day) => isFocusableDay(getModifiers(day)));
-	return focusTarget;
-}
-function getFocusableDate(moveBy, moveDir, refDate, navStart, navEnd, props, dateLib) {
-	const { ISOWeek, broadcastCalendar } = props;
-	const { addDays: addDays$1, addMonths: addMonths$1, addWeeks: addWeeks$1, addYears: addYears$1, endOfBroadcastWeek: endOfBroadcastWeek$1, endOfISOWeek: endOfISOWeek$1, endOfWeek: endOfWeek$1, max: max$2, min: min$2, startOfBroadcastWeek: startOfBroadcastWeek$1, startOfISOWeek: startOfISOWeek$1, startOfWeek: startOfWeek$1 } = dateLib;
-	let focusableDate = {
-		day: addDays$1,
-		week: addWeeks$1,
-		month: addMonths$1,
-		year: addYears$1,
-		startOfWeek: (date) => broadcastCalendar ? startOfBroadcastWeek$1(date, dateLib) : ISOWeek ? startOfISOWeek$1(date) : startOfWeek$1(date),
-		endOfWeek: (date) => broadcastCalendar ? endOfBroadcastWeek$1(date) : ISOWeek ? endOfISOWeek$1(date) : endOfWeek$1(date)
-	}[moveBy](refDate, moveDir === "after" ? 1 : -1);
-	if (moveDir === "before" && navStart) focusableDate = max$2([navStart, focusableDate]);
-	else if (moveDir === "after" && navEnd) focusableDate = min$2([navEnd, focusableDate]);
-	return focusableDate;
-}
-function getNextFocus(moveBy, moveDir, refDay, calendarStartMonth, calendarEndMonth, props, dateLib, attempt = 0) {
-	if (attempt > 365) return;
-	const focusableDate = getFocusableDate(moveBy, moveDir, refDay.date, calendarStartMonth, calendarEndMonth, props, dateLib);
-	const isDisabled = Boolean(props.disabled && dateMatchModifiers(focusableDate, props.disabled, dateLib));
-	const isHidden$1 = Boolean(props.hidden && dateMatchModifiers(focusableDate, props.hidden, dateLib));
-	const focusDay = new CalendarDay(focusableDate, focusableDate, dateLib);
-	if (!isDisabled && !isHidden$1) return focusDay;
-	return getNextFocus(moveBy, moveDir, focusDay, calendarStartMonth, calendarEndMonth, props, dateLib, attempt + 1);
-}
-function useFocus(props, calendar, getModifiers, isSelected, dateLib) {
-	const { autoFocus } = props;
-	const [lastFocused, setLastFocused] = (0, import_react.useState)();
-	const focusTarget = calculateFocusTarget(calendar.days, getModifiers, isSelected || (() => false), lastFocused);
-	const [focusedDay, setFocused] = (0, import_react.useState)(autoFocus ? focusTarget : void 0);
-	const blur = () => {
-		setLastFocused(focusedDay);
-		setFocused(void 0);
-	};
-	const moveFocus = (moveBy, moveDir) => {
-		if (!focusedDay) return;
-		const nextFocus = getNextFocus(moveBy, moveDir, focusedDay, calendar.navStart, calendar.navEnd, props, dateLib);
-		if (!nextFocus) return;
-		if (props.disableNavigation) {
-			if (!calendar.days.some((day) => day.isEqualTo(nextFocus))) return;
-		}
-		calendar.goToDay(nextFocus);
-		setFocused(nextFocus);
-	};
-	const isFocusTarget = (day) => {
-		return Boolean(focusTarget?.isEqualTo(day));
-	};
-	return {
-		isFocusTarget,
-		setFocused,
-		focused: focusedDay,
-		blur,
-		moveFocus
-	};
-}
-function useMulti(props, dateLib) {
-	const { selected: initiallySelected, required, onSelect } = props;
-	const [internallySelected, setSelected] = useControlledValue(initiallySelected, onSelect ? initiallySelected : void 0);
-	const selected = !onSelect ? internallySelected : initiallySelected;
-	const { isSameDay: isSameDay$1 } = dateLib;
-	const isSelected = (date) => {
-		return selected?.some((d) => isSameDay$1(d, date)) ?? false;
-	};
-	const { min: min$2, max: max$2 } = props;
-	const select = (triggerDate, modifiers, e) => {
-		let newDates = [...selected ?? []];
-		if (isSelected(triggerDate)) {
-			if (selected?.length === min$2) return;
-			if (required && selected?.length === 1) return;
-			newDates = selected?.filter((d) => !isSameDay$1(d, triggerDate));
-		} else if (selected?.length === max$2) newDates = [triggerDate];
-		else newDates = [...newDates, triggerDate];
-		if (!onSelect) setSelected(newDates);
-		onSelect?.(newDates, triggerDate, modifiers, e);
-		return newDates;
-	};
-	return {
-		selected,
-		select,
-		isSelected
-	};
-}
-function addToRange(date, initialRange, min$2 = 0, max$2 = 0, required = false, dateLib = defaultDateLib) {
-	const { from, to } = initialRange || {};
-	const { isSameDay: isSameDay$1, isAfter: isAfter$1, isBefore: isBefore$1 } = dateLib;
-	let range;
-	if (!from && !to) range = {
-		from: date,
-		to: min$2 > 0 ? void 0 : date
-	};
-	else if (from && !to) if (isSameDay$1(from, date)) if (min$2 === 0) range = {
-		from,
-		to: date
-	};
-	else if (required) range = {
-		from,
-		to: void 0
-	};
-	else range = void 0;
-	else if (isBefore$1(date, from)) range = {
-		from: date,
-		to: from
-	};
-	else range = {
-		from,
-		to: date
-	};
-	else if (from && to) if (isSameDay$1(from, date) && isSameDay$1(to, date)) if (required) range = {
-		from,
-		to
-	};
-	else range = void 0;
-	else if (isSameDay$1(from, date)) range = {
-		from,
-		to: min$2 > 0 ? void 0 : date
-	};
-	else if (isSameDay$1(to, date)) range = {
-		from: date,
-		to: min$2 > 0 ? void 0 : date
-	};
-	else if (isBefore$1(date, from)) range = {
-		from: date,
-		to
-	};
-	else if (isAfter$1(date, from)) range = {
-		from,
-		to: date
-	};
-	else if (isAfter$1(date, to)) range = {
-		from,
-		to: date
-	};
-	else throw new Error("Invalid range");
-	if (range?.from && range?.to) {
-		const diff = dateLib.differenceInCalendarDays(range.to, range.from);
-		if (max$2 > 0 && diff > max$2) range = {
-			from: date,
-			to: void 0
-		};
-		else if (min$2 > 1 && diff < min$2) range = {
-			from: date,
-			to: void 0
-		};
-	}
-	return range;
-}
-function rangeContainsDayOfWeek(range, dayOfWeek, dateLib = defaultDateLib) {
-	const dayOfWeekArr = !Array.isArray(dayOfWeek) ? [dayOfWeek] : dayOfWeek;
-	let date = range.from;
-	const totalDays = dateLib.differenceInCalendarDays(range.to, range.from);
-	const totalDaysLimit = Math.min(totalDays, 6);
-	for (let i = 0; i <= totalDaysLimit; i++) {
-		if (dayOfWeekArr.includes(date.getDay())) return true;
-		date = dateLib.addDays(date, 1);
-	}
-	return false;
-}
-function rangeOverlaps(rangeLeft, rangeRight, dateLib = defaultDateLib) {
-	return rangeIncludesDate(rangeLeft, rangeRight.from, false, dateLib) || rangeIncludesDate(rangeLeft, rangeRight.to, false, dateLib) || rangeIncludesDate(rangeRight, rangeLeft.from, false, dateLib) || rangeIncludesDate(rangeRight, rangeLeft.to, false, dateLib);
-}
-function rangeContainsModifiers(range, modifiers, dateLib = defaultDateLib) {
-	const matchers = Array.isArray(modifiers) ? modifiers : [modifiers];
-	if (matchers.filter((matcher) => typeof matcher !== "function").some((matcher) => {
-		if (typeof matcher === "boolean") return matcher;
-		if (dateLib.isDate(matcher)) return rangeIncludesDate(range, matcher, false, dateLib);
-		if (isDatesArray(matcher, dateLib)) return matcher.some((date) => rangeIncludesDate(range, date, false, dateLib));
-		if (isDateRange(matcher)) {
-			if (matcher.from && matcher.to) return rangeOverlaps(range, {
-				from: matcher.from,
-				to: matcher.to
-			}, dateLib);
-			return false;
-		}
-		if (isDayOfWeekType(matcher)) return rangeContainsDayOfWeek(range, matcher.dayOfWeek, dateLib);
-		if (isDateInterval(matcher)) {
-			if (dateLib.isAfter(matcher.before, matcher.after)) return rangeOverlaps(range, {
-				from: dateLib.addDays(matcher.after, 1),
-				to: dateLib.addDays(matcher.before, -1)
-			}, dateLib);
-			return dateMatchModifiers(range.from, matcher, dateLib) || dateMatchModifiers(range.to, matcher, dateLib);
-		}
-		if (isDateAfterType(matcher) || isDateBeforeType(matcher)) return dateMatchModifiers(range.from, matcher, dateLib) || dateMatchModifiers(range.to, matcher, dateLib);
-		return false;
-	})) return true;
-	const functionMatchers = matchers.filter((matcher) => typeof matcher === "function");
-	if (functionMatchers.length) {
-		let date = range.from;
-		const totalDays = dateLib.differenceInCalendarDays(range.to, range.from);
-		for (let i = 0; i <= totalDays; i++) {
-			if (functionMatchers.some((matcher) => matcher(date))) return true;
-			date = dateLib.addDays(date, 1);
-		}
-	}
-	return false;
-}
-function useRange(props, dateLib) {
-	const { disabled, excludeDisabled, selected: initiallySelected, required, onSelect } = props;
-	const [internallySelected, setSelected] = useControlledValue(initiallySelected, onSelect ? initiallySelected : void 0);
-	const selected = !onSelect ? internallySelected : initiallySelected;
-	const isSelected = (date) => selected && rangeIncludesDate(selected, date, false, dateLib);
-	const select = (triggerDate, modifiers, e) => {
-		const { min: min$2, max: max$2 } = props;
-		const newRange = triggerDate ? addToRange(triggerDate, selected, min$2, max$2, required, dateLib) : void 0;
-		if (excludeDisabled && disabled && newRange?.from && newRange.to) {
-			if (rangeContainsModifiers({
-				from: newRange.from,
-				to: newRange.to
-			}, disabled, dateLib)) {
-				newRange.from = triggerDate;
-				newRange.to = void 0;
-			}
-		}
-		if (!onSelect) setSelected(newRange);
-		onSelect?.(newRange, triggerDate, modifiers, e);
-		return newRange;
-	};
-	return {
-		selected,
-		select,
-		isSelected
-	};
-}
-function useSingle(props, dateLib) {
-	const { selected: initiallySelected, required, onSelect } = props;
-	const [internallySelected, setSelected] = useControlledValue(initiallySelected, onSelect ? initiallySelected : void 0);
-	const selected = !onSelect ? internallySelected : initiallySelected;
-	const { isSameDay: isSameDay$1 } = dateLib;
-	const isSelected = (compareDate) => {
-		return selected ? isSameDay$1(selected, compareDate) : false;
-	};
-	const select = (triggerDate, modifiers, e) => {
-		let newDate = triggerDate;
-		if (!required && selected && selected && isSameDay$1(triggerDate, selected)) newDate = void 0;
-		if (!onSelect) setSelected(newDate);
-		if (required) onSelect?.(newDate, triggerDate, modifiers, e);
-		else onSelect?.(newDate, triggerDate, modifiers, e);
-		return newDate;
-	};
-	return {
-		selected,
-		select,
-		isSelected
-	};
-}
-function useSelection(props, dateLib) {
-	const single = useSingle(props, dateLib);
-	const multi = useMulti(props, dateLib);
-	const range = useRange(props, dateLib);
-	switch (props.mode) {
-		case "single": return single;
-		case "multiple": return multi;
-		case "range": return range;
-		default: return;
-	}
-}
-function toTimeZone(date, timeZone) {
-	if (date instanceof TZDate && date.timeZone === timeZone) return date;
-	return new TZDate(date, timeZone);
-}
-function toZoneNoon(date, timeZone, noonSafe) {
-	if (!noonSafe) return toTimeZone(date, timeZone);
-	const zoned = toTimeZone(date, timeZone);
-	const noonZoned = new TZDate(zoned.getFullYear(), zoned.getMonth(), zoned.getDate(), 12, 0, 0, timeZone);
-	return new Date(noonZoned.getTime());
-}
-function convertMatcher(matcher, timeZone, noonSafe) {
-	if (typeof matcher === "boolean" || typeof matcher === "function") return matcher;
-	if (matcher instanceof Date) return toZoneNoon(matcher, timeZone, noonSafe);
-	if (Array.isArray(matcher)) return matcher.map((value) => value instanceof Date ? toZoneNoon(value, timeZone, noonSafe) : value);
-	if (isDateRange(matcher)) return {
-		...matcher,
-		from: matcher.from ? toTimeZone(matcher.from, timeZone) : matcher.from,
-		to: matcher.to ? toTimeZone(matcher.to, timeZone) : matcher.to
-	};
-	if (isDateInterval(matcher)) return {
-		before: toZoneNoon(matcher.before, timeZone, noonSafe),
-		after: toZoneNoon(matcher.after, timeZone, noonSafe)
-	};
-	if (isDateAfterType(matcher)) return { after: toZoneNoon(matcher.after, timeZone, noonSafe) };
-	if (isDateBeforeType(matcher)) return { before: toZoneNoon(matcher.before, timeZone, noonSafe) };
-	return matcher;
-}
-function convertMatchersToTimeZone(matchers, timeZone, noonSafe) {
-	if (!matchers) return matchers;
-	if (Array.isArray(matchers)) return matchers.map((matcher) => convertMatcher(matcher, timeZone, noonSafe));
-	return convertMatcher(matchers, timeZone, noonSafe);
-}
-function DayPicker(initialProps) {
-	let props = initialProps;
-	const timeZone = props.timeZone;
-	if (timeZone) {
-		props = {
-			...initialProps,
-			timeZone
-		};
-		if (props.today) props.today = toTimeZone(props.today, timeZone);
-		if (props.month) props.month = toTimeZone(props.month, timeZone);
-		if (props.defaultMonth) props.defaultMonth = toTimeZone(props.defaultMonth, timeZone);
-		if (props.startMonth) props.startMonth = toTimeZone(props.startMonth, timeZone);
-		if (props.endMonth) props.endMonth = toTimeZone(props.endMonth, timeZone);
-		if (props.mode === "single" && props.selected) props.selected = toTimeZone(props.selected, timeZone);
-		else if (props.mode === "multiple" && props.selected) props.selected = props.selected?.map((date) => toTimeZone(date, timeZone));
-		else if (props.mode === "range" && props.selected) props.selected = {
-			from: props.selected.from ? toTimeZone(props.selected.from, timeZone) : props.selected.from,
-			to: props.selected.to ? toTimeZone(props.selected.to, timeZone) : props.selected.to
-		};
-		if (props.disabled !== void 0) props.disabled = convertMatchersToTimeZone(props.disabled, timeZone);
-		if (props.hidden !== void 0) props.hidden = convertMatchersToTimeZone(props.hidden, timeZone);
-		if (props.modifiers) {
-			const nextModifiers = {};
-			Object.keys(props.modifiers).forEach((key) => {
-				nextModifiers[key] = convertMatchersToTimeZone(props.modifiers?.[key], timeZone);
-			});
-			props.modifiers = nextModifiers;
-		}
-	}
-	const { components, formatters: formatters$1, labels, dateLib, locale, classNames } = (0, import_react.useMemo)(() => {
-		const locale$1 = {
-			...enUS,
-			...props.locale
-		};
-		const weekStartsOn = props.broadcastCalendar ? 1 : props.weekStartsOn;
-		const noonOverrides = props.noonSafe && props.timeZone ? createNoonOverrides(props.timeZone, {
-			weekStartsOn,
-			locale: locale$1
-		}) : void 0;
-		const overrides = props.dateLib && noonOverrides ? {
-			...noonOverrides,
-			...props.dateLib
-		} : props.dateLib ?? noonOverrides;
-		const dateLib$1 = new DateLib({
-			locale: locale$1,
-			weekStartsOn,
-			firstWeekContainsDate: props.firstWeekContainsDate,
-			useAdditionalWeekYearTokens: props.useAdditionalWeekYearTokens,
-			useAdditionalDayOfYearTokens: props.useAdditionalDayOfYearTokens,
-			timeZone: props.timeZone,
-			numerals: props.numerals
-		}, overrides);
-		return {
-			dateLib: dateLib$1,
-			components: getComponents(props.components),
-			formatters: getFormatters(props.formatters),
-			labels: getLabels(props.labels, dateLib$1.options),
-			locale: locale$1,
-			classNames: {
-				...getDefaultClassNames(),
-				...props.classNames
-			}
-		};
-	}, [
-		props.locale,
-		props.broadcastCalendar,
-		props.weekStartsOn,
-		props.firstWeekContainsDate,
-		props.useAdditionalWeekYearTokens,
-		props.useAdditionalDayOfYearTokens,
-		props.timeZone,
-		props.numerals,
-		props.dateLib,
-		props.noonSafe,
-		props.components,
-		props.formatters,
-		props.labels,
-		props.classNames
-	]);
-	if (!props.today) props = {
-		...props,
-		today: dateLib.today()
-	};
-	const { captionLayout, mode, navLayout, numberOfMonths = 1, onDayBlur, onDayClick, onDayFocus, onDayKeyDown, onDayMouseEnter, onDayMouseLeave, onNextClick, onPrevClick, showWeekNumber, styles } = props;
-	const { formatCaption: formatCaption$1, formatDay: formatDay$1, formatMonthDropdown: formatMonthDropdown$1, formatWeekNumber: formatWeekNumber$1, formatWeekNumberHeader: formatWeekNumberHeader$1, formatWeekdayName: formatWeekdayName$1, formatYearDropdown: formatYearDropdown$1 } = formatters$1;
-	const calendar = useCalendar(props, dateLib);
-	const { days, months, navStart, navEnd, previousMonth, nextMonth, goToMonth } = calendar;
-	const getModifiers = createGetModifiers(days, props, navStart, navEnd, dateLib);
-	const { isSelected, select, selected: selectedValue } = useSelection(props, dateLib) ?? {};
-	const { blur, focused, isFocusTarget, moveFocus, setFocused } = useFocus(props, calendar, getModifiers, isSelected ?? (() => false), dateLib);
-	const { labelDayButton: labelDayButton$1, labelGridcell: labelGridcell$1, labelGrid: labelGrid$1, labelMonthDropdown: labelMonthDropdown$1, labelNav: labelNav$1, labelPrevious: labelPrevious$1, labelNext: labelNext$1, labelWeekday: labelWeekday$1, labelWeekNumber: labelWeekNumber$1, labelWeekNumberHeader: labelWeekNumberHeader$1, labelYearDropdown: labelYearDropdown$1 } = labels;
-	const weekdays = (0, import_react.useMemo)(() => getWeekdays(dateLib, props.ISOWeek, props.broadcastCalendar, props.today), [
-		dateLib,
-		props.ISOWeek,
-		props.broadcastCalendar,
-		props.today
-	]);
-	const isInteractive = mode !== void 0 || onDayClick !== void 0;
-	const handlePreviousClick = (0, import_react.useCallback)(() => {
-		if (!previousMonth) return;
-		goToMonth(previousMonth);
-		onPrevClick?.(previousMonth);
-	}, [
-		previousMonth,
-		goToMonth,
-		onPrevClick
-	]);
-	const handleNextClick = (0, import_react.useCallback)(() => {
-		if (!nextMonth) return;
-		goToMonth(nextMonth);
-		onNextClick?.(nextMonth);
-	}, [
-		goToMonth,
-		nextMonth,
-		onNextClick
-	]);
-	const handleDayClick = (0, import_react.useCallback)((day, m) => (e) => {
-		e.preventDefault();
-		e.stopPropagation();
-		setFocused(day);
-		if (m.disabled) return;
-		select?.(day.date, m, e);
-		onDayClick?.(day.date, m, e);
-	}, [
-		select,
-		onDayClick,
-		setFocused
-	]);
-	const handleDayFocus = (0, import_react.useCallback)((day, m) => (e) => {
-		setFocused(day);
-		onDayFocus?.(day.date, m, e);
-	}, [onDayFocus, setFocused]);
-	const handleDayBlur = (0, import_react.useCallback)((day, m) => (e) => {
-		blur();
-		onDayBlur?.(day.date, m, e);
-	}, [blur, onDayBlur]);
-	const handleDayKeyDown = (0, import_react.useCallback)((day, modifiers) => (e) => {
-		const keyMap = {
-			ArrowLeft: [e.shiftKey ? "month" : "day", props.dir === "rtl" ? "after" : "before"],
-			ArrowRight: [e.shiftKey ? "month" : "day", props.dir === "rtl" ? "before" : "after"],
-			ArrowDown: [e.shiftKey ? "year" : "week", "after"],
-			ArrowUp: [e.shiftKey ? "year" : "week", "before"],
-			PageUp: [e.shiftKey ? "year" : "month", "before"],
-			PageDown: [e.shiftKey ? "year" : "month", "after"],
-			Home: ["startOfWeek", "before"],
-			End: ["endOfWeek", "after"]
-		};
-		if (keyMap[e.key]) {
-			e.preventDefault();
-			e.stopPropagation();
-			const [moveBy, moveDir] = keyMap[e.key];
-			moveFocus(moveBy, moveDir);
-		}
-		onDayKeyDown?.(day.date, modifiers, e);
-	}, [
-		moveFocus,
-		onDayKeyDown,
-		props.dir
-	]);
-	const handleDayMouseEnter = (0, import_react.useCallback)((day, modifiers) => (e) => {
-		onDayMouseEnter?.(day.date, modifiers, e);
-	}, [onDayMouseEnter]);
-	const handleDayMouseLeave = (0, import_react.useCallback)((day, modifiers) => (e) => {
-		onDayMouseLeave?.(day.date, modifiers, e);
-	}, [onDayMouseLeave]);
-	const handleMonthChange = (0, import_react.useCallback)((date) => (e) => {
-		const selectedMonth = Number(e.target.value);
-		goToMonth(dateLib.setMonth(dateLib.startOfMonth(date), selectedMonth));
-	}, [dateLib, goToMonth]);
-	const handleYearChange = (0, import_react.useCallback)((date) => (e) => {
-		const selectedYear = Number(e.target.value);
-		goToMonth(dateLib.setYear(dateLib.startOfMonth(date), selectedYear));
-	}, [dateLib, goToMonth]);
-	const { className, style } = (0, import_react.useMemo)(() => ({
-		className: [classNames[UI.Root], props.className].filter(Boolean).join(" "),
-		style: {
-			...styles?.[UI.Root],
-			...props.style
-		}
-	}), [
-		classNames,
-		props.className,
-		props.style,
-		styles
-	]);
-	const dataAttributes = getDataAttributes(props);
-	const rootElRef = (0, import_react.useRef)(null);
-	useAnimation(rootElRef, Boolean(props.animate), {
-		classNames,
-		months,
-		focused,
-		dateLib
-	});
-	const contextValue = {
-		dayPickerProps: props,
-		selected: selectedValue,
-		select,
-		isSelected,
-		months,
-		nextMonth,
-		previousMonth,
-		goToMonth,
-		getModifiers,
-		components,
-		classNames,
-		styles,
-		labels,
-		formatters: formatters$1
-	};
-	return import_react.createElement(dayPickerContext.Provider, { value: contextValue }, import_react.createElement(components.Root, {
-		rootRef: props.animate ? rootElRef : void 0,
-		className,
-		style,
-		dir: props.dir,
-		id: props.id,
-		lang: props.lang,
-		nonce: props.nonce,
-		title: props.title,
-		role: props.role,
-		"aria-label": props["aria-label"],
-		"aria-labelledby": props["aria-labelledby"],
-		...dataAttributes
-	}, import_react.createElement(components.Months, {
-		className: classNames[UI.Months],
-		style: styles?.[UI.Months]
-	}, !props.hideNavigation && !navLayout && import_react.createElement(components.Nav, {
-		"data-animated-nav": props.animate ? "true" : void 0,
-		className: classNames[UI.Nav],
-		style: styles?.[UI.Nav],
-		"aria-label": labelNav$1(),
-		onPreviousClick: handlePreviousClick,
-		onNextClick: handleNextClick,
-		previousMonth,
-		nextMonth
-	}), months.map((calendarMonth, displayIndex) => {
-		return import_react.createElement(components.Month, {
-			"data-animated-month": props.animate ? "true" : void 0,
-			className: classNames[UI.Month],
-			style: styles?.[UI.Month],
-			key: displayIndex,
-			displayIndex,
-			calendarMonth
-		}, navLayout === "around" && !props.hideNavigation && displayIndex === 0 && import_react.createElement(components.PreviousMonthButton, {
-			type: "button",
-			className: classNames[UI.PreviousMonthButton],
-			tabIndex: previousMonth ? void 0 : -1,
-			"aria-disabled": previousMonth ? void 0 : true,
-			"aria-label": labelPrevious$1(previousMonth),
-			onClick: handlePreviousClick,
-			"data-animated-button": props.animate ? "true" : void 0
-		}, import_react.createElement(components.Chevron, {
-			disabled: previousMonth ? void 0 : true,
-			className: classNames[UI.Chevron],
-			orientation: props.dir === "rtl" ? "right" : "left"
-		})), import_react.createElement(components.MonthCaption, {
-			"data-animated-caption": props.animate ? "true" : void 0,
-			className: classNames[UI.MonthCaption],
-			style: styles?.[UI.MonthCaption],
-			calendarMonth,
-			displayIndex
-		}, captionLayout?.startsWith("dropdown") ? import_react.createElement(components.DropdownNav, {
-			className: classNames[UI.Dropdowns],
-			style: styles?.[UI.Dropdowns]
-		}, (() => {
-			const monthControl = captionLayout === "dropdown" || captionLayout === "dropdown-months" ? import_react.createElement(components.MonthsDropdown, {
-				key: "month",
-				className: classNames[UI.MonthsDropdown],
-				"aria-label": labelMonthDropdown$1(),
-				classNames,
-				components,
-				disabled: Boolean(props.disableNavigation),
-				onChange: handleMonthChange(calendarMonth.date),
-				options: getMonthOptions(calendarMonth.date, navStart, navEnd, formatters$1, dateLib),
-				style: styles?.[UI.Dropdown],
-				value: dateLib.getMonth(calendarMonth.date)
-			}) : import_react.createElement("span", { key: "month" }, formatMonthDropdown$1(calendarMonth.date, dateLib));
-			const yearControl = captionLayout === "dropdown" || captionLayout === "dropdown-years" ? import_react.createElement(components.YearsDropdown, {
-				key: "year",
-				className: classNames[UI.YearsDropdown],
-				"aria-label": labelYearDropdown$1(dateLib.options),
-				classNames,
-				components,
-				disabled: Boolean(props.disableNavigation),
-				onChange: handleYearChange(calendarMonth.date),
-				options: getYearOptions(navStart, navEnd, formatters$1, dateLib, Boolean(props.reverseYears)),
-				style: styles?.[UI.Dropdown],
-				value: dateLib.getYear(calendarMonth.date)
-			}) : import_react.createElement("span", { key: "year" }, formatYearDropdown$1(calendarMonth.date, dateLib));
-			return dateLib.getMonthYearOrder() === "year-first" ? [yearControl, monthControl] : [monthControl, yearControl];
-		})(), import_react.createElement("span", {
-			role: "status",
-			"aria-live": "polite",
-			style: {
-				border: 0,
-				clip: "rect(0 0 0 0)",
-				height: "1px",
-				margin: "-1px",
-				overflow: "hidden",
-				padding: 0,
-				position: "absolute",
-				width: "1px",
-				whiteSpace: "nowrap",
-				wordWrap: "normal"
-			}
-		}, formatCaption$1(calendarMonth.date, dateLib.options, dateLib))) : import_react.createElement(components.CaptionLabel, {
-			className: classNames[UI.CaptionLabel],
-			role: "status",
-			"aria-live": "polite"
-		}, formatCaption$1(calendarMonth.date, dateLib.options, dateLib))), navLayout === "around" && !props.hideNavigation && displayIndex === numberOfMonths - 1 && import_react.createElement(components.NextMonthButton, {
-			type: "button",
-			className: classNames[UI.NextMonthButton],
-			tabIndex: nextMonth ? void 0 : -1,
-			"aria-disabled": nextMonth ? void 0 : true,
-			"aria-label": labelNext$1(nextMonth),
-			onClick: handleNextClick,
-			"data-animated-button": props.animate ? "true" : void 0
-		}, import_react.createElement(components.Chevron, {
-			disabled: nextMonth ? void 0 : true,
-			className: classNames[UI.Chevron],
-			orientation: props.dir === "rtl" ? "left" : "right"
-		})), displayIndex === numberOfMonths - 1 && navLayout === "after" && !props.hideNavigation && import_react.createElement(components.Nav, {
-			"data-animated-nav": props.animate ? "true" : void 0,
-			className: classNames[UI.Nav],
-			style: styles?.[UI.Nav],
-			"aria-label": labelNav$1(),
-			onPreviousClick: handlePreviousClick,
-			onNextClick: handleNextClick,
-			previousMonth,
-			nextMonth
-		}), import_react.createElement(components.MonthGrid, {
-			role: "grid",
-			"aria-multiselectable": mode === "multiple" || mode === "range",
-			"aria-label": labelGrid$1(calendarMonth.date, dateLib.options, dateLib) || void 0,
-			className: classNames[UI.MonthGrid],
-			style: styles?.[UI.MonthGrid]
-		}, !props.hideWeekdays && import_react.createElement(components.Weekdays, {
-			"data-animated-weekdays": props.animate ? "true" : void 0,
-			className: classNames[UI.Weekdays],
-			style: styles?.[UI.Weekdays]
-		}, showWeekNumber && import_react.createElement(components.WeekNumberHeader, {
-			"aria-label": labelWeekNumberHeader$1(dateLib.options),
-			className: classNames[UI.WeekNumberHeader],
-			style: styles?.[UI.WeekNumberHeader],
-			scope: "col"
-		}, formatWeekNumberHeader$1()), weekdays.map((weekday) => import_react.createElement(components.Weekday, {
-			"aria-label": labelWeekday$1(weekday, dateLib.options, dateLib),
-			className: classNames[UI.Weekday],
-			key: String(weekday),
-			style: styles?.[UI.Weekday],
-			scope: "col"
-		}, formatWeekdayName$1(weekday, dateLib.options, dateLib)))), import_react.createElement(components.Weeks, {
-			"data-animated-weeks": props.animate ? "true" : void 0,
-			className: classNames[UI.Weeks],
-			style: styles?.[UI.Weeks]
-		}, calendarMonth.weeks.map((week) => {
-			return import_react.createElement(components.Week, {
-				className: classNames[UI.Week],
-				key: week.weekNumber,
-				style: styles?.[UI.Week],
-				week
-			}, showWeekNumber && import_react.createElement(components.WeekNumber, {
-				week,
-				style: styles?.[UI.WeekNumber],
-				"aria-label": labelWeekNumber$1(week.weekNumber, { locale }),
-				className: classNames[UI.WeekNumber],
-				scope: "row",
-				role: "rowheader"
-			}, formatWeekNumber$1(week.weekNumber, dateLib)), week.days.map((day) => {
-				const { date } = day;
-				const modifiers = getModifiers(day);
-				modifiers[DayFlag.focused] = !modifiers.hidden && Boolean(focused?.isEqualTo(day));
-				modifiers[SelectionState.selected] = isSelected?.(date) || modifiers.selected;
-				if (isDateRange(selectedValue)) {
-					const { from, to } = selectedValue;
-					modifiers[SelectionState.range_start] = Boolean(from && to && dateLib.isSameDay(date, from));
-					modifiers[SelectionState.range_end] = Boolean(from && to && dateLib.isSameDay(date, to));
-					modifiers[SelectionState.range_middle] = rangeIncludesDate(selectedValue, date, true, dateLib);
-				}
-				const style$1 = getStyleForModifiers(modifiers, styles, props.modifiersStyles);
-				const className$1 = getClassNamesForModifiers(modifiers, classNames, props.modifiersClassNames);
-				const ariaLabel = !isInteractive && !modifiers.hidden ? labelGridcell$1(date, modifiers, dateLib.options, dateLib) : void 0;
-				return import_react.createElement(components.Day, {
-					key: `${day.isoDate}_${day.displayMonthId}`,
-					day,
-					modifiers,
-					className: className$1.join(" "),
-					style: style$1,
-					role: "gridcell",
-					"aria-selected": modifiers.selected || void 0,
-					"aria-label": ariaLabel,
-					"data-day": day.isoDate,
-					"data-month": day.outside ? day.dateMonthId : void 0,
-					"data-selected": modifiers.selected || void 0,
-					"data-disabled": modifiers.disabled || void 0,
-					"data-hidden": modifiers.hidden || void 0,
-					"data-outside": day.outside || void 0,
-					"data-focused": modifiers.focused || void 0,
-					"data-today": modifiers.today || void 0
-				}, !modifiers.hidden && isInteractive ? import_react.createElement(components.DayButton, {
-					className: classNames[UI.DayButton],
-					style: styles?.[UI.DayButton],
-					type: "button",
-					day,
-					modifiers,
-					disabled: !modifiers.focused && modifiers.disabled || void 0,
-					"aria-disabled": modifiers.focused && modifiers.disabled || void 0,
-					tabIndex: isFocusTarget(day) ? 0 : -1,
-					"aria-label": labelDayButton$1(date, modifiers, dateLib.options, dateLib),
-					onClick: handleDayClick(day, modifiers),
-					onBlur: handleDayBlur(day, modifiers),
-					onFocus: handleDayFocus(day, modifiers),
-					onKeyDown: handleDayKeyDown(day, modifiers),
-					onMouseEnter: handleDayMouseEnter(day, modifiers),
-					onMouseLeave: handleDayMouseLeave(day, modifiers)
-				}, formatDay$1(date, dateLib.options, dateLib)) : !modifiers.hidden && formatDay$1(day.date, dateLib.options, dateLib));
-			}));
-		}))));
-	})), props.footer && import_react.createElement(components.Footer, {
-		className: classNames[UI.Footer],
-		style: styles?.[UI.Footer],
-		role: "status",
-		"aria-live": "polite"
-	}, props.footer)));
-}
-function Calendar$1({ className, classNames, showOutsideDays = true, captionLayout = "label", buttonVariant = "ghost", formatters: formatters$1, components, ...props }) {
-	const defaultClassNames = getDefaultClassNames();
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(DayPicker, {
-		showOutsideDays,
-		className: cn("bg-background group/calendar p-3 [--cell-size:2rem] [[data-slot=card-content]_&]:bg-transparent [[data-slot=popover-content]_&]:bg-transparent", String.raw`rtl:**:[.rdp-button\_next>svg]:rotate-180`, String.raw`rtl:**:[.rdp-button\_previous>svg]:rotate-180`, className),
-		captionLayout,
-		formatters: {
-			formatMonthDropdown: (date) => date.toLocaleString("default", { month: "short" }),
-			...formatters$1
-		},
-		classNames: {
-			root: cn("w-fit", defaultClassNames.root),
-			months: cn("relative flex flex-col gap-4 md:flex-row", defaultClassNames.months),
-			month: cn("flex w-full flex-col gap-4", defaultClassNames.month),
-			nav: cn("absolute inset-x-0 top-0 flex w-full items-center justify-between gap-1", defaultClassNames.nav),
-			button_previous: cn(buttonVariants({ variant: buttonVariant }), "h-[--cell-size] w-[--cell-size] select-none p-0 aria-disabled:opacity-50", defaultClassNames.button_previous),
-			button_next: cn(buttonVariants({ variant: buttonVariant }), "h-[--cell-size] w-[--cell-size] select-none p-0 aria-disabled:opacity-50", defaultClassNames.button_next),
-			month_caption: cn("flex h-[--cell-size] w-full items-center justify-center px-[--cell-size]", defaultClassNames.month_caption),
-			dropdowns: cn("flex h-[--cell-size] w-full items-center justify-center gap-1.5 text-sm font-medium", defaultClassNames.dropdowns),
-			dropdown_root: cn("has-focus:border-ring border-input shadow-xs has-focus:ring-ring/50 has-focus:ring-[3px] relative rounded-md border", defaultClassNames.dropdown_root),
-			dropdown: cn("absolute inset-0 opacity-0", defaultClassNames.dropdown),
-			caption_label: cn("select-none font-medium", captionLayout === "label" ? "text-sm" : "[&>svg]:text-muted-foreground flex h-8 items-center gap-1 rounded-md pl-2 pr-1 text-sm [&>svg]:size-3.5", defaultClassNames.caption_label),
-			table: "w-full border-collapse",
-			weekdays: cn("flex", defaultClassNames.weekdays),
-			weekday: cn("text-muted-foreground flex-1 select-none rounded-md text-[0.8rem] font-normal", defaultClassNames.weekday),
-			week: cn("mt-2 flex w-full", defaultClassNames.week),
-			week_number_header: cn("w-[--cell-size] select-none", defaultClassNames.week_number_header),
-			week_number: cn("text-muted-foreground select-none text-[0.8rem]", defaultClassNames.week_number),
-			day: cn("group/day relative aspect-square h-full w-full select-none p-0 text-center [&:first-child[data-selected=true]_button]:rounded-l-md [&:last-child[data-selected=true]_button]:rounded-r-md", defaultClassNames.day),
-			range_start: cn("bg-accent rounded-l-md", defaultClassNames.range_start),
-			range_middle: cn("rounded-none", defaultClassNames.range_middle),
-			range_end: cn("bg-accent rounded-r-md", defaultClassNames.range_end),
-			today: cn("bg-accent text-accent-foreground rounded-md data-[selected=true]:rounded-none", defaultClassNames.today),
-			outside: cn("text-muted-foreground aria-selected:text-muted-foreground", defaultClassNames.outside),
-			disabled: cn("text-muted-foreground opacity-50", defaultClassNames.disabled),
-			hidden: cn("invisible", defaultClassNames.hidden),
-			...classNames
-		},
-		components: {
-			Root: ({ className: className$1, rootRef, ...props$1 }) => {
-				return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-					"data-slot": "calendar",
-					ref: rootRef,
-					className: cn(className$1),
-					...props$1
-				});
-			},
-			Chevron: ({ className: className$1, orientation, ...props$1 }) => {
-				if (orientation === "left") return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ChevronLeft, {
-					className: cn("size-4", className$1),
-					...props$1
-				});
-				if (orientation === "right") return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ChevronRight, {
-					className: cn("size-4", className$1),
-					...props$1
-				});
-				return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ChevronDown, {
-					className: cn("size-4", className$1),
-					...props$1
-				});
-			},
-			DayButton: CalendarDayButton,
-			WeekNumber: ({ children, ...props$1 }) => {
-				return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", {
-					...props$1,
-					children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-						className: "flex size-[--cell-size] items-center justify-center text-center",
-						children
-					})
-				});
-			},
-			...components
-		},
-		...props
-	});
-}
-function CalendarDayButton({ className, day, modifiers, ...props }) {
-	const defaultClassNames = getDefaultClassNames();
-	const ref = import_react.useRef(null);
-	import_react.useEffect(() => {
-		if (modifiers.focused) ref.current?.focus();
-	}, [modifiers.focused]);
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button$1, {
-		ref,
-		variant: "ghost",
-		size: "icon",
-		"data-day": day.date.toLocaleDateString(),
-		"data-selected-single": modifiers.selected && !modifiers.range_start && !modifiers.range_end && !modifiers.range_middle,
-		"data-range-start": modifiers.range_start,
-		"data-range-end": modifiers.range_end,
-		"data-range-middle": modifiers.range_middle,
-		className: cn("data-[selected-single=true]:bg-primary data-[selected-single=true]:text-primary-foreground data-[range-middle=true]:bg-accent data-[range-middle=true]:text-accent-foreground data-[range-start=true]:bg-primary data-[range-start=true]:text-primary-foreground data-[range-end=true]:bg-primary data-[range-end=true]:text-primary-foreground group-data-[focused=true]/day:border-ring group-data-[focused=true]/day:ring-ring/50 flex aspect-square h-auto w-full min-w-[--cell-size] flex-col gap-1 font-normal leading-none data-[range-end=true]:rounded-md data-[range-middle=true]:rounded-none data-[range-start=true]:rounded-md group-data-[focused=true]/day:relative group-data-[focused=true]/day:z-10 group-data-[focused=true]/day:ring-[3px] [&>span]:text-xs [&>span]:opacity-70", defaultClassNames.day, className),
-		...props
-	});
-}
-var POPOVER_NAME = "Popover";
-var [createPopoverContext, createPopoverScope] = createContextScope(POPOVER_NAME, [createPopperScope]);
-var usePopperScope = createPopperScope();
-var [PopoverProvider, usePopoverContext] = createPopoverContext(POPOVER_NAME);
-var Popover$1 = (props) => {
-	const { __scopePopover, children, open: openProp, defaultOpen, onOpenChange, modal = false } = props;
-	const popperScope = usePopperScope(__scopePopover);
-	const triggerRef = import_react.useRef(null);
-	const [hasCustomAnchor, setHasCustomAnchor] = import_react.useState(false);
-	const [open, setOpen] = useControllableState({
-		prop: openProp,
-		defaultProp: defaultOpen ?? false,
-		onChange: onOpenChange,
-		caller: POPOVER_NAME
-	});
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Root2$3, {
-		...popperScope,
-		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(PopoverProvider, {
-			scope: __scopePopover,
-			contentId: useId(),
-			triggerRef,
-			open,
-			onOpenChange: setOpen,
-			onOpenToggle: import_react.useCallback(() => setOpen((prevOpen) => !prevOpen), [setOpen]),
-			hasCustomAnchor,
-			onCustomAnchorAdd: import_react.useCallback(() => setHasCustomAnchor(true), []),
-			onCustomAnchorRemove: import_react.useCallback(() => setHasCustomAnchor(false), []),
-			modal,
-			children
-		})
-	});
-};
-Popover$1.displayName = POPOVER_NAME;
-var ANCHOR_NAME = "PopoverAnchor";
-var PopoverAnchor = import_react.forwardRef((props, forwardedRef) => {
-	const { __scopePopover, ...anchorProps } = props;
-	const context = usePopoverContext(ANCHOR_NAME, __scopePopover);
-	const popperScope = usePopperScope(__scopePopover);
-	const { onCustomAnchorAdd, onCustomAnchorRemove } = context;
-	import_react.useEffect(() => {
-		onCustomAnchorAdd();
-		return () => onCustomAnchorRemove();
-	}, [onCustomAnchorAdd, onCustomAnchorRemove]);
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Anchor, {
-		...popperScope,
-		...anchorProps,
-		ref: forwardedRef
-	});
-});
-PopoverAnchor.displayName = ANCHOR_NAME;
-var TRIGGER_NAME = "PopoverTrigger";
-var PopoverTrigger$1 = import_react.forwardRef((props, forwardedRef) => {
-	const { __scopePopover, ...triggerProps } = props;
-	const context = usePopoverContext(TRIGGER_NAME, __scopePopover);
-	const popperScope = usePopperScope(__scopePopover);
-	const composedTriggerRef = useComposedRefs(forwardedRef, context.triggerRef);
-	const trigger = /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.button, {
-		type: "button",
-		"aria-haspopup": "dialog",
-		"aria-expanded": context.open,
-		"aria-controls": context.contentId,
-		"data-state": getState(context.open),
-		...triggerProps,
-		ref: composedTriggerRef,
-		onClick: composeEventHandlers(props.onClick, context.onOpenToggle)
-	});
-	return context.hasCustomAnchor ? trigger : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Anchor, {
-		asChild: true,
-		...popperScope,
-		children: trigger
-	});
-});
-PopoverTrigger$1.displayName = TRIGGER_NAME;
-var PORTAL_NAME = "PopoverPortal";
-var [PortalProvider, usePortalContext] = createPopoverContext(PORTAL_NAME, { forceMount: void 0 });
-var PopoverPortal = (props) => {
-	const { __scopePopover, forceMount, children, container } = props;
-	const context = usePopoverContext(PORTAL_NAME, __scopePopover);
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(PortalProvider, {
-		scope: __scopePopover,
-		forceMount,
-		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Presence, {
-			present: forceMount || context.open,
-			children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Portal, {
-				asChild: true,
-				container,
-				children
-			})
-		})
-	});
-};
-PopoverPortal.displayName = PORTAL_NAME;
-var CONTENT_NAME = "PopoverContent";
-var PopoverContent$1 = import_react.forwardRef((props, forwardedRef) => {
-	const portalContext = usePortalContext(CONTENT_NAME, props.__scopePopover);
-	const { forceMount = portalContext.forceMount, ...contentProps } = props;
-	const context = usePopoverContext(CONTENT_NAME, props.__scopePopover);
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Presence, {
-		present: forceMount || context.open,
-		children: context.modal ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(PopoverContentModal, {
-			...contentProps,
-			ref: forwardedRef
-		}) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(PopoverContentNonModal, {
-			...contentProps,
-			ref: forwardedRef
-		})
-	});
-});
-PopoverContent$1.displayName = CONTENT_NAME;
-var Slot = /* @__PURE__ */ createSlot("PopoverContent.RemoveScroll");
-var PopoverContentModal = import_react.forwardRef((props, forwardedRef) => {
-	const context = usePopoverContext(CONTENT_NAME, props.__scopePopover);
-	const contentRef = import_react.useRef(null);
-	const composedRefs = useComposedRefs(forwardedRef, contentRef);
-	const isRightClickOutsideRef = import_react.useRef(false);
-	import_react.useEffect(() => {
-		const content = contentRef.current;
-		if (content) return hideOthers(content);
-	}, []);
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Combination_default, {
-		as: Slot,
-		allowPinchZoom: true,
-		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(PopoverContentImpl, {
-			...props,
-			ref: composedRefs,
-			trapFocus: context.open,
-			disableOutsidePointerEvents: true,
-			onCloseAutoFocus: composeEventHandlers(props.onCloseAutoFocus, (event) => {
-				event.preventDefault();
-				if (!isRightClickOutsideRef.current) context.triggerRef.current?.focus();
-			}),
-			onPointerDownOutside: composeEventHandlers(props.onPointerDownOutside, (event) => {
-				const originalEvent = event.detail.originalEvent;
-				const ctrlLeftClick = originalEvent.button === 0 && originalEvent.ctrlKey === true;
-				isRightClickOutsideRef.current = originalEvent.button === 2 || ctrlLeftClick;
-			}, { checkForDefaultPrevented: false }),
-			onFocusOutside: composeEventHandlers(props.onFocusOutside, (event) => event.preventDefault(), { checkForDefaultPrevented: false })
-		})
-	});
-});
-var PopoverContentNonModal = import_react.forwardRef((props, forwardedRef) => {
-	const context = usePopoverContext(CONTENT_NAME, props.__scopePopover);
-	const hasInteractedOutsideRef = import_react.useRef(false);
-	const hasPointerDownOutsideRef = import_react.useRef(false);
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(PopoverContentImpl, {
-		...props,
-		ref: forwardedRef,
-		trapFocus: false,
-		disableOutsidePointerEvents: false,
-		onCloseAutoFocus: (event) => {
-			props.onCloseAutoFocus?.(event);
-			if (!event.defaultPrevented) {
-				if (!hasInteractedOutsideRef.current) context.triggerRef.current?.focus();
-				event.preventDefault();
-			}
-			hasInteractedOutsideRef.current = false;
-			hasPointerDownOutsideRef.current = false;
-		},
-		onInteractOutside: (event) => {
-			props.onInteractOutside?.(event);
-			if (!event.defaultPrevented) {
-				hasInteractedOutsideRef.current = true;
-				if (event.detail.originalEvent.type === "pointerdown") hasPointerDownOutsideRef.current = true;
-			}
-			const target = event.target;
-			if (context.triggerRef.current?.contains(target)) event.preventDefault();
-			if (event.detail.originalEvent.type === "focusin" && hasPointerDownOutsideRef.current) event.preventDefault();
-		}
-	});
-});
-var PopoverContentImpl = import_react.forwardRef((props, forwardedRef) => {
-	const { __scopePopover, trapFocus, onOpenAutoFocus, onCloseAutoFocus, disableOutsidePointerEvents, onEscapeKeyDown, onPointerDownOutside, onFocusOutside, onInteractOutside, ...contentProps } = props;
-	const context = usePopoverContext(CONTENT_NAME, __scopePopover);
-	const popperScope = usePopperScope(__scopePopover);
-	useFocusGuards();
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(FocusScope, {
-		asChild: true,
-		loop: true,
-		trapped: trapFocus,
-		onMountAutoFocus: onOpenAutoFocus,
-		onUnmountAutoFocus: onCloseAutoFocus,
-		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(DismissableLayer, {
-			asChild: true,
-			disableOutsidePointerEvents,
-			onInteractOutside,
-			onEscapeKeyDown,
-			onPointerDownOutside,
-			onFocusOutside,
-			onDismiss: () => context.onOpenChange(false),
-			children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Content$1, {
-				"data-state": getState(context.open),
-				role: "dialog",
-				id: context.contentId,
-				...popperScope,
-				...contentProps,
-				ref: forwardedRef,
-				style: {
-					...contentProps.style,
-					"--radix-popover-content-transform-origin": "var(--radix-popper-transform-origin)",
-					"--radix-popover-content-available-width": "var(--radix-popper-available-width)",
-					"--radix-popover-content-available-height": "var(--radix-popper-available-height)",
-					"--radix-popover-trigger-width": "var(--radix-popper-anchor-width)",
-					"--radix-popover-trigger-height": "var(--radix-popper-anchor-height)"
-				}
-			})
-		})
-	});
-});
-var CLOSE_NAME = "PopoverClose";
-var PopoverClose = import_react.forwardRef((props, forwardedRef) => {
-	const { __scopePopover, ...closeProps } = props;
-	const context = usePopoverContext(CLOSE_NAME, __scopePopover);
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.button, {
-		type: "button",
-		...closeProps,
-		ref: forwardedRef,
-		onClick: composeEventHandlers(props.onClick, () => context.onOpenChange(false))
-	});
-});
-PopoverClose.displayName = CLOSE_NAME;
-var ARROW_NAME = "PopoverArrow";
-var PopoverArrow = import_react.forwardRef((props, forwardedRef) => {
-	const { __scopePopover, ...arrowProps } = props;
-	const popperScope = usePopperScope(__scopePopover);
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Arrow, {
-		...popperScope,
-		...arrowProps,
-		ref: forwardedRef
-	});
-});
-PopoverArrow.displayName = ARROW_NAME;
-function getState(open) {
-	return open ? "open" : "closed";
-}
-var Root2 = Popover$1;
-var Trigger = PopoverTrigger$1;
-var Portal$1 = PopoverPortal;
-var Content2 = PopoverContent$1;
-var Popover = Root2;
-var PopoverTrigger = Trigger;
-var PopoverContent = import_react.forwardRef(({ className, align = "center", sideOffset = 4, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Portal$1, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Content2, {
-	ref,
-	align,
-	sideOffset,
-	className: cn("z-50 w-72 rounded-md border bg-popover p-4 text-popover-foreground shadow-md outline-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 origin-[--radix-popover-content-transform-origin]", className),
-	...props
-}) }));
-PopoverContent.displayName = Content2.displayName;
 function Management() {
 	const { toast: toast$2 } = useToast();
 	const [copied, setCopied] = (0, import_react.useState)(false);
-	const [date, setDate] = (0, import_react.useState)();
-	const [scheduleDate, setScheduleDate] = (0, import_react.useState)();
 	const handleCopyPix = () => {
 		navigator.clipboard.writeText("00.000.000/0001-00");
 		setCopied(true);
-		toast$2({
-			title: "Chave PIX copiada!",
-			description: "Cole no aplicativo do seu banco para transferir."
-		});
+		toast$2({ title: "Chave PIX copiada!" });
 		setTimeout(() => setCopied(false), 2e3);
 	};
-	const handleSaveProfile = (e) => {
+	const handleSave = (e) => {
 		e.preventDefault();
 		toast$2({
-			title: "Perfil atualizado",
-			description: "Seus dados foram salvos com sucesso."
-		});
-	};
-	const handleRequestDocument = (e) => {
-		e.preventDefault();
-		toast$2({
-			title: "Solicitação enviada",
-			description: "O documento foi solicitado à secretaria."
-		});
-	};
-	const handleSchedule = (e) => {
-		e.preventDefault();
-		toast$2({
-			title: "Agendamento solicitado",
-			description: "Entraremos em contato para confirmar o horário."
+			title: "Sucesso",
+			description: "Operação realizada com sucesso."
 		});
 	};
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-		className: "space-y-6 animate-fade-in-up",
+		className: "space-y-6 animate-fade-in-up py-4",
 		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-			className: "flex flex-col gap-1",
+			className: "flex flex-col gap-1 px-1",
 			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h1", {
 				className: "text-2xl font-bold tracking-tight",
-				children: "Gestão da Conta"
+				children: "Menu"
 			}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 				className: "text-muted-foreground text-sm",
-				children: "Gerencie suas contribuições, dados e solicitações."
+				children: "Gestão, contribuições e secretaria."
 			})]
 		}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Tabs, {
 			defaultValue: "contribuicao",
 			className: "w-full",
 			children: [
 				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(TabsList, {
-					className: "grid w-full grid-cols-3 h-auto p-1 bg-muted/50",
+					className: "grid w-full grid-cols-3 p-1 bg-muted/40 h-12 rounded-xl",
 					children: [
 						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(TabsTrigger, {
 							value: "contribuicao",
-							className: "py-2.5 text-xs sm:text-sm",
-							children: "Contribuição"
+							className: "rounded-lg text-[13px] font-semibold",
+							children: "Doar"
 						}),
 						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(TabsTrigger, {
 							value: "perfil",
-							className: "py-2.5 text-xs sm:text-sm",
-							children: "Meu Perfil"
+							className: "rounded-lg text-[13px] font-semibold",
+							children: "Perfil"
 						}),
 						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(TabsTrigger, {
 							value: "secretaria",
-							className: "py-2.5 text-xs sm:text-sm",
+							className: "rounded-lg text-[13px] font-semibold",
 							children: "Secretaria"
 						})
 					]
 				}),
 				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(TabsContent, {
 					value: "contribuicao",
-					className: "space-y-4 mt-4",
+					className: "space-y-4 mt-6",
 					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Card, {
-						className: "shadow-sm",
+						className: "shadow-none border-muted/60",
 						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardHeader, {
 							className: "pb-4",
 							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardTitle, {
-								className: "text-lg flex items-center gap-2",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Heart, { className: "w-5 h-5 text-primary" }), "Dízimos e Ofertas via PIX"]
-							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardDescription, { children: "Contribua de forma rápida e segura." })]
+								className: "text-[17px] flex items-center gap-2",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Heart, { className: "w-5 h-5 text-primary" }), "PIX"]
+							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardDescription, { children: "Dízimos e ofertas instantâneos." })]
 						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardContent, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "flex flex-col sm:flex-row gap-3",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-								className: "relative flex-1",
-								children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Input, {
-									readOnly: true,
-									value: "00.000.000/0001-00",
-									className: "bg-muted/50 font-mono text-center sm:text-left h-12 text-base"
-								})
-							}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Button$1, {
+							className: "flex gap-2",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Input, {
+								readOnly: true,
+								value: "00.000.000/0001-00",
+								className: "bg-muted/20 font-mono h-12 text-base"
+							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
 								onClick: handleCopyPix,
 								variant: "secondary",
-								className: "sm:w-36 h-12",
-								children: [copied ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Check, { className: "w-4 h-4 mr-2 text-green-600" }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Copy, { className: "w-4 h-4 mr-2" }), copied ? "Copiado" : "Copiar Chave"]
+								className: "w-14 h-12 shrink-0",
+								children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Copy, { className: "w-5 h-5" })
 							})]
 						}) })]
 					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Card, {
-						className: "shadow-sm",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardHeader, {
+						className: "shadow-none border-muted/60",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardHeader, {
 							className: "pb-4",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardTitle, {
-								className: "text-lg flex items-center gap-2",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CreditCard, { className: "w-5 h-5" }), "Cartão de Crédito"]
-							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardDescription, { children: "Para contribuições únicas ou recorrentes." })]
+							children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardTitle, {
+								className: "text-[17px] flex items-center gap-2",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CreditCard, { className: "w-5 h-5 text-primary" }), "Cartão de Crédito"]
+							})
 						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardContent, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("form", {
 							className: "space-y-4",
-							onSubmit: (e) => {
-								e.preventDefault();
-								toast$2({ title: "Cartão cadastrado com sucesso!" });
-							},
+							onSubmit: handleSave,
 							children: [
 								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 									className: "space-y-2",
 									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, { children: "Número do Cartão" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Input, {
 										placeholder: "0000 0000 0000 0000",
+										className: "bg-muted/20 h-12",
 										required: true
 									})]
 								}),
 								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-									className: "grid grid-cols-2 gap-4",
+									className: "grid grid-cols-2 gap-3",
 									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 										className: "space-y-2",
 										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, { children: "Validade" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Input, {
 											placeholder: "MM/AA",
+											className: "bg-muted/20 h-12",
 											required: true
 										})]
 									}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
@@ -31598,46 +27122,49 @@ function Management() {
 											placeholder: "123",
 											type: "password",
 											maxLength: 4,
+											className: "bg-muted/20 h-12",
 											required: true
 										})]
 									})]
 								}),
 								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 									className: "space-y-2",
-									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, { children: "Nome Impresso no Cartão" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Input, {
-										placeholder: "JOAO A SILVA",
-										className: "uppercase",
+									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, { children: "Valor (R$)" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Input, {
+										placeholder: "0,00",
+										type: "number",
+										className: "bg-muted/20 h-12 font-semibold text-lg",
 										required: true
 									})]
 								}),
-								/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button$1, {
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
 									type: "submit",
-									className: "w-full mt-2",
-									children: "Salvar Cartão"
+									className: "w-full h-12 rounded-xl font-semibold mt-2",
+									children: "Contribuir"
 								})
 							]
 						}) })]
 					})]
 				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(TabsContent, {
+				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(TabsContent, {
 					value: "perfil",
-					className: "space-y-4 mt-4",
-					children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Card, {
-						className: "shadow-sm",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardHeader, {
+					className: "space-y-4 mt-6",
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Card, {
+						className: "shadow-none border-muted/60",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardHeader, {
 							className: "pb-4",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardTitle, {
-								className: "text-lg flex items-center gap-2",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(User, { className: "w-5 h-5" }), "Meus Dados"]
-							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardDescription, { children: "Mantenha suas informações sempre atualizadas." })]
+							children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardTitle, {
+								className: "text-[17px] flex items-center gap-2",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(User, { className: "w-5 h-5 text-primary" }), "Meus Dados"]
+							})
 						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardContent, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("form", {
-							onSubmit: handleSaveProfile,
+							onSubmit: handleSave,
 							className: "space-y-4",
 							children: [
 								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 									className: "space-y-2",
 									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, { children: "Nome Completo" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Input, {
 										defaultValue: "João da Silva",
+										className: "bg-muted/20 h-12",
 										required: true
 									})]
 								}),
@@ -31645,155 +27172,438 @@ function Management() {
 									className: "space-y-2",
 									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, { children: "E-mail" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Input, {
 										type: "email",
-										defaultValue: "joao.silva@email.com",
+										defaultValue: "joao@email.com",
+										className: "bg-muted/20 h-12",
 										required: true
 									})]
 								}),
 								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 									className: "space-y-2",
-									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, { children: "Telefone / WhatsApp" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Input, {
+									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, { children: "WhatsApp" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Input, {
 										defaultValue: "(11) 99999-9999",
+										className: "bg-muted/20 h-12",
 										required: true
 									})]
 								}),
 								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-									className: "space-y-2 flex flex-col",
-									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, { children: "Data de Batismo (Opcional)" }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Popover, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(PopoverTrigger, {
-										asChild: true,
-										children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Button$1, {
-											variant: "outline",
-											className: cn("w-full justify-start text-left font-normal", !date && "text-muted-foreground"),
-											children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Calendar, { className: "mr-2 h-4 w-4" }), date ? format(date, "PPP", { locale: ptBR }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Selecione a data" })]
-										})
-									}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(PopoverContent, {
-										className: "w-auto p-0",
-										align: "start",
-										children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Calendar$1, {
-											mode: "single",
-											selected: date,
-											onSelect: setDate,
-											initialFocus: true,
-											locale: ptBR
-										})
-									})] })]
+									className: "space-y-2",
+									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, { children: "Data de Batismo" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Input, {
+										type: "date",
+										className: "bg-muted/20 h-12"
+									})]
 								}),
-								/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button$1, {
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
 									type: "submit",
-									className: "w-full mt-2",
-									children: "Salvar Alterações"
+									className: "w-full h-12 rounded-xl font-semibold mt-2",
+									children: "Salvar Perfil"
 								})
 							]
 						}) })]
-					})
+					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Button, {
+						variant: "ghost",
+						className: "w-full text-destructive hover:bg-destructive/10 hover:text-destructive h-12",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(LogOut, { className: "w-5 h-5 mr-2" }), "Sair da Conta"]
+					})]
 				}),
 				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(TabsContent, {
 					value: "secretaria",
-					className: "space-y-4 mt-4",
+					className: "space-y-4 mt-6",
 					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Card, {
-						className: "shadow-sm",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardHeader, {
+						className: "shadow-none border-muted/60",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardHeader, {
 							className: "pb-4",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardTitle, {
-								className: "text-lg flex items-center gap-2",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(FileText, { className: "w-5 h-5" }), "Solicitar Documentos"]
-							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardDescription, { children: "Peça certificados e cartas de recomendação." })]
+							children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardTitle, {
+								className: "text-[17px] flex items-center gap-2",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(FileText, { className: "w-5 h-5 text-primary" }), "Solicitar Documentos"]
+							})
 						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardContent, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("form", {
-							onSubmit: handleRequestDocument,
+							onSubmit: handleSave,
 							className: "space-y-4",
 							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 								className: "space-y-2",
 								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, { children: "Tipo de Documento" }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Select, {
 									required: true,
-									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectTrigger, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectValue, { placeholder: "Selecione o documento necessário" }) }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(SelectContent, { children: [
+									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectTrigger, {
+										className: "h-12 bg-muted/20",
+										children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectValue, { placeholder: "Selecione..." })
+									}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(SelectContent, { children: [
 										/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectItem, {
-											value: "certificado_membro",
+											value: "membro",
 											children: "Certificado de Membro"
 										}),
 										/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectItem, {
-											value: "certificado_batismo",
+											value: "batismo",
 											children: "Certificado de Batismo"
 										}),
 										/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectItem, {
-											value: "carta_recomendacao",
+											value: "recomendacao",
 											children: "Carta de Recomendação"
-										}),
-										/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectItem, {
-											value: "historico_cursos",
-											children: "Histórico de Cursos"
 										})
 									] })]
 								})]
-							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button$1, {
+							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
 								type: "submit",
-								className: "w-full",
-								children: "Enviar Solicitação"
+								className: "w-full h-12 rounded-xl font-semibold",
+								children: "Solicitar"
 							})]
 						}) })]
 					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Card, {
-						className: "shadow-sm",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardHeader, {
+						className: "shadow-none border-muted/60",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardHeader, {
 							className: "pb-4",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardTitle, {
-								className: "text-lg flex items-center gap-2",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Calendar, { className: "w-5 h-5" }), "Agendamento Pastoral"]
-							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardDescription, { children: "Marque um horário para aconselhamento." })]
+							children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardTitle, {
+								className: "text-[17px] flex items-center gap-2",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Calendar, { className: "w-5 h-5 text-primary" }), "Atendimento Pastoral"]
+							})
 						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardContent, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("form", {
-							onSubmit: handleSchedule,
+							onSubmit: handleSave,
 							className: "space-y-4",
 							children: [
 								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-									className: "space-y-2 flex flex-col",
-									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, { children: "Data Preferencial" }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Popover, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(PopoverTrigger, {
-										asChild: true,
-										children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Button$1, {
-											variant: "outline",
-											className: cn("w-full justify-start text-left font-normal", !scheduleDate && "text-muted-foreground"),
-											children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Calendar, { className: "mr-2 h-4 w-4" }), scheduleDate ? format(scheduleDate, "PPP", { locale: ptBR }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Escolha um dia útil" })]
-										})
-									}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(PopoverContent, {
-										className: "w-auto p-0",
-										align: "start",
-										children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Calendar$1, {
-											mode: "single",
-											selected: scheduleDate,
-											onSelect: setScheduleDate,
-											disabled: (date$1) => date$1 < /* @__PURE__ */ new Date() || date$1.getDay() === 0,
-											initialFocus: true,
-											locale: ptBR
-										})
-									})] })]
+									className: "space-y-2",
+									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, { children: "Data Preferencial" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Input, {
+										type: "date",
+										className: "bg-muted/20 h-12",
+										required: true
+									})]
 								}),
 								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 									className: "space-y-2",
 									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, { children: "Período" }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Select, {
 										required: true,
-										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectTrigger, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectValue, { placeholder: "Qual o melhor período?" }) }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(SelectContent, { children: [
+										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectTrigger, {
+											className: "h-12 bg-muted/20",
+											children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectValue, { placeholder: "Selecione o turno..." })
+										}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(SelectContent, { children: [
 											/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectItem, {
 												value: "manha",
-												children: "Manhã (09:00 - 12:00)"
+												children: "Manhã"
 											}),
 											/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectItem, {
 												value: "tarde",
-												children: "Tarde (14:00 - 18:00)"
+												children: "Tarde"
 											}),
 											/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SelectItem, {
 												value: "noite",
-												children: "Noite (19:00 - 21:00)"
+												children: "Noite"
 											})
 										] })]
 									})]
 								}),
-								/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button$1, {
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
 									type: "submit",
 									variant: "secondary",
-									className: "w-full",
-									children: "Solicitar Agendamento"
+									className: "w-full h-12 rounded-xl font-semibold",
+									children: "Agendar"
 								})
 							]
 						}) })]
 					})]
 				})
 			]
+		})]
+	});
+}
+var MOCK_VERSES = [
+	{
+		book: "Gênesis",
+		chapter: 1,
+		verse: 1,
+		text: "No princípio criou Deus os céus e a terra."
+	},
+	{
+		book: "João",
+		chapter: 3,
+		verse: 16,
+		text: "Porque Deus amou o mundo de tal maneira que deu o seu Filho unigênito, para que todo aquele que nele crê não pereça, mas tenha a vida eterna."
+	},
+	{
+		book: "Filipenses",
+		chapter: 4,
+		verse: 13,
+		text: "Posso todas as coisas em Cristo que me fortalece."
+	},
+	{
+		book: "Salmos",
+		chapter: 23,
+		verse: 1,
+		text: "O Senhor é o meu pastor; de nada me faltará."
+	},
+	{
+		book: "Romanos",
+		chapter: 8,
+		verse: 28,
+		text: "E sabemos que todas as coisas contribuem juntamente para o bem daqueles que amam a Deus."
+	}
+];
+function Bible() {
+	const [search, setSearch] = (0, import_react.useState)("");
+	const filtered = search.trim() === "" ? MOCK_VERSES : MOCK_VERSES.filter((v) => v.text.toLowerCase().includes(search.toLowerCase()) || v.book.toLowerCase().includes(search.toLowerCase()));
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+		className: "space-y-6 animate-fade-in-up py-4",
+		children: [
+			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+				className: "flex items-center gap-2 px-1",
+				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Book, { className: "w-6 h-6 text-primary" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h1", {
+					className: "text-2xl font-bold tracking-tight",
+					children: "Bíblia Digital"
+				})]
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+				className: "relative group",
+				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Search, { className: "absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Input, {
+					className: "pl-10 h-12 text-[15px] rounded-xl bg-muted/20 border-muted/60 shadow-none focus-visible:ring-primary/20",
+					placeholder: "Buscar versículo ou livro...",
+					value: search,
+					onChange: (e) => setSearch(e.target.value)
+				})]
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+				className: "space-y-3",
+				children: [filtered.map((v, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Card, {
+					className: "shadow-none border-muted/60 bg-card hover:bg-muted/10 transition-colors",
+					children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardContent, {
+						className: "p-4",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
+							className: "font-bold text-[13px] text-primary mb-1 tracking-tight",
+							children: [
+								v.book,
+								" ",
+								v.chapter,
+								":",
+								v.verse
+							]
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+							className: "text-[15px] text-foreground leading-relaxed",
+							children: v.text
+						})]
+					})
+				}, i)), filtered.length === 0 && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+					className: "text-center py-16 px-4",
+					children: [
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+							className: "w-16 h-16 bg-muted/50 rounded-full flex items-center justify-center mx-auto mb-4",
+							children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Search, { className: "w-8 h-8 text-muted-foreground/50" })
+						}),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
+							className: "text-lg font-medium mb-1",
+							children: "Nenhum resultado"
+						}),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+							className: "text-muted-foreground text-sm",
+							children: "Não encontramos nenhum versículo com essa busca."
+						})
+					]
+				})]
+			})
+		]
+	});
+}
+function createContextScope(scopeName, createContextScopeDeps = []) {
+	let defaultContexts = [];
+	function createContext3(rootComponentName, defaultContext) {
+		const BaseContext = import_react.createContext(defaultContext);
+		BaseContext.displayName = rootComponentName + "Context";
+		const index$1 = defaultContexts.length;
+		defaultContexts = [...defaultContexts, defaultContext];
+		const Provider$2 = (props) => {
+			const { scope, children, ...context } = props;
+			const Context = scope?.[scopeName]?.[index$1] || BaseContext;
+			const value = import_react.useMemo(() => context, Object.values(context));
+			return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Context.Provider, {
+				value,
+				children
+			});
+		};
+		Provider$2.displayName = rootComponentName + "Provider";
+		function useContext2(consumerName, scope) {
+			const Context = scope?.[scopeName]?.[index$1] || BaseContext;
+			const context = import_react.useContext(Context);
+			if (context) return context;
+			if (defaultContext !== void 0) return defaultContext;
+			throw new Error(`\`${consumerName}\` must be used within \`${rootComponentName}\``);
+		}
+		return [Provider$2, useContext2];
+	}
+	const createScope = () => {
+		const scopeContexts = defaultContexts.map((defaultContext) => {
+			return import_react.createContext(defaultContext);
+		});
+		return function useScope(scope) {
+			const contexts = scope?.[scopeName] || scopeContexts;
+			return import_react.useMemo(() => ({ [`__scope${scopeName}`]: {
+				...scope,
+				[scopeName]: contexts
+			} }), [scope, contexts]);
+		};
+	};
+	createScope.scopeName = scopeName;
+	return [createContext3, composeContextScopes(createScope, ...createContextScopeDeps)];
+}
+function composeContextScopes(...scopes) {
+	const baseScope = scopes[0];
+	if (scopes.length === 1) return baseScope;
+	const createScope = () => {
+		const scopeHooks = scopes.map((createScope2) => ({
+			useScope: createScope2(),
+			scopeName: createScope2.scopeName
+		}));
+		return function useComposedScopes(overrideScopes) {
+			const nextScopes = scopeHooks.reduce((nextScopes2, { useScope, scopeName }) => {
+				const currentScope = useScope(overrideScopes)[`__scope${scopeName}`];
+				return {
+					...nextScopes2,
+					...currentScope
+				};
+			}, {});
+			return import_react.useMemo(() => ({ [`__scope${baseScope.scopeName}`]: nextScopes }), [nextScopes]);
+		};
+	};
+	createScope.scopeName = baseScope.scopeName;
+	return createScope;
+}
+var PROGRESS_NAME = "Progress";
+var DEFAULT_MAX = 100;
+var [createProgressContext, createProgressScope] = createContextScope(PROGRESS_NAME);
+var [ProgressProvider, useProgressContext] = createProgressContext(PROGRESS_NAME);
+var Progress$1 = import_react.forwardRef((props, forwardedRef) => {
+	const { __scopeProgress, value: valueProp = null, max: maxProp, getValueLabel = defaultGetValueLabel, ...progressProps } = props;
+	if ((maxProp || maxProp === 0) && !isValidMaxNumber(maxProp)) console.error(getInvalidMaxError(`${maxProp}`, "Progress"));
+	const max$1 = isValidMaxNumber(maxProp) ? maxProp : DEFAULT_MAX;
+	if (valueProp !== null && !isValidValueNumber(valueProp, max$1)) console.error(getInvalidValueError(`${valueProp}`, "Progress"));
+	const value = isValidValueNumber(valueProp, max$1) ? valueProp : null;
+	const valueLabel = isNumber(value) ? getValueLabel(value, max$1) : void 0;
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ProgressProvider, {
+		scope: __scopeProgress,
+		value,
+		max: max$1,
+		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.div, {
+			"aria-valuemax": max$1,
+			"aria-valuemin": 0,
+			"aria-valuenow": isNumber(value) ? value : void 0,
+			"aria-valuetext": valueLabel,
+			role: "progressbar",
+			"data-state": getProgressState(value, max$1),
+			"data-value": value ?? void 0,
+			"data-max": max$1,
+			...progressProps,
+			ref: forwardedRef
+		})
+	});
+});
+Progress$1.displayName = PROGRESS_NAME;
+var INDICATOR_NAME = "ProgressIndicator";
+var ProgressIndicator = import_react.forwardRef((props, forwardedRef) => {
+	const { __scopeProgress, ...indicatorProps } = props;
+	const context = useProgressContext(INDICATOR_NAME, __scopeProgress);
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.div, {
+		"data-state": getProgressState(context.value, context.max),
+		"data-value": context.value ?? void 0,
+		"data-max": context.max,
+		...indicatorProps,
+		ref: forwardedRef
+	});
+});
+ProgressIndicator.displayName = INDICATOR_NAME;
+function defaultGetValueLabel(value, max$1) {
+	return `${Math.round(value / max$1 * 100)}%`;
+}
+function getProgressState(value, maxValue) {
+	return value == null ? "indeterminate" : value === maxValue ? "complete" : "loading";
+}
+function isNumber(value) {
+	return typeof value === "number";
+}
+function isValidMaxNumber(max$1) {
+	return isNumber(max$1) && !isNaN(max$1) && max$1 > 0;
+}
+function isValidValueNumber(value, max$1) {
+	return isNumber(value) && !isNaN(value) && value <= max$1 && value >= 0;
+}
+function getInvalidMaxError(propValue, componentName) {
+	return `Invalid prop \`max\` of value \`${propValue}\` supplied to \`${componentName}\`. Only numbers greater than 0 are valid max values. Defaulting to \`${DEFAULT_MAX}\`.`;
+}
+function getInvalidValueError(propValue, componentName) {
+	return `Invalid prop \`value\` of value \`${propValue}\` supplied to \`${componentName}\`. The \`value\` prop must be:
+  - a positive number
+  - less than the value passed to \`max\` (or ${DEFAULT_MAX} if no \`max\` prop is set)
+  - \`null\` or \`undefined\` if the progress is indeterminate.
+
+Defaulting to \`null\`.`;
+}
+var Root = Progress$1;
+var Indicator = ProgressIndicator;
+var Progress = import_react.forwardRef(({ className, value, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Root, {
+	ref,
+	className: cn("relative h-4 w-full overflow-hidden rounded-full bg-secondary", className),
+	...props,
+	children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Indicator, {
+		className: "h-full w-full flex-1 bg-primary transition-all",
+		style: { transform: `translateX(-${100 - (value || 0)}%)` }
+	})
+}));
+Progress.displayName = Root.displayName;
+var PLANS = [
+	{
+		id: 1,
+		title: "Jornada da Fé",
+		duration: "30 dias",
+		progress: 40
+	},
+	{
+		id: 2,
+		title: "Provérbios Diários",
+		duration: "31 dias",
+		progress: 100
+	},
+	{
+		id: 3,
+		title: "Novo Testamento",
+		duration: "90 dias",
+		progress: 5
+	}
+];
+function Plans() {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+		className: "space-y-6 animate-fade-in-up py-4",
+		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+			className: "flex items-center gap-2 px-1",
+			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(BookMarked, { className: "w-6 h-6 text-primary" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h1", {
+				className: "text-2xl font-bold tracking-tight",
+				children: "Planos de Leitura"
+			})]
+		}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+			className: "space-y-4",
+			children: PLANS.map((plan) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Card, {
+				className: "shadow-none border-muted/60",
+				children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardContent, {
+					className: "p-4",
+					children: [
+						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "flex justify-between items-start mb-3",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
+								className: "font-semibold text-base mb-0.5",
+								children: plan.title
+							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+								className: "text-xs text-muted-foreground font-medium",
+								children: plan.duration
+							})] }), plan.progress === 100 ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CircleCheck, { className: "w-5 h-5 text-green-500" }) : /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
+								className: "text-sm font-bold text-primary",
+								children: [plan.progress, "%"]
+							})]
+						}),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Progress, {
+							value: plan.progress,
+							className: "h-2 mb-4"
+						}),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
+							variant: plan.progress === 100 ? "outline" : "default",
+							className: "w-full h-10 rounded-xl font-semibold",
+							children: plan.progress === 100 ? "Concluído" : plan.progress === 0 ? "Iniciar Plano" : "Continuar Leitura"
+						})
+					]
+				})
+			}, plan.id))
 		})]
 	});
 }
@@ -31825,805 +27635,98 @@ var NotFound = () => {
 	});
 };
 var NotFound_default = NotFound;
-function useStateMachine(initialState, machine) {
-	return import_react.useReducer((state, event) => {
-		return machine[state][event] ?? state;
-	}, initialState);
-}
-var SCROLL_AREA_NAME = "ScrollArea";
-var [createScrollAreaContext, createScrollAreaScope] = createContextScope(SCROLL_AREA_NAME);
-var [ScrollAreaProvider, useScrollAreaContext] = createScrollAreaContext(SCROLL_AREA_NAME);
-var ScrollArea$1 = import_react.forwardRef((props, forwardedRef) => {
-	const { __scopeScrollArea, type = "hover", dir, scrollHideDelay = 600, ...scrollAreaProps } = props;
-	const [scrollArea, setScrollArea] = import_react.useState(null);
-	const [viewport, setViewport] = import_react.useState(null);
-	const [content, setContent] = import_react.useState(null);
-	const [scrollbarX, setScrollbarX] = import_react.useState(null);
-	const [scrollbarY, setScrollbarY] = import_react.useState(null);
-	const [cornerWidth, setCornerWidth] = import_react.useState(0);
-	const [cornerHeight, setCornerHeight] = import_react.useState(0);
-	const [scrollbarXEnabled, setScrollbarXEnabled] = import_react.useState(false);
-	const [scrollbarYEnabled, setScrollbarYEnabled] = import_react.useState(false);
-	const composedRefs = useComposedRefs(forwardedRef, (node) => setScrollArea(node));
-	const direction = useDirection(dir);
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ScrollAreaProvider, {
-		scope: __scopeScrollArea,
-		type,
-		dir: direction,
-		scrollHideDelay,
-		scrollArea,
-		viewport,
-		onViewportChange: setViewport,
-		content,
-		onContentChange: setContent,
-		scrollbarX,
-		onScrollbarXChange: setScrollbarX,
-		scrollbarXEnabled,
-		onScrollbarXEnabledChange: setScrollbarXEnabled,
-		scrollbarY,
-		onScrollbarYChange: setScrollbarY,
-		scrollbarYEnabled,
-		onScrollbarYEnabledChange: setScrollbarYEnabled,
-		onCornerWidthChange: setCornerWidth,
-		onCornerHeightChange: setCornerHeight,
-		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.div, {
-			dir: direction,
-			...scrollAreaProps,
-			ref: composedRefs,
-			style: {
-				position: "relative",
-				["--radix-scroll-area-corner-width"]: cornerWidth + "px",
-				["--radix-scroll-area-corner-height"]: cornerHeight + "px",
-				...props.style
-			}
-		})
-	});
-});
-ScrollArea$1.displayName = SCROLL_AREA_NAME;
-var VIEWPORT_NAME = "ScrollAreaViewport";
-var ScrollAreaViewport = import_react.forwardRef((props, forwardedRef) => {
-	const { __scopeScrollArea, children, nonce, ...viewportProps } = props;
-	const context = useScrollAreaContext(VIEWPORT_NAME, __scopeScrollArea);
-	const composedRefs = useComposedRefs(forwardedRef, import_react.useRef(null), context.onViewportChange);
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("style", {
-		dangerouslySetInnerHTML: { __html: `[data-radix-scroll-area-viewport]{scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;}[data-radix-scroll-area-viewport]::-webkit-scrollbar{display:none}` },
-		nonce
-	}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.div, {
-		"data-radix-scroll-area-viewport": "",
-		...viewportProps,
-		ref: composedRefs,
-		style: {
-			overflowX: context.scrollbarXEnabled ? "scroll" : "hidden",
-			overflowY: context.scrollbarYEnabled ? "scroll" : "hidden",
-			...props.style
-		},
-		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-			ref: context.onContentChange,
-			style: {
-				minWidth: "100%",
-				display: "table"
-			},
-			children
-		})
-	})] });
-});
-ScrollAreaViewport.displayName = VIEWPORT_NAME;
-var SCROLLBAR_NAME = "ScrollAreaScrollbar";
-var ScrollAreaScrollbar = import_react.forwardRef((props, forwardedRef) => {
-	const { forceMount, ...scrollbarProps } = props;
-	const context = useScrollAreaContext(SCROLLBAR_NAME, props.__scopeScrollArea);
-	const { onScrollbarXEnabledChange, onScrollbarYEnabledChange } = context;
-	const isHorizontal = props.orientation === "horizontal";
-	import_react.useEffect(() => {
-		isHorizontal ? onScrollbarXEnabledChange(true) : onScrollbarYEnabledChange(true);
-		return () => {
-			isHorizontal ? onScrollbarXEnabledChange(false) : onScrollbarYEnabledChange(false);
-		};
-	}, [
-		isHorizontal,
-		onScrollbarXEnabledChange,
-		onScrollbarYEnabledChange
-	]);
-	return context.type === "hover" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ScrollAreaScrollbarHover, {
-		...scrollbarProps,
-		ref: forwardedRef,
-		forceMount
-	}) : context.type === "scroll" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ScrollAreaScrollbarScroll, {
-		...scrollbarProps,
-		ref: forwardedRef,
-		forceMount
-	}) : context.type === "auto" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ScrollAreaScrollbarAuto, {
-		...scrollbarProps,
-		ref: forwardedRef,
-		forceMount
-	}) : context.type === "always" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ScrollAreaScrollbarVisible, {
-		...scrollbarProps,
-		ref: forwardedRef
-	}) : null;
-});
-ScrollAreaScrollbar.displayName = SCROLLBAR_NAME;
-var ScrollAreaScrollbarHover = import_react.forwardRef((props, forwardedRef) => {
-	const { forceMount, ...scrollbarProps } = props;
-	const context = useScrollAreaContext(SCROLLBAR_NAME, props.__scopeScrollArea);
-	const [visible, setVisible] = import_react.useState(false);
-	import_react.useEffect(() => {
-		const scrollArea = context.scrollArea;
-		let hideTimer = 0;
-		if (scrollArea) {
-			const handlePointerEnter = () => {
-				window.clearTimeout(hideTimer);
-				setVisible(true);
-			};
-			const handlePointerLeave = () => {
-				hideTimer = window.setTimeout(() => setVisible(false), context.scrollHideDelay);
-			};
-			scrollArea.addEventListener("pointerenter", handlePointerEnter);
-			scrollArea.addEventListener("pointerleave", handlePointerLeave);
-			return () => {
-				window.clearTimeout(hideTimer);
-				scrollArea.removeEventListener("pointerenter", handlePointerEnter);
-				scrollArea.removeEventListener("pointerleave", handlePointerLeave);
-			};
-		}
-	}, [context.scrollArea, context.scrollHideDelay]);
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Presence, {
-		present: forceMount || visible,
-		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ScrollAreaScrollbarAuto, {
-			"data-state": visible ? "visible" : "hidden",
-			...scrollbarProps,
-			ref: forwardedRef
-		})
-	});
-});
-var ScrollAreaScrollbarScroll = import_react.forwardRef((props, forwardedRef) => {
-	const { forceMount, ...scrollbarProps } = props;
-	const context = useScrollAreaContext(SCROLLBAR_NAME, props.__scopeScrollArea);
-	const isHorizontal = props.orientation === "horizontal";
-	const debounceScrollEnd = useDebounceCallback(() => send("SCROLL_END"), 100);
-	const [state, send] = useStateMachine("hidden", {
-		hidden: { SCROLL: "scrolling" },
-		scrolling: {
-			SCROLL_END: "idle",
-			POINTER_ENTER: "interacting"
-		},
-		interacting: {
-			SCROLL: "interacting",
-			POINTER_LEAVE: "idle"
-		},
-		idle: {
-			HIDE: "hidden",
-			SCROLL: "scrolling",
-			POINTER_ENTER: "interacting"
-		}
-	});
-	import_react.useEffect(() => {
-		if (state === "idle") {
-			const hideTimer = window.setTimeout(() => send("HIDE"), context.scrollHideDelay);
-			return () => window.clearTimeout(hideTimer);
-		}
-	}, [
-		state,
-		context.scrollHideDelay,
-		send
-	]);
-	import_react.useEffect(() => {
-		const viewport = context.viewport;
-		const scrollDirection = isHorizontal ? "scrollLeft" : "scrollTop";
-		if (viewport) {
-			let prevScrollPos = viewport[scrollDirection];
-			const handleScroll$1 = () => {
-				const scrollPos = viewport[scrollDirection];
-				if (prevScrollPos !== scrollPos) {
-					send("SCROLL");
-					debounceScrollEnd();
-				}
-				prevScrollPos = scrollPos;
-			};
-			viewport.addEventListener("scroll", handleScroll$1);
-			return () => viewport.removeEventListener("scroll", handleScroll$1);
-		}
-	}, [
-		context.viewport,
-		isHorizontal,
-		send,
-		debounceScrollEnd
-	]);
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Presence, {
-		present: forceMount || state !== "hidden",
-		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ScrollAreaScrollbarVisible, {
-			"data-state": state === "hidden" ? "hidden" : "visible",
-			...scrollbarProps,
-			ref: forwardedRef,
-			onPointerEnter: composeEventHandlers(props.onPointerEnter, () => send("POINTER_ENTER")),
-			onPointerLeave: composeEventHandlers(props.onPointerLeave, () => send("POINTER_LEAVE"))
-		})
-	});
-});
-var ScrollAreaScrollbarAuto = import_react.forwardRef((props, forwardedRef) => {
-	const context = useScrollAreaContext(SCROLLBAR_NAME, props.__scopeScrollArea);
-	const { forceMount, ...scrollbarProps } = props;
-	const [visible, setVisible] = import_react.useState(false);
-	const isHorizontal = props.orientation === "horizontal";
-	const handleResize = useDebounceCallback(() => {
-		if (context.viewport) {
-			const isOverflowX = context.viewport.offsetWidth < context.viewport.scrollWidth;
-			const isOverflowY = context.viewport.offsetHeight < context.viewport.scrollHeight;
-			setVisible(isHorizontal ? isOverflowX : isOverflowY);
-		}
-	}, 10);
-	useResizeObserver(context.viewport, handleResize);
-	useResizeObserver(context.content, handleResize);
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Presence, {
-		present: forceMount || visible,
-		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ScrollAreaScrollbarVisible, {
-			"data-state": visible ? "visible" : "hidden",
-			...scrollbarProps,
-			ref: forwardedRef
-		})
-	});
-});
-var ScrollAreaScrollbarVisible = import_react.forwardRef((props, forwardedRef) => {
-	const { orientation = "vertical", ...scrollbarProps } = props;
-	const context = useScrollAreaContext(SCROLLBAR_NAME, props.__scopeScrollArea);
-	const thumbRef = import_react.useRef(null);
-	const pointerOffsetRef = import_react.useRef(0);
-	const [sizes, setSizes] = import_react.useState({
-		content: 0,
-		viewport: 0,
-		scrollbar: {
-			size: 0,
-			paddingStart: 0,
-			paddingEnd: 0
-		}
-	});
-	const thumbRatio = getThumbRatio(sizes.viewport, sizes.content);
-	const commonProps = {
-		...scrollbarProps,
-		sizes,
-		onSizesChange: setSizes,
-		hasThumb: Boolean(thumbRatio > 0 && thumbRatio < 1),
-		onThumbChange: (thumb) => thumbRef.current = thumb,
-		onThumbPointerUp: () => pointerOffsetRef.current = 0,
-		onThumbPointerDown: (pointerPos) => pointerOffsetRef.current = pointerPos
-	};
-	function getScrollPosition(pointerPos, dir) {
-		return getScrollPositionFromPointer(pointerPos, pointerOffsetRef.current, sizes, dir);
-	}
-	if (orientation === "horizontal") return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ScrollAreaScrollbarX, {
-		...commonProps,
-		ref: forwardedRef,
-		onThumbPositionChange: () => {
-			if (context.viewport && thumbRef.current) {
-				const scrollPos = context.viewport.scrollLeft;
-				const offset$3 = getThumbOffsetFromScroll(scrollPos, sizes, context.dir);
-				thumbRef.current.style.transform = `translate3d(${offset$3}px, 0, 0)`;
-			}
-		},
-		onWheelScroll: (scrollPos) => {
-			if (context.viewport) context.viewport.scrollLeft = scrollPos;
-		},
-		onDragScroll: (pointerPos) => {
-			if (context.viewport) context.viewport.scrollLeft = getScrollPosition(pointerPos, context.dir);
-		}
-	});
-	if (orientation === "vertical") return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ScrollAreaScrollbarY, {
-		...commonProps,
-		ref: forwardedRef,
-		onThumbPositionChange: () => {
-			if (context.viewport && thumbRef.current) {
-				const scrollPos = context.viewport.scrollTop;
-				const offset$3 = getThumbOffsetFromScroll(scrollPos, sizes);
-				thumbRef.current.style.transform = `translate3d(0, ${offset$3}px, 0)`;
-			}
-		},
-		onWheelScroll: (scrollPos) => {
-			if (context.viewport) context.viewport.scrollTop = scrollPos;
-		},
-		onDragScroll: (pointerPos) => {
-			if (context.viewport) context.viewport.scrollTop = getScrollPosition(pointerPos);
-		}
-	});
-	return null;
-});
-var ScrollAreaScrollbarX = import_react.forwardRef((props, forwardedRef) => {
-	const { sizes, onSizesChange, ...scrollbarProps } = props;
-	const context = useScrollAreaContext(SCROLLBAR_NAME, props.__scopeScrollArea);
-	const [computedStyle, setComputedStyle] = import_react.useState();
-	const ref = import_react.useRef(null);
-	const composeRefs$1 = useComposedRefs(forwardedRef, ref, context.onScrollbarXChange);
-	import_react.useEffect(() => {
-		if (ref.current) setComputedStyle(getComputedStyle(ref.current));
-	}, [ref]);
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ScrollAreaScrollbarImpl, {
-		"data-orientation": "horizontal",
-		...scrollbarProps,
-		ref: composeRefs$1,
-		sizes,
-		style: {
-			bottom: 0,
-			left: context.dir === "rtl" ? "var(--radix-scroll-area-corner-width)" : 0,
-			right: context.dir === "ltr" ? "var(--radix-scroll-area-corner-width)" : 0,
-			["--radix-scroll-area-thumb-width"]: getThumbSize(sizes) + "px",
-			...props.style
-		},
-		onThumbPointerDown: (pointerPos) => props.onThumbPointerDown(pointerPos.x),
-		onDragScroll: (pointerPos) => props.onDragScroll(pointerPos.x),
-		onWheelScroll: (event, maxScrollPos) => {
-			if (context.viewport) {
-				const scrollPos = context.viewport.scrollLeft + event.deltaX;
-				props.onWheelScroll(scrollPos);
-				if (isScrollingWithinScrollbarBounds(scrollPos, maxScrollPos)) event.preventDefault();
-			}
-		},
-		onResize: () => {
-			if (ref.current && context.viewport && computedStyle) onSizesChange({
-				content: context.viewport.scrollWidth,
-				viewport: context.viewport.offsetWidth,
-				scrollbar: {
-					size: ref.current.clientWidth,
-					paddingStart: toInt(computedStyle.paddingLeft),
-					paddingEnd: toInt(computedStyle.paddingRight)
-				}
-			});
-		}
-	});
-});
-var ScrollAreaScrollbarY = import_react.forwardRef((props, forwardedRef) => {
-	const { sizes, onSizesChange, ...scrollbarProps } = props;
-	const context = useScrollAreaContext(SCROLLBAR_NAME, props.__scopeScrollArea);
-	const [computedStyle, setComputedStyle] = import_react.useState();
-	const ref = import_react.useRef(null);
-	const composeRefs$1 = useComposedRefs(forwardedRef, ref, context.onScrollbarYChange);
-	import_react.useEffect(() => {
-		if (ref.current) setComputedStyle(getComputedStyle(ref.current));
-	}, [ref]);
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ScrollAreaScrollbarImpl, {
-		"data-orientation": "vertical",
-		...scrollbarProps,
-		ref: composeRefs$1,
-		sizes,
-		style: {
-			top: 0,
-			right: context.dir === "ltr" ? 0 : void 0,
-			left: context.dir === "rtl" ? 0 : void 0,
-			bottom: "var(--radix-scroll-area-corner-height)",
-			["--radix-scroll-area-thumb-height"]: getThumbSize(sizes) + "px",
-			...props.style
-		},
-		onThumbPointerDown: (pointerPos) => props.onThumbPointerDown(pointerPos.y),
-		onDragScroll: (pointerPos) => props.onDragScroll(pointerPos.y),
-		onWheelScroll: (event, maxScrollPos) => {
-			if (context.viewport) {
-				const scrollPos = context.viewport.scrollTop + event.deltaY;
-				props.onWheelScroll(scrollPos);
-				if (isScrollingWithinScrollbarBounds(scrollPos, maxScrollPos)) event.preventDefault();
-			}
-		},
-		onResize: () => {
-			if (ref.current && context.viewport && computedStyle) onSizesChange({
-				content: context.viewport.scrollHeight,
-				viewport: context.viewport.offsetHeight,
-				scrollbar: {
-					size: ref.current.clientHeight,
-					paddingStart: toInt(computedStyle.paddingTop),
-					paddingEnd: toInt(computedStyle.paddingBottom)
-				}
-			});
-		}
-	});
-});
-var [ScrollbarProvider, useScrollbarContext] = createScrollAreaContext(SCROLLBAR_NAME);
-var ScrollAreaScrollbarImpl = import_react.forwardRef((props, forwardedRef) => {
-	const { __scopeScrollArea, sizes, hasThumb, onThumbChange, onThumbPointerUp, onThumbPointerDown, onThumbPositionChange, onDragScroll, onWheelScroll, onResize, ...scrollbarProps } = props;
-	const context = useScrollAreaContext(SCROLLBAR_NAME, __scopeScrollArea);
-	const [scrollbar, setScrollbar] = import_react.useState(null);
-	const composeRefs$1 = useComposedRefs(forwardedRef, (node) => setScrollbar(node));
-	const rectRef = import_react.useRef(null);
-	const prevWebkitUserSelectRef = import_react.useRef("");
-	const viewport = context.viewport;
-	const maxScrollPos = sizes.content - sizes.viewport;
-	const handleWheelScroll = useCallbackRef(onWheelScroll);
-	const handleThumbPositionChange = useCallbackRef(onThumbPositionChange);
-	const handleResize = useDebounceCallback(onResize, 10);
-	function handleDragScroll(event) {
-		if (rectRef.current) onDragScroll({
-			x: event.clientX - rectRef.current.left,
-			y: event.clientY - rectRef.current.top
-		});
-	}
-	import_react.useEffect(() => {
-		const handleWheel = (event) => {
-			const element = event.target;
-			if (scrollbar?.contains(element)) handleWheelScroll(event, maxScrollPos);
-		};
-		document.addEventListener("wheel", handleWheel, { passive: false });
-		return () => document.removeEventListener("wheel", handleWheel, { passive: false });
-	}, [
-		viewport,
-		scrollbar,
-		maxScrollPos,
-		handleWheelScroll
-	]);
-	import_react.useEffect(handleThumbPositionChange, [sizes, handleThumbPositionChange]);
-	useResizeObserver(scrollbar, handleResize);
-	useResizeObserver(context.content, handleResize);
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ScrollbarProvider, {
-		scope: __scopeScrollArea,
-		scrollbar,
-		hasThumb,
-		onThumbChange: useCallbackRef(onThumbChange),
-		onThumbPointerUp: useCallbackRef(onThumbPointerUp),
-		onThumbPositionChange: handleThumbPositionChange,
-		onThumbPointerDown: useCallbackRef(onThumbPointerDown),
-		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.div, {
-			...scrollbarProps,
-			ref: composeRefs$1,
-			style: {
-				position: "absolute",
-				...scrollbarProps.style
-			},
-			onPointerDown: composeEventHandlers(props.onPointerDown, (event) => {
-				if (event.button === 0) {
-					event.target.setPointerCapture(event.pointerId);
-					rectRef.current = scrollbar.getBoundingClientRect();
-					prevWebkitUserSelectRef.current = document.body.style.webkitUserSelect;
-					document.body.style.webkitUserSelect = "none";
-					if (context.viewport) context.viewport.style.scrollBehavior = "auto";
-					handleDragScroll(event);
-				}
-			}),
-			onPointerMove: composeEventHandlers(props.onPointerMove, handleDragScroll),
-			onPointerUp: composeEventHandlers(props.onPointerUp, (event) => {
-				const element = event.target;
-				if (element.hasPointerCapture(event.pointerId)) element.releasePointerCapture(event.pointerId);
-				document.body.style.webkitUserSelect = prevWebkitUserSelectRef.current;
-				if (context.viewport) context.viewport.style.scrollBehavior = "";
-				rectRef.current = null;
-			})
-		})
-	});
-});
-var THUMB_NAME = "ScrollAreaThumb";
-var ScrollAreaThumb = import_react.forwardRef((props, forwardedRef) => {
-	const { forceMount, ...thumbProps } = props;
-	const scrollbarContext = useScrollbarContext(THUMB_NAME, props.__scopeScrollArea);
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Presence, {
-		present: forceMount || scrollbarContext.hasThumb,
-		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ScrollAreaThumbImpl, {
-			ref: forwardedRef,
-			...thumbProps
-		})
-	});
-});
-var ScrollAreaThumbImpl = import_react.forwardRef((props, forwardedRef) => {
-	const { __scopeScrollArea, style, ...thumbProps } = props;
-	const scrollAreaContext = useScrollAreaContext(THUMB_NAME, __scopeScrollArea);
-	const scrollbarContext = useScrollbarContext(THUMB_NAME, __scopeScrollArea);
-	const { onThumbPositionChange } = scrollbarContext;
-	const composedRef = useComposedRefs(forwardedRef, (node) => scrollbarContext.onThumbChange(node));
-	const removeUnlinkedScrollListenerRef = import_react.useRef(void 0);
-	const debounceScrollEnd = useDebounceCallback(() => {
-		if (removeUnlinkedScrollListenerRef.current) {
-			removeUnlinkedScrollListenerRef.current();
-			removeUnlinkedScrollListenerRef.current = void 0;
-		}
-	}, 100);
-	import_react.useEffect(() => {
-		const viewport = scrollAreaContext.viewport;
-		if (viewport) {
-			const handleScroll$1 = () => {
-				debounceScrollEnd();
-				if (!removeUnlinkedScrollListenerRef.current) {
-					removeUnlinkedScrollListenerRef.current = addUnlinkedScrollListener(viewport, onThumbPositionChange);
-					onThumbPositionChange();
-				}
-			};
-			onThumbPositionChange();
-			viewport.addEventListener("scroll", handleScroll$1);
-			return () => viewport.removeEventListener("scroll", handleScroll$1);
-		}
-	}, [
-		scrollAreaContext.viewport,
-		debounceScrollEnd,
-		onThumbPositionChange
-	]);
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.div, {
-		"data-state": scrollbarContext.hasThumb ? "visible" : "hidden",
-		...thumbProps,
-		ref: composedRef,
-		style: {
-			width: "var(--radix-scroll-area-thumb-width)",
-			height: "var(--radix-scroll-area-thumb-height)",
-			...style
-		},
-		onPointerDownCapture: composeEventHandlers(props.onPointerDownCapture, (event) => {
-			const thumbRect = event.target.getBoundingClientRect();
-			const x$1 = event.clientX - thumbRect.left;
-			const y = event.clientY - thumbRect.top;
-			scrollbarContext.onThumbPointerDown({
-				x: x$1,
-				y
-			});
-		}),
-		onPointerUp: composeEventHandlers(props.onPointerUp, scrollbarContext.onThumbPointerUp)
-	});
-});
-ScrollAreaThumb.displayName = THUMB_NAME;
-var CORNER_NAME = "ScrollAreaCorner";
-var ScrollAreaCorner = import_react.forwardRef((props, forwardedRef) => {
-	const context = useScrollAreaContext(CORNER_NAME, props.__scopeScrollArea);
-	const hasBothScrollbarsVisible = Boolean(context.scrollbarX && context.scrollbarY);
-	return context.type !== "scroll" && hasBothScrollbarsVisible ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ScrollAreaCornerImpl, {
-		...props,
-		ref: forwardedRef
-	}) : null;
-});
-ScrollAreaCorner.displayName = CORNER_NAME;
-var ScrollAreaCornerImpl = import_react.forwardRef((props, forwardedRef) => {
-	const { __scopeScrollArea, ...cornerProps } = props;
-	const context = useScrollAreaContext(CORNER_NAME, __scopeScrollArea);
-	const [width, setWidth] = import_react.useState(0);
-	const [height, setHeight] = import_react.useState(0);
-	const hasSize = Boolean(width && height);
-	useResizeObserver(context.scrollbarX, () => {
-		const height2 = context.scrollbarX?.offsetHeight || 0;
-		context.onCornerHeightChange(height2);
-		setHeight(height2);
-	});
-	useResizeObserver(context.scrollbarY, () => {
-		const width2 = context.scrollbarY?.offsetWidth || 0;
-		context.onCornerWidthChange(width2);
-		setWidth(width2);
-	});
-	return hasSize ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Primitive.div, {
-		...cornerProps,
-		ref: forwardedRef,
-		style: {
-			width,
-			height,
-			position: "absolute",
-			right: context.dir === "ltr" ? 0 : void 0,
-			left: context.dir === "rtl" ? 0 : void 0,
-			bottom: 0,
-			...props.style
-		}
-	}) : null;
-});
-function toInt(value) {
-	return value ? parseInt(value, 10) : 0;
-}
-function getThumbRatio(viewportSize, contentSize) {
-	const ratio = viewportSize / contentSize;
-	return isNaN(ratio) ? 0 : ratio;
-}
-function getThumbSize(sizes) {
-	const ratio = getThumbRatio(sizes.viewport, sizes.content);
-	const scrollbarPadding = sizes.scrollbar.paddingStart + sizes.scrollbar.paddingEnd;
-	const thumbSize = (sizes.scrollbar.size - scrollbarPadding) * ratio;
-	return Math.max(thumbSize, 18);
-}
-function getScrollPositionFromPointer(pointerPos, pointerOffset, sizes, dir = "ltr") {
-	const thumbSizePx = getThumbSize(sizes);
-	const thumbCenter = thumbSizePx / 2;
-	const offset$3 = pointerOffset || thumbCenter;
-	const thumbOffsetFromEnd = thumbSizePx - offset$3;
-	const minPointerPos = sizes.scrollbar.paddingStart + offset$3;
-	const maxPointerPos = sizes.scrollbar.size - sizes.scrollbar.paddingEnd - thumbOffsetFromEnd;
-	const maxScrollPos = sizes.content - sizes.viewport;
-	const scrollRange = dir === "ltr" ? [0, maxScrollPos] : [maxScrollPos * -1, 0];
-	return linearScale([minPointerPos, maxPointerPos], scrollRange)(pointerPos);
-}
-function getThumbOffsetFromScroll(scrollPos, sizes, dir = "ltr") {
-	const thumbSizePx = getThumbSize(sizes);
-	const scrollbarPadding = sizes.scrollbar.paddingStart + sizes.scrollbar.paddingEnd;
-	const scrollbar = sizes.scrollbar.size - scrollbarPadding;
-	const maxScrollPos = sizes.content - sizes.viewport;
-	const maxThumbPos = scrollbar - thumbSizePx;
-	const scrollWithoutMomentum = clamp(scrollPos, dir === "ltr" ? [0, maxScrollPos] : [maxScrollPos * -1, 0]);
-	return linearScale([0, maxScrollPos], [0, maxThumbPos])(scrollWithoutMomentum);
-}
-function linearScale(input, output) {
-	return (value) => {
-		if (input[0] === input[1] || output[0] === output[1]) return output[0];
-		const ratio = (output[1] - output[0]) / (input[1] - input[0]);
-		return output[0] + ratio * (value - input[0]);
-	};
-}
-function isScrollingWithinScrollbarBounds(scrollPos, maxScrollPos) {
-	return scrollPos > 0 && scrollPos < maxScrollPos;
-}
-var addUnlinkedScrollListener = (node, handler = () => {}) => {
-	let prevPosition = {
-		left: node.scrollLeft,
-		top: node.scrollTop
-	};
-	let rAF = 0;
-	(function loop() {
-		const position = {
-			left: node.scrollLeft,
-			top: node.scrollTop
-		};
-		const isHorizontalScroll = prevPosition.left !== position.left;
-		const isVerticalScroll = prevPosition.top !== position.top;
-		if (isHorizontalScroll || isVerticalScroll) handler();
-		prevPosition = position;
-		rAF = window.requestAnimationFrame(loop);
-	})();
-	return () => window.cancelAnimationFrame(rAF);
-};
-function useDebounceCallback(callback, delay) {
-	const handleCallback = useCallbackRef(callback);
-	const debounceTimerRef = import_react.useRef(0);
-	import_react.useEffect(() => () => window.clearTimeout(debounceTimerRef.current), []);
-	return import_react.useCallback(() => {
-		window.clearTimeout(debounceTimerRef.current);
-		debounceTimerRef.current = window.setTimeout(handleCallback, delay);
-	}, [handleCallback, delay]);
-}
-function useResizeObserver(element, onResize) {
-	const handleResize = useCallbackRef(onResize);
-	useLayoutEffect2(() => {
-		let rAF = 0;
-		if (element) {
-			const resizeObserver = new ResizeObserver(() => {
-				cancelAnimationFrame(rAF);
-				rAF = window.requestAnimationFrame(handleResize);
-			});
-			resizeObserver.observe(element);
-			return () => {
-				window.cancelAnimationFrame(rAF);
-				resizeObserver.unobserve(element);
-			};
-		}
-	}, [element, handleResize]);
-}
-var Root = ScrollArea$1;
-var Viewport = ScrollAreaViewport;
-var Corner = ScrollAreaCorner;
-var ScrollArea = import_react.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Root, {
-	ref,
-	className: cn("relative overflow-hidden", className),
-	...props,
+var _1000486575_fd3e2_default = "/assets/1000486575-fd3e2-jj_MBhyP.png";
+var ChurchIcon = ({ className }) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("svg", {
+	xmlns: "http://www.w3.org/2000/svg",
+	viewBox: "0 0 24 24",
+	fill: "none",
+	stroke: "currentColor",
+	strokeWidth: "2",
+	strokeLinecap: "round",
+	strokeLinejoin: "round",
+	className,
 	children: [
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Viewport, {
-			className: "h-full w-full rounded-[inherit]",
-			children
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(ScrollBar, {}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Corner, {})
+		/* @__PURE__ */ (0, import_jsx_runtime.jsx)("path", { d: "M18 22V10a2 2 0 0 0-2-2h-8a2 2 0 0 0-2 2v12" }),
+		/* @__PURE__ */ (0, import_jsx_runtime.jsx)("path", { d: "M12 8v4" }),
+		/* @__PURE__ */ (0, import_jsx_runtime.jsx)("path", { d: "M10 10h4" }),
+		/* @__PURE__ */ (0, import_jsx_runtime.jsx)("path", { d: "m12 2-8 6h16z" }),
+		/* @__PURE__ */ (0, import_jsx_runtime.jsx)("path", { d: "M2 22h20" })
 	]
-}));
-ScrollArea.displayName = Root.displayName;
-var ScrollBar = import_react.forwardRef(({ className, orientation = "vertical", ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ScrollAreaScrollbar, {
-	ref,
-	orientation,
-	className: cn("flex touch-none select-none transition-colors", orientation === "vertical" && "h-full w-2.5 border-l border-l-transparent p-[1px]", orientation === "horizontal" && "h-2.5 flex-col border-t border-t-transparent p-[1px]", className),
-	...props,
-	children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ScrollAreaThumb, { className: "relative flex-1 rounded-full bg-border" })
-}));
-ScrollBar.displayName = ScrollAreaScrollbar.displayName;
-var NAV_ITEMS = [
-	{
-		path: "/",
-		label: "Início",
-		icon: House
-	},
-	{
-		path: "/events",
-		label: "Eventos",
-		icon: Calendar
-	},
-	{
-		path: "/management",
-		label: "Gestão",
-		icon: User
-	}
-];
-var NOTIFICATIONS = [{
-	id: 1,
-	title: "Culto de Celebração",
-	time: "Hoje, 19:00",
-	read: false
-}, {
-	id: 2,
-	title: "Reunião de Liderança",
-	time: "Amanhã, 20:00",
-	read: true
-}];
+});
+var NavItem = ({ to, icon: Icon$2, label, current }) => {
+	const isActive = current === to;
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Link, {
+		to,
+		className: "flex flex-col items-center justify-center w-16 h-14 gap-1 relative group",
+		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+			className: cn("p-1.5 rounded-full transition-colors", isActive ? "bg-muted" : "bg-transparent"),
+			children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Icon$2, { className: cn("w-5 h-5", isActive ? "text-foreground" : "text-muted-foreground") })
+		}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+			className: cn("text-[10px] font-semibold", isActive ? "text-foreground" : "text-muted-foreground"),
+			children: label
+		})]
+	});
+};
 function Layout() {
 	const location = useLocation();
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-		className: "flex h-screen bg-muted/30 dark:bg-zinc-950",
-		children: [
-			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("aside", {
-				className: "hidden md:flex flex-col w-64 border-r bg-background",
-				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-					className: "p-6 flex items-center gap-3",
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
-						src: "https://img.usecurling.com/i?q=cross&color=solid-black&shape=outline",
-						alt: "Logo Igreja Batista",
-						className: "w-8 h-8 dark:invert"
-					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-						className: "font-semibold text-lg tracking-tight",
-						children: "Igreja Batista"
-					})]
-				}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("nav", {
-					className: "flex-1 px-4 space-y-2",
-					children: NAV_ITEMS.map((item) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Link, {
-						to: item.path,
-						className: cn("flex items-center gap-3 px-3 py-2 rounded-md transition-colors", location.pathname === item.path || item.path === "/" && location.pathname === "/bible" ? "bg-primary text-primary-foreground" : "hover:bg-muted"),
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(item.icon, { className: "w-5 h-5" }), item.label]
-					}, item.path))
-				})]
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-				className: "flex-1 flex flex-col min-w-0 overflow-hidden",
-				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("header", {
-					className: "h-16 flex items-center justify-between px-4 border-b bg-background md:justify-end shrink-0",
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-						className: "flex items-center gap-2 md:hidden",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
-							src: "https://img.usecurling.com/i?q=cross&color=solid-black&shape=outline",
-							alt: "Logo",
-							className: "w-7 h-7 dark:invert"
-						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-							className: "font-semibold tracking-tight",
-							children: "Igreja Batista"
-						})]
-					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Popover, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(PopoverTrigger, {
-						asChild: true,
-						children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Button$1, {
-							variant: "ghost",
-							size: "icon",
-							className: "relative hover:bg-muted",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bell, { className: "w-5 h-5" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "absolute top-2 right-2 w-2 h-2 bg-destructive rounded-full" })]
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+		className: "flex h-screen bg-background text-foreground overflow-hidden",
+		children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+			className: "flex-1 flex flex-col min-w-0 h-full relative max-w-md mx-auto border-x shadow-2xl bg-card",
+			children: [
+				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("header", {
+					className: "h-16 flex items-center justify-between px-4 shrink-0 pt-2 z-10 bg-card",
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+						className: "flex flex-col justify-center h-full max-w-[60%]",
+						children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
+							src: _1000486575_fd3e2_default,
+							alt: "Igreja Batista da Palavra",
+							className: "h-8 w-auto object-contain object-left invert mix-blend-multiply dark:invert-0 dark:mix-blend-screen opacity-90"
 						})
-					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(PopoverContent, {
-						align: "end",
-						className: "w-80 p-0",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-							className: "p-4 border-b font-medium bg-muted/30",
-							children: "Notificações"
-						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ScrollArea, {
-							className: "h-[280px]",
-							children: NOTIFICATIONS.map((n) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-								className: cn("p-4 border-b last:border-0 hover:bg-muted/50 cursor-pointer transition-colors", !n.read && "bg-primary/5"),
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-									className: "flex items-start justify-between gap-2",
-									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-										className: "text-sm font-medium leading-tight",
-										children: n.title
-									}), !n.read && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "w-2 h-2 rounded-full bg-primary shrink-0 mt-1" })]
-								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-									className: "text-xs text-muted-foreground mt-1.5",
-									children: n.time
-								})]
-							}, n.id))
-						})]
-					})] })]
-				}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("main", {
-					className: "flex-1 overflow-y-auto p-4 md:p-8 pb-24 md:pb-8 relative",
-					children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-						className: "max-w-4xl mx-auto h-full",
-						children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Outlet, {})
-					})
-				})]
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("nav", {
-				className: "md:hidden fixed bottom-0 w-full border-t bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 flex items-center justify-around h-16 z-50",
-				children: NAV_ITEMS.map((item) => {
-					const isActive = location.pathname === item.path || item.path === "/" && location.pathname === "/bible";
-					return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Link, {
-						to: item.path,
-						className: cn("flex flex-col items-center justify-center w-full h-full space-y-1 transition-colors", isActive ? "text-primary" : "text-muted-foreground hover:text-foreground"),
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(item.icon, { className: cn("w-5 h-5 transition-transform", isActive && "scale-110") }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-							className: "text-[10px] font-medium",
-							children: item.label
-						})]
-					}, item.path);
+					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "flex items-center gap-3 text-muted-foreground shrink-0",
+						children: [
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Settings, { className: "w-5 h-5" }),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bell, { className: "w-5 h-5" }),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CircleUser, { className: "w-6 h-6" })
+						]
+					})]
+				}),
+				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("main", {
+					className: "flex-1 overflow-y-auto pb-28 px-4 relative scrollbar-none",
+					children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Outlet, {})
+				}),
+				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("nav", {
+					className: "absolute bottom-6 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] bg-background/95 backdrop-blur-md rounded-full shadow-[0_8px_30px_rgba(0,0,0,0.12)] border flex items-center justify-between px-2 py-1 z-50",
+					children: [
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(NavItem, {
+							icon: House,
+							label: "Home",
+							to: "/",
+							current: location.pathname
+						}),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(NavItem, {
+							icon: ChurchIcon,
+							label: "Igreja",
+							to: "/igreja",
+							current: location.pathname
+						}),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(NavItem, {
+							icon: MapPin,
+							label: "Campus",
+							to: "/campus",
+							current: location.pathname
+						}),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(NavItem, {
+							icon: LayoutGrid,
+							label: "Menu",
+							to: "/menu",
+							current: location.pathname
+						})
+					]
 				})
-			})
-		]
+			]
+		})
 	});
 }
 var App = () => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(BrowserRouter, {
@@ -32642,16 +27745,24 @@ var App = () => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(BrowserRouter, {
 					element: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Index, {})
 				}),
 				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Route, {
+					path: "/igreja",
+					element: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Church, {})
+				}),
+				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Route, {
+					path: "/campus",
+					element: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Events, {})
+				}),
+				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Route, {
+					path: "/menu",
+					element: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Management, {})
+				}),
+				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Route, {
 					path: "/bible",
 					element: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bible, {})
 				}),
 				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Route, {
-					path: "/events",
-					element: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Events, {})
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Route, {
-					path: "/management",
-					element: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Management, {})
+					path: "/plans",
+					element: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Plans, {})
 				})
 			]
 		}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Route, {
@@ -32663,4 +27774,4 @@ var App = () => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(BrowserRouter, {
 var App_default = App;
 (0, import_client.createRoot)(document.getElementById("root")).render(/* @__PURE__ */ (0, import_jsx_runtime.jsx)(App_default, {}));
 
-//# sourceMappingURL=index-CmVyAKvA.js.map
+//# sourceMappingURL=index-DPWgOza7.js.map

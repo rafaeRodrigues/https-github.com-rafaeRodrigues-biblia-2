@@ -3,9 +3,11 @@ import { Toaster } from '@/components/ui/toaster'
 import { Toaster as Sonner } from '@/components/ui/sonner'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import Index from './pages/Index'
-import Bible from './pages/Bible'
+import Church from './pages/Church'
 import Events from './pages/Events'
 import Management from './pages/Management'
+import Bible from './pages/Bible'
+import Plans from './pages/Plans'
 import NotFound from './pages/NotFound'
 import Layout from './components/Layout'
 
@@ -19,9 +21,11 @@ const App = () => (
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<Index />} />
+          <Route path="/igreja" element={<Church />} />
+          <Route path="/campus" element={<Events />} />
+          <Route path="/menu" element={<Management />} />
           <Route path="/bible" element={<Bible />} />
-          <Route path="/events" element={<Events />} />
-          <Route path="/management" element={<Management />} />
+          <Route path="/plans" element={<Plans />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>

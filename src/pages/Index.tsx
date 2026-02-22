@@ -1,163 +1,119 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-  CardFooter,
-} from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
-import { Textarea } from '@/components/ui/textarea'
-import { Checkbox } from '@/components/ui/checkbox'
-import { Progress } from '@/components/ui/progress'
-import { Label } from '@/components/ui/label'
-import { BookOpen, Send, BookMarked } from 'lucide-react'
 import { Link } from 'react-router-dom'
-import { useToast } from '@/hooks/use-toast'
-import { useState } from 'react'
+import {
+  Calendar,
+  Book,
+  PenTool,
+  BookOpen,
+  LayoutGrid,
+  Users,
+} from 'lucide-react'
+import { Card, CardContent } from '@/components/ui/card'
+
+const DiaryBtn = ({ icon: Icon, label, to }: any) => (
+  <Link to={to} className="flex flex-col items-center gap-2 group">
+    <div className="w-14 h-14 bg-muted/60 rounded-2xl flex items-center justify-center group-hover:bg-primary/10 group-hover:text-primary transition-colors">
+      <Icon className="w-6 h-6 text-foreground/70 group-hover:text-primary" />
+    </div>
+    <span className="text-[11px] font-semibold text-center leading-tight text-muted-foreground group-hover:text-foreground">
+      {label}
+    </span>
+  </Link>
+)
 
 export default function Index() {
-  const { toast } = useToast()
-  const [request, setRequest] = useState('')
-  const [anonymous, setAnonymous] = useState(false)
-
-  const handlePrayerRequest = (e: React.FormEvent) => {
-    e.preventDefault()
-    toast({
-      title: 'Pedido enviado!',
-      description:
-        'Seu pedido de oração foi recebido e estaremos orando por você.',
-    })
-    setRequest('')
-    setAnonymous(false)
-  }
-
   return (
-    <div className="space-y-6 animate-fade-in-up">
-      <div className="flex flex-col gap-1">
-        <h1 className="text-2xl font-bold tracking-tight">Espiritualidade</h1>
-        <p className="text-muted-foreground text-sm">
-          Alimente sua fé e compartilhe seus pedidos de oração.
-        </p>
+    <div className="space-y-8 animate-fade-in-up py-4">
+      {/* Hero / Featured */}
+      <div className="w-full aspect-[4/3] rounded-3xl overflow-hidden relative shadow-sm">
+        <img
+          src="https://img.usecurling.com/p/800/600?q=church%20worship&color=blue"
+          className="w-full h-full object-cover"
+          alt="Culto ao vivo"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-4">
+          <span className="text-white/80 text-xs font-semibold uppercase tracking-wider mb-1">
+            Ao vivo
+          </span>
+          <h2 className="text-white text-xl font-bold leading-tight">
+            Culto de Celebração
+          </h2>
+        </div>
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5">
+          <div className="w-1.5 h-1.5 rounded-full bg-white opacity-100" />
+          <div className="w-1.5 h-1.5 rounded-full bg-white opacity-40" />
+          <div className="w-1.5 h-1.5 rounded-full bg-white opacity-40" />
+        </div>
       </div>
 
-      {/* Verse of the Day */}
-      <Card className="bg-primary/5 border-primary/20 shadow-sm overflow-hidden relative">
-        <div className="absolute top-0 right-0 p-4 opacity-5">
-          <BookOpen className="w-24 h-24" />
+      {/* Programação */}
+      <div className="space-y-3">
+        <div className="flex justify-between items-center px-1">
+          <h2 className="text-[17px] font-bold tracking-tight text-foreground">
+            Programação
+          </h2>
+          <Link to="/campus" className="text-sm font-semibold text-primary">
+            Ver mais
+          </Link>
         </div>
-        <CardHeader className="pb-3">
-          <CardTitle className="text-lg flex items-center gap-2">
-            <BookOpen className="w-5 h-5 text-primary" />
-            Palavra do Dia
-          </CardTitle>
-          <CardDescription className="text-primary/70 font-medium">
-            Salmos 23:1
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <blockquote className="border-l-4 border-primary pl-4 italic text-lg sm:text-xl font-medium mb-4 text-foreground/90 leading-relaxed">
-            "O Senhor é o meu pastor; de nada me faltará."
-          </blockquote>
-          <p className="text-sm text-muted-foreground leading-relaxed">
-            Reflexão: Deus cuida de nós em todos os momentos. Confie na
-            providência divina e descanse no amor do Pai, sabendo que Ele supre
-            todas as nossas necessidades diárias.
-          </p>
-        </CardContent>
-        <CardFooter>
-          <Button
-            asChild
-            variant="outline"
-            className="w-full sm:w-auto hover:bg-primary hover:text-primary-foreground transition-all"
-          >
-            <Link to="/bible">Acessar Bíblia Digital</Link>
-          </Button>
-        </CardFooter>
-      </Card>
+        <div className="flex gap-3 overflow-x-auto pb-2 snap-x snap-mandatory -mx-4 px-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+          <Card className="min-w-[260px] shrink-0 snap-center shadow-none border-muted/60 bg-muted/20">
+            <CardContent className="p-4">
+              <h3 className="font-semibold text-[15px] mb-2">
+                Culto de Celebração
+              </h3>
+              <div className="flex items-center text-sm text-muted-foreground gap-2 font-medium">
+                <Calendar className="w-4 h-4" />
+                28/08/2024 às 19:30
+              </div>
+            </CardContent>
+          </Card>
+          <Card className="min-w-[260px] shrink-0 snap-center shadow-none border-muted/60 bg-muted/20">
+            <CardContent className="p-4">
+              <h3 className="font-semibold text-[15px] mb-2">Escola Bíblica</h3>
+              <div className="flex items-center text-sm text-muted-foreground gap-2 font-medium">
+                <Calendar className="w-4 h-4" />
+                01/09/2024 às 09:00
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Prayer Requests */}
-        <Card className="shadow-sm">
-          <CardHeader>
-            <CardTitle className="text-lg flex items-center gap-2">
-              <Send className="w-5 h-5 text-primary" />
-              Pedidos de Oração
-            </CardTitle>
-            <CardDescription>
-              Compartilhe suas lutas e vitórias com a igreja.
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <form onSubmit={handlePrayerRequest} className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="prayer">Seu pedido</Label>
-                <Textarea
-                  id="prayer"
-                  placeholder="Descreva seu pedido de oração aqui..."
-                  value={request}
-                  onChange={(e) => setRequest(e.target.value)}
-                  className="resize-none min-h-[100px]"
-                  required
-                />
-              </div>
-              <div className="flex items-center space-x-2">
-                <Checkbox
-                  id="anonymous"
-                  checked={anonymous}
-                  onCheckedChange={(c) => setAnonymous(c as boolean)}
-                />
-                <Label
-                  htmlFor="anonymous"
-                  className="font-normal text-sm cursor-pointer"
-                >
-                  Enviar anonimamente
-                </Label>
-              </div>
-              <Button type="submit" className="w-full transition-all">
-                Enviar Pedido
-              </Button>
-            </form>
-          </CardContent>
-        </Card>
+      {/* Diário */}
+      <div className="space-y-4">
+        <h2 className="text-[17px] font-bold tracking-tight text-foreground px-1">
+          Diário
+        </h2>
+        <div className="flex justify-between items-start px-2">
+          <DiaryBtn icon={Book} label="Bíblia" to="/bible" />
+          <DiaryBtn icon={BookOpen} label="Estudos" to="/plans" />
+          <DiaryBtn icon={PenTool} label="Anotações" to="/plans" />
+          <DiaryBtn icon={LayoutGrid} label="Plano de Leitura" to="/plans" />
+        </div>
+      </div>
 
-        {/* Reading Plans */}
-        <Card className="shadow-sm">
-          <CardHeader>
-            <CardTitle className="text-lg flex items-center gap-2">
-              <BookMarked className="w-5 h-5 text-primary" />
-              Planos de Leitura
-            </CardTitle>
-            <CardDescription>
-              Acompanhe seu progresso diário de leitura bíblica.
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-6">
-            <div className="space-y-2.5">
-              <div className="flex justify-between text-sm">
-                <span className="font-medium">Jornada da Fé (30 dias)</span>
-                <span className="text-primary font-semibold">40%</span>
-              </div>
-              <Progress value={40} className="h-2" />
+      {/* Células */}
+      <div className="space-y-3">
+        <div className="flex justify-between items-center px-1">
+          <h2 className="text-[17px] font-bold tracking-tight text-foreground">
+            Células
+          </h2>
+          <Link to="/campus" className="text-sm font-semibold text-primary">
+            Ver mais
+          </Link>
+        </div>
+        <Card className="shadow-none border-muted/60 bg-primary/5">
+          <CardContent className="p-4 flex items-center gap-4">
+            <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+              <Users className="w-6 h-6 text-primary" />
             </div>
-            <div className="space-y-2.5">
-              <div className="flex justify-between text-sm">
-                <span className="font-medium">
-                  Restauração Familiar (15 dias)
-                </span>
-                <span className="text-primary font-semibold">10%</span>
-              </div>
-              <Progress value={10} className="h-2" />
+            <div>
+              <h3 className="font-semibold text-[15px]">Encontre uma Célula</h3>
+              <p className="text-sm text-muted-foreground">
+                Conecte-se com pessoas perto de você.
+              </p>
             </div>
           </CardContent>
-          <CardFooter>
-            <Button
-              variant="ghost"
-              className="w-full text-primary hover:text-primary hover:bg-primary/5"
-            >
-              Explorar mais planos
-            </Button>
-          </CardFooter>
         </Card>
       </div>
     </div>
