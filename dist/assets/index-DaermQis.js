@@ -27034,10 +27034,10 @@ function Management() {
 			className: "flex flex-col gap-1 px-1",
 			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h1", {
 				className: "text-2xl font-bold tracking-tight",
-				children: "Menu"
+				children: "Gestão"
 			}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 				className: "text-muted-foreground text-sm",
-				children: "Gestão, contribuições e secretaria."
+				children: "Módulo de Contribuição e Gestão."
 			})]
 		}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Tabs, {
 			defaultValue: "contribuicao",
@@ -27072,7 +27072,7 @@ function Management() {
 							className: "pb-4",
 							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardTitle, {
 								className: "text-[17px] flex items-center gap-2",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Heart, { className: "w-5 h-5 text-primary" }), "PIX"]
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Heart, { className: "w-5 h-5 text-primary" }), "Dízimos e Ofertas via PIX"]
 							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardDescription, { children: "Dízimos e ofertas instantâneos." })]
 						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardContent, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 							className: "flex gap-2",
@@ -27154,7 +27154,7 @@ function Management() {
 							className: "pb-4",
 							children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardTitle, {
 								className: "text-[17px] flex items-center gap-2",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(User, { className: "w-5 h-5 text-primary" }), "Meus Dados"]
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(User, { className: "w-5 h-5 text-primary" }), "Cadastro de Membros"]
 							})
 						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardContent, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("form", {
 							onSubmit: handleSave,
@@ -27210,12 +27210,12 @@ function Management() {
 					className: "space-y-4 mt-6",
 					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Card, {
 						className: "shadow-none border-muted/60",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardHeader, {
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardHeader, {
 							className: "pb-4",
-							children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardTitle, {
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardTitle, {
 								className: "text-[17px] flex items-center gap-2",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(FileText, { className: "w-5 h-5 text-primary" }), "Solicitar Documentos"]
-							})
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(FileText, { className: "w-5 h-5 text-primary" }), "Secretaria Virtual"]
+							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardDescription, { children: "Solicitar documentos e agendamentos." })]
 						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardContent, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("form", {
 							onSubmit: handleSave,
 							className: "space-y-4",
@@ -27719,8 +27719,8 @@ function Layout() {
 						}),
 						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(NavItem, {
 							icon: LayoutGrid,
-							label: "Menu",
-							to: "/menu",
+							label: "Gestão",
+							to: "/management",
 							current: location.pathname
 						})
 					]
@@ -27753,7 +27753,7 @@ var App = () => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(BrowserRouter, {
 					element: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Events, {})
 				}),
 				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Route, {
-					path: "/menu",
+					path: "/management",
 					element: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Management, {})
 				}),
 				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Route, {
@@ -27774,4 +27774,4 @@ var App = () => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(BrowserRouter, {
 var App_default = App;
 (0, import_client.createRoot)(document.getElementById("root")).render(/* @__PURE__ */ (0, import_jsx_runtime.jsx)(App_default, {}));
 
-//# sourceMappingURL=index-DPWgOza7.js.map
+//# sourceMappingURL=index-DaermQis.js.map

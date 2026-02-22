@@ -47,9 +47,9 @@ export default function Management() {
   return (
     <div className="space-y-6 animate-fade-in-up py-4">
       <div className="flex flex-col gap-1 px-1">
-        <h1 className="text-2xl font-bold tracking-tight">Menu</h1>
+        <h1 className="text-2xl font-bold tracking-tight">Gestão</h1>
         <p className="text-muted-foreground text-sm">
-          Gestão, contribuições e secretaria.
+          Módulo de Contribuição e Gestão.
         </p>
       </div>
 
@@ -81,7 +81,7 @@ export default function Management() {
             <CardHeader className="pb-4">
               <CardTitle className="text-[17px] flex items-center gap-2">
                 <Heart className="w-5 h-5 text-primary" />
-                PIX
+                Dízimos e Ofertas via PIX
               </CardTitle>
               <CardDescription>Dízimos e ofertas instantâneos.</CardDescription>
             </CardHeader>
@@ -166,7 +166,7 @@ export default function Management() {
             <CardHeader className="pb-4">
               <CardTitle className="text-[17px] flex items-center gap-2">
                 <User className="w-5 h-5 text-primary" />
-                Meus Dados
+                Cadastro de Membros
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -225,8 +225,11 @@ export default function Management() {
             <CardHeader className="pb-4">
               <CardTitle className="text-[17px] flex items-center gap-2">
                 <FileText className="w-5 h-5 text-primary" />
-                Solicitar Documentos
+                Secretaria Virtual
               </CardTitle>
+              <CardDescription>
+                Solicitar documentos e agendamentos.
+              </CardDescription>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSave} className="space-y-4">

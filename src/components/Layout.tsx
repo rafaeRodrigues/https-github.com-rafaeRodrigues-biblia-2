@@ -110,8 +110,8 @@ export default function Layout() {
           />
           <NavItem
             icon={LayoutGrid}
-            label="Menu"
-            to="/menu"
+            label="Gestão"
+            to="/management"
             current={location.pathname}
           />
         </nav>
