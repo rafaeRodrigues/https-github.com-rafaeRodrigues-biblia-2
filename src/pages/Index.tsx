@@ -11,10 +11,10 @@ import { Card, CardContent } from '@/components/ui/card'
 
 const DiaryBtn = ({ icon: Icon, label, to }: any) => (
   <Link to={to} className="flex flex-col items-center gap-2 group">
-    <div className="w-14 h-14 bg-muted/60 rounded-2xl flex items-center justify-center group-hover:bg-primary/10 group-hover:text-primary transition-colors">
-      <Icon className="w-6 h-6 text-foreground/70 group-hover:text-primary" />
+    <div className="w-14 h-14 bg-muted/60 rounded-2xl flex items-center justify-center group-hover:bg-primary/10 group-hover:text-primary transition-colors duration-300">
+      <Icon className="w-6 h-6 text-foreground/70 group-hover:text-primary transition-colors duration-300" />
     </div>
-    <span className="text-[11px] font-semibold text-center leading-tight text-muted-foreground group-hover:text-foreground">
+    <span className="text-[11px] font-semibold text-center leading-tight text-muted-foreground group-hover:text-foreground transition-colors duration-300">
       {label}
     </span>
   </Link>
@@ -104,7 +104,7 @@ export default function Index() {
         </div>
         <Card className="shadow-none border-muted/60 bg-primary/5">
           <CardContent className="p-4 flex items-center gap-4">
-            <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+            <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0 transition-colors duration-300">
               <Users className="w-6 h-6 text-primary" />
             </div>
             <div>

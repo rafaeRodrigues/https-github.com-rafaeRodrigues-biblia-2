@@ -73,25 +73,25 @@ export default function Login() {
   }
 
   return (
-    <div className="min-h-screen w-full flex flex-col bg-background text-foreground relative overflow-hidden font-sans">
+    <div className="min-h-screen w-full flex flex-col bg-background text-foreground relative overflow-hidden font-sans transition-colors duration-300">
       <div className="absolute top-6 right-6 z-50">
-        <ThemeToggle className="bg-card/20 backdrop-blur-md shadow-sm border border-white/10 text-white" />
+        <ThemeToggle className="bg-white/10 backdrop-blur-md shadow-sm border border-white/20 text-white hover:bg-white/20 transition-colors duration-300" />
       </div>
 
       {/* Header */}
-      <div className="relative w-full h-[38vh] min-h-[300px] bg-[#09090b] flex flex-col items-center justify-center shrink-0">
+      <div className="relative w-full h-[38vh] min-h-[300px] bg-zinc-950 dark:bg-black flex flex-col items-center justify-center shrink-0 transition-colors duration-300">
         <HeaderPattern />
 
         <div className="relative z-10 flex flex-col items-center justify-center w-full px-8 pb-10 animate-fade-in-down">
           <img
             src={logoUrl}
             alt="Logo Igreja"
-            className="w-56 h-auto max-h-32 object-contain invert"
+            className="w-56 h-auto max-h-32 object-contain mix-blend-screen opacity-90 transition-all duration-300"
           />
         </div>
 
         <svg
-          className="absolute bottom-0 w-full h-16 text-background translate-y-[1px] z-20"
+          className="absolute bottom-0 w-full h-16 text-background translate-y-[1px] z-20 transition-colors duration-300"
           preserveAspectRatio="none"
           viewBox="0 0 100 100"
           fill="currentColor"
@@ -101,7 +101,7 @@ export default function Login() {
       </div>
 
       {/* Body */}
-      <div className="flex-1 px-8 pt-4 pb-8 flex flex-col z-10 bg-background overflow-y-auto scrollbar-none">
+      <div className="flex-1 px-8 pt-4 pb-8 flex flex-col z-10 bg-background overflow-y-auto scrollbar-none transition-colors duration-300">
         <div className="animate-fade-in-up flex-1 flex flex-col w-full max-w-sm mx-auto">
           <h2 className="text-[28px] font-semibold text-center mb-8 tracking-tight text-foreground">
             Login
@@ -160,7 +160,7 @@ export default function Login() {
             >
               <Button
                 type="submit"
-                className="w-full h-14 rounded-2xl font-bold text-[15px] bg-[#09090b] hover:bg-[#27272a] text-white dark:bg-white dark:hover:bg-gray-200 dark:text-black shadow-lg transition-all active:scale-[0.98]"
+                className="w-full h-14 rounded-2xl font-bold text-[15px] shadow-lg transition-all active:scale-[0.98]"
                 disabled={isLoading}
               >
                 {isLoading ? (

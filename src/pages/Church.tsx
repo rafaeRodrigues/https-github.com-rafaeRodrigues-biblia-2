@@ -79,7 +79,7 @@ export default function Church() {
                 placeholder="Descreva seu pedido aqui..."
                 value={request}
                 onChange={(e) => setRequest(e.target.value)}
-                className="resize-none min-h-[120px] bg-muted/20"
+                className="resize-none min-h-[120px] bg-muted/20 transition-colors duration-300"
                 required
               />
             </div>

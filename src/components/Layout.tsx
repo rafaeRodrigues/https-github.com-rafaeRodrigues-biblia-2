@@ -32,20 +32,20 @@ const NavItem = ({ to, icon: Icon, label, current }: any) => {
     >
       <div
         className={cn(
-          'p-1.5 rounded-full transition-colors',
+          'p-1.5 rounded-full transition-colors duration-300',
           isActive ? 'bg-muted' : 'bg-transparent',
         )}
       >
         <Icon
           className={cn(
-            'w-5 h-5',
+            'w-5 h-5 transition-colors duration-300',
             isActive ? 'text-foreground' : 'text-muted-foreground',
           )}
         />
       </div>
       <span
         className={cn(
-          'text-[10px] font-semibold',
+          'text-[10px] font-semibold transition-colors duration-300',
           isActive ? 'text-foreground' : 'text-muted-foreground',
         )}
       >
@@ -59,24 +59,24 @@ export default function Layout() {
   const location = useLocation()
 
   return (
-    <div className="flex h-screen bg-background text-foreground overflow-hidden">
-      <div className="flex-1 flex flex-col min-w-0 h-full relative max-w-md mx-auto border-x shadow-2xl bg-card">
+    <div className="flex h-screen bg-background text-foreground overflow-hidden transition-colors duration-300">
+      <div className="flex-1 flex flex-col min-w-0 h-full relative max-w-md mx-auto border-x shadow-2xl bg-card transition-colors duration-300">
         {/* Header */}
-        <header className="h-16 flex items-center justify-between px-4 shrink-0 pt-2 z-10 bg-card">
+        <header className="h-16 flex items-center justify-between px-4 shrink-0 pt-2 z-10 bg-card transition-colors duration-300">
           <div className="flex flex-col justify-center h-full max-w-[60%]">
             <img
               src={logoUrl}
               alt="Igreja Batista da Palavra"
-              className="h-8 w-auto object-contain object-left invert mix-blend-multiply dark:invert-0 dark:mix-blend-screen opacity-90"
+              className="h-8 w-auto object-contain object-left invert mix-blend-multiply dark:invert-0 dark:mix-blend-screen opacity-90 transition-all duration-300"
             />
           </div>
           <div className="flex items-center gap-1 text-muted-foreground shrink-0">
             <ThemeToggle className="w-9 h-9" />
-            <div className="w-9 h-9 flex items-center justify-center hover:bg-muted rounded-full cursor-pointer transition-colors">
+            <div className="w-9 h-9 flex items-center justify-center hover:bg-muted rounded-full cursor-pointer transition-colors duration-300">
               <Bell className="w-5 h-5" />
             </div>
-            <div className="w-9 h-9 flex items-center justify-center hover:bg-muted rounded-full cursor-pointer transition-colors">
-              <UserCircle className="w-6 h-6 text-foreground/80" />
+            <div className="w-9 h-9 flex items-center justify-center hover:bg-muted rounded-full cursor-pointer transition-colors duration-300">
+              <UserCircle className="w-6 h-6 text-foreground/80 transition-colors duration-300" />
             </div>
           </div>
         </header>
@@ -87,7 +87,7 @@ export default function Layout() {
         </main>
 
         {/* Bottom Nav */}
-        <nav className="absolute bottom-6 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] bg-background/95 backdrop-blur-md rounded-full shadow-[0_8px_30px_rgba(0,0,0,0.12)] border flex items-center justify-between px-2 py-1 z-50">
+        <nav className="absolute bottom-6 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] bg-background/95 backdrop-blur-md rounded-full shadow-[0_8px_30px_rgba(0,0,0,0.12)] border flex items-center justify-between px-2 py-1 z-50 transition-colors duration-300">
           <NavItem
             icon={Home}
             label="Home"

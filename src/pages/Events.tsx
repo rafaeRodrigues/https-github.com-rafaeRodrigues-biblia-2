@@ -61,7 +61,7 @@ export default function Events() {
               className="shadow-none border-muted/60 overflow-hidden"
             >
               <div className="flex items-stretch">
-                <div className="w-20 bg-primary/5 border-r border-primary/10 flex flex-col items-center justify-center shrink-0 py-3">
+                <div className="w-20 bg-primary/5 border-r border-primary/10 flex flex-col items-center justify-center shrink-0 py-3 transition-colors duration-300">
                   <span className="font-bold text-xl leading-none text-primary">
                     {event.date.split(' ')[0]}
                   </span>
