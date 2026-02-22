@@ -197,7 +197,7 @@ export default function Index() {
         <div className="flex justify-between items-start px-2">
           <DiaryBtn icon={Book} label="Bíblia" to="/bible" />
           <DiaryBtn icon={BookOpen} label="Estudos" to="/plans" />
-          <DiaryBtn icon={PenTool} label="Anotações" to="/plans" />
+          <DiaryBtn icon={PenTool} label="Anotações" to="/notes" />
           <DiaryBtn icon={LayoutGrid} label="Leitura" to="/plans" />
         </div>
       </div>

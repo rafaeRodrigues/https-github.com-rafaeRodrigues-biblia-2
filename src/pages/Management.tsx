@@ -28,11 +28,13 @@ import {
 import { useState } from 'react'
 import { useToast } from '@/hooks/use-toast'
 import { useNavigate } from 'react-router-dom'
+import { useAuth } from '@/hooks/use-auth'
 
 export default function Management() {
   const { toast } = useToast()
   const navigate = useNavigate()
-  const [copied, setCopied] = useState(false)
+  const { signOut } = useAuth()
+  const [, setCopied] = useState(false)
 
   const handleCopyPix = () => {
     navigator.clipboard.writeText('00.000.000/0001-00')
@@ -46,8 +48,8 @@ export default function Management() {
     toast({ title: 'Sucesso', description: 'Operação realizada com sucesso.' })
   }
 
-  const handleLogout = () => {
-    localStorage.removeItem('auth')
+  const handleLogout = async () => {
+    await signOut()
     toast({
       title: 'Sessão encerrada',
       description: 'Você saiu da sua conta com sucesso.',
@@ -86,15 +88,12 @@ export default function Management() {
           </TabsTrigger>
         </TabsList>
 
-        {/* CONTRIBUIÇÃO */}
         <TabsContent value="contribuicao" className="space-y-4 mt-6">
           <Card className="shadow-none border-muted/60">
             <CardHeader className="pb-4">
               <CardTitle className="text-[17px] flex items-center gap-2">
-                <Heart className="w-5 h-5 text-primary" />
-                Dízimos e Ofertas via PIX
+                <Heart className="w-5 h-5 text-primary" /> PIX
               </CardTitle>
-              <CardDescription>Dízimos e ofertas instantâneos.</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="flex gap-2">
@@ -117,33 +116,23 @@ export default function Management() {
           <Card className="shadow-none border-muted/60">
             <CardHeader className="pb-4">
               <CardTitle className="text-[17px] flex items-center gap-2">
-                <CreditCard className="w-5 h-5 text-primary" />
-                Cartão de Crédito
+                <CreditCard className="w-5 h-5 text-primary" /> Cartão
               </CardTitle>
             </CardHeader>
             <CardContent>
               <form className="space-y-4" onSubmit={handleSave}>
                 <div className="space-y-2">
-                  <Label>Número do Cartão</Label>
-                  <Input
-                    placeholder="0000 0000 0000 0000"
-                    className="bg-muted/20 h-12"
-                    required
-                  />
+                  <Label>Cartão</Label>
+                  <Input className="bg-muted/20 h-12" required />
                 </div>
                 <div className="grid grid-cols-2 gap-3">
                   <div className="space-y-2">
                     <Label>Validade</Label>
-                    <Input
-                      placeholder="MM/AA"
-                      className="bg-muted/20 h-12"
-                      required
-                    />
+                    <Input className="bg-muted/20 h-12" required />
                   </div>
                   <div className="space-y-2">
                     <Label>CVV</Label>
                     <Input
-                      placeholder="123"
                       type="password"
                       maxLength={4}
                       className="bg-muted/20 h-12"
@@ -152,17 +141,16 @@ export default function Management() {
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <Label>Valor (R$)</Label>
+                  <Label>Valor</Label>
                   <Input
-                    placeholder="0,00"
                     type="number"
-                    className="bg-muted/20 h-12 font-semibold text-lg"
+                    className="bg-muted/20 h-12 text-lg"
                     required
                   />
                 </div>
                 <Button
                   type="submit"
-                  className="w-full h-12 rounded-xl font-semibold mt-2"
+                  className="w-full h-12 rounded-xl font-semibold"
                 >
                   Contribuir
                 </Button>
@@ -171,51 +159,28 @@ export default function Management() {
           </Card>
         </TabsContent>
 
-        {/* PERFIL */}
         <TabsContent value="perfil" className="space-y-4 mt-6">
           <Card className="shadow-none border-muted/60">
             <CardHeader className="pb-4">
               <CardTitle className="text-[17px] flex items-center gap-2">
-                <User className="w-5 h-5 text-primary" />
-                Cadastro de Membros
+                <User className="w-5 h-5 text-primary" /> Perfil
               </CardTitle>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSave} className="space-y-4">
                 <div className="space-y-2">
-                  <Label>Nome Completo</Label>
-                  <Input
-                    defaultValue="João da Silva"
-                    className="bg-muted/20 h-12"
-                    required
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label>E-mail</Label>
-                  <Input
-                    type="email"
-                    defaultValue="joao@email.com"
-                    className="bg-muted/20 h-12"
-                    required
-                  />
+                  <Label>Nome</Label>
+                  <Input className="bg-muted/20 h-12" required />
                 </div>
                 <div className="space-y-2">
                   <Label>WhatsApp</Label>
-                  <Input
-                    defaultValue="(11) 99999-9999"
-                    className="bg-muted/20 h-12"
-                    required
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label>Data de Batismo</Label>
-                  <Input type="date" className="bg-muted/20 h-12" />
+                  <Input className="bg-muted/20 h-12" required />
                 </div>
                 <Button
                   type="submit"
-                  className="w-full h-12 rounded-xl font-semibold mt-2"
+                  className="w-full h-12 rounded-xl font-semibold"
                 >
-                  Salvar Perfil
+                  Salvar
                 </Button>
               </form>
             </CardContent>
@@ -224,46 +189,30 @@ export default function Management() {
           <Button
             onClick={handleLogout}
             variant="ghost"
-            className="w-full text-destructive hover:bg-destructive/10 hover:text-destructive h-12"
+            className="w-full text-destructive hover:bg-destructive/10 h-12"
           >
-            <LogOut className="w-5 h-5 mr-2" />
-            Sair da Conta
+            <LogOut className="w-5 h-5 mr-2" /> Sair da Conta
           </Button>
         </TabsContent>
 
-        {/* SECRETARIA */}
         <TabsContent value="secretaria" className="space-y-4 mt-6">
           <Card className="shadow-none border-muted/60">
             <CardHeader className="pb-4">
               <CardTitle className="text-[17px] flex items-center gap-2">
-                <FileText className="w-5 h-5 text-primary" />
-                Secretaria Virtual
+                <FileText className="w-5 h-5 text-primary" /> Documentos
               </CardTitle>
-              <CardDescription>
-                Solicitar documentos e agendamentos.
-              </CardDescription>
+              <CardDescription>Solicitar documentos.</CardDescription>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSave} className="space-y-4">
-                <div className="space-y-2">
-                  <Label>Tipo de Documento</Label>
-                  <Select required>
-                    <SelectTrigger className="h-12 bg-muted/20">
-                      <SelectValue placeholder="Selecione..." />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="membro">
-                        Certificado de Membro
-                      </SelectItem>
-                      <SelectItem value="batismo">
-                        Certificado de Batismo
-                      </SelectItem>
-                      <SelectItem value="recomendacao">
-                        Carta de Recomendação
-                      </SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
+                <Select required>
+                  <SelectTrigger className="h-12 bg-muted/20">
+                    <SelectValue placeholder="Selecione..." />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="membro">Membro</SelectItem>
+                  </SelectContent>
+                </Select>
                 <Button
                   type="submit"
                   className="w-full h-12 rounded-xl font-semibold"
@@ -277,29 +226,20 @@ export default function Management() {
           <Card className="shadow-none border-muted/60">
             <CardHeader className="pb-4">
               <CardTitle className="text-[17px] flex items-center gap-2">
-                <CalendarIcon className="w-5 h-5 text-primary" />
-                Atendimento Pastoral
+                <CalendarIcon className="w-5 h-5 text-primary" /> Atendimento
               </CardTitle>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSave} className="space-y-4">
-                <div className="space-y-2">
-                  <Label>Data Preferencial</Label>
-                  <Input type="date" className="bg-muted/20 h-12" required />
-                </div>
-                <div className="space-y-2">
-                  <Label>Período</Label>
-                  <Select required>
-                    <SelectTrigger className="h-12 bg-muted/20">
-                      <SelectValue placeholder="Selecione o turno..." />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="manha">Manhã</SelectItem>
-                      <SelectItem value="tarde">Tarde</SelectItem>
-                      <SelectItem value="noite">Noite</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
+                <Input type="date" className="bg-muted/20 h-12" required />
+                <Select required>
+                  <SelectTrigger className="h-12 bg-muted/20">
+                    <SelectValue placeholder="Turno" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="manha">Manhã</SelectItem>
+                  </SelectContent>
+                </Select>
                 <Button
                   type="submit"
                   variant="secondary"
