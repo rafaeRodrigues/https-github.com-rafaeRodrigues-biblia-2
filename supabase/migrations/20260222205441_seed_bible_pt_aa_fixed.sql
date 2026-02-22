@@ -21,7 +21,8 @@ BEGIN
     response := extensions.http_get('https://raw.githubusercontent.com/thiagobodruk/bible/master/json/pt_aa.json');
     
     IF response.status = 200 THEN
-        bible_data := response.content::jsonb;
+        -- Safely trim BOM (Byte Order Mark) and whitespaces before casting to JSONB
+        bible_data := trim(both e'\r\n\t ' || chr(65279) from response.content)::jsonb;
         
         -- Iterate over all books
         FOR book_record IN SELECT * FROM jsonb_array_elements(bible_data)
