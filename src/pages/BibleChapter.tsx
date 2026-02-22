@@ -131,8 +131,7 @@ export default function BibleChapter() {
               Versículos não encontrados
             </p>
             <p className="text-sm opacity-80 max-w-[250px] mx-auto">
-              A base de dados de demonstração inclui apenas o primeiro capítulo
-              de Gênesis e João.
+              Nenhum versículo disponível para este capítulo no momento. A base de dados pode estar sincronizando.
             </p>
           </div>
         )}

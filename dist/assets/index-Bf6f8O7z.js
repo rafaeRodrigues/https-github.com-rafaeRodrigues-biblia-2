@@ -37522,7 +37522,7 @@ function BibleChapter() {
 						children: "Versículos não encontrados"
 					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 						className: "text-sm opacity-80 max-w-[250px] mx-auto",
-						children: "A base de dados de demonstração inclui apenas o primeiro capítulo de Gênesis e João."
+						children: "Nenhum versículo disponível para este capítulo no momento. A base de dados pode estar sincronizando."
 					})]
 				})
 			}),
@@ -39002,4 +39002,4 @@ var App = () => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AuthProvider, { chil
 var App_default = App;
 (0, import_client.createRoot)(document.getElementById("root")).render(/* @__PURE__ */ (0, import_jsx_runtime.jsx)(App_default, {}));
 
-//# sourceMappingURL=index-BKDERxvr.js.map
+//# sourceMappingURL=index-Bf6f8O7z.js.map
