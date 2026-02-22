@@ -793,8 +793,8 @@ section[aria-label='Notifications alt+T'] {
 .hidden{
   display: none;
 }
-.aspect-\[4\/5\]{
-  aspect-ratio: 4/5;
+.aspect-\[16\/10\]{
+  aspect-ratio: 16/10;
 }
 .size-4{
   width: 1rem;
@@ -3226,9 +3226,6 @@ section[aria-label='Notifications alt+T'] {
   .sm\:flex{
     display: flex;
   }
-  .sm\:aspect-\[4\/3\]{
-    aspect-ratio: 4/3;
-  }
   .sm\:max-w-sm{
     max-width: 24rem;
   }
@@ -3308,6 +3305,11 @@ section[aria-label='Notifications alt+T'] {
     --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
     --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  }
+}
+@media (min-width: 1024px){
+  .lg\:aspect-\[21\/9\]{
+    aspect-ratio: 21/9;
   }
 }
 .\[\&\:\:-webkit-scrollbar\]\:hidden::-webkit-scrollbar{

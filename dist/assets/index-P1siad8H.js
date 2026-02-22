@@ -26031,7 +26031,7 @@ function Index() {
 					className: "w-full",
 					opts: { loop: true },
 					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-						className: "overflow-hidden rounded-3xl aspect-[4/5] sm:aspect-[4/3] shadow-md relative border border-border bg-card",
+						className: "overflow-hidden rounded-3xl aspect-[16/10] sm:aspect-video lg:aspect-[21/9] shadow-md relative border border-border bg-card transition-all duration-300",
 						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CarouselContent, {
 							className: "h-full ml-0",
 							children: carouselImages.map((img) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CarouselItem, {
@@ -30187,4 +30187,4 @@ var App = () => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ThemeProvider, {
 var App_default = App;
 (0, import_client.createRoot)(document.getElementById("root")).render(/* @__PURE__ */ (0, import_jsx_runtime.jsx)(App_default, {}));
 
-//# sourceMappingURL=index-Cw0NhuQq.js.map
+//# sourceMappingURL=index-P1siad8H.js.map

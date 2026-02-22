@@ -82,7 +82,7 @@ export default function Index() {
           className="w-full"
           opts={{ loop: true }}
         >
-          <div className="overflow-hidden rounded-3xl aspect-[4/5] sm:aspect-[4/3] shadow-md relative border border-border bg-card">
+          <div className="overflow-hidden rounded-3xl aspect-[16/10] sm:aspect-video lg:aspect-[21/9] shadow-md relative border border-border bg-card transition-all duration-300">
             <CarouselContent className="h-full ml-0">
               {carouselImages.map((img) => (
                 <CarouselItem key={img.id} className="h-full pl-0 relative">
