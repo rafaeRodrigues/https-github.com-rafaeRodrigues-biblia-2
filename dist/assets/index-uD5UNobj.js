@@ -19424,6 +19424,13 @@ var X = createLucideIcon("x", [["path", {
 	d: "m6 6 12 12",
 	key: "d8bk6v"
 }]]);
+var Youtube = createLucideIcon("youtube", [["path", {
+	d: "M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17",
+	key: "1q2vi4"
+}], ["path", {
+	d: "m10 15 5-3-5-3z",
+	key: "1jp15x"
+}]]);
 var CLASS_PART_SEPARATOR = "-";
 var createClassGroupUtils = (config) => {
 	const classMap = createClassMap(config);
@@ -34830,28 +34837,47 @@ function Events() {
 					value: "media",
 					className: "space-y-6 mt-6",
 					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-						className: "space-y-3",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
-							className: "font-bold px-1",
-							children: "Transmissão ao Vivo"
-						}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Card, {
-							className: "border-none shadow-md overflow-hidden relative group cursor-pointer rounded-2xl",
-							children: [
-								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
-									src: "https://img.usecurling.com/p/800/450?q=church%20worship",
-									className: "w-full aspect-video object-cover",
-									alt: "Live"
-								}),
-								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-									className: "absolute inset-0 bg-black/40 flex items-center justify-center",
-									children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CirclePlay, { className: "w-14 h-14 text-white opacity-90 group-hover:scale-110 transition-transform" })
-								}),
-								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-									className: "absolute bottom-3 left-3 bg-red-600/90 text-white text-[11px] font-bold px-2 py-1 rounded-md uppercase tracking-wider flex items-center gap-1.5",
-									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "w-1.5 h-1.5 bg-white rounded-full animate-pulse" }), "Ao Vivo"]
+						className: "space-y-4",
+						children: [
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
+								className: "font-bold px-1",
+								children: "Transmissão ao Vivo"
+							}),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("a", {
+								href: "https://www.youtube.com/@ibpalavra/featured",
+								target: "_blank",
+								rel: "noopener noreferrer",
+								className: "block",
+								children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Card, {
+									className: "border-none shadow-md overflow-hidden relative group cursor-pointer rounded-2xl",
+									children: [
+										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
+											src: "https://img.usecurling.com/p/800/450?q=church%20worship",
+											className: "w-full aspect-video object-cover",
+											alt: "Live"
+										}),
+										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+											className: "absolute inset-0 bg-black/40 flex items-center justify-center",
+											children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CirclePlay, { className: "w-14 h-14 text-white opacity-90 group-hover:scale-110 transition-transform" })
+										}),
+										/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+											className: "absolute bottom-3 left-3 bg-red-600/90 text-white text-[11px] font-bold px-2 py-1 rounded-md uppercase tracking-wider flex items-center gap-1.5",
+											children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "w-1.5 h-1.5 bg-white rounded-full animate-pulse" }), "Ao Vivo"]
+										})
+									]
 								})
-							]
-						})]
+							}),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
+								asChild: true,
+								className: "w-full h-12 rounded-xl font-bold bg-red-600 hover:bg-red-700 text-white shadow-md",
+								children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("a", {
+									href: "https://www.youtube.com/@ibpalavra/featured",
+									target: "_blank",
+									rel: "noopener noreferrer",
+									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Youtube, { className: "w-5 h-5 mr-2" }), "Assistir no YouTube"]
+								})
+							})
+						]
 					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 						className: "space-y-3",
 						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
@@ -38488,4 +38514,4 @@ var App = () => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AuthProvider, { chil
 var App_default = App;
 (0, import_client.createRoot)(document.getElementById("root")).render(/* @__PURE__ */ (0, import_jsx_runtime.jsx)(App_default, {}));
 
-//# sourceMappingURL=index-Bow-E7Dc.js.map
+//# sourceMappingURL=index-uD5UNobj.js.map

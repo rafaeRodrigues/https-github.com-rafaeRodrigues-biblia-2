@@ -1,6 +1,14 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Card, CardContent } from '@/components/ui/card'
-import { MapPin, Clock, PlayCircle, CalendarDays, Video } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import {
+  MapPin,
+  Clock,
+  PlayCircle,
+  CalendarDays,
+  Video,
+  Youtube,
+} from 'lucide-react'
 
 const AGENDA = [
   {
@@ -91,22 +99,43 @@ export default function Events() {
 
         <TabsContent value="media" className="space-y-6 mt-6">
           {/* Live Stream */}
-          <div className="space-y-3">
+          <div className="space-y-4">
             <h3 className="font-bold px-1">Transmissão ao Vivo</h3>
-            <Card className="border-none shadow-md overflow-hidden relative group cursor-pointer rounded-2xl">
-              <img
-                src="https://img.usecurling.com/p/800/450?q=church%20worship"
-                className="w-full aspect-video object-cover"
-                alt="Live"
-              />
-              <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-                <PlayCircle className="w-14 h-14 text-white opacity-90 group-hover:scale-110 transition-transform" />
-              </div>
-              <div className="absolute bottom-3 left-3 bg-red-600/90 text-white text-[11px] font-bold px-2 py-1 rounded-md uppercase tracking-wider flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 bg-white rounded-full animate-pulse" />
-                Ao Vivo
-              </div>
-            </Card>
+            <a
+              href="https://www.youtube.com/@ibpalavra/featured"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block"
+            >
+              <Card className="border-none shadow-md overflow-hidden relative group cursor-pointer rounded-2xl">
+                <img
+                  src="https://img.usecurling.com/p/800/450?q=church%20worship"
+                  className="w-full aspect-video object-cover"
+                  alt="Live"
+                />
+                <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+                  <PlayCircle className="w-14 h-14 text-white opacity-90 group-hover:scale-110 transition-transform" />
+                </div>
+                <div className="absolute bottom-3 left-3 bg-red-600/90 text-white text-[11px] font-bold px-2 py-1 rounded-md uppercase tracking-wider flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 bg-white rounded-full animate-pulse" />
+                  Ao Vivo
+                </div>
+              </Card>
+            </a>
+
+            <Button
+              asChild
+              className="w-full h-12 rounded-xl font-bold bg-red-600 hover:bg-red-700 text-white shadow-md"
+            >
+              <a
+                href="https://www.youtube.com/@ibpalavra/featured"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Youtube className="w-5 h-5 mr-2" />
+                Assistir no YouTube
+              </a>
+            </Button>
           </div>
 
           {/* Gallery */}

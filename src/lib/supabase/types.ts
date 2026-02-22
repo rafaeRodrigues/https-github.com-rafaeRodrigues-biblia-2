@@ -152,6 +152,36 @@ export type Database = {
         }
         Relationships: []
       }
+      user_notes: {
+        Row: {
+          content: string
+          created_at: string | null
+          id: string
+          importance_color: string
+          title: string
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          content: string
+          created_at?: string | null
+          id?: string
+          importance_color?: string
+          title: string
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          content?: string
+          created_at?: string | null
+          id?: string
+          importance_color?: string
+          title?: string
+          updated_at?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -310,6 +340,9 @@ export const Constants = {
 // Table: notifications
 //   FOREIGN KEY notifications_author_id_fkey: FOREIGN KEY (author_id) REFERENCES auth.users(id)
 //   PRIMARY KEY notifications_pkey: PRIMARY KEY (id)
+// Table: user_notes
+//   PRIMARY KEY user_notes_pkey: PRIMARY KEY (id)
+//   FOREIGN KEY user_notes_user_id_fkey: FOREIGN KEY (user_id) REFERENCES auth.users(id) ON DELETE CASCADE
 
 // --- ROW LEVEL SECURITY POLICIES ---
 // Table: app_config
@@ -333,6 +366,10 @@ export const Constants = {
 //     USING: (auth.role() = 'authenticated'::text)
 //   Policy "Public read access for notifications" (SELECT, PERMISSIVE) roles={public}
 //     USING: true
+// Table: user_notes
+//   Policy "Users can manage their own notes" (ALL, PERMISSIVE) roles={public}
+//     USING: (auth.uid() = user_id)
+//     WITH CHECK: (auth.uid() = user_id)
 
 // --- DATABASE FUNCTIONS ---
 // FUNCTION rls_auto_enable()
